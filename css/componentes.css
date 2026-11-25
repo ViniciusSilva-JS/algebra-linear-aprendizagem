@@ -393,6 +393,38 @@ progress.progresso::-moz-progress-bar {
 }
 
 
+/* =========================================================================
+   ETIQUETA (selo colorido, ex.: tipo de ângulo no laboratório)
+   Uso: <span class="etiqueta etiqueta-verde">Agudo</span>
+   Variações: etiqueta-verde, etiqueta-azul, etiqueta-ambar
+   ========================================================================= */
+.etiqueta {
+  display: inline-block;
+  padding: 0.2rem 0.75rem;
+  border: 1px solid;
+  border-radius: var(--raio-pilula);
+  font-size: var(--tamanho-pequeno);
+  font-weight: 700;
+}
+
+.etiqueta-verde {
+  background: var(--cor-acerto-fundo);
+  border-color: var(--cor-acerto-borda);
+  color: var(--cor-acerto);
+}
+
+.etiqueta-azul {
+  background: var(--cor-primaria-suave);
+  border-color: var(--cor-primaria);
+  color: var(--cor-primaria);
+}
+
+.etiqueta-ambar {
+  background: var(--cor-exercicios-suave);
+  border-color: var(--cor-exercicios);
+  color: var(--cor-exercicios);
+}
+
 
 /* =========================================================================
    RESPONSIVO (celular — até 768px)

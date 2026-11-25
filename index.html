@@ -575,9 +575,223 @@
       <!-- Lição 3 -->
       <section id="licao-3" class="licao" data-licao="3">
         <h2 class="licao-titulo">3. Produto escalar e ângulo</h2>
-        <div class="teoria"><p>Conteúdo em construção</p></div>
-        <div class="laboratorio"><p>Laboratório em construção</p></div>
-        <div class="exercicios"><p>Exercícios em construção</p></div>
+
+        <!-- ---------- TEORIA ---------- -->
+        <div class="teoria">
+          <h3>O que é o produto escalar</h3>
+          <p>
+            O <strong>produto escalar</strong> (ou produto interno) é uma operação entre
+            dois vetores cujo resultado é um <strong>número</strong>, e não um vetor. Por isso
+            o nome "escalar". Ele é calculado multiplicando as componentes correspondentes
+            e somando os resultados:
+          </p>
+          <div class="formula"><span class="vet">u</span> · <span class="vet">v</span> = x₁·x₂ + y₁·y₂</div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              <span class="vet">u</span> = (2, 3) e <span class="vet">v</span> = (4, −1):
+              <span class="vet">u</span> · <span class="vet">v</span> = 2·4 + 3·(−1) = 8 − 3 = <strong>5</strong>.
+            </p>
+          </div>
+
+          <h3>Propriedades</h3>
+          <ul>
+            <li><strong>Comutativa:</strong> <span class="vet">u</span> · <span class="vet">v</span> = <span class="vet">v</span> · <span class="vet">u</span>.</li>
+            <li><strong>Distributiva:</strong> <span class="vet">u</span> · (<span class="vet">v</span> + <span class="vet">w</span>) = <span class="vet">u</span> · <span class="vet">v</span> + <span class="vet">u</span> · <span class="vet">w</span>.</li>
+            <li><strong>Com ele mesmo:</strong> <span class="vet">v</span> · <span class="vet">v</span> = x² + y² = |<span class="vet">v</span>|². Ou seja, o módulo ao quadrado.</li>
+          </ul>
+
+          <h3>Relação com o ângulo</h3>
+          <p>
+            O produto escalar também pode ser escrito usando o ângulo θ (de 0° a 180°)
+            entre os dois vetores:
+          </p>
+          <div class="formula"><span class="vet">u</span> · <span class="vet">v</span> = |<span class="vet">u</span>| · |<span class="vet">v</span>| · cos θ</div>
+          <p>Isolando o cosseno, conseguimos <strong>calcular o ângulo</strong> entre dois vetores:</p>
+          <div class="formula">cos θ = (<span class="vet">u</span> · <span class="vet">v</span>) / (|<span class="vet">u</span>| · |<span class="vet">v</span>|)</div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              <span class="vet">u</span> = (1, 1) e <span class="vet">v</span> = (0, 2):<br>
+              <span class="vet">u</span> · <span class="vet">v</span> = 1·0 + 1·2 = 2, &nbsp;|<span class="vet">u</span>| = √2 &nbsp;e&nbsp; |<span class="vet">v</span>| = 2.<br>
+              cos θ = 2 / (√2 · 2) = 1/√2 ≈ 0,707, &nbsp;então θ = <strong>45°</strong>.
+            </p>
+          </div>
+
+          <h3>O sinal diz o tipo de ângulo</h3>
+          <p>
+            Como os módulos são sempre positivos, o sinal de <span class="vet">u</span> · <span class="vet">v</span>
+            é o mesmo sinal de cos θ. Só de olhar o sinal já sabemos o tipo de ângulo:
+          </p>
+          <div class="tabela-rolagem">
+            <table class="tabela">
+              <thead>
+                <tr><th><span class="vet">u</span> · <span class="vet">v</span></th><th>cos θ</th><th>Ângulo θ</th><th>Os vetores…</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>&gt; 0</td><td>positivo</td><td>agudo (0° ≤ θ &lt; 90°)</td><td>apontam para o "mesmo lado"</td></tr>
+                <tr><td>= 0</td><td>zero</td><td>reto (θ = 90°)</td><td>são perpendiculares</td></tr>
+                <tr><td>&lt; 0</td><td>negativo</td><td>obtuso (90° &lt; θ ≤ 180°)</td><td>apontam para "lados opostos"</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Vetores perpendiculares (ortogonais)</h3>
+          <p>
+            Dois vetores não nulos são <strong>perpendiculares</strong> (ou ortogonais) quando
+            o produto escalar entre eles é zero:
+          </p>
+          <div class="formula"><span class="vet">u</span> ⊥ <span class="vet">v</span> &nbsp;⇔&nbsp; <span class="vet">u</span> · <span class="vet">v</span> = 0</div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              (2, 3) · (−3, 2) = 2·(−3) + 3·2 = −6 + 6 = 0, então os vetores são
+              <strong>perpendiculares</strong>. Dica: trocar as componentes de lugar e inverter
+              o sinal de uma delas sempre gera um vetor perpendicular, já que (a, b) ⊥ (−b, a).
+            </p>
+          </div>
+
+          <h3>Projeção ortogonal</h3>
+          <p>
+            A <strong>projeção</strong> de <span class="vet">u</span> sobre <span class="vet">v</span>
+            é a "sombra" de <span class="vet">u</span> na direção de <span class="vet">v</span>, como
+            se uma luz viesse perpendicular a <span class="vet">v</span>:
+          </p>
+          <div class="formula">proj<sub><span class="vet">v</span></sub> <span class="vet">u</span> = ( (<span class="vet">u</span> · <span class="vet">v</span>) / |<span class="vet">v</span>|² ) · <span class="vet">v</span></div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              <span class="vet">u</span> = (3, 4) e <span class="vet">v</span> = (2, 0):
+              <span class="vet">u</span> · <span class="vet">v</span> = 6 e |<span class="vet">v</span>|² = 4.<br>
+              proj = (6/4) · (2, 0) = <strong>(3, 0)</strong>: a sombra de <span class="vet">u</span> sobre o eixo x.
+            </p>
+          </div>
+        </div>
+
+        <!-- ---------- LABORATÓRIO ---------- -->
+        <div class="laboratorio">
+          <h3>Meça o ângulo entre vetores</h3>
+          <p>
+            Mude <span class="vet">u</span> e <span class="vet">v</span> (ou <strong>clique no plano</strong>)
+            e veja o produto escalar, o ângulo e o tipo de ângulo mudando juntos. Tente
+            deixar os vetores perpendiculares!
+          </p>
+
+          <div class="lab-area">
+            <svg id="l3-plano" class="plano-cartesiano" viewBox="-11 -11 22 22"
+                 role="img" aria-label="Plano cartesiano com os vetores u e v e o ângulo entre eles"></svg>
+
+            <div class="lab-controles">
+              <fieldset class="lab-ponto lab-ponto-a">
+                <legend>Vetor u</legend>
+                <label>x <input type="number" id="l3-ux" value="4" min="-10" max="10" step="1"></label>
+                <label>y <input type="number" id="l3-uy" value="1" min="-10" max="10" step="1"></label>
+              </fieldset>
+              <fieldset class="lab-ponto lab-ponto-b">
+                <legend>Vetor v</legend>
+                <label>x <input type="number" id="l3-vx" value="2" min="-10" max="10" step="1"></label>
+                <label>y <input type="number" id="l3-vy" value="3" min="-10" max="10" step="1"></label>
+              </fieldset>
+              <label class="lab-check"><input type="checkbox" id="l3-projecao"> Mostrar projeção de u sobre v</label>
+              <p id="l3-dica-clique" class="lab-dica">Próximo clique no plano move a ponta de <strong>u</strong>.</p>
+              <button type="button" id="l3-sortear" class="btn-secundario">🎲 Vetores aleatórios</button>
+            </div>
+          </div>
+
+          <div id="l3-resultados" class="lab-resultados" aria-live="polite"></div>
+        </div>
+
+        <!-- ---------- EXERCÍCIOS ---------- -->
+        <div class="exercicios" data-licao="3">
+          <h3>Pratique</h3>
+          <p>Escolha uma alternativa em cada exercício. Acerte todos para liberar a lição 4.</p>
+
+          <ol class="lista-exercicios">
+            <li class="exercicio">
+              <p>Se <span class="vet">u</span> = <strong>(3, −2)</strong> e <span class="vet">v</span> = <strong>(4, 5)</strong>, quanto vale <span class="vet">u</span> · <span class="vet">v</span>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="l3-ex1" value="a"
+                  data-explicacao="(12, −10) são os produtos das componentes, mas faltou somá-los. O produto escalar é um NÚMERO, não um vetor."> (12, −10)</label>
+                <label class="alternativa"><input type="radio" name="l3-ex1" value="b"
+                  data-explicacao="u · v = 3·4 + (−2)·5 = 12 + (−10) = 2."> 2</label>
+                <label class="alternativa"><input type="radio" name="l3-ex1" value="c"
+                  data-explicacao="22 = 12 + 10: houve erro de sinal. (−2)·5 = −10, então a conta é 12 − 10."> 22</label>
+                <label class="alternativa"><input type="radio" name="l3-ex1" value="d"
+                  data-explicacao="7 = 3·5 + (−2)·4: as componentes foram cruzadas. Multiplique x com x e y com y."> 7</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Qual par de vetores é <strong>perpendicular</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="l3-ex2" value="a"
+                  data-explicacao="(2, 3) · (3, 2) = 6 + 6 = 12 ≠ 0. Trocar as componentes de lugar não basta: também é preciso inverter o sinal de uma delas."> (2, 3) e (3, 2)</label>
+                <label class="alternativa"><input type="radio" name="l3-ex2" value="b"
+                  data-explicacao="(1, 2) · (2, −1) = 1·2 + 2·(−1) = 2 − 2 = 0. Produto escalar zero significa vetores perpendiculares."> (1, 2) e (2, −1)</label>
+                <label class="alternativa"><input type="radio" name="l3-ex2" value="c"
+                  data-explicacao="(4, 1) · (−4, −1) = −16 − 1 = −17. Um vetor é o oposto do outro: o ângulo entre eles é 180°, não 90°."> (4, 1) e (−4, −1)</label>
+                <label class="alternativa"><input type="radio" name="l3-ex2" value="d"
+                  data-explicacao="(2, −3) · (−4, 6) = −8 − 18 = −26. Esses vetores são paralelos (−4, 6) = −2·(2, −3), com sentidos opostos."> (2, −3) e (−4, 6)</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Se |<span class="vet">u</span>| = 4, |<span class="vet">v</span>| = 5 e o ângulo entre eles é <strong>60°</strong>, quanto vale <span class="vet">u</span> · <span class="vet">v</span>? (Use cos 60° = 0,5.)</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="l3-ex3" value="a"
+                  data-explicacao="20 é só |u| · |v|. Faltou multiplicar pelo cosseno do ângulo."> 20</label>
+                <label class="alternativa"><input type="radio" name="l3-ex3" value="b"
+                  data-explicacao="u · v = |u| · |v| · cos θ = 4 · 5 · 0,5 = 10."> 10</label>
+                <label class="alternativa"><input type="radio" name="l3-ex3" value="c"
+                  data-explicacao="≈ 17,32 = 20 · 0,866, que é o seno de 60°. A fórmula usa o COSSENO do ângulo."> ≈ 17,32</label>
+                <label class="alternativa"><input type="radio" name="l3-ex3" value="d"
+                  data-explicacao="9 = 4 + 5. Os módulos são multiplicados (e depois multiplicados pelo cosseno), não somados."> 9</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Qual é o ângulo entre <span class="vet">u</span> = <strong>(1, 0)</strong> e <span class="vet">v</span> = <strong>(−1, 1)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="l3-ex4" value="a"
+                  data-explicacao="45° teria cosseno positivo (√2/2). Aqui u · v = −1 é negativo, então o ângulo é obtuso. O sinal de menos foi ignorado."> 45°</label>
+                <label class="alternativa"><input type="radio" name="l3-ex4" value="b"
+                  data-explicacao="90° exigiria u · v = 0, mas u · v = 1·(−1) + 0·1 = −1."> 90°</label>
+                <label class="alternativa"><input type="radio" name="l3-ex4" value="c"
+                  data-explicacao="u · v = −1, |u| = 1 e |v| = √2. cos θ = −1/√2 ≈ −0,707, e o ângulo de 0° a 180° com esse cosseno é 135°."> 135°</label>
+                <label class="alternativa"><input type="radio" name="l3-ex4" value="d"
+                  data-explicacao="O ângulo entre dois vetores é sempre medido de 0° a 180° (o menor ângulo entre eles). 225° está fora desse intervalo."> 225°</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Se o produto escalar entre dois vetores não nulos é <strong>negativo</strong>, o ângulo entre eles é:</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="l3-ex5" value="a"
+                  data-explicacao="Ângulo agudo tem cosseno positivo, o que daria um produto escalar positivo."> agudo</label>
+                <label class="alternativa"><input type="radio" name="l3-ex5" value="b"
+                  data-explicacao="Ângulo reto tem cosseno zero, e o produto escalar seria exatamente 0."> reto</label>
+                <label class="alternativa"><input type="radio" name="l3-ex5" value="c"
+                  data-explicacao="Em u · v = |u| · |v| · cos θ, os módulos são positivos. Então, se u · v é negativo, cos θ é negativo, o que acontece para θ entre 90° e 180° (ângulo obtuso)."> obtuso</label>
+                <label class="alternativa"><input type="radio" name="l3-ex5" value="d"
+                  data-explicacao="Dá para saber, sim: o sinal do produto escalar é sempre o mesmo do cosseno do ângulo, porque os módulos são positivos."> não dá para saber</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Para qual valor de k os vetores <strong>(k, 2)</strong> e <strong>(3, −6)</strong> são perpendiculares?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="l3-ex6" value="a"
+                  data-explicacao="k = −1 deixa os vetores paralelos, (−1, 2) e (3, −6) = −3·(−1, 2), e não perpendiculares. Para perpendicular, o produto escalar deve ser zero."> −1</label>
+                <label class="alternativa"><input type="radio" name="l3-ex6" value="b"
+                  data-explicacao="12 é o valor de 3k na equação 3k − 12 = 0. Faltou dividir por 3."> 12</label>
+                <label class="alternativa"><input type="radio" name="l3-ex6" value="c"
+                  data-explicacao="(k, 2) · (3, −6) = 3k − 12. Igualando a zero: 3k = 12, então k = 4."> 4</label>
+                <label class="alternativa"><input type="radio" name="l3-ex6" value="d"
+                  data-explicacao="Erro de sinal: 2·(−6) = −12, então a equação é 3k − 12 = 0 (e não 3k + 12 = 0)."> −4</label>
+              </div>
+            </li>
+          </ol>
+        </div>
       </section>
 
       <!-- Lição 4 -->
@@ -679,5 +893,6 @@
   <!-- 4. Laboratórios de cada lição (um arquivo por lição) -->
   <script src="js/licoes/licao-01.js"></script>
   <script src="js/licoes/licao-02.js"></script>
+  <script src="js/licoes/licao-03.js"></script>
 </body>
 </html>

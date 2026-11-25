@@ -6,10 +6,12 @@
      const plano = criarPlanoCartesiano(document.getElementById('meu-svg'));
      plano.limpar();                              // apaga o desenho anterior
      plano.seta(0, 0, 3, 2, 'vetor-u');           // seta da origem até (3, 2)
+     plano.rotuloSeta('u', 0, 0, 3, 2, 'rotulo-vetor vetor-u'); // nome na ponta
      plano.ponto(1, 2, 0.3, 'ponto-a');           // ponto (1, 2)
      plano.texto('A', 1.4, 2.4, 'rotulo-ponto');  // texto em (1,4; 2,4)
      plano.linha(0, 0, 3, 2, 'segmento');
      plano.poligonal([[0,0], [3,0], [3,2]], 'cateto');
+     plano.arco(0, 0, 1.2, 0, Math.PI / 4, 'arco-angulo'); // arco de 0° a 45°
      const p = plano.pontoDoClique(evento);       // {x, y} inteiros
 
    Todas as coordenadas são MATEMÁTICAS (y para cima). A conversão para o
@@ -143,6 +145,35 @@ function criarPlanoCartesiano(svg, opcoes) {
     ], 'seta-ponta ' + classe);
   }
 
+  /**
+   * Escreve um texto logo depois da ponta de uma seta de (x1, y1) a (x2, y2),
+   * afastado 0,7 unidade na direção da seta. Ex.: o nome do vetor.
+   */
+  function rotuloSeta(conteudo, x1, y1, x2, y2, classe) {
+    const dx = x2 - x1;
+    const dy = y2 - y1;
+    const comprimento = Math.hypot(dx, dy);
+    if (comprimento < 1e-9) return null;
+    const tx = x2 + (dx / comprimento) * 0.7;
+    const ty = y2 + (dy / comprimento) * 0.7 - 0.2;
+    return texto(conteudo, tx, ty, classe, 'middle');
+  }
+
+  /**
+   * Arco de circunferência com centro (cx, cy), indo do ângulo `inicio`
+   * até o ângulo `fim` (em radianos, medidos a partir do eixo x, no sentido
+   * anti-horário). Usado para marcar o ângulo entre dois vetores.
+   */
+  function arco(cx, cy, raio, inicio, fim, classe) {
+    const passos = Math.max(8, Math.ceil(Math.abs(fim - inicio) * 20));
+    const pontos = [];
+    for (let i = 0; i <= passos; i++) {
+      const a = inicio + (fim - inicio) * (i / passos);
+      pontos.push([cx + raio * Math.cos(a), cy + raio * Math.sin(a)]);
+    }
+    return poligonal(pontos, classe);
+  }
+
 
   /* -----------------------------------------------------------------------
      4. CLIQUE NO PLANO
@@ -166,5 +197,5 @@ function criarPlanoCartesiano(svg, opcoes) {
     return Math.abs(x) <= limite && Math.abs(y) <= limite;
   }
 
-  return { limite, limpar, linha, poligonal, poligono, ponto, texto, seta, pontoDoClique, cabe };
+  return { limite, limpar, linha, poligonal, poligono, ponto, texto, seta, rotuloSeta, arco, pontoDoClique, cabe };
 }

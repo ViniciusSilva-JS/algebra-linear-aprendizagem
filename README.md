@@ -27,6 +27,7 @@ js/
   licoes/
     licao-01.js             Laboratório da Lição 1 (só o que é específico da lição)
     licao-02.js             Laboratório da Lição 2
+    licao-03.js             Laboratório da Lição 3
 ```
 
 **A ordem dos `<link>` e `<script>` no `index.html` importa:** os estilos vão do

@@ -74,14 +74,7 @@
 
   /** Escreve o nome do vetor logo depois da ponta da seta. */
   function rotularVetor(nome, origem, vetor, classe) {
-    const tamanho = modulo(vetor);
-    if (tamanho < 1e-9) return;
-    const fimX = origem.x + vetor.x;
-    const fimY = origem.y + vetor.y;
-    // afasta o texto 0,7 unidade na direção da seta
-    const tx = fimX + (vetor.x / tamanho) * 0.7;
-    const ty = fimY + (vetor.y / tamanho) * 0.7 - 0.2;
-    plano.texto(nome, tx, ty, 'rotulo-vetor ' + classe, 'middle');
+    plano.rotuloSeta(nome, origem.x, origem.y, origem.x + vetor.x, origem.y + vetor.y, 'rotulo-vetor ' + classe);
   }
 
   /** Seta que começa em `origem` e tem as componentes de `vetor`. */

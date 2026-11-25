@@ -237,6 +237,48 @@
 
 
 /* =========================================================================
+   ÂNGULOS (Lição 3 em diante)
+   ========================================================================= */
+
+/* Arco (ou quadradinho do ângulo reto) entre dois vetores */
+.arco-angulo {
+  fill: none;
+  stroke: var(--cor-texto);
+  stroke-width: 0.07;
+  stroke-linejoin: round;
+}
+
+/* Letra θ perto do arco */
+.rotulo-angulo {
+  fill: var(--cor-texto);
+  font-family: var(--fonte-formula);
+  font-size: 0.7px;
+  font-style: italic;
+  stroke: var(--cor-superficie);
+  stroke-width: 0.18;
+  stroke-linejoin: round;
+  paint-order: stroke;
+}
+
+/* Caixa de seleção nos controles (ex.: "Mostrar projeção") */
+.lab-check {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-2);
+  font-size: var(--tamanho-pequeno);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.lab-check input {
+  width: 1.1rem;
+  height: 1.1rem;
+  margin: 0;
+  accent-color: var(--cor-laboratorio);
+}
+
+
+/* =========================================================================
    RESPONSIVO
    ========================================================================= */
 @media (max-width: 900px) {

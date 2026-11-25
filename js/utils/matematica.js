@@ -6,6 +6,7 @@
    1. Leitura e formatação de números
    2. Geometria analítica no plano
    3. Vetores no plano
+   4. Produto escalar e ângulo
    ========================================================================= */
 
 'use strict';
@@ -148,4 +149,37 @@ function multiplicarPorEscalar(k, v) {
 /** Vetor que vai do ponto A até o ponto B: B − A. */
 function vetorEntrePontos(A, B) {
   return { x: B.x - A.x, y: B.y - A.y };
+}
+
+
+/* =========================================================================
+   4. PRODUTO ESCALAR E ÂNGULO
+   ========================================================================= */
+
+/** Produto escalar: u · v = x₁·x₂ + y₁·y₂ (o resultado é um NÚMERO). */
+function produtoEscalar(u, v) {
+  return u.x * v.x + u.y * v.y;
+}
+
+/**
+ * Ângulo entre u e v, em radianos (de 0 a π).
+ * Devolve null se algum dos vetores for nulo (ângulo indefinido).
+ */
+function anguloEntre(u, v) {
+  const produtoModulos = modulo(u) * modulo(v);
+  if (produtoModulos === 0) return null;
+  // limita entre −1 e 1 para evitar erros de arredondamento no acos
+  const cosseno = Math.max(-1, Math.min(1, produtoEscalar(u, v) / produtoModulos));
+  return Math.acos(cosseno);
+}
+
+function radianosParaGraus(radianos) {
+  return radianos * 180 / Math.PI;
+}
+
+/** Projeção ortogonal de u sobre v: (u·v / |v|²) · v. Null se v for nulo. */
+function projecao(u, v) {
+  const quadradoModuloV = produtoEscalar(v, v);
+  if (quadradoModuloV === 0) return null;
+  return multiplicarPorEscalar(produtoEscalar(u, v) / quadradoModuloV, v);
 }
