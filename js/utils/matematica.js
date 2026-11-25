@@ -9,6 +9,7 @@
    4. Produto escalar e ângulo
    5. Frações e equações de reta
    6. Matrizes
+   7. Determinantes
    ========================================================================= */
 
 'use strict';
@@ -332,4 +333,61 @@ function multiplicarMatrizes(A, B) {
     for (let k = 0; k < B.length; k++) soma += A[i][k] * B[k][j];
     return soma;
   });
+}
+
+
+/* =========================================================================
+   7. DETERMINANTES
+   ========================================================================= */
+
+/**
+ * Determinante de uma matriz quadrada de qualquer ordem, por eliminação
+ * (escalonamento). Resultados muito próximos de inteiros são arredondados.
+ */
+function determinante(A) {
+  const n = A.length;
+  const M = A.map((linha) => linha.slice()); // cópia, para não alterar A
+  let det = 1;
+  for (let col = 0; col < n; col++) {
+    // pivô: maior valor (em módulo) da coluna, para reduzir erros de arredondamento
+    let pivo = col;
+    for (let i = col + 1; i < n; i++) if (Math.abs(M[i][col]) > Math.abs(M[pivo][col])) pivo = i;
+    if (Math.abs(M[pivo][col]) < 1e-12) return 0;
+    if (pivo !== col) { [M[pivo], M[col]] = [M[col], M[pivo]]; det = -det; } // trocar linhas troca o sinal
+    det *= M[col][col];
+    for (let i = col + 1; i < n; i++) {
+      const fator = M[i][col] / M[col][col];
+      for (let j = col; j < n; j++) M[i][j] -= fator * M[col][j];
+    }
+  }
+  return quaseIgual(det, Math.round(det), 1e-9) ? Math.round(det) : det;
+}
+
+/**
+ * Regra de Sarrus (só 3×3), com cada diagonal separada para mostrar as contas.
+ * Devolve { descendentes, ascendentes, somaDescendentes, somaAscendentes, det },
+ * em que cada diagonal é { fatores: [a, b, c], produto }.
+ */
+function sarrus(A) {
+  const diagonal = (posicoes) => {
+    const fatores = posicoes.map(([i, j]) => A[i][j]);
+    return { fatores: fatores, produto: fatores[0] * fatores[1] * fatores[2] };
+  };
+  const descendentes = [
+    diagonal([[0, 0], [1, 1], [2, 2]]),
+    diagonal([[0, 1], [1, 2], [2, 0]]),
+    diagonal([[0, 2], [1, 0], [2, 1]]),
+  ];
+  const ascendentes = [
+    diagonal([[0, 2], [1, 1], [2, 0]]),
+    diagonal([[0, 0], [1, 2], [2, 1]]),
+    diagonal([[0, 1], [1, 0], [2, 2]]),
+  ];
+  const soma = (lista) => lista.reduce((total, d) => total + d.produto, 0);
+  const somaDescendentes = soma(descendentes);
+  const somaAscendentes = soma(ascendentes);
+  return {
+    descendentes, ascendentes, somaDescendentes, somaAscendentes,
+    det: somaDescendentes - somaAscendentes,
+  };
 }

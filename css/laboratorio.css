@@ -352,6 +352,57 @@
   font-size: 1.15em;
 }
 
+/* Colunas repetidas da regra de Sarrus, apagadas */
+.matriz-el.repetida {
+  opacity: 0.5;
+}
+
+/* Laboratório sem o plano (ex.: modo 3×3): controles ocupam a largura toda */
+.lab-area.sem-plano {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.lab-area.sem-plano .lab-controles {
+  align-items: flex-start;
+}
+
+
+/* =========================================================================
+   DETERMINANTE COMO ÁREA (Lição 7 em diante)
+   ========================================================================= */
+
+/* Paralelogramo formado pelas colunas: roxo (det > 0) ou âmbar (det < 0) */
+.regiao-det {
+  fill: var(--cor-laboratorio);
+  fill-opacity: 0.18;
+  stroke: var(--cor-laboratorio);
+  stroke-width: 0.05;
+}
+
+.regiao-det.negativa {
+  fill: var(--cor-exercicios);
+  stroke: var(--cor-exercicios);
+}
+
+/* Quadrado de lado 1 (área 1), para comparar */
+.quadrado-unitario {
+  fill: none;
+  stroke: var(--cor-texto-suave);
+  stroke-width: 0.05;
+  stroke-dasharray: 0.2 0.15;
+}
+
+.rotulo-area {
+  fill: var(--cor-texto);
+  font-family: var(--fonte-base);
+  font-size: 0.6px;
+  font-weight: 700;
+  stroke: var(--cor-superficie);
+  stroke-width: 0.16;
+  stroke-linejoin: round;
+  paint-order: stroke;
+}
+
 
 /* =========================================================================
    RESPONSIVO
