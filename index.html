@@ -1275,9 +1275,192 @@
       <!-- Lição 6 -->
       <section id="licao-6" class="licao" data-licao="6">
         <h2 class="licao-titulo">6. Multiplicação de matrizes</h2>
-        <div class="teoria"><p>Conteúdo em construção</p></div>
-        <div class="laboratorio"><p>Laboratório em construção</p></div>
-        <div class="exercicios"><p>Exercícios em construção</p></div>
+
+        <!-- ---------- TEORIA ---------- -->
+        <div class="teoria">
+          <h3>Quando dá para multiplicar</h3>
+          <p>
+            O produto A·B só existe quando o <strong>número de colunas de A</strong> é igual ao
+            <strong>número de linhas de B</strong>. O resultado tem as linhas de A e as colunas de B:
+          </p>
+          <div class="formula">A<sub>m×<strong>n</strong></sub> · B<sub><strong>n</strong>×p</sub> = C<sub>m×p</sub></div>
+          <p>
+            Um jeito fácil de conferir: escreva as ordens lado a lado. Os números "de dentro" precisam
+            ser iguais, e os "de fora" dão a ordem do resultado. Por exemplo, (2×<strong>3</strong>)·(<strong>3</strong>×4) dá 2×4,
+            enquanto (2×3)·(2×3) não é possível.
+          </p>
+
+          <h3>Como calcular cada elemento</h3>
+          <p>
+            O elemento c<sub>ij</sub> do resultado é a <strong>linha i de A</strong> "vezes" a
+            <strong>coluna j de B</strong>: multiplicamos elemento por elemento e somamos. É o mesmo
+            produto escalar da lição 3!
+          </p>
+          <div class="formula">c<sub>ij</sub> = a<sub>i1</sub>·b<sub>1j</sub> + a<sub>i2</sub>·b<sub>2j</sub> + … + a<sub>in</sub>·b<sub>nj</sub></div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo (2×2 · 2×2)</p>
+            <div class="formula">
+              <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el">3</span><span class="matriz-el">4</span></span></span> · <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">5</span><span class="matriz-el">6</span><span class="matriz-el">7</span><span class="matriz-el">8</span></span></span>
+              = <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1·5+2·7</span><span class="matriz-el">1·6+2·8</span><span class="matriz-el">3·5+4·7</span><span class="matriz-el">3·6+4·8</span></span></span>
+              = <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">19</span><span class="matriz-el">22</span><span class="matriz-el">43</span><span class="matriz-el">50</span></span></span>
+            </div>
+            <p>Por exemplo, c₂₁ = (linha 2 de A) · (coluna 1 de B) = 3·5 + 4·7 = 15 + 28 = 43.</p>
+          </div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo (2×3 · 3×1)</p>
+            <div class="formula">
+              <span class="matriz"><span class="matriz-grade" style="--colunas: 3"><span class="matriz-el">1</span><span class="matriz-el">0</span><span class="matriz-el">2</span><span class="matriz-el">−1</span><span class="matriz-el">3</span><span class="matriz-el">1</span></span></span> · <span class="matriz"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">3</span><span class="matriz-el">2</span><span class="matriz-el">1</span></span></span>
+              = <span class="matriz"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">1·3+0·2+2·1</span><span class="matriz-el">−1·3+3·2+1·1</span></span></span>
+              = <span class="matriz"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">5</span><span class="matriz-el">4</span></span></span>
+            </div>
+            <p>Multiplicar uma matriz por uma matriz coluna transforma um "vetor" em outro, ideia central da lição 10.</p>
+          </div>
+
+          <h3>Propriedades</h3>
+          <ul>
+            <li>
+              <strong>NÃO é comutativa:</strong> em geral A·B ≠ B·A. No primeiro exemplo,
+              B·A = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">23</span><span class="matriz-el">34</span><span class="matriz-el">31</span><span class="matriz-el">46</span></span></span>, diferente de A·B. Às vezes, B·A nem existe!
+            </li>
+            <li><strong>Associativa:</strong> (A·B)·C = A·(B·C).</li>
+            <li><strong>Distributiva:</strong> A·(B + C) = A·B + A·C.</li>
+            <li><strong>Identidade:</strong> A·I = I·A = A, então a identidade faz o papel do número 1.</li>
+            <li><strong>Transposta do produto:</strong> (A·B)ᵀ = Bᵀ·Aᵀ (a ordem se inverte).</li>
+          </ul>
+        </div>
+
+        <!-- ---------- LABORATÓRIO ---------- -->
+        <div class="laboratorio">
+          <h3>Linha vezes coluna</h3>
+          <p>
+            Escolha as ordens, edite as matrizes e <strong>clique em um elemento do resultado</strong>:
+            a linha e a coluna usadas ficam realçadas. Depois use "Trocar a ordem" para ver que
+            A·B e B·A são diferentes.
+          </p>
+
+          <div class="lab-matrizes-controles">
+            <label>A: linhas <select id="l6-m"><option>1</option><option selected>2</option><option>3</option></select></label>
+            <label>colunas de A = linhas de B <select id="l6-n"><option>1</option><option selected>2</option><option>3</option></select></label>
+            <label>B: colunas <select id="l6-p"><option>1</option><option selected>2</option><option>3</option></select></label>
+          </div>
+          <div class="lab-matrizes-controles">
+            <button type="button" id="l6-trocar" class="btn-secundario" aria-pressed="false">⇄ Trocar a ordem (B · A)</button>
+            <button type="button" id="l6-sortear" class="btn-secundario">🎲 Valores aleatórios</button>
+          </div>
+
+          <div class="lab-matrizes">
+            <div class="lab-matriz-bloco">
+              <span class="lab-rotulo lab-rotulo-a" id="l6-titulo-a">Matriz A</span>
+              <div id="l6-a"></div>
+            </div>
+            <div class="lab-matriz-bloco">
+              <span class="lab-rotulo lab-rotulo-b" id="l6-titulo-b">Matriz B</span>
+              <div id="l6-b"></div>
+            </div>
+          </div>
+
+          <div id="l6-resultados" class="lab-resultados" aria-live="polite"></div>
+        </div>
+
+        <!-- ---------- EXERCÍCIOS ---------- -->
+        <div class="exercicios" data-licao="6">
+          <h3>Pratique</h3>
+          <p>Escolha uma alternativa em cada exercício. Acerte todos para liberar a lição 7.</p>
+
+          <ol class="lista-exercicios">
+            <li class="exercicio">
+              <p>Se A é uma matriz <strong>2×3</strong> e B é <strong>3×4</strong>, qual é a ordem de A·B?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="l6-ex1" value="a"
+                  data-explicacao="(2×3)·(3×4): os números de dentro (3 e 3) são iguais, então o produto existe, e os de fora dão a ordem 2×4."> 2×4</label>
+                <label class="alternativa"><input type="radio" name="l6-ex1" value="b"
+                  data-explicacao="3×3 junta os números de DENTRO, que só servem para conferir se o produto existe. A ordem do resultado vem dos números de fora."> 3×3</label>
+                <label class="alternativa"><input type="radio" name="l6-ex1" value="c"
+                  data-explicacao="4×2 está invertido: o resultado tem as linhas de A (2) e as colunas de B (4), nessa ordem."> 4×2</label>
+                <label class="alternativa"><input type="radio" name="l6-ex1" value="d"
+                  data-explicacao="É possível, sim: A tem 3 colunas e B tem 3 linhas, que é exatamente a condição para multiplicar."> não é possível multiplicar</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Se A e B são ambas <strong>2×3</strong>, o que se pode dizer sobre A·B?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="l6-ex2" value="a"
+                  data-explicacao="Ter a mesma ordem é a condição da SOMA, não do produto. Para multiplicar, as colunas de A devem ser iguais às linhas de B."> é 2×3, como as duas</label>
+                <label class="alternativa"><input type="radio" name="l6-ex2" value="b"
+                  data-explicacao="2×2 seria o resultado de (2×3)·(3×2). Aqui B é 2×3, e as contas não fecham."> é 2×2</label>
+                <label class="alternativa"><input type="radio" name="l6-ex2" value="c"
+                  data-explicacao="3×3 seria o resultado de (3×2)·(2×3), ou seja, Aᵀ·B. Com A·B, as ordens não combinam."> é 3×3</label>
+                <label class="alternativa"><input type="radio" name="l6-ex2" value="d"
+                  data-explicacao="(2×3)·(2×3): A tem 3 colunas, mas B tem só 2 linhas. Cada linha de A (3 números) não tem com quem combinar em uma coluna de B (2 números)."> não existe</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Quanto vale <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el">3</span><span class="matriz-el">4</span></span></span> · <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">0</span><span class="matriz-el">1</span><span class="matriz-el">3</span></span></span>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="l6-ex3" value="a"
+                  data-explicacao="Os elementos foram multiplicados posição por posição (1·2, 2·0, 3·1, 4·3). O produto de matrizes é linha × coluna.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">0</span><span class="matriz-el">3</span><span class="matriz-el">12</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l6-ex3" value="b"
+                  data-explicacao="Esse é o resultado de B·A (a ordem foi trocada). Como o produto não é comutativo, a ordem importa.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">4</span><span class="matriz-el">10</span><span class="matriz-el">14</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l6-ex3" value="c"
+                  data-explicacao="c₁₁ = 1·2 + 2·1 = 4, c₁₂ = 1·0 + 2·3 = 6, c₂₁ = 3·2 + 4·1 = 10 e c₂₂ = 3·0 + 4·3 = 12.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">4</span><span class="matriz-el">6</span><span class="matriz-el">10</span><span class="matriz-el">12</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l6-ex3" value="d"
+                  data-explicacao="Aqui foi feito linha × LINHA (ex.: c₁₂ = 1·1 + 2·3 = 7). O certo é linha de A × COLUNA de B.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">7</span><span class="matriz-el">6</span><span class="matriz-el">15</span></span></span></label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Sendo A = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 3"><span class="matriz-el">2</span><span class="matriz-el">−1</span><span class="matriz-el">0</span><span class="matriz-el">1</span><span class="matriz-el">3</span><span class="matriz-el">4</span></span></span> e B = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el">0</span><span class="matriz-el">5</span><span class="matriz-el">−2</span><span class="matriz-el">1</span></span></span>, qual é o elemento <strong>c₂₁</strong> de A·B?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="l6-ex4" value="a"
+                  data-explicacao="−1 é o c₁₂ (linha 1 de A com coluna 2 de B: 4 − 5 + 0). Em c₂₁, use a linha 2 de A e a coluna 1 de B."> −1</label>
+                <label class="alternativa"><input type="radio" name="l6-ex4" value="b"
+                  data-explicacao="c₂₁ = (linha 2 de A)·(coluna 1 de B) = 1·1 + 3·0 + 4·(−2) = 1 + 0 − 8 = −7."> −7</label>
+                <label class="alternativa"><input type="radio" name="l6-ex4" value="c"
+                  data-explicacao="9 = 1 + 0 + 8: o sinal do último produto foi perdido. 4·(−2) = −8."> 9</label>
+                <label class="alternativa"><input type="radio" name="l6-ex4" value="d"
+                  data-explicacao="1 é só o primeiro produto (1·1). Faltou somar os outros pares: 3·0 e 4·(−2)."> 1</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Quanto vale <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">1</span><span class="matriz-el">−1</span><span class="matriz-el">3</span></span></span> · <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">1</span><span class="matriz-el">2</span></span></span>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="l6-ex5" value="a"
+                  data-explicacao="(2×2)·(2×1) dá 2×1. Linha 1: 2·1 + 1·2 = 4. Linha 2: −1·1 + 3·2 = 5.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">4</span><span class="matriz-el">5</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l6-ex5" value="b"
+                  data-explicacao="Aqui foram usadas as COLUNAS de A (2·1 + (−1)·2 = 0 e 1·1 + 3·2 = 7). O produto usa as LINHAS de A.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">0</span><span class="matriz-el">7</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l6-ex5" value="c"
+                  data-explicacao="3 e 2 são as somas de cada linha de A (2 + 1 e −1 + 3). Faltou multiplicar cada elemento pelo número correspondente da coluna.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">3</span><span class="matriz-el">2</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l6-ex5" value="d"
+                  data-explicacao="O resultado de (2×2)·(2×1) precisa ser 2×1. Aqui cada coluna de A foi multiplicada por um número, sem somar.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">2</span><span class="matriz-el">−1</span><span class="matriz-el">6</span></span></span></label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Para duas matrizes quadradas A e B de mesma ordem, é correto afirmar que:</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="l6-ex6" value="a"
+                  data-explicacao="Falso: o produto de matrizes não é comutativo. Exemplo da teoria: os dois resultados deram matrizes diferentes."> A·B = B·A sempre</label>
+                <label class="alternativa"><input type="radio" name="l6-ex6" value="b"
+                  data-explicacao="Em geral A·B ≠ B·A, porque linhas de A com colunas de B não são o mesmo que linhas de B com colunas de A. Mas em casos especiais (como B = I) eles podem coincidir."> em geral A·B ≠ B·A</label>
+                <label class="alternativa"><input type="radio" name="l6-ex6" value="c"
+                  data-explicacao="'Nunca' é forte demais: com B = I (identidade), A·I = I·A = A. Há casos em que os produtos coincidem."> A·B e B·A nunca são iguais</label>
+                <label class="alternativa"><input type="radio" name="l6-ex6" value="d"
+                  data-explicacao="A propriedade correta é (A·B)ᵀ = Bᵀ·Aᵀ. B·A não é, em geral, a transposta de A·B."> B·A é a transposta de A·B</label>
+              </div>
+            </li>
+          </ol>
+        </div>
       </section>
 
       <!-- Lição 7 -->
@@ -1359,5 +1542,6 @@
   <script src="js/licoes/licao-03.js"></script>
   <script src="js/licoes/licao-04.js"></script>
   <script src="js/licoes/licao-05.js"></script>
+  <script src="js/licoes/licao-06.js"></script>
 </body>
 </html>
