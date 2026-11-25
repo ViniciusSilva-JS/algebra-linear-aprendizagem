@@ -37,6 +37,7 @@ codigo/                       Código do site
       licao-08.js             Laboratório da Lição 8
       licao-09.js             Laboratório da Lição 9
       licao-10.js             Laboratório da Lição 10
+      licao-11.js             Laboratório da Lição 11
 README.md
 ```
 

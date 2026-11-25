@@ -487,6 +487,10 @@
   font-weight: 600;
 }
 
+.lab-campo select {
+  width: 100%;
+}
+
 .lab-campo input[type="range"] {
   width: 100%;
   margin: 0;
@@ -535,6 +539,53 @@
 /* Colunas da matriz nos resultados, com a cor da seta correspondente */
 .matriz.texto-u { color: var(--cor-teoria); font-weight: 700; }
 .matriz.texto-v { color: var(--cor-exercicios); font-weight: 700; }
+
+
+/* =========================================================================
+   AUTOVALORES E AUTOVETORES (Lição 11 em diante)
+   ========================================================================= */
+
+/* Círculo dos vetores de tamanho 2 (tracejado) e a sua imagem por A */
+.circulo-original {
+  fill: none;
+  stroke: var(--cor-texto-suave);
+  stroke-width: calc(0.05 * var(--escala-plano, 1));
+  stroke-dasharray: 0.25 0.15;
+}
+
+.circulo-imagem {
+  fill: var(--cor-laboratorio);
+  fill-opacity: 0.08;
+  stroke: var(--cor-laboratorio);
+  stroke-width: calc(0.07 * var(--escala-plano, 1));
+}
+
+/* Retas formadas pelos autovetores (direções que a matriz não gira) */
+.reta-autovetor {
+  stroke: var(--cor-acerto);
+  stroke-dasharray: 0.35 0.2;
+  opacity: 0.85;
+}
+
+/* Reta de v quando ele é um autovetor */
+.reta-autovetor.encontrada {
+  stroke-dasharray: none;
+  stroke-width: calc(0.16 * var(--escala-plano, 1));
+  opacity: 0.35;
+}
+
+.rotulo-autovalor {
+  fill: var(--cor-acerto);
+  font-family: var(--fonte-formula);
+  font-size: calc(0.6px * var(--escala-plano, 1));
+  font-weight: 700;
+  stroke: var(--cor-superficie);
+  stroke-width: calc(0.18 * var(--escala-plano, 1));
+  stroke-linejoin: round;
+  paint-order: stroke;
+}
+
+.texto-autovetor { color: var(--cor-acerto); }
 
 
 /* =========================================================================

@@ -2330,9 +2330,260 @@
       <!-- Lição 11 -->
       <section id="licao-11" class="licao" data-licao="11">
         <h2 class="licao-titulo">11. Autovalores e autovetores</h2>
-        <div class="teoria"><p>Conteúdo em construção</p></div>
-        <div class="laboratorio"><p>Laboratório em construção</p></div>
-        <div class="exercicios"><p>Exercícios em construção</p></div>
+
+        <!-- ---------- TEORIA ---------- -->
+        <div class="teoria">
+          <h3>Vetores que não mudam de direção</h3>
+          <p>
+            Na lição 10, vimos que uma matriz A gira, estica e inclina os vetores do plano. Mas quase
+            sempre existem algumas direções especiais: vetores que, depois da transformação,
+            continuam <strong>na mesma reta</strong>. Eles só ficam maiores, menores ou trocam de sentido.
+          </p>
+          <p>
+            Um vetor <strong>v ≠ 0</strong> é um <strong>autovetor</strong> de A quando A·v é um múltiplo
+            de v. O número λ (lambda) que multiplica v é o <strong>autovalor</strong> associado:
+          </p>
+          <div class="formula">A · v = λ · v &nbsp;&nbsp;(v ≠ 0)</div>
+          <ul>
+            <li>λ &gt; 1: v é esticado. &nbsp;0 &lt; λ &lt; 1: v é encolhido.</li>
+            <li>λ &lt; 0: v troca de sentido (continua na mesma reta, apontando para o outro lado).</li>
+            <li>λ = 0: v é achatado na origem (isso só acontece quando det A = 0).</li>
+          </ul>
+          <p>O vetor nulo nunca conta como autovetor, porque A·0 = λ·0 vale para qualquer λ.</p>
+
+          <h3>Como achar os autovalores</h3>
+          <p>
+            A·v = λ·v é o mesmo que A·v − λ·I·v = 0, ou seja, <strong>(A − λI)·v = 0</strong>.
+            Esse sistema só tem solução v ≠ 0 quando a matriz A − λI não tem inversa, isto é,
+            quando o seu determinante é zero (lições 7 e 9):
+          </p>
+          <div class="formula">det(A − λI) = 0</div>
+          <p>
+            Para A = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">a</span><span class="matriz-el">b</span><span class="matriz-el">c</span><span class="matriz-el">d</span></span></span>,
+            essa conta vira uma equação do 2º grau, o <strong>polinômio característico</strong>:
+          </p>
+          <div class="formula">det <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">a − λ</span><span class="matriz-el">b</span><span class="matriz-el">c</span><span class="matriz-el">d − λ</span></span></span> = (a − λ)(d − λ) − bc = λ² − (a + d)·λ + (ad − bc) = 0</div>
+          <p>
+            O número a + d (soma da diagonal principal) se chama <strong>traço</strong> de A. Então:
+            <strong>λ² − (traço)·λ + det = 0</strong>, que se resolve por Bhaskara.
+          </p>
+
+          <h3>Como achar os autovetores</h3>
+          <p>
+            Para cada autovalor λ, resolva o sistema (A − λI)·v = 0. Ele sempre é
+            <strong>possível e indeterminado</strong> (lição 8): as duas equações dizem a mesma coisa,
+            e a resposta é uma reta inteira de autovetores. Basta escolher um deles.
+          </p>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo completo</p>
+            <p>
+              A = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">1</span><span class="matriz-el">1</span><span class="matriz-el">2</span></span></span>:
+              traço = 2 + 2 = 4 e det = 2·2 − 1·1 = 3.
+            </p>
+            <p>
+              <strong>1. Polinômio:</strong> λ² − 4λ + 3 = 0. Δ = 16 − 12 = 4, então
+              λ = (4 ± 2) / 2, ou seja, <strong>λ₁ = 3</strong> e <strong>λ₂ = 1</strong>.
+            </p>
+            <p>
+              <strong>2. Autovetor de λ₁ = 3:</strong> A − 3I =
+              <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">−1</span><span class="matriz-el">1</span><span class="matriz-el">1</span><span class="matriz-el">−1</span></span></span>
+              → −x + y = 0 → y = x → <strong>v₁ = (1, 1)</strong>.
+            </p>
+            <p>
+              <strong>3. Autovetor de λ₂ = 1:</strong> A − 1I =
+              <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">1</span><span class="matriz-el">1</span><span class="matriz-el">1</span></span></span>
+              → x + y = 0 → y = −x → <strong>v₂ = (1, −1)</strong>.
+            </p>
+            <p>
+              <strong>Conferindo:</strong>
+              A·<span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">1</span><span class="matriz-el">1</span></span></span>
+              = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">2 + 1</span><span class="matriz-el">1 + 2</span></span></span>
+              = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">3</span><span class="matriz-el">3</span></span></span>
+              = 3·(1, 1) ✓ &nbsp;e&nbsp;
+              A·<span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">1</span><span class="matriz-el">−1</span></span></span>
+              = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">2 − 1</span><span class="matriz-el">1 − 2</span></span></span>
+              = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">1</span><span class="matriz-el">−1</span></span></span>
+              = 1·(1, −1) ✓
+            </p>
+          </div>
+
+          <h3>Os autovalores das transformações da lição 10</h3>
+          <div class="tabela-rolagem">
+            <table class="tabela">
+              <thead>
+                <tr><th>Transformação</th><th>Matriz</th><th>Autovalores</th><th>Direções que não giram</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Escala por 2</td><td><span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">0</span><span class="matriz-el">0</span><span class="matriz-el">2</span></span></span></td><td>2 (duplo)</td><td>todas: qualquer v ≠ 0 é autovetor</td></tr>
+                <tr><td>Reflexão no eixo x</td><td><span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">0</span><span class="matriz-el">0</span><span class="matriz-el">−1</span></span></span></td><td>1 e −1</td><td>eixo x (fica parado) e eixo y (inverte)</td></tr>
+                <tr><td>Projeção no eixo x</td><td><span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">0</span><span class="matriz-el">0</span><span class="matriz-el">0</span></span></span></td><td>1 e 0</td><td>eixo x (fica parado) e eixo y (vira o vetor nulo)</td></tr>
+                <tr><td>Cisalhamento</td><td><span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">1</span><span class="matriz-el">0</span><span class="matriz-el">1</span></span></span></td><td>1 (duplo)</td><td>só o eixo x</td></tr>
+                <tr><td>Rotação de 90°</td><td><span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">0</span><span class="matriz-el">−1</span><span class="matriz-el">1</span><span class="matriz-el">0</span></span></span></td><td>nenhum real (λ² + 1 = 0)</td><td>nenhuma: todo vetor gira</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Pelo sinal de <strong>Δ = traço² − 4·det</strong>: Δ &gt; 0 dá dois autovalores reais
+            diferentes; Δ = 0 dá um autovalor duplo; Δ &lt; 0 não dá autovalor real (a matriz gira
+            todos os vetores).
+          </p>
+
+          <h3>Atalhos para conferir</h3>
+          <ul>
+            <li><strong>λ₁ + λ₂ = traço</strong> e <strong>λ₁ · λ₂ = det</strong> (no exemplo: 3 + 1 = 4 ✓ e 3 · 1 = 3 ✓).</li>
+            <li>Em uma matriz <strong>triangular</strong> (zeros abaixo ou acima da diagonal), os autovalores são os números da diagonal.</li>
+            <li><strong>det A = 0</strong> exatamente quando λ = 0 é um autovalor.</li>
+          </ul>
+
+          <h3>Para que servem</h3>
+          <p>
+            Se A·v = λ·v, aplicar A várias vezes é fácil: <strong>Aⁿ · v = λⁿ · v</strong>.
+            No exemplo, A¹⁰·(1, 1) = 3¹⁰·(1, 1) = (59049, 59049), sem fazer dez multiplicações
+            de matrizes. Por isso os autovalores dizem o que acontece "a longo prazo" em um processo
+            que se repete: a direção com o maior |λ| acaba dominando. É a ideia por trás de
+            previsões com cadeias de Markov, do crescimento de populações e do PageRank, o
+            algoritmo que ordenava as páginas do Google.
+          </p>
+        </div>
+
+        <!-- ---------- LABORATÓRIO ---------- -->
+        <div class="laboratorio">
+          <h3>Caçando autovetores</h3>
+          <p>
+            Gire o vetor <span class="vet">v</span> (ou clique no plano) e observe
+            <strong>A·v</strong>. Quando os dois ficarem na mesma reta, você encontrou um
+            autovetor! O círculo tracejado mostra todos os vetores de tamanho 2, e a curva roxa,
+            para onde a matriz os leva.
+          </p>
+
+          <div class="lab-area controles-largos" id="l11-area">
+            <svg id="l11-plano" class="plano-cartesiano" viewBox="-7 -7 14 14"
+                 role="img" aria-label="Vetor v, sua imagem A·v e as retas dos autovetores"></svg>
+
+            <div class="lab-controles">
+              <label class="lab-campo">
+                Modelo
+                <select id="l11-modelo">
+                  <option value="exemplo" selected>Exemplo da teoria</option>
+                  <option value="triangular">Triangular</option>
+                  <option value="inverte">Um autovalor negativo</option>
+                  <option value="reflexao">Reflexão no eixo x</option>
+                  <option value="projecao">Projeção no eixo x</option>
+                  <option value="escala">Escala por 2</option>
+                  <option value="cisalhamento">Cisalhamento</option>
+                  <option value="rotacao">Rotação de 90°</option>
+                  <option value="personalizada">Personalizada</option>
+                </select>
+              </label>
+
+              <span class="lab-rotulo">Matriz A</span>
+              <div id="l11-a"></div>
+
+              <label class="lab-campo">
+                <span>Direção de v = <output id="l11-angulo-valor" for="l11-angulo">20°</output></span>
+                <input type="range" id="l11-angulo" min="0" max="359" step="1" value="20">
+              </label>
+              <p id="l11-status" class="lab-dica" aria-live="polite"></p>
+
+              <label class="lab-check"><input type="checkbox" id="l11-retas"> Mostrar as retas dos autovetores</label>
+              <label class="lab-check"><input type="checkbox" id="l11-circulo" checked> Mostrar o círculo e sua imagem</label>
+            </div>
+          </div>
+
+          <div id="l11-resultados" class="lab-resultados" aria-live="polite"></div>
+        </div>
+
+        <!-- ---------- EXERCÍCIOS ---------- -->
+        <div class="exercicios" data-licao="11">
+          <h3>Pratique</h3>
+          <p>Escolha uma alternativa em cada exercício. Acerte todos para liberar a lição 12.</p>
+
+          <ol class="lista-exercicios">
+            <li class="exercicio">
+              <p>Quais são os autovalores de <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">3</span><span class="matriz-el">0</span><span class="matriz-el">0</span><span class="matriz-el">5</span></span></span>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="l11-ex1" value="a"
+                  data-explicacao="8 é o traço (3 + 5) e 15 é o determinante (3·5). Eles são a SOMA e o PRODUTO dos autovalores, não os próprios autovalores."> 8 e 15</label>
+                <label class="alternativa"><input type="radio" name="l11-ex1" value="b"
+                  data-explicacao="Em uma matriz diagonal (ou triangular), os autovalores são os números da diagonal. Pelo polinômio: (3 − λ)(5 − λ) = 0 ⇒ λ = 3 ou λ = 5. De fato, A·(1, 0) = 3·(1, 0) e A·(0, 1) = 5·(0, 1)."> 3 e 5</label>
+                <label class="alternativa"><input type="radio" name="l11-ex1" value="c"
+                  data-explicacao="O sinal se perdeu: (3 − λ)(5 − λ) = 0 dá λ = 3 e λ = 5, positivos. Os vetores dos eixos são esticados, não invertidos."> −3 e −5</label>
+                <label class="alternativa"><input type="radio" name="l11-ex1" value="d"
+                  data-explicacao="15 é o determinante, que é o PRODUTO dos dois autovalores (3·5). Uma matriz 2×2 pode ter até dois autovalores."> só 15</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>O vetor v = (1, 1) é autovetor de <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">4</span><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el">3</span></span></span>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="l11-ex2" value="a"
+                  data-explicacao="A·v = (5, 5) está certo, mas λ é o número que multiplica v: (5, 5) = 5·(1, 1). Somar as coordenadas (5 + 5) não dá o autovalor."> Sim, com λ = 10</label>
+                <label class="alternativa"><input type="radio" name="l11-ex2" value="b"
+                  data-explicacao="7 é o traço (4 + 3), que é a SOMA dos dois autovalores. Aqui eles são 5 e 2 (5 + 2 = 7)."> Sim, com λ = 7</label>
+                <label class="alternativa"><input type="radio" name="l11-ex2" value="c"
+                  data-explicacao="A·v = (4·1 + 1·1, 2·1 + 3·1) = (5, 5) = 5·(1, 1). Como A·v é múltiplo de v, v é autovetor com λ = 5."> Sim, com λ = 5</label>
+                <label class="alternativa"><input type="radio" name="l11-ex2" value="d"
+                  data-explicacao="Autovetor não precisa ficar parado (A·v = v); basta continuar na mesma reta. A·v = (5, 5) é 5 vezes v, então v é autovetor."> Não, porque A·v ≠ v</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Qual é o polinômio característico de <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">1</span><span class="matriz-el">3</span><span class="matriz-el">4</span></span></span>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="l11-ex3" value="a"
+                  data-explicacao="(2 − λ)(4 − λ) − 1·3 = λ² − 6λ + 8 − 3 = λ² − 6λ + 5. Confere com λ² − (traço)λ + det: traço = 6 e det = 8 − 3 = 5. As raízes são 1 e 5."> λ² − 6λ + 5</label>
+                <label class="alternativa"><input type="radio" name="l11-ex3" value="b"
+                  data-explicacao="O sinal do termo em λ está errado: (2 − λ)(4 − λ) = 8 − 2λ − 4λ + λ², então o coeficiente é −6 (menos o traço)."> λ² + 6λ + 5</label>
+                <label class="alternativa"><input type="radio" name="l11-ex3" value="c"
+                  data-explicacao="O termo constante é o determinante ad − bc = 8 − 3 = 5. Aqui foi somado ad + bc = 8 + 3."> λ² − 6λ + 11</label>
+                <label class="alternativa"><input type="radio" name="l11-ex3" value="d"
+                  data-explicacao="O traço e o determinante trocaram de lugar. O coeficiente de λ é −(traço) = −6, e o termo constante é det = 5."> λ² − 5λ + 6</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Quais são os autovalores reais da rotação de 90°, <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">0</span><span class="matriz-el">−1</span><span class="matriz-el">1</span><span class="matriz-el">0</span></span></span>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="l11-ex4" value="a"
+                  data-explicacao="A rotação não muda o tamanho dos vetores, mas muda a direção de TODOS eles. λ = 1 exigiria um vetor com A·v = v, que ficasse parado."> λ = 1, porque a rotação não muda o tamanho</label>
+                <label class="alternativa"><input type="radio" name="l11-ex4" value="b"
+                  data-explicacao="λ = 0 é autovalor só quando det A = 0. Aqui det = 0·0 − (−1)·1 = 1."> λ = 0</label>
+                <label class="alternativa"><input type="radio" name="l11-ex4" value="c"
+                  data-explicacao="90 é o ângulo da rotação, não um fator que multiplica vetores. Autovalor é o número λ em A·v = λ·v."> λ = 90</label>
+                <label class="alternativa"><input type="radio" name="l11-ex4" value="d"
+                  data-explicacao="traço = 0 e det = 1, então o polinômio é λ² + 1 = 0, que não tem raiz real (Δ = −4). Faz sentido: girando 90°, nenhum vetor continua na mesma reta."> Nenhum: ela não tem autovalores reais</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Um dos autovalores de <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">5</span><span class="matriz-el">2</span><span class="matriz-el">2</span><span class="matriz-el">2</span></span></span> é 6. Qual é o outro?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="l11-ex5" value="a"
+                  data-explicacao="7 é o traço, que é a SOMA dos dois autovalores. O outro é 7 − 6."> 7</label>
+                <label class="alternativa"><input type="radio" name="l11-ex5" value="b"
+                  data-explicacao="λ₁ + λ₂ = traço = 5 + 2 = 7, então λ₂ = 7 − 6 = 1. Conferindo pelo produto: 6·1 = 6 = det (5·2 − 2·2) ✓."> 1</label>
+                <label class="alternativa"><input type="radio" name="l11-ex5" value="c"
+                  data-explicacao="O traço foi somado ao autovalor conhecido (6 + 7). O traço já é a soma dos dois: λ₂ = 7 − 6."> 13</label>
+                <label class="alternativa"><input type="radio" name="l11-ex5" value="d"
+                  data-explicacao="λ = 0 só aparece quando det A = 0. Aqui det = 10 − 4 = 6, então nenhum autovalor é zero."> 0</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>A matriz <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el">2</span><span class="matriz-el">1</span></span></span> tem autovalores 3 e −1. Qual é um autovetor associado a <strong>λ = −1</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="l11-ex6" value="a"
+                  data-explicacao="A·(1, 1) = (3, 3) = 3·(1, 1): esse é um autovetor, mas do autovalor 3, não do −1."> (1, 1)</label>
+                <label class="alternativa"><input type="radio" name="l11-ex6" value="b"
+                  data-explicacao="A·(2, 1) = (1·2 + 2·1, 2·2 + 1·1) = (4, 5), que não é múltiplo de (2, 1). Então (2, 1) nem é autovetor."> (2, 1)</label>
+                <label class="alternativa"><input type="radio" name="l11-ex6" value="c"
+                  data-explicacao="A − (−1)I = A + I = [2 2; 2 2] → 2x + 2y = 0 → y = −x → v = (1, −1). Conferindo: A·(1, −1) = (1 − 2, 2 − 1) = (−1, 1) = −1·(1, −1) ✓."> (1, −1)</label>
+                <label class="alternativa"><input type="radio" name="l11-ex6" value="d"
+                  data-explicacao="O vetor nulo resolve (A − λI)·v = 0 para qualquer λ, por isso a definição exige v ≠ 0. Ele nunca é autovetor."> (0, 0)</label>
+              </div>
+            </li>
+          </ol>
+        </div>
       </section>
 
       <!-- Lição 12 -->
@@ -2379,5 +2630,6 @@
   <script src="js/licoes/licao-08.js"></script>
   <script src="js/licoes/licao-09.js"></script>
   <script src="js/licoes/licao-10.js"></script>
+  <script src="js/licoes/licao-11.js"></script>
 </body>
 </html>

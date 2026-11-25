@@ -13,6 +13,7 @@
    8. Sistemas lineares
    9. Matriz inversa
    10. Transformações lineares no plano
+   11. Autovalores e autovetores
    ========================================================================= */
 
 'use strict';
@@ -505,4 +506,68 @@ function matrizRotacao(graus) {
   const c = limpo(Math.cos(t));
   const s = limpo(Math.sin(t));
   return [[c, limpo(-s)], [s, c]];
+}
+
+
+/* =========================================================================
+   11. AUTOVALORES E AUTOVETORES
+   ========================================================================= */
+
+/**
+ * Autovalores de uma matriz 2×2 pelo polinômio característico
+ * λ² − (traço)·λ + det = 0, resolvido por Bhaskara.
+ * Devolve { traco, det, delta, valores }; `valores` vem em ordem decrescente:
+ * dois números (Δ > 0), um só (Δ = 0) ou nenhum (Δ < 0: não há autovalor real).
+ */
+function autovalores2x2(A) {
+  const traco = A[0][0] + A[1][1];
+  const det = determinante(A);
+  let delta = traco * traco - 4 * det;
+  if (quaseIgual(delta, 0, 1e-9)) delta = 0;
+
+  let valores = [];
+  if (delta > 0) {
+    const raiz = Math.sqrt(delta);
+    valores = [(traco + raiz) / 2, (traco - raiz) / 2];
+  } else if (delta === 0) {
+    valores = [traco / 2];
+  }
+  return { traco: traco, det: det, delta: delta, valores: valores };
+}
+
+/**
+ * Um autovetor de A para o autovalor λ: uma solução não nula de (A − λI)·v = 0.
+ * Se a 1ª linha de A − λI é (p, q), a equação é p·x + q·y = 0 e v = (q, −p)
+ * serve. Inteiros são simplificados ((2, 2) → (1, 1)); decimais ficam com a
+ * 1ª coordenada igual a 1. A 1ª coordenada não nula sai sempre positiva.
+ * Devolve null quando A − λI é a matriz nula (A = λI: todo vetor é autovetor).
+ */
+function autovetor2x2(A, lambda) {
+  const zero = (x) => Math.abs(x) < 1e-9;
+  const p = A[0][0] - lambda;
+  const q = A[0][1];
+  const r = A[1][0];
+  const s = A[1][1] - lambda;
+
+  let x;
+  let y;
+  if (!zero(p) || !zero(q)) { x = q; y = -p; }        // usa a 1ª linha
+  else if (!zero(r) || !zero(s)) { x = s; y = -r; }   // 1ª linha nula: usa a 2ª
+  else return null;
+
+  const inteiro = (t) => quaseIgual(t, Math.round(t), 1e-9);
+  if (inteiro(x) && inteiro(y)) {
+    x = Math.round(x);
+    y = Math.round(y);
+    const m = mdc(x, y);
+    x /= m;
+    y /= m;
+  } else {
+    const base = zero(x) ? y : x;
+    x /= base;
+    y /= base;
+  }
+
+  if (x < 0 || (zero(x) && y < 0)) { x = -x; y = -y; }
+  return { x: zero(x) ? 0 : x, y: zero(y) ? 0 : y };
 }
