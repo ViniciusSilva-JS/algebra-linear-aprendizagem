@@ -21,6 +21,7 @@
    16. Rodapé
    17. Responsivo (celular)
    18. Acessibilidade e preferências
+   19. Elementos e estados controlados pelo JavaScript
    ========================================================================= */
 
 
@@ -438,6 +439,46 @@ code {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--cor-texto-suave);
+}
+
+/* Botão que abre/fecha a trilha no celular (escondido no desktop) */
+.trilha-toggle {
+  display: none;
+  width: 100%;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--esp-3);
+  padding: var(--esp-2) var(--esp-3);
+  background: var(--cor-superficie-2);
+  border: var(--borda);
+  border-radius: var(--raio);
+  color: var(--cor-texto);
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.trilha-toggle::after {
+  content: "▾";
+  flex: 0 0 auto;
+  transition: transform var(--transicao);
+}
+
+.trilha.aberta .trilha-toggle::after {
+  transform: rotate(180deg);
+}
+
+.trilha-toggle-texto {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.trilha-toggle:focus-visible {
+  outline: 2px solid var(--cor-primaria);
+  outline-offset: 2px;
 }
 
 .trilha-lista {
@@ -1012,7 +1053,7 @@ progress.progresso::-moz-progress-bar {
     padding: 0 var(--esp-4) var(--esp-4);
   }
 
-  /* Nav vira barra no topo */
+  /* Nav vira uma barra presa no topo, com menu recolhível */
   .trilha {
     position: sticky;
     top: 0;
@@ -1020,57 +1061,38 @@ progress.progresso::-moz-progress-bar {
     max-height: none;
     overflow: visible;
     margin-inline: calc(-1 * var(--esp-4));   /* encosta nas bordas da tela */
-    padding: var(--esp-3) var(--esp-4);
+    padding: var(--esp-2) var(--esp-4);
     border-radius: 0;
     border-width: 0 0 1px;
     box-shadow: var(--sombra);
   }
 
+  /* O botão do menu substitui o título */
   .trilha-titulo {
-    margin-bottom: var(--esp-2);
-    padding: 0;
+    display: none;
   }
 
+  .trilha-toggle {
+    display: flex;
+  }
+
+  /* Lista fica escondida até o menu ser aberto (classe .aberta via JS) */
   .trilha-lista {
-    flex-direction: row;
-    gap: var(--esp-2);
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x proximity;
-    padding-bottom: var(--esp-1);
-    scrollbar-width: thin;
+    display: none;
+    max-height: 65vh;
+    overflow-y: auto;
+    margin-top: var(--esp-2);
+    padding-top: var(--esp-2);
+    border-top: var(--borda);
   }
 
-  .trilha-item {
-    flex: 0 0 auto;
-    scroll-snap-align: start;
-  }
-
-  .trilha-link {
-    padding: var(--esp-1) var(--esp-3) var(--esp-1) var(--esp-1);
-    border: var(--borda);
-    border-radius: var(--raio-pilula);
-    white-space: nowrap;
-    font-size: var(--tamanho-pequeno);
-  }
-
-  .trilha-link::before {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-
-  .trilha-link::after {
-    margin-left: 0;
-  }
-
-  .trilha-item.ativa .trilha-link,
-  .trilha-link.ativa {
-    border-color: var(--cor-primaria);
+  .trilha.aberta .trilha-lista {
+    display: flex;
   }
 
   /* Seções não ficam escondidas atrás da barra fixa */
   .conteudo > section {
-    scroll-margin-top: 6.5rem;
+    scroll-margin-top: 4.5rem;
   }
 
   .conteudo {
@@ -1133,5 +1155,140 @@ a:focus-visible {
   *::after {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
+  }
+}
+
+
+/* =========================================================================
+   19. ELEMENTOS E ESTADOS CONTROLADOS PELO JAVASCRIPT
+   ========================================================================= */
+
+/* O atributo hidden sempre esconde, mesmo em elementos com display próprio
+   (ex.: .licao usa display: flex) */
+[hidden] {
+  display: none !important;
+}
+
+/* Títulos que recebem foco via JS ao trocar de tela não mostram contorno */
+[tabindex="-1"]:focus {
+  outline: none;
+}
+
+/* --- Botão de tema no cabeçalho --- */
+.cabecalho {
+  position: relative;
+}
+
+.cabecalho-titulo {
+  padding-right: 10rem;            /* espaço para o botão de tema */
+}
+
+.btn-tema {
+  position: absolute;
+  top: var(--esp-4);
+  right: var(--esp-4);
+  min-height: 2.5rem;
+  padding-inline: var(--esp-4);
+  font-size: var(--tamanho-pequeno);
+}
+
+/* --- Painel de progresso na tela inicial --- */
+.painel-progresso {
+  margin-top: var(--esp-5);
+  padding-top: var(--esp-5);
+  border-top: var(--borda);
+}
+
+.btn-recomecar {
+  margin-top: var(--esp-4);
+}
+
+/* --- Rodapé de cada lição (concluir + anterior/próxima) --- */
+.licao-rodape {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-4);
+  margin-top: var(--esp-2);
+  padding-top: var(--esp-4);
+  border-top: var(--borda);
+}
+
+.btn-concluir {
+  align-self: flex-start;
+}
+
+/* Lição já concluída: botão vira um selo verde */
+.btn-concluir:disabled {
+  opacity: 1;
+  cursor: default;
+  background: var(--cor-acerto-fundo);
+  border-color: var(--cor-acerto-borda);
+  color: var(--cor-acerto);
+}
+
+.licao-navegacao {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--esp-3);
+}
+
+.licao-navegacao .btn-proxima {
+  margin-left: auto;
+}
+
+/* "Próxima lição" bloqueada: clicável (mostra o aviso), mas apagada */
+.btn-secundario[aria-disabled="true"] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-secundario[aria-disabled="true"]:hover {
+  border-color: var(--cor-borda);
+  color: var(--cor-texto);
+}
+
+/* --- Aviso flutuante (usa as cores de .erro / .acerto) --- */
+#aviso {
+  position: fixed;
+  left: 50%;
+  bottom: var(--esp-5);
+  z-index: 100;
+  width: max-content;
+  max-width: calc(100% - 2 * var(--esp-4));
+  margin: 0;
+  transform: translateX(-50%);
+  box-shadow: var(--sombra-forte);
+  animation: aviso-entrar 200ms ease;
+}
+
+#aviso.erro::before {
+  content: "🔒";
+}
+
+@keyframes aviso-entrar {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 0.5rem);
+  }
+}
+
+/* --- Ajustes no celular --- */
+@media (max-width: 768px) {
+  .cabecalho-titulo {
+    padding-right: 0;
+  }
+
+  .btn-tema {
+    position: static;
+    margin-top: var(--esp-4);
+  }
+
+  .btn-concluir {
+    align-self: stretch;
+  }
+
+  .licao-navegacao > * {
+    flex: 1 1 auto;
   }
 }

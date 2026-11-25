@@ -15,6 +15,7 @@
       Aprenda Álgebra Linear e Geometria Analítica passo a passo, do plano
       cartesiano às aplicações com dados reais.
     </p>
+    <button type="button" id="btn-tema" class="btn-secundario btn-tema">🌙 Modo escuro</button>
   </header>
 
   <!-- ===================== ESCOLHA DE MATÉRIA E NÍVEL ===================== -->
@@ -60,7 +61,10 @@
     <!-- ===================== NAVEGAÇÃO (TRILHA) ===================== -->
     <nav id="trilha" class="trilha" aria-label="Trilha de lições">
       <h2 class="trilha-titulo">Trilha de lições</h2>
-      <ol class="trilha-lista">
+      <button type="button" id="btn-menu" class="trilha-toggle" aria-expanded="false" aria-controls="trilha-lista">
+        <span class="trilha-toggle-texto">Trilha de lições</span>
+      </button>
+      <ol id="trilha-lista" class="trilha-lista">
         <li class="trilha-item" data-licao="1"><a class="trilha-link" href="#licao-1">Plano cartesiano e pontos</a></li>
         <li class="trilha-item" data-licao="2"><a class="trilha-link" href="#licao-2">Vetores no plano</a></li>
         <li class="trilha-item" data-licao="3"><a class="trilha-link" href="#licao-3">Produto escalar e ângulo</a></li>
@@ -92,6 +96,16 @@
           <li class="passo"><strong>Exercícios:</strong> resolva os exercícios para liberar a próxima lição.</li>
         </ol>
         <p>Comece pela lição 1 e avance no seu ritmo.</p>
+
+        <!-- Progresso (preenchido pelo js/app.js) -->
+        <div class="painel-progresso">
+          <div id="progresso" class="progresso" role="progressbar" aria-label="Progresso na trilha"
+               aria-valuemin="0" aria-valuemax="12" aria-valuenow="0">
+            <div id="progresso-barra" class="progresso-barra"></div>
+          </div>
+          <p id="progresso-texto" class="progresso-texto">0 de 12 lições concluídas</p>
+          <button type="button" id="btn-recomecar" class="btn-secundario btn-recomecar">Recomeçar trilha</button>
+        </div>
       </section>
 
       <!-- Lição 1 -->
@@ -202,6 +216,9 @@
       <li class="integrante">Integrante 3</li>
     </ul>
   </footer>
+
+  <!-- Aviso flutuante (mostrado pelo js/app.js) -->
+  <div id="aviso" class="aviso" role="alert" hidden></div>
 
   <script src="js/app.js"></script>
 </body>
