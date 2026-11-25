@@ -797,49 +797,1274 @@
       <!-- Lição 4 -->
       <section id="licao-4" class="licao" data-licao="4">
         <h2 class="licao-titulo">4. Retas no plano</h2>
-        <div class="teoria"><p>Conteúdo em construção</p></div>
-        <div class="laboratorio"><p>Laboratório em construção</p></div>
-        <div class="exercicios"><p>Exercícios em construção</p></div>
+
+        <!-- ---------- TEORIA ---------- -->
+        <div class="teoria">
+          <h3>Equação reduzida da reta</h3>
+          <p>Toda reta não vertical pode ser escrita na forma:</p>
+          <div class="formula">y = m·x + b</div>
+          <ul>
+            <li><strong>m</strong> é o <strong>coeficiente angular</strong>: diz o quanto a reta é inclinada.</li>
+            <li><strong>b</strong> é o <strong>coeficiente linear</strong>: o valor de y onde a reta corta o eixo y, no ponto (0, b).</li>
+          </ul>
+
+          <h3>Coeficiente angular</h3>
+          <p>
+            O coeficiente angular é quanto y muda para cada 1 unidade que x anda.
+            Com dois pontos A(x₁, y₁) e B(x₂, y₂) da reta:
+          </p>
+          <div class="formula">m = Δy / Δx = (y₂ − y₁) / (x₂ − x₁) = tg θ</div>
+          <p>em que θ é o ângulo que a reta faz com o eixo x.</p>
+          <div class="tabela-rolagem">
+            <table class="tabela">
+              <thead>
+                <tr><th>Coeficiente angular</th><th>A reta é…</th><th>Exemplo</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>m &gt; 0</td><td>crescente (sobe da esquerda para a direita)</td><td>y = 2x + 1</td></tr>
+                <tr><td>m &lt; 0</td><td>decrescente (desce)</td><td>y = −x + 3</td></tr>
+                <tr><td>m = 0</td><td>horizontal</td><td>y = 4</td></tr>
+                <tr><td>não existe (Δx = 0)</td><td>vertical</td><td>x = 2</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>A(1, 1) e B(3, 5): m = (5 − 1) / (3 − 1) = 4 / 2 = <strong>2</strong>. A cada 1 passo para a direita, a reta sobe 2.</p>
+          </div>
+
+          <h3>Encontrando a equação</h3>
+          <p>Conhecendo um ponto (x₀, y₀) e o coeficiente angular m, use a forma ponto-inclinação:</p>
+          <div class="formula">y − y₀ = m·(x − x₀)</div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              Reta com m = 2 passando por (1, 1):
+              y − 1 = 2·(x − 1) &nbsp;⇒&nbsp; y − 1 = 2x − 2 &nbsp;⇒&nbsp; <strong>y = 2x − 1</strong>.
+            </p>
+          </div>
+
+          <h3>Equação geral</h3>
+          <p>Passando todos os termos para um lado, obtemos a <strong>equação geral</strong>, que também serve para retas verticais:</p>
+          <div class="formula">a·x + b·y + c = 0</div>
+          <p>
+            Exemplo: y = 2x − 1 vira <strong>2x − y − 1 = 0</strong>. E a reta vertical x = 2 vira
+            <strong>x − 2 = 0</strong>.
+          </p>
+
+          <h3>Onde a reta corta os eixos</h3>
+          <ul>
+            <li><strong>Eixo y:</strong> faça x = 0. Na forma reduzida, é o ponto (0, b).</li>
+            <li><strong>Eixo x:</strong> faça y = 0 e resolva. Em y = 2x − 1: 0 = 2x − 1, então x = 1/2 e o ponto é (1/2, 0).</li>
+          </ul>
+
+          <h3>Posição entre duas retas</h3>
+          <p>Para as retas y = m₁x + b₁ e y = m₂x + b₂:</p>
+          <div class="tabela-rolagem">
+            <table class="tabela">
+              <thead>
+                <tr><th>Condição</th><th>As retas são…</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>m₁ = m₂ e b₁ ≠ b₂</td><td>paralelas (nunca se cruzam)</td></tr>
+                <tr><td>m₁ = m₂ e b₁ = b₂</td><td>coincidentes (são a mesma reta)</td></tr>
+                <tr><td>m₁ ≠ m₂</td><td>concorrentes (cruzam-se em um ponto)</td></tr>
+                <tr><td>m₁ · m₂ = −1</td><td>perpendiculares (cruzam-se formando 90°)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            <strong>Ligação com vetores:</strong> a reta y = mx + b tem a direção do vetor
+            <span class="vet">d</span> = (1, m). Duas retas são perpendiculares quando seus vetores
+            diretores são perpendiculares: (1, m₁) · (1, m₂) = 1 + m₁·m₂ = 0, ou seja,
+            m₁ · m₂ = −1, a mesma condição da tabela.
+          </p>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              A perpendicular a y = 2x + 3 tem m = −1/2, pois 2 · (−1/2) = −1.
+              Qualquer reta com m = 2 (como y = 2x − 7) é paralela a ela.
+            </p>
+          </div>
+        </div>
+
+        <!-- ---------- LABORATÓRIO ---------- -->
+        <div class="laboratorio">
+          <h3>A reta que passa por dois pontos</h3>
+          <p>
+            Escolha os pontos A e B (ou <strong>clique no plano</strong>) e veja a reta que passa
+            por eles, o "degrau" Δx e Δy que define a inclinação, e as equações calculadas na hora.
+          </p>
+
+          <div class="lab-area">
+            <svg id="l4-plano" class="plano-cartesiano" viewBox="-11 -11 22 22"
+                 role="img" aria-label="Plano cartesiano com a reta que passa pelos pontos A e B"></svg>
+
+            <div class="lab-controles">
+              <fieldset class="lab-ponto lab-ponto-a">
+                <legend>Ponto A</legend>
+                <label>x <input type="number" id="l4-ax" value="-1" min="-10" max="10" step="1"></label>
+                <label>y <input type="number" id="l4-ay" value="-1" min="-10" max="10" step="1"></label>
+              </fieldset>
+              <fieldset class="lab-ponto lab-ponto-b">
+                <legend>Ponto B</legend>
+                <label>x <input type="number" id="l4-bx" value="3" min="-10" max="10" step="1"></label>
+                <label>y <input type="number" id="l4-by" value="7" min="-10" max="10" step="1"></label>
+              </fieldset>
+              <label class="lab-check"><input type="checkbox" id="l4-perpendicular"> Mostrar a perpendicular por A</label>
+              <p id="l4-dica-clique" class="lab-dica">Próximo clique no plano move o ponto <strong>A</strong>.</p>
+              <button type="button" id="l4-sortear" class="btn-secundario">🎲 Pontos aleatórios</button>
+            </div>
+          </div>
+
+          <div id="l4-resultados" class="lab-resultados" aria-live="polite"></div>
+        </div>
+
+        <!-- ---------- EXERCÍCIOS ---------- -->
+        <div class="exercicios" data-licao="4">
+          <h3>Pratique</h3>
+          <p>Escolha uma alternativa em cada exercício. Acerte todos para liberar a lição 5.</p>
+
+          <ol class="lista-exercicios">
+            <li class="exercicio">
+              <p>Qual é o coeficiente angular da reta que passa por <strong>A(1, 2)</strong> e <strong>B(3, 8)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="l4-ex1" value="a"
+                  data-explicacao="1/3 é Δx / Δy: a fração foi montada de cabeça para baixo. O coeficiente angular é Δy / Δx."> 1/3</label>
+                <label class="alternativa"><input type="radio" name="l4-ex1" value="b"
+                  data-explicacao="m = (8 − 2) / (3 − 1) = 6 / 2 = 3."> 3</label>
+                <label class="alternativa"><input type="radio" name="l4-ex1" value="c"
+                  data-explicacao="−3 aparece quando a ordem dos pontos é trocada só em cima ou só embaixo: (8 − 2) / (1 − 3). Use a mesma ordem nos dois."> −3</label>
+                <label class="alternativa"><input type="radio" name="l4-ex1" value="d"
+                  data-explicacao="6 é só o Δy. Faltou dividir pelo Δx = 3 − 1 = 2."> 6</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Qual é a equação da reta com coeficiente angular <strong>m = 2</strong> que passa pelo ponto <strong>(1, 5)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="l4-ex2" value="a"
+                  data-explicacao="O 5 é o y do ponto, não o coeficiente linear. Teste: em y = 2x + 5, com x = 1 dá y = 7, e não 5."> y = 2x + 5</label>
+                <label class="alternativa"><input type="radio" name="l4-ex2" value="b"
+                  data-explicacao="Os números foram trocados de papel: o coeficiente angular é 2, então é ele que multiplica o x."> y = 5x + 2</label>
+                <label class="alternativa"><input type="radio" name="l4-ex2" value="c"
+                  data-explicacao="y − 5 = 2(x − 1) ⇒ y = 2x − 2 + 5 ⇒ y = 2x + 3. Conferindo: x = 1 dá y = 5."> y = 2x + 3</label>
+                <label class="alternativa"><input type="radio" name="l4-ex2" value="d"
+                  data-explicacao="Erro de sinal: y − 5 = 2x − 2 leva a y = 2x + 3, e não 2x − 3. Com x = 1, y = 2x − 3 dá −1."> y = 2x − 3</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Em que ponto a reta <strong>y = −3x + 6</strong> corta o eixo x?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="l4-ex3" value="a"
+                  data-explicacao="No eixo x temos y = 0: 0 = −3x + 6 ⇒ 3x = 6 ⇒ x = 2. O ponto é (2, 0)."> (2, 0)</label>
+                <label class="alternativa"><input type="radio" name="l4-ex3" value="b"
+                  data-explicacao="(0, 6) é onde a reta corta o eixo Y (x = 0). No eixo x, quem vale zero é o y."> (0, 6)</label>
+                <label class="alternativa"><input type="radio" name="l4-ex3" value="c"
+                  data-explicacao="Erro de sinal ao isolar x: −3x + 6 = 0 ⇒ −3x = −6 ⇒ x = 2 (positivo)."> (−2, 0)</label>
+                <label class="alternativa"><input type="radio" name="l4-ex3" value="d"
+                  data-explicacao="O 6 é o coeficiente linear (corte no eixo y). Para o eixo x é preciso resolver −3x + 6 = 0."> (6, 0)</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Uma reta paralela a <strong>y = 4x − 1</strong> tem coeficiente angular:</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="l4-ex4" value="a"
+                  data-explicacao="Inverter o sinal muda o sentido da inclinação: a reta passaria a descer. Paralelas têm o mesmo m."> −4</label>
+                <label class="alternativa"><input type="radio" name="l4-ex4" value="b"
+                  data-explicacao="−1/4 é o coeficiente da reta PERPENDICULAR, pois 4 · (−1/4) = −1."> −1/4</label>
+                <label class="alternativa"><input type="radio" name="l4-ex4" value="c"
+                  data-explicacao="1/4 é o inverso de 4: uma reta bem menos inclinada, que cruzaria a original."> 1/4</label>
+                <label class="alternativa"><input type="radio" name="l4-ex4" value="d"
+                  data-explicacao="Retas paralelas têm a mesma inclinação, então o mesmo coeficiente angular: m = 4 (só o b muda)."> 4</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Uma reta perpendicular a <strong>y = (2/3)x + 1</strong> tem coeficiente angular:</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="l4-ex5" value="a"
+                  data-explicacao="Perpendiculares satisfazem m₁ · m₂ = −1: (2/3) · m₂ = −1 ⇒ m₂ = −3/2 (inverte a fração e troca o sinal)."> −3/2</label>
+                <label class="alternativa"><input type="radio" name="l4-ex5" value="b"
+                  data-explicacao="A fração foi invertida, mas faltou trocar o sinal: (2/3) · (3/2) = 1, e não −1."> 3/2</label>
+                <label class="alternativa"><input type="radio" name="l4-ex5" value="c"
+                  data-explicacao="O sinal foi trocado, mas faltou inverter a fração: (2/3) · (−2/3) = −4/9, e não −1."> −2/3</label>
+                <label class="alternativa"><input type="radio" name="l4-ex5" value="d"
+                  data-explicacao="2/3 é o mesmo coeficiente: daria uma reta paralela, e não perpendicular."> 2/3</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Qual destes pontos pertence à reta <strong>y = 3x + 1</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="l4-ex6" value="a"
+                  data-explicacao="Com x = 1: y = 3·1 + 1 = 4, e não 3. O ponto (1, 3) fica abaixo da reta."> (1, 3)</label>
+                <label class="alternativa"><input type="radio" name="l4-ex6" value="b"
+                  data-explicacao="Substituindo x = 2: y = 3·2 + 1 = 7. Como o ponto tem y = 7, ele está na reta."> (2, 7)</label>
+                <label class="alternativa"><input type="radio" name="l4-ex6" value="c"
+                  data-explicacao="As coordenadas estão trocadas: com x = 7, y = 3·7 + 1 = 22. A ordem é (x, y)."> (7, 2)</label>
+                <label class="alternativa"><input type="radio" name="l4-ex6" value="d"
+                  data-explicacao="Com x = 0: y = 3·0 + 1 = 1. A reta corta o eixo y em (0, 1), não em (0, 3)."> (0, 3)</label>
+              </div>
+            </li>
+          </ol>
+        </div>
       </section>
 
       <!-- Lição 5 -->
       <section id="licao-5" class="licao" data-licao="5">
         <h2 class="licao-titulo">5. Matrizes</h2>
-        <div class="teoria"><p>Conteúdo em construção</p></div>
-        <div class="laboratorio"><p>Laboratório em construção</p></div>
-        <div class="exercicios"><p>Exercícios em construção</p></div>
+
+        <!-- ---------- TEORIA ---------- -->
+        <div class="teoria">
+          <h3>O que é uma matriz</h3>
+          <p>
+            Uma <strong>matriz</strong> é uma tabela de números organizada em
+            <strong>linhas</strong> (horizontais) e <strong>colunas</strong> (verticais).
+            Uma matriz com m linhas e n colunas tem <strong>ordem m×n</strong> (lê-se "m por n").
+          </p>
+          <div class="formula">
+            A =
+            <span class="matriz"><span class="matriz-grade" style="--colunas: 3"><span class="matriz-el">1</span><span class="matriz-el">5</span><span class="matriz-el">−2</span><span class="matriz-el">0</span><span class="matriz-el">3</span><span class="matriz-el">8</span></span></span>
+            &nbsp;→&nbsp; ordem 2×3 (2 linhas e 3 colunas)
+          </div>
+          <p>
+            Cada número é um <strong>elemento</strong>, indicado por a<sub>ij</sub>: o
+            <strong>primeiro índice (i) é a linha</strong> e o <strong>segundo (j) é a coluna</strong>.
+            Na matriz acima, a₁₂ = 5 (linha 1, coluna 2) e a₂₃ = 8 (linha 2, coluna 3).
+          </p>
+
+          <h3>Lei de formação</h3>
+          <p>Às vezes a matriz é dada por uma regra que calcula cada elemento a partir de i e j.</p>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              A = [a<sub>ij</sub>] de ordem 2×2 com a<sub>ij</sub> = i + j:
+              a₁₁ = 2, a₁₂ = 3, a₂₁ = 3, a₂₂ = 4, ou seja,
+              A =
+              <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">3</span><span class="matriz-el">3</span><span class="matriz-el">4</span></span></span>.
+            </p>
+          </div>
+
+          <h3>Tipos importantes</h3>
+          <ul>
+            <li><strong>Quadrada:</strong> mesmo número de linhas e colunas (n×n). Os elementos a₁₁, a₂₂, a₃₃… formam a <strong>diagonal principal</strong>.</li>
+            <li><strong>Nula:</strong> todos os elementos são zero.</li>
+            <li><strong>Diagonal:</strong> quadrada, com zeros fora da diagonal principal.</li>
+            <li>
+              <strong>Identidade (Iₙ):</strong> diagonal com todos os elementos da diagonal iguais a 1.
+              Ex.: I₂ =
+              <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">0</span><span class="matriz-el">0</span><span class="matriz-el">1</span></span></span>.
+              Ela funciona como o "número 1" das matrizes.
+            </li>
+            <li><strong>Linha</strong> (1×n) e <strong>coluna</strong> (m×1): só uma linha ou só uma coluna. Uma matriz coluna 2×1 é como um vetor do plano.</li>
+          </ul>
+
+          <h3>Igualdade, soma e subtração</h3>
+          <p>
+            Duas matrizes são <strong>iguais</strong> quando têm a mesma ordem e os elementos
+            correspondentes são iguais. Para <strong>somar ou subtrair</strong>, as matrizes precisam
+            ter a <strong>mesma ordem</strong>, e a conta é feita elemento a elemento:
+            c<sub>ij</sub> = a<sub>ij</sub> + b<sub>ij</sub>.
+          </p>
+          <div class="formula">
+            <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el">3</span><span class="matriz-el">4</span></span></span>
+            +
+            <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">5</span><span class="matriz-el">0</span><span class="matriz-el">−1</span><span class="matriz-el">2</span></span></span>
+            =
+            <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">6</span><span class="matriz-el">2</span><span class="matriz-el">2</span><span class="matriz-el">6</span></span></span>
+          </div>
+
+          <h3>Multiplicação por um número</h3>
+          <p>Cada elemento é multiplicado pelo número:</p>
+          <div class="formula">
+            2 ·
+            <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">−3</span><span class="matriz-el">0</span><span class="matriz-el">4</span></span></span>
+            =
+            <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">−6</span><span class="matriz-el">0</span><span class="matriz-el">8</span></span></span>
+          </div>
+
+          <h3>Transposta</h3>
+          <p>
+            A <strong>transposta</strong> Aᵀ é obtida trocando linhas por colunas: a primeira linha
+            de A vira a primeira coluna de Aᵀ, e assim por diante. Se A é m×n, então Aᵀ é n×m.
+          </p>
+          <div class="formula">
+            <span class="matriz"><span class="matriz-grade" style="--colunas: 3"><span class="matriz-el">1</span><span class="matriz-el">5</span><span class="matriz-el">−2</span><span class="matriz-el">0</span><span class="matriz-el">3</span><span class="matriz-el">8</span></span></span><sup>T</sup>
+            =
+            <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">0</span><span class="matriz-el">5</span><span class="matriz-el">3</span><span class="matriz-el">−2</span><span class="matriz-el">8</span></span></span>
+          </div>
+          <p>
+            Uma matriz quadrada que é igual à sua transposta (A = Aᵀ) é chamada de
+            <strong>simétrica</strong>: ela "se espelha" na diagonal principal.
+          </p>
+        </div>
+
+        <!-- ---------- LABORATÓRIO ---------- -->
+        <div class="laboratorio">
+          <h3>Opere com matrizes</h3>
+          <p>
+            Escolha a operação e o tamanho, edite os elementos e
+            <strong>clique em um elemento do resultado</strong> para ver de onde ele veio.
+          </p>
+
+          <fieldset class="escolha lab-operacao">
+            <legend>Operação</legend>
+            <label class="opcao"><input type="radio" name="l5-operacao" value="soma" checked> A + B</label>
+            <label class="opcao"><input type="radio" name="l5-operacao" value="subtracao"> A − B</label>
+            <label class="opcao"><input type="radio" name="l5-operacao" value="escalar"> k · A</label>
+            <label class="opcao"><input type="radio" name="l5-operacao" value="transposta"> Aᵀ</label>
+          </fieldset>
+
+          <div class="lab-matrizes-controles">
+            <label>Linhas
+              <select id="l5-linhas"><option>1</option><option selected>2</option><option>3</option></select>
+            </label>
+            <label>Colunas
+              <select id="l5-colunas"><option>1</option><option>2</option><option selected>3</option></select>
+            </label>
+            <label id="l5-grupo-k">k <input type="number" id="l5-k" value="2" step="0.5"></label>
+            <button type="button" id="l5-sortear" class="btn-secundario">🎲 Valores aleatórios</button>
+          </div>
+
+          <div class="lab-matrizes">
+            <div class="lab-matriz-bloco">
+              <span class="lab-rotulo lab-rotulo-a">Matriz A</span>
+              <div id="l5-a"></div>
+            </div>
+            <div class="lab-matriz-bloco" id="l5-bloco-b">
+              <span class="lab-rotulo lab-rotulo-b">Matriz B</span>
+              <div id="l5-b"></div>
+            </div>
+          </div>
+
+          <div id="l5-resultados" class="lab-resultados" aria-live="polite"></div>
+        </div>
+
+        <!-- ---------- EXERCÍCIOS ---------- -->
+        <div class="exercicios" data-licao="5">
+          <h3>Pratique</h3>
+          <p>Escolha uma alternativa em cada exercício. Acerte todos para liberar a lição 6.</p>
+
+          <ol class="lista-exercicios">
+            <li class="exercicio">
+              <p>
+                Qual é a ordem da matriz
+                <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">4</span><span class="matriz-el">0</span><span class="matriz-el">−2</span><span class="matriz-el">5</span><span class="matriz-el">3</span></span></span>?
+              </p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="l5-ex1" value="a"
+                  data-explicacao="A matriz tem 3 linhas (horizontais) e 2 colunas (verticais). A ordem é sempre linhas × colunas: 3×2."> 3×2</label>
+                <label class="alternativa"><input type="radio" name="l5-ex1" value="b"
+                  data-explicacao="A ordem foi invertida. Primeiro vem o número de LINHAS (3) e depois o de COLUNAS (2)."> 2×3</label>
+                <label class="alternativa"><input type="radio" name="l5-ex1" value="c"
+                  data-explicacao="6 é o número total de elementos (3 · 2). A ordem informa linhas e colunas separadamente."> 6</label>
+                <label class="alternativa"><input type="radio" name="l5-ex1" value="d"
+                  data-explicacao="3×3 seria uma matriz quadrada com 9 elementos. Aqui há só 2 colunas."> 3×3</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>
+                Na matriz A =
+                <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 3"><span class="matriz-el">2</span><span class="matriz-el">−1</span><span class="matriz-el">4</span><span class="matriz-el">7</span><span class="matriz-el">0</span><span class="matriz-el">3</span></span></span>,
+                qual é o elemento a₂₃?
+              </p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="l5-ex2" value="a"
+                  data-explicacao="4 é o a₁₃ (linha 1, coluna 3). O primeiro índice de a₂₃ indica a linha 2."> 4</label>
+                <label class="alternativa"><input type="radio" name="l5-ex2" value="b"
+                  data-explicacao="7 é o a₂₁ (linha 2, coluna 1). O segundo índice de a₂₃ indica a coluna 3."> 7</label>
+                <label class="alternativa"><input type="radio" name="l5-ex2" value="c"
+                  data-explicacao="a₂₃ está na linha 2 e na coluna 3: o elemento é 3."> 3</label>
+                <label class="alternativa"><input type="radio" name="l5-ex2" value="d"
+                  data-explicacao="0 é o a₂₂ (linha 2, coluna 2). Ande mais uma coluna para chegar à coluna 3."> 0</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Qual é a matriz A = [a<sub>ij</sub>] de ordem 2×2 com <strong>a<sub>ij</sub> = 2i − j</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="l5-ex3" value="a"
+                  data-explicacao="a₁₁ = 2·1 − 1 = 1, a₁₂ = 2·1 − 2 = 0, a₂₁ = 2·2 − 1 = 3, a₂₂ = 2·2 − 2 = 2. Linhas (1, 0) e (3, 2).">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">0</span><span class="matriz-el">3</span><span class="matriz-el">2</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l5-ex3" value="b"
+                  data-explicacao="Essa é a transposta da resposta certa: i e j foram trocados (foi usado 2j − i). Lembre: i é a linha, j é a coluna.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">3</span><span class="matriz-el">0</span><span class="matriz-el">2</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l5-ex3" value="c"
+                  data-explicacao="Esses valores vêm de i + j. A regra pede 2i − j: dobre a linha e subtraia a coluna.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">3</span><span class="matriz-el">3</span><span class="matriz-el">4</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l5-ex3" value="d"
+                  data-explicacao="Esses valores vêm de i − 2j: o 2 foi aplicado no j. A regra é 2i − j (o 2 multiplica a linha).">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">−1</span><span class="matriz-el">−3</span><span class="matriz-el">0</span><span class="matriz-el">−2</span></span></span></label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>
+                Se A =
+                <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">−2</span><span class="matriz-el">3</span><span class="matriz-el">0</span></span></span>
+                e B =
+                <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">4</span><span class="matriz-el">5</span><span class="matriz-el">−1</span><span class="matriz-el">2</span></span></span>,
+                quanto vale A + B?
+              </p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="l5-ex4" value="a"
+                  data-explicacao="Esse é o resultado de A − B (1 − 4 = −3, −2 − 5 = −7…). Na soma, os elementos correspondentes são somados.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">−3</span><span class="matriz-el">−7</span><span class="matriz-el">4</span><span class="matriz-el">−2</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l5-ex4" value="b"
+                  data-explicacao="Somando elemento a elemento: 1 + 4 = 5, −2 + 5 = 3, 3 + (−1) = 2 e 0 + 2 = 2.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">5</span><span class="matriz-el">3</span><span class="matriz-el">2</span><span class="matriz-el">2</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l5-ex4" value="c"
+                  data-explicacao="Os elementos foram multiplicados (1·4, −2·5…). A soma de matrizes é feita somando, posição por posição.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">4</span><span class="matriz-el">−10</span><span class="matriz-el">−3</span><span class="matriz-el">0</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l5-ex4" value="d"
+                  data-explicacao="Quase certo, mas houve erro de sinal no a₁₂: −2 + 5 = 3, e não −3.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">5</span><span class="matriz-el">−3</span><span class="matriz-el">2</span><span class="matriz-el">2</span></span></span></label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>
+                Se A =
+                <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">−1</span><span class="matriz-el">0</span><span class="matriz-el">4</span></span></span>,
+                quanto vale 3A?
+              </p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="l5-ex5" value="a"
+                  data-explicacao="Só o primeiro elemento foi multiplicado. O número multiplica TODOS os elementos da matriz.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">6</span><span class="matriz-el">−1</span><span class="matriz-el">0</span><span class="matriz-el">4</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l5-ex5" value="b"
+                  data-explicacao="Foi somado 3 a cada elemento. Multiplicar por 3 é diferente de somar 3.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">5</span><span class="matriz-el">2</span><span class="matriz-el">3</span><span class="matriz-el">7</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l5-ex5" value="c"
+                  data-explicacao="Quase: o erro está no zero. 3 · 0 = 0, e não 3.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">6</span><span class="matriz-el">−3</span><span class="matriz-el">3</span><span class="matriz-el">12</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l5-ex5" value="d"
+                  data-explicacao="Cada elemento vezes 3: 3·2 = 6, 3·(−1) = −3, 3·0 = 0 e 3·4 = 12.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">6</span><span class="matriz-el">−3</span><span class="matriz-el">0</span><span class="matriz-el">12</span></span></span></label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>
+                Qual é a transposta de
+                <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 3"><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el">3</span><span class="matriz-el">4</span><span class="matriz-el">5</span><span class="matriz-el">6</span></span></span>?
+              </p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="l5-ex6" value="a"
+                  data-explicacao="Aqui só a ordem das linhas foi trocada. Na transposta, cada LINHA vira uma COLUNA, e a matriz 2×3 vira 3×2.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 3"><span class="matriz-el">4</span><span class="matriz-el">5</span><span class="matriz-el">6</span><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el">3</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l5-ex6" value="b"
+                  data-explicacao="As colunas foram espelhadas (lidas de trás para frente). A transposta troca linhas por colunas.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 3"><span class="matriz-el">3</span><span class="matriz-el">2</span><span class="matriz-el">1</span><span class="matriz-el">6</span><span class="matriz-el">5</span><span class="matriz-el">4</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l5-ex6" value="c"
+                  data-explicacao="A linha (1, 2, 3) vira a 1ª coluna e a linha (4, 5, 6) vira a 2ª coluna. A ordem passa de 2×3 para 3×2.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">4</span><span class="matriz-el">2</span><span class="matriz-el">5</span><span class="matriz-el">3</span><span class="matriz-el">6</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l5-ex6" value="d"
+                  data-explicacao="Os números foram distribuídos em 3 linhas, mas na ordem de leitura (1, 2 / 3, 4 / 5, 6). Na transposta, a coluna 1 deve ser a linha 1 original: (1, 2, 3).">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el">3</span><span class="matriz-el">4</span><span class="matriz-el">5</span><span class="matriz-el">6</span></span></span></label>
+              </div>
+            </li>
+          </ol>
+        </div>
       </section>
 
       <!-- Lição 6 -->
       <section id="licao-6" class="licao" data-licao="6">
         <h2 class="licao-titulo">6. Multiplicação de matrizes</h2>
-        <div class="teoria"><p>Conteúdo em construção</p></div>
-        <div class="laboratorio"><p>Laboratório em construção</p></div>
-        <div class="exercicios"><p>Exercícios em construção</p></div>
+
+        <!-- ---------- TEORIA ---------- -->
+        <div class="teoria">
+          <h3>Quando dá para multiplicar</h3>
+          <p>
+            O produto A·B só existe quando o <strong>número de colunas de A</strong> é igual ao
+            <strong>número de linhas de B</strong>. O resultado tem as linhas de A e as colunas de B:
+          </p>
+          <div class="formula">A<sub>m×<strong>n</strong></sub> · B<sub><strong>n</strong>×p</sub> = C<sub>m×p</sub></div>
+          <p>
+            Um jeito fácil de conferir: escreva as ordens lado a lado. Os números "de dentro" precisam
+            ser iguais, e os "de fora" dão a ordem do resultado. Por exemplo, (2×<strong>3</strong>)·(<strong>3</strong>×4) dá 2×4,
+            enquanto (2×3)·(2×3) não é possível.
+          </p>
+
+          <h3>Como calcular cada elemento</h3>
+          <p>
+            O elemento c<sub>ij</sub> do resultado é a <strong>linha i de A</strong> "vezes" a
+            <strong>coluna j de B</strong>: multiplicamos elemento por elemento e somamos. É o mesmo
+            produto escalar da lição 3!
+          </p>
+          <div class="formula">c<sub>ij</sub> = a<sub>i1</sub>·b<sub>1j</sub> + a<sub>i2</sub>·b<sub>2j</sub> + … + a<sub>in</sub>·b<sub>nj</sub></div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo (2×2 · 2×2)</p>
+            <div class="formula">
+              <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el">3</span><span class="matriz-el">4</span></span></span> · <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">5</span><span class="matriz-el">6</span><span class="matriz-el">7</span><span class="matriz-el">8</span></span></span>
+              = <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1·5+2·7</span><span class="matriz-el">1·6+2·8</span><span class="matriz-el">3·5+4·7</span><span class="matriz-el">3·6+4·8</span></span></span>
+              = <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">19</span><span class="matriz-el">22</span><span class="matriz-el">43</span><span class="matriz-el">50</span></span></span>
+            </div>
+            <p>Por exemplo, c₂₁ = (linha 2 de A) · (coluna 1 de B) = 3·5 + 4·7 = 15 + 28 = 43.</p>
+          </div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo (2×3 · 3×1)</p>
+            <div class="formula">
+              <span class="matriz"><span class="matriz-grade" style="--colunas: 3"><span class="matriz-el">1</span><span class="matriz-el">0</span><span class="matriz-el">2</span><span class="matriz-el">−1</span><span class="matriz-el">3</span><span class="matriz-el">1</span></span></span> · <span class="matriz"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">3</span><span class="matriz-el">2</span><span class="matriz-el">1</span></span></span>
+              = <span class="matriz"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">1·3+0·2+2·1</span><span class="matriz-el">−1·3+3·2+1·1</span></span></span>
+              = <span class="matriz"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">5</span><span class="matriz-el">4</span></span></span>
+            </div>
+            <p>Multiplicar uma matriz por uma matriz coluna transforma um "vetor" em outro, ideia central da lição 10.</p>
+          </div>
+
+          <h3>Propriedades</h3>
+          <ul>
+            <li>
+              <strong>NÃO é comutativa:</strong> em geral A·B ≠ B·A. No primeiro exemplo,
+              B·A = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">23</span><span class="matriz-el">34</span><span class="matriz-el">31</span><span class="matriz-el">46</span></span></span>, diferente de A·B. Às vezes, B·A nem existe!
+            </li>
+            <li><strong>Associativa:</strong> (A·B)·C = A·(B·C).</li>
+            <li><strong>Distributiva:</strong> A·(B + C) = A·B + A·C.</li>
+            <li><strong>Identidade:</strong> A·I = I·A = A, então a identidade faz o papel do número 1.</li>
+            <li><strong>Transposta do produto:</strong> (A·B)ᵀ = Bᵀ·Aᵀ (a ordem se inverte).</li>
+          </ul>
+        </div>
+
+        <!-- ---------- LABORATÓRIO ---------- -->
+        <div class="laboratorio">
+          <h3>Linha vezes coluna</h3>
+          <p>
+            Escolha as ordens, edite as matrizes e <strong>clique em um elemento do resultado</strong>:
+            a linha e a coluna usadas ficam realçadas. Depois use "Trocar a ordem" para ver que
+            A·B e B·A são diferentes.
+          </p>
+
+          <div class="lab-matrizes-controles">
+            <label>A: linhas <select id="l6-m"><option>1</option><option selected>2</option><option>3</option></select></label>
+            <label>colunas de A = linhas de B <select id="l6-n"><option>1</option><option selected>2</option><option>3</option></select></label>
+            <label>B: colunas <select id="l6-p"><option>1</option><option selected>2</option><option>3</option></select></label>
+          </div>
+          <div class="lab-matrizes-controles">
+            <button type="button" id="l6-trocar" class="btn-secundario" aria-pressed="false">⇄ Trocar a ordem (B · A)</button>
+            <button type="button" id="l6-sortear" class="btn-secundario">🎲 Valores aleatórios</button>
+          </div>
+
+          <div class="lab-matrizes">
+            <div class="lab-matriz-bloco">
+              <span class="lab-rotulo lab-rotulo-a" id="l6-titulo-a">Matriz A</span>
+              <div id="l6-a"></div>
+            </div>
+            <div class="lab-matriz-bloco">
+              <span class="lab-rotulo lab-rotulo-b" id="l6-titulo-b">Matriz B</span>
+              <div id="l6-b"></div>
+            </div>
+          </div>
+
+          <div id="l6-resultados" class="lab-resultados" aria-live="polite"></div>
+        </div>
+
+        <!-- ---------- EXERCÍCIOS ---------- -->
+        <div class="exercicios" data-licao="6">
+          <h3>Pratique</h3>
+          <p>Escolha uma alternativa em cada exercício. Acerte todos para liberar a lição 7.</p>
+
+          <ol class="lista-exercicios">
+            <li class="exercicio">
+              <p>Se A é uma matriz <strong>2×3</strong> e B é <strong>3×4</strong>, qual é a ordem de A·B?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="l6-ex1" value="a"
+                  data-explicacao="(2×3)·(3×4): os números de dentro (3 e 3) são iguais, então o produto existe, e os de fora dão a ordem 2×4."> 2×4</label>
+                <label class="alternativa"><input type="radio" name="l6-ex1" value="b"
+                  data-explicacao="3×3 junta os números de DENTRO, que só servem para conferir se o produto existe. A ordem do resultado vem dos números de fora."> 3×3</label>
+                <label class="alternativa"><input type="radio" name="l6-ex1" value="c"
+                  data-explicacao="4×2 está invertido: o resultado tem as linhas de A (2) e as colunas de B (4), nessa ordem."> 4×2</label>
+                <label class="alternativa"><input type="radio" name="l6-ex1" value="d"
+                  data-explicacao="É possível, sim: A tem 3 colunas e B tem 3 linhas, que é exatamente a condição para multiplicar."> não é possível multiplicar</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Se A e B são ambas <strong>2×3</strong>, o que se pode dizer sobre A·B?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="l6-ex2" value="a"
+                  data-explicacao="Ter a mesma ordem é a condição da SOMA, não do produto. Para multiplicar, as colunas de A devem ser iguais às linhas de B."> é 2×3, como as duas</label>
+                <label class="alternativa"><input type="radio" name="l6-ex2" value="b"
+                  data-explicacao="2×2 seria o resultado de (2×3)·(3×2). Aqui B é 2×3, e as contas não fecham."> é 2×2</label>
+                <label class="alternativa"><input type="radio" name="l6-ex2" value="c"
+                  data-explicacao="3×3 seria o resultado de (3×2)·(2×3), ou seja, Aᵀ·B. Com A·B, as ordens não combinam."> é 3×3</label>
+                <label class="alternativa"><input type="radio" name="l6-ex2" value="d"
+                  data-explicacao="(2×3)·(2×3): A tem 3 colunas, mas B tem só 2 linhas. Cada linha de A (3 números) não tem com quem combinar em uma coluna de B (2 números)."> não existe</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Quanto vale <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el">3</span><span class="matriz-el">4</span></span></span> · <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">0</span><span class="matriz-el">1</span><span class="matriz-el">3</span></span></span>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="l6-ex3" value="a"
+                  data-explicacao="Os elementos foram multiplicados posição por posição (1·2, 2·0, 3·1, 4·3). O produto de matrizes é linha × coluna.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">0</span><span class="matriz-el">3</span><span class="matriz-el">12</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l6-ex3" value="b"
+                  data-explicacao="Esse é o resultado de B·A (a ordem foi trocada). Como o produto não é comutativo, a ordem importa.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">4</span><span class="matriz-el">10</span><span class="matriz-el">14</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l6-ex3" value="c"
+                  data-explicacao="c₁₁ = 1·2 + 2·1 = 4, c₁₂ = 1·0 + 2·3 = 6, c₂₁ = 3·2 + 4·1 = 10 e c₂₂ = 3·0 + 4·3 = 12.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">4</span><span class="matriz-el">6</span><span class="matriz-el">10</span><span class="matriz-el">12</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l6-ex3" value="d"
+                  data-explicacao="Aqui foi feito linha × LINHA (ex.: c₁₂ = 1·1 + 2·3 = 7). O certo é linha de A × COLUNA de B.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">7</span><span class="matriz-el">6</span><span class="matriz-el">15</span></span></span></label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Sendo A = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 3"><span class="matriz-el">2</span><span class="matriz-el">−1</span><span class="matriz-el">0</span><span class="matriz-el">1</span><span class="matriz-el">3</span><span class="matriz-el">4</span></span></span> e B = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el">0</span><span class="matriz-el">5</span><span class="matriz-el">−2</span><span class="matriz-el">1</span></span></span>, qual é o elemento <strong>c₂₁</strong> de A·B?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="l6-ex4" value="a"
+                  data-explicacao="−1 é o c₁₂ (linha 1 de A com coluna 2 de B: 4 − 5 + 0). Em c₂₁, use a linha 2 de A e a coluna 1 de B."> −1</label>
+                <label class="alternativa"><input type="radio" name="l6-ex4" value="b"
+                  data-explicacao="c₂₁ = (linha 2 de A)·(coluna 1 de B) = 1·1 + 3·0 + 4·(−2) = 1 + 0 − 8 = −7."> −7</label>
+                <label class="alternativa"><input type="radio" name="l6-ex4" value="c"
+                  data-explicacao="9 = 1 + 0 + 8: o sinal do último produto foi perdido. 4·(−2) = −8."> 9</label>
+                <label class="alternativa"><input type="radio" name="l6-ex4" value="d"
+                  data-explicacao="1 é só o primeiro produto (1·1). Faltou somar os outros pares: 3·0 e 4·(−2)."> 1</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Quanto vale <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">1</span><span class="matriz-el">−1</span><span class="matriz-el">3</span></span></span> · <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">1</span><span class="matriz-el">2</span></span></span>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="l6-ex5" value="a"
+                  data-explicacao="(2×2)·(2×1) dá 2×1. Linha 1: 2·1 + 1·2 = 4. Linha 2: −1·1 + 3·2 = 5.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">4</span><span class="matriz-el">5</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l6-ex5" value="b"
+                  data-explicacao="Aqui foram usadas as COLUNAS de A (2·1 + (−1)·2 = 0 e 1·1 + 3·2 = 7). O produto usa as LINHAS de A.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">0</span><span class="matriz-el">7</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l6-ex5" value="c"
+                  data-explicacao="3 e 2 são as somas de cada linha de A (2 + 1 e −1 + 3). Faltou multiplicar cada elemento pelo número correspondente da coluna.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">3</span><span class="matriz-el">2</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l6-ex5" value="d"
+                  data-explicacao="O resultado de (2×2)·(2×1) precisa ser 2×1. Aqui cada coluna de A foi multiplicada por um número, sem somar.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">2</span><span class="matriz-el">−1</span><span class="matriz-el">6</span></span></span></label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Para duas matrizes quadradas A e B de mesma ordem, é correto afirmar que:</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="l6-ex6" value="a"
+                  data-explicacao="Falso: o produto de matrizes não é comutativo. Exemplo da teoria: os dois resultados deram matrizes diferentes."> A·B = B·A sempre</label>
+                <label class="alternativa"><input type="radio" name="l6-ex6" value="b"
+                  data-explicacao="Em geral A·B ≠ B·A, porque linhas de A com colunas de B não são o mesmo que linhas de B com colunas de A. Mas em casos especiais (como B = I) eles podem coincidir."> em geral A·B ≠ B·A</label>
+                <label class="alternativa"><input type="radio" name="l6-ex6" value="c"
+                  data-explicacao="'Nunca' é forte demais: com B = I (identidade), A·I = I·A = A. Há casos em que os produtos coincidem."> A·B e B·A nunca são iguais</label>
+                <label class="alternativa"><input type="radio" name="l6-ex6" value="d"
+                  data-explicacao="A propriedade correta é (A·B)ᵀ = Bᵀ·Aᵀ. B·A não é, em geral, a transposta de A·B."> B·A é a transposta de A·B</label>
+              </div>
+            </li>
+          </ol>
+        </div>
       </section>
 
       <!-- Lição 7 -->
       <section id="licao-7" class="licao" data-licao="7">
         <h2 class="licao-titulo">7. Determinantes</h2>
-        <div class="teoria"><p>Conteúdo em construção</p></div>
-        <div class="laboratorio"><p>Laboratório em construção</p></div>
-        <div class="exercicios"><p>Exercícios em construção</p></div>
+
+        <!-- ---------- TEORIA ---------- -->
+        <div class="teoria">
+          <h3>O que é o determinante</h3>
+          <p>
+            Toda matriz <strong>quadrada</strong> tem um número associado a ela, o
+            <strong>determinante</strong>, escrito det A ou |A|. Ele diz se a matriz "achata"
+            o plano, se tem inversa e se um sistema linear tem solução única.
+          </p>
+
+          <h3>Matriz 2×2</h3>
+          <p>Diagonal principal menos diagonal secundária:</p>
+          <div class="formula">det <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">a</span><span class="matriz-el">b</span><span class="matriz-el">c</span><span class="matriz-el">d</span></span></span> = a·d − b·c</div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>det <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">3</span><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el">4</span></span></span> = 3·4 − 1·2 = 12 − 2 = <strong>10</strong>.</p>
+          </div>
+
+          <h3>Matriz 3×3 — regra de Sarrus</h3>
+          <ol>
+            <li>Repita as duas primeiras colunas à direita da matriz.</li>
+            <li>Some os produtos das 3 diagonais que <strong>descem</strong> (↘).</li>
+            <li>Some os produtos das 3 diagonais que <strong>sobem</strong> (↗).</li>
+            <li>det = (soma das que descem) − (soma das que sobem).</li>
+          </ol>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <div class="formula">A = <span class="matriz"><span class="matriz-grade" style="--colunas: 3"><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el">3</span><span class="matriz-el">0</span><span class="matriz-el">1</span><span class="matriz-el">4</span><span class="matriz-el">5</span><span class="matriz-el">6</span><span class="matriz-el">0</span></span></span> &nbsp;→&nbsp; <span class="matriz"><span class="matriz-grade" style="--colunas: 5"><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el">3</span><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el">0</span><span class="matriz-el">1</span><span class="matriz-el">4</span><span class="matriz-el">0</span><span class="matriz-el">1</span><span class="matriz-el">5</span><span class="matriz-el">6</span><span class="matriz-el">0</span><span class="matriz-el">5</span><span class="matriz-el">6</span></span></span></div>
+            <p>
+              Descem: 1·1·0 + 2·4·5 + 3·0·6 = 0 + 40 + 0 = 40.<br>
+              Sobem: 3·1·5 + 1·4·6 + 2·0·0 = 15 + 24 + 0 = 39.<br>
+              det A = 40 − 39 = <strong>1</strong>.
+            </p>
+          </div>
+
+          <h3>O que o determinante significa</h3>
+          <p>
+            As colunas de uma matriz 2×2 podem ser vistas como dois vetores,
+            <span class="vet">u</span> = (a, c) e <span class="vet">v</span> = (b, d). Então:
+          </p>
+          <ul>
+            <li><strong>|det A|</strong> é a <strong>área do paralelogramo</strong> formado por <span class="vet">u</span> e <span class="vet">v</span>.</li>
+            <li>O <strong>sinal</strong> indica a orientação: positivo se, girando de <span class="vet">u</span> para <span class="vet">v</span> pelo menor ângulo, o giro é anti-horário; negativo se é horário (a matriz "espelha" o plano).</li>
+            <li><strong>det A = 0</strong> quando <span class="vet">u</span> e <span class="vet">v</span> são paralelos: o paralelogramo vira um segmento, de área zero. Nesse caso a matriz <strong>não tem inversa</strong> (lição 9) e o sistema associado <strong>não tem solução única</strong> (lição 8).</li>
+          </ul>
+          <p>Em 3×3, |det A| é o volume do paralelepípedo formado pelas três colunas.</p>
+
+          <h3>Propriedades úteis</h3>
+          <ul>
+            <li>det(Aᵀ) = det A.</li>
+            <li>Trocar duas linhas (ou duas colunas) de lugar <strong>troca o sinal</strong> do determinante.</li>
+            <li>Se uma linha (ou coluna) é toda zero, ou se duas linhas são iguais ou proporcionais, então det = 0.</li>
+            <li>Multiplicar <strong>uma</strong> linha por k multiplica o determinante por k. Por isso, det(k·A) = kⁿ·det A para A de ordem n.</li>
+            <li>det(A·B) = det A · det B, e det I = 1.</li>
+          </ul>
+        </div>
+
+        <!-- ---------- LABORATÓRIO ---------- -->
+        <div class="laboratorio">
+          <h3>Determinante como área</h3>
+          <p>
+            No modo 2×2, as colunas da matriz viram os vetores <span class="vet">u</span> e
+            <span class="vet">v</span>, e o paralelogramo colorido tem área igual a |det A|.
+            Tente deixar o determinante igual a zero! No modo 3×3, veja a regra de Sarrus passo a passo.
+          </p>
+
+          <fieldset class="escolha lab-operacao">
+            <legend>Tamanho</legend>
+            <label class="opcao"><input type="radio" name="l7-tamanho" value="2" checked> 2×2 (com desenho)</label>
+            <label class="opcao"><input type="radio" name="l7-tamanho" value="3"> 3×3 (regra de Sarrus)</label>
+          </fieldset>
+
+          <div class="lab-area" id="l7-area">
+            <svg id="l7-plano" class="plano-cartesiano" viewBox="-11 -11 22 22"
+                 role="img" aria-label="Paralelogramo formado pelas colunas da matriz"></svg>
+
+            <div class="lab-controles">
+              <span class="lab-rotulo">Matriz A</span>
+              <div id="l7-a2"></div>
+              <div id="l7-a3" hidden></div>
+              <p id="l7-dica" class="lab-dica">1ª coluna = vetor <strong>u</strong>, 2ª coluna = vetor <strong>v</strong>. Clique no plano para mover a ponta de <strong>u</strong>.</p>
+              <button type="button" id="l7-sortear" class="btn-secundario">🎲 Valores aleatórios</button>
+            </div>
+          </div>
+
+          <div id="l7-resultados" class="lab-resultados" aria-live="polite"></div>
+        </div>
+
+        <!-- ---------- EXERCÍCIOS ---------- -->
+        <div class="exercicios" data-licao="7">
+          <h3>Pratique</h3>
+          <p>Escolha uma alternativa em cada exercício. Acerte todos para liberar a lição 8.</p>
+
+          <ol class="lista-exercicios">
+            <li class="exercicio">
+              <p>Quanto vale det <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">3</span><span class="matriz-el">−2</span><span class="matriz-el">1</span><span class="matriz-el">4</span></span></span>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="l7-ex1" value="a"
+                  data-explicacao="10 = 12 − 2: o sinal do −2 foi perdido. b·c = (−2)·1 = −2, e subtrair −2 é somar 2."> 10</label>
+                <label class="alternativa"><input type="radio" name="l7-ex1" value="b"
+                  data-explicacao="12 é só a diagonal principal (3·4). Falta subtrair a diagonal secundária, (−2)·1."> 12</label>
+                <label class="alternativa"><input type="radio" name="l7-ex1" value="c"
+                  data-explicacao="det = a·d − b·c = 3·4 − (−2)·1 = 12 + 2 = 14."> 14</label>
+                <label class="alternativa"><input type="radio" name="l7-ex1" value="d"
+                  data-explicacao="−14 é b·c − a·d: a subtração foi feita na ordem inversa. É principal menos secundária."> −14</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Usando a regra de Sarrus, quanto vale det <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 3"><span class="matriz-el">2</span><span class="matriz-el">0</span><span class="matriz-el">1</span><span class="matriz-el">1</span><span class="matriz-el">3</span><span class="matriz-el">2</span><span class="matriz-el">1</span><span class="matriz-el">1</span><span class="matriz-el">2</span></span></span>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="l7-ex2" value="a"
+                  data-explicacao="20 = 13 + 7: as diagonais que sobem foram SOMADAS. Elas devem ser subtraídas."> 20</label>
+                <label class="alternativa"><input type="radio" name="l7-ex2" value="b"
+                  data-explicacao="Descem: 2·3·2 + 0·2·1 + 1·1·1 = 12 + 0 + 1 = 13. Sobem: 1·3·1 + 2·2·1 + 0·1·2 = 3 + 4 + 0 = 7. det = 13 − 7 = 6."> 6</label>
+                <label class="alternativa"><input type="radio" name="l7-ex2" value="c"
+                  data-explicacao="13 é só a soma das diagonais que descem. Falta subtrair a soma das que sobem (7)."> 13</label>
+                <label class="alternativa"><input type="radio" name="l7-ex2" value="d"
+                  data-explicacao="−6 é (sobem) − (descem): ordem invertida. O correto é descem menos sobem."> −6</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Qual é a área do paralelogramo formado pelos vetores <span class="vet">u</span> = <strong>(3, 1)</strong> e <span class="vet">v</span> = <strong>(1, 2)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="l7-ex3" value="a"
+                  data-explicacao="Colocando u e v como colunas, a matriz tem linhas (3, 1) e (1, 2): det = 3·2 − 1·1 = 5. A área é |det| = 5."> 5</label>
+                <label class="alternativa"><input type="radio" name="l7-ex3" value="b"
+                  data-explicacao="7 = 6 + 1: as diagonais foram somadas. O determinante é a·d − b·c."> 7</label>
+                <label class="alternativa"><input type="radio" name="l7-ex3" value="c"
+                  data-explicacao="2,5 é metade do determinante, que seria a área do TRIÂNGULO formado por u e v. O paralelogramo tem a área inteira."> 2,5</label>
+                <label class="alternativa"><input type="radio" name="l7-ex3" value="d"
+                  data-explicacao="6 é só a diagonal principal (3·2). Falta subtrair 1·1."> 6</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Para qual valor de k a matriz <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">k</span><span class="matriz-el">2</span><span class="matriz-el">3</span><span class="matriz-el">6</span></span></span> tem determinante igual a zero?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="l7-ex4" value="a"
+                  data-explicacao="Erro de sinal: det = 6k − 2·3 = 6k − 6. Igualando a zero, 6k = 6 e k = 1 (positivo)."> −1</label>
+                <label class="alternativa"><input type="radio" name="l7-ex4" value="b"
+                  data-explicacao="Com k = 0, det = 0·6 − 2·3 = −6, que não é zero."> 0</label>
+                <label class="alternativa"><input type="radio" name="l7-ex4" value="c"
+                  data-explicacao="6 é o valor de 6k na equação 6k − 6 = 0. Falta dividir por 6."> 6</label>
+                <label class="alternativa"><input type="radio" name="l7-ex4" value="d"
+                  data-explicacao="det = 6k − 6 = 0 ⇒ k = 1. Com k = 1, a 2ª linha (3, 6) é 3 vezes a 1ª (1, 2): linhas proporcionais dão determinante zero."> 1</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Se A é uma matriz 2×2 com <strong>det A = 5</strong>, quanto vale det(2A)?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="l7-ex5" value="a"
+                  data-explicacao="10 seria o resultado se só UMA linha fosse multiplicada por 2. Em 2A, as duas linhas são multiplicadas."> 10</label>
+                <label class="alternativa"><input type="radio" name="l7-ex5" value="b"
+                  data-explicacao="7 = 5 + 2: multiplicar a matriz por 2 não soma 2 ao determinante."> 7</label>
+                <label class="alternativa"><input type="radio" name="l7-ex5" value="c"
+                  data-explicacao="Em 2A, cada uma das 2 linhas é multiplicada por 2, e cada uma multiplica o det por 2: det(2A) = 2²·5 = 20. Geometricamente, dobrar os dois lados multiplica a área por 4."> 20</label>
+                <label class="alternativa"><input type="radio" name="l7-ex5" value="d"
+                  data-explicacao="25 = 5², que seria det(A·A) = det A · det A. Aqui a matriz é multiplicada pelo número 2."> 25</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Se o determinante de uma matriz quadrada A é <strong>zero</strong>, então:</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="l7-ex6" value="a"
+                  data-explicacao="det = 0 significa que as colunas são paralelas (proporcionais): o paralelogramo tem área zero e a matriz 'achata' o plano. Por isso ela não tem inversa."> as colunas são proporcionais e A não tem inversa</label>
+                <label class="alternativa"><input type="radio" name="l7-ex6" value="b"
+                  data-explicacao="Não precisa ser nula: a matriz de linhas (1, 2) e (2, 4) tem det = 4 − 4 = 0 e nenhum elemento zero. Basta as linhas serem proporcionais."> A é a matriz nula</label>
+                <label class="alternativa"><input type="radio" name="l7-ex6" value="c"
+                  data-explicacao="A identidade tem det I = 1, e não 0."> A é a matriz identidade</label>
+                <label class="alternativa"><input type="radio" name="l7-ex6" value="d"
+                  data-explicacao="É o contrário: uma matriz só tem inversa quando det ≠ 0. Com det = 0, não existe inversa."> A tem inversa</label>
+              </div>
+            </li>
+          </ol>
+        </div>
       </section>
 
       <!-- Lição 8 -->
       <section id="licao-8" class="licao" data-licao="8">
         <h2 class="licao-titulo">8. Sistemas lineares</h2>
-        <div class="teoria"><p>Conteúdo em construção</p></div>
-        <div class="laboratorio"><p>Laboratório em construção</p></div>
-        <div class="exercicios"><p>Exercícios em construção</p></div>
+
+        <!-- ---------- TEORIA ---------- -->
+        <div class="teoria">
+          <h3>O que é um sistema linear</h3>
+          <p>
+            Uma <strong>equação linear</strong> tem incógnitas apenas multiplicadas por números e
+            somadas, como 2x + 3y = 7 (sem x², xy, √x…). Um <strong>sistema linear</strong> é um
+            conjunto de equações lineares que devem valer <strong>ao mesmo tempo</strong>. Uma
+            <strong>solução</strong> é um conjunto de valores que satisfaz todas as equações.
+          </p>
+          <div class="formula">
+            { x + y = 5 &nbsp;&nbsp;e&nbsp;&nbsp; 2x − y = 1 } &nbsp;→&nbsp; solução: x = 2, y = 3
+          </div>
+          <p>Confira: 2 + 3 = 5 ✓ e 2·2 − 3 = 1 ✓.</p>
+
+          <h3>Forma matricial</h3>
+          <p>
+            Todo sistema pode ser escrito como <strong>A·X = B</strong>, em que A é a matriz dos
+            coeficientes, X a matriz das incógnitas e B a dos termos independentes
+            (é a multiplicação de matrizes da lição 6):
+          </p>
+          <div class="formula"><span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el">−1</span></span></span> · <span class="matriz"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">x</span><span class="matriz-el">y</span></span></span> = <span class="matriz"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">5</span><span class="matriz-el">1</span></span></span></div>
+
+          <h3>Interpretação geométrica (2 incógnitas)</h3>
+          <p>
+            Cada equação com x e y é uma <strong>reta</strong> (lição 4). Resolver o sistema é
+            encontrar o ponto comum às retas. Há três possibilidades:
+          </p>
+          <div class="tabela-rolagem">
+            <table class="tabela">
+              <thead>
+                <tr><th>As retas são…</th><th>Soluções</th><th>Classificação</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>concorrentes (cruzam-se)</td><td>exatamente uma</td><td><strong>SPD</strong>: possível e determinado</td></tr>
+                <tr><td>coincidentes (a mesma reta)</td><td>infinitas</td><td><strong>SPI</strong>: possível e indeterminado</td></tr>
+                <tr><td>paralelas (nunca se cruzam)</td><td>nenhuma</td><td><strong>SI</strong>: impossível</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Método da substituição</h3>
+          <p>Isole uma incógnita em uma equação e substitua na outra.</p>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              Da 1ª equação, y = 5 − x. Na 2ª: 2x − (5 − x) = 1 ⇒ 3x − 5 = 1 ⇒ x = 2.
+              Então y = 5 − 2 = <strong>3</strong>.
+            </p>
+          </div>
+
+          <h3>Escalonamento (eliminação de Gauss)</h3>
+          <p>
+            Para sistemas maiores, usamos operações que não mudam a solução: trocar equações de
+            lugar, multiplicar uma equação por um número diferente de zero e somar a uma equação
+            um múltiplo de outra. O objetivo é zerar incógnitas até ficar uma "escada".
+          </p>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo (3×3)</p>
+            <p>
+              L₁: x + y + z = 6 &nbsp;|&nbsp; L₂: 2x + y − z = 1 &nbsp;|&nbsp; L₃: x − y + 2z = 5<br>
+              L₂ ← L₂ − 2·L₁: &nbsp;−y − 3z = −11<br>
+              L₃ ← L₃ − L₁: &nbsp;−2y + z = −1<br>
+              L₃ ← L₃ − 2·L₂: &nbsp;7z = 21 ⇒ <strong>z = 3</strong><br>
+              Voltando: −y − 9 = −11 ⇒ <strong>y = 2</strong>, e x = 6 − 2 − 3 ⇒ <strong>x = 1</strong>.
+            </p>
+          </div>
+
+          <h3>Regra de Cramer</h3>
+          <p>
+            Para a₁x + b₁y = c₁ e a₂x + b₂y = c₂, calcule três determinantes: D (dos coeficientes)
+            e D<sub>x</sub>, D<sub>y</sub> (trocando a coluna de x ou de y pelos termos independentes):
+          </p>
+          <div class="formula">
+            D = <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">a₁</span><span class="matriz-el">b₁</span><span class="matriz-el">a₂</span><span class="matriz-el">b₂</span></span></span> &nbsp; D<sub>x</sub> = <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">c₁</span><span class="matriz-el">b₁</span><span class="matriz-el">c₂</span><span class="matriz-el">b₂</span></span></span> &nbsp; D<sub>y</sub> = <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">a₁</span><span class="matriz-el">c₁</span><span class="matriz-el">a₂</span><span class="matriz-el">c₂</span></span></span>
+          </div>
+          <div class="formula">x = D<sub>x</sub> / D &nbsp;&nbsp;&nbsp; y = D<sub>y</sub> / D</div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              x + y = 5 e 2x − y = 1: D = 1·(−1) − 1·2 = −3, D<sub>x</sub> = 5·(−1) − 1·1 = −6,
+              D<sub>y</sub> = 1·1 − 5·2 = −9. Logo x = −6/−3 = <strong>2</strong> e y = −9/−3 = <strong>3</strong>.
+            </p>
+          </div>
+          <p>
+            <strong>Ligação com o determinante:</strong> o sistema tem solução única (SPD) se, e só se,
+            <strong>D ≠ 0</strong>. Quando D = 0, ele é SPI ou SI, ou seja, as retas são coincidentes ou paralelas.
+          </p>
+        </div>
+
+        <!-- ---------- LABORATÓRIO ---------- -->
+        <div class="laboratorio">
+          <h3>Duas equações, duas retas</h3>
+          <p>
+            Edite os coeficientes e veja as duas retas no plano. A solução é o ponto onde elas se
+            cruzam. Use os exemplos para ver os três casos.
+          </p>
+
+          <div class="lab-matrizes-controles">
+            <span class="lab-rotulo">Exemplos:</span>
+            <button type="button" class="btn-secundario" data-l8-exemplo="2,1,4,1,-3,-5">Concorrentes</button>
+            <button type="button" class="btn-secundario" data-l8-exemplo="1,2,4,2,4,8">Coincidentes</button>
+            <button type="button" class="btn-secundario" data-l8-exemplo="1,-1,2,2,-2,-3">Paralelas</button>
+          </div>
+
+          <div class="lab-area controles-largos">
+            <svg id="l8-plano" class="plano-cartesiano" viewBox="-11 -11 22 22"
+                 role="img" aria-label="As duas retas do sistema e o ponto de interseção"></svg>
+
+            <div class="lab-controles">
+              <fieldset class="lab-ponto lab-equacao lab-equacao-1">
+                <legend>Equação 1</legend>
+                <input type="number" id="l8-a1" value="2" step="1" aria-label="coeficiente de x na equação 1"> x +
+                <input type="number" id="l8-b1" value="1" step="1" aria-label="coeficiente de y na equação 1"> y =
+                <input type="number" id="l8-c1" value="4" step="1" aria-label="termo independente da equação 1">
+              </fieldset>
+              <fieldset class="lab-ponto lab-equacao lab-equacao-2">
+                <legend>Equação 2</legend>
+                <input type="number" id="l8-a2" value="1" step="1" aria-label="coeficiente de x na equação 2"> x +
+                <input type="number" id="l8-b2" value="-3" step="1" aria-label="coeficiente de y na equação 2"> y =
+                <input type="number" id="l8-c2" value="-5" step="1" aria-label="termo independente da equação 2">
+              </fieldset>
+            </div>
+          </div>
+
+          <div id="l8-resultados" class="lab-resultados" aria-live="polite"></div>
+        </div>
+
+        <!-- ---------- EXERCÍCIOS ---------- -->
+        <div class="exercicios" data-licao="8">
+          <h3>Pratique</h3>
+          <p>Escolha uma alternativa em cada exercício. Acerte todos para liberar a lição 9.</p>
+
+          <ol class="lista-exercicios">
+            <li class="exercicio">
+              <p>Qual é a solução do sistema <strong>x + y = 7</strong> e <strong>x − y = 1</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="l8-ex1" value="a"
+                  data-explicacao="x e y foram trocados. Com x = 3 e y = 4, a 2ª equação dá 3 − 4 = −1, e não 1."> x = 3, y = 4</label>
+                <label class="alternativa"><input type="radio" name="l8-ex1" value="b"
+                  data-explicacao="Somando as equações: 2x = 8 ⇒ x = 4. Daí y = 7 − 4 = 3. Conferindo: 4 + 3 = 7 ✓ e 4 − 3 = 1 ✓."> x = 4, y = 3</label>
+                <label class="alternativa"><input type="radio" name="l8-ex1" value="c"
+                  data-explicacao="Ao somar as equações obtemos 2x = 8. Faltou dividir por 2: x = 4, e não 8."> x = 8, y = −1</label>
+                <label class="alternativa"><input type="radio" name="l8-ex1" value="d"
+                  data-explicacao="(2, 5) satisfaz só a 1ª equação (2 + 5 = 7). Na 2ª, 2 − 5 = −3 ≠ 1. A solução precisa valer nas DUAS."> x = 2, y = 5</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Como se classifica o sistema <strong>2x + 4y = 6</strong> e <strong>x + 2y = 3</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="l8-ex2" value="a"
+                  data-explicacao="SPD exigiria D ≠ 0, mas D = 2·2 − 4·1 = 0. As retas não se cruzam em um único ponto."> SPD (uma solução)</label>
+                <label class="alternativa"><input type="radio" name="l8-ex2" value="b"
+                  data-explicacao="SI seria o caso de retas paralelas distintas. Aqui a 1ª equação é exatamente o dobro da 2ª (inclusive o 6 = 2·3), então é a mesma reta."> SI (nenhuma solução)</label>
+                <label class="alternativa"><input type="radio" name="l8-ex2" value="c"
+                  data-explicacao="A 1ª equação é a 2ª multiplicada por 2: as duas representam a MESMA reta. Todos os pontos dela são solução: infinitas soluções (SPI)."> SPI (infinitas soluções)</label>
+                <label class="alternativa"><input type="radio" name="l8-ex2" value="d"
+                  data-explicacao="É um sistema linear, sim: x e y aparecem só multiplicados por números e somados."> não é um sistema linear</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>O sistema <strong>x + y = 2</strong> e <strong>x + y = 5</strong> é:</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="l8-ex3" value="a"
+                  data-explicacao="Para ter uma única solução, as retas precisariam ter inclinações diferentes. Aqui as duas têm m = −1."> possível e determinado</label>
+                <label class="alternativa"><input type="radio" name="l8-ex3" value="b"
+                  data-explicacao="Seriam infinitas soluções se fossem a mesma reta, mas x + y não pode valer 2 e 5 ao mesmo tempo."> possível e indeterminado</label>
+                <label class="alternativa"><input type="radio" name="l8-ex3" value="c"
+                  data-explicacao="(1, 1) satisfaz só a 1ª equação. Nenhum par satisfaz as duas, já que x + y não pode ser 2 e 5 ao mesmo tempo."> possível, com solução (1, 1)</label>
+                <label class="alternativa"><input type="radio" name="l8-ex3" value="d"
+                  data-explicacao="x + y não pode ser 2 e 5 ao mesmo tempo. Geometricamente, são duas retas paralelas (mesma inclinação, cortes diferentes), que nunca se cruzam: sistema impossível (SI)."> impossível</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>No sistema <strong>3x + 2y = 8</strong> e <strong>x − y = 1</strong>, quanto vale o determinante D dos coeficientes?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="l8-ex4" value="a"
+                  data-explicacao="A matriz dos coeficientes tem linhas (3, 2) e (1, −1). D = 3·(−1) − 2·1 = −3 − 2 = −5."> −5</label>
+                <label class="alternativa"><input type="radio" name="l8-ex4" value="b"
+                  data-explicacao="5 é b·c − a·d (ordem invertida). D = a·d − b·c = 3·(−1) − 2·1."> 5</label>
+                <label class="alternativa"><input type="radio" name="l8-ex4" value="c"
+                  data-explicacao="−1 = −3 + 2: a diagonal secundária foi somada. Ela deve ser subtraída: −3 − 2 = −5."> −1</label>
+                <label class="alternativa"><input type="radio" name="l8-ex4" value="d"
+                  data-explicacao="−3 é só a diagonal principal, 3·(−1). Falta subtrair 2·1."> −3</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Escrevendo o sistema <strong>x + 2y = 5</strong> e <strong>3x − y = 1</strong> na forma A·X = B, qual é a matriz A dos coeficientes?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="l8-ex5" value="a"
+                  data-explicacao="Essa é a transposta: os coeficientes de cada EQUAÇÃO devem formar uma LINHA de A."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">3</span><span class="matriz-el">2</span><span class="matriz-el">−1</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l8-ex5" value="b"
+                  data-explicacao="Cada linha de A são os coeficientes de uma equação: (1, 2) da primeira e (3, −1) da segunda. Os termos 5 e 1 ficam em B."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el">3</span><span class="matriz-el">−1</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l8-ex5" value="c"
+                  data-explicacao="O sinal do coeficiente de y na 2ª equação foi perdido: 3x − y tem coeficiente −1."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el">3</span><span class="matriz-el">1</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l8-ex5" value="d"
+                  data-explicacao="Os termos independentes (5 e 1) não entram em A, e sim em B. A é só a matriz dos coeficientes."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 3"><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el">5</span><span class="matriz-el">3</span><span class="matriz-el">−1</span><span class="matriz-el">1</span></span></span></label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Para quais valores de k o sistema <strong>kx + 2y = 3</strong> e <strong>3x + 6y = 9</strong> tem <strong>uma única solução</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="l8-ex6" value="a"
+                  data-explicacao="Com k = 1, D = 1·6 − 2·3 = 0 e as equações viram a mesma reta (a 2ª é 3 vezes a 1ª): infinitas soluções, e não uma única."> k = 1</label>
+                <label class="alternativa"><input type="radio" name="l8-ex6" value="b"
+                  data-explicacao="k = 0 dá solução única, sim (D = −6 ≠ 0), mas não é o único valor: qualquer k diferente de 1 serve."> apenas k = 0</label>
+                <label class="alternativa"><input type="radio" name="l8-ex6" value="c"
+                  data-explicacao="Solução única ⇔ D ≠ 0. D = 6k − 2·3 = 6k − 6, que é diferente de zero quando k ≠ 1."> k ≠ 1</label>
+                <label class="alternativa"><input type="radio" name="l8-ex6" value="d"
+                  data-explicacao="Não é para qualquer k: com k = 1 o determinante zera e o sistema passa a ter infinitas soluções."> qualquer valor de k</label>
+              </div>
+            </li>
+          </ol>
+        </div>
       </section>
 
       <!-- Lição 9 -->
       <section id="licao-9" class="licao" data-licao="9">
         <h2 class="licao-titulo">9. Matriz inversa</h2>
-        <div class="teoria"><p>Conteúdo em construção</p></div>
-        <div class="laboratorio"><p>Laboratório em construção</p></div>
-        <div class="exercicios"><p>Exercícios em construção</p></div>
+
+        <!-- ---------- TEORIA ---------- -->
+        <div class="teoria">
+          <h3>O que é a inversa</h3>
+          <p>
+            Para números, o inverso de 5 é 1/5, porque 5 · 1/5 = 1. Com matrizes, o papel do 1 é
+            da identidade I. A <strong>inversa</strong> de uma matriz quadrada A é a matriz
+            A⁻¹ tal que:
+          </p>
+          <div class="formula">A · A⁻¹ = A⁻¹ · A = I</div>
+          <p>
+            Uma matriz que tem inversa é chamada de <strong>invertível</strong>. A condição é simples:
+          </p>
+          <div class="formula">A tem inversa &nbsp;⇔&nbsp; det A ≠ 0</div>
+          <p>
+            Se det A = 0, a matriz "achata" o plano (lição 7): pontos diferentes vão parar no mesmo
+            lugar, e não há como desfazer. Não existe "divisão de matrizes"; quem faz esse papel é
+            multiplicar pela inversa.
+          </p>
+
+          <h3>Fórmula para 2×2</h3>
+          <div class="formula"><span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">a</span><span class="matriz-el">b</span><span class="matriz-el">c</span><span class="matriz-el">d</span></span></span>⁻¹ = (1 / det A) · <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">d</span><span class="matriz-el">−b</span><span class="matriz-el">−c</span><span class="matriz-el">a</span></span></span></div>
+          <p>Em palavras: troque os elementos da diagonal principal de lugar, troque o sinal dos da secundária e divida tudo pelo determinante.</p>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              A = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">1</span><span class="matriz-el">5</span><span class="matriz-el">3</span></span></span>: det A = 2·3 − 1·5 = 1, então
+              A⁻¹ = (1/1) · <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">3</span><span class="matriz-el">−1</span><span class="matriz-el">−5</span><span class="matriz-el">2</span></span></span> = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">3</span><span class="matriz-el">−1</span><span class="matriz-el">−5</span><span class="matriz-el">2</span></span></span>.
+            </p>
+            <p>Conferindo: A · A⁻¹ = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">6−5</span><span class="matriz-el">−2+2</span><span class="matriz-el">15−15</span><span class="matriz-el">−5+6</span></span></span> = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">0</span><span class="matriz-el">0</span><span class="matriz-el">1</span></span></span> = I ✓</p>
+          </div>
+
+          <h3>Método de Gauss-Jordan (qualquer ordem)</h3>
+          <p>
+            Escreva a matriz aumentada [A | I] e use operações de linha (as mesmas do escalonamento)
+            até o lado esquerdo virar I. O que estiver do lado direito será A⁻¹:
+          </p>
+          <div class="formula">[ A | I ] &nbsp;→ operações de linha →&nbsp; [ I | A⁻¹ ]</div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <div class="formula"><span class="matriz"><span class="matriz-grade" style="--colunas: 4"><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el separador">1</span><span class="matriz-el">0</span><span class="matriz-el">3</span><span class="matriz-el">4</span><span class="matriz-el separador">0</span><span class="matriz-el">1</span></span></span></div>
+            <p>L₂ ← L₂ − 3·L₁ (zerar abaixo do pivô):</p>
+            <div class="formula"><span class="matriz"><span class="matriz-grade" style="--colunas: 4"><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el separador">1</span><span class="matriz-el">0</span><span class="matriz-el">0</span><span class="matriz-el">−2</span><span class="matriz-el separador">−3</span><span class="matriz-el">1</span></span></span></div>
+            <p>L₂ ← L₂ ÷ (−2) (deixar o pivô igual a 1):</p>
+            <div class="formula"><span class="matriz"><span class="matriz-grade" style="--colunas: 4"><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el separador">1</span><span class="matriz-el">0</span><span class="matriz-el">0</span><span class="matriz-el">1</span><span class="matriz-el separador">3/2</span><span class="matriz-el">−1/2</span></span></span></div>
+            <p>L₁ ← L₁ − 2·L₂ (zerar acima do pivô):</p>
+            <div class="formula"><span class="matriz"><span class="matriz-grade" style="--colunas: 4"><span class="matriz-el">1</span><span class="matriz-el">0</span><span class="matriz-el separador">−2</span><span class="matriz-el">1</span><span class="matriz-el">0</span><span class="matriz-el">1</span><span class="matriz-el separador">3/2</span><span class="matriz-el">−1/2</span></span></span> &nbsp;⇒&nbsp; A⁻¹ = <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">−2</span><span class="matriz-el">1</span><span class="matriz-el">3/2</span><span class="matriz-el">−1/2</span></span></span></div>
+          </div>
+
+          <h3>Resolvendo sistemas com a inversa</h3>
+          <p>Se A·X = B e A é invertível, multiplicamos os dois lados por A⁻¹ <strong>pela esquerda</strong>:</p>
+          <div class="formula">A·X = B &nbsp;⇒&nbsp; A⁻¹·A·X = A⁻¹·B &nbsp;⇒&nbsp; X = A⁻¹·B</div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              2x + y = 4 e 5x + 3y = 11: A = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">1</span><span class="matriz-el">5</span><span class="matriz-el">3</span></span></span> e A⁻¹ = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">3</span><span class="matriz-el">−1</span><span class="matriz-el">−5</span><span class="matriz-el">2</span></span></span> (do exemplo acima).<br>
+              X = A⁻¹·B = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">3</span><span class="matriz-el">−1</span><span class="matriz-el">−5</span><span class="matriz-el">2</span></span></span> · <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">4</span><span class="matriz-el">11</span></span></span> = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">12−11</span><span class="matriz-el">−20+22</span></span></span> = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">1</span><span class="matriz-el">2</span></span></span>, ou seja,
+              <strong>x = 1 e y = 2</strong>.
+            </p>
+          </div>
+
+          <h3>Propriedades</h3>
+          <ul>
+            <li>(A⁻¹)⁻¹ = A.</li>
+            <li>(A·B)⁻¹ = B⁻¹·A⁻¹ (a ordem se inverte, como ao tirar meia e sapato: primeiro o sapato!).</li>
+            <li>(Aᵀ)⁻¹ = (A⁻¹)ᵀ.</li>
+            <li>det(A⁻¹) = 1 / det A.</li>
+          </ul>
+        </div>
+
+        <!-- ---------- LABORATÓRIO ---------- -->
+        <div class="laboratorio">
+          <h3>Calcule a inversa passo a passo</h3>
+          <p>
+            Edite a matriz e acompanhe o método de Gauss-Jordan transformando [A | I] em [I | A⁻¹].
+            No final, a página confere se A · A⁻¹ dá mesmo a identidade. Tente uma matriz com
+            determinante zero para ver o que acontece.
+          </p>
+
+          <fieldset class="escolha lab-operacao">
+            <legend>Tamanho</legend>
+            <label class="opcao"><input type="radio" name="l9-tamanho" value="2" checked> 2×2</label>
+            <label class="opcao"><input type="radio" name="l9-tamanho" value="3"> 3×3</label>
+          </fieldset>
+
+          <div class="lab-matrizes">
+            <div class="lab-matriz-bloco">
+              <span class="lab-rotulo lab-rotulo-a">Matriz A</span>
+              <div id="l9-a2"></div>
+              <div id="l9-a3" hidden></div>
+            </div>
+          </div>
+          <div class="lab-matrizes-controles">
+            <button type="button" id="l9-sortear" class="btn-secundario">🎲 Valores aleatórios</button>
+            <button type="button" id="l9-singular" class="btn-secundario">Exemplo sem inversa</button>
+          </div>
+
+          <div id="l9-resultados" class="lab-resultados" aria-live="polite"></div>
+        </div>
+
+        <!-- ---------- EXERCÍCIOS ---------- -->
+        <div class="exercicios" data-licao="9">
+          <h3>Pratique</h3>
+          <p>Escolha uma alternativa em cada exercício. Acerte todos para liberar a lição 10.</p>
+
+          <ol class="lista-exercicios">
+            <li class="exercicio">
+              <p>Qual é a inversa de <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">3</span><span class="matriz-el">1</span><span class="matriz-el">5</span><span class="matriz-el">2</span></span></span>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="l9-ex1" value="a"
+                  data-explicacao="det = 3·2 − 1·5 = 1. Trocando a diagonal principal de lugar e o sinal da secundária: linhas (2, −1) e (−5, 3), divididas por 1."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">−1</span><span class="matriz-el">−5</span><span class="matriz-el">3</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l9-ex1" value="b"
+                  data-explicacao="Cada elemento foi invertido (1/3, 1/5…). A inversa de uma matriz NÃO é feita elemento por elemento."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1/3</span><span class="matriz-el">1</span><span class="matriz-el">1/5</span><span class="matriz-el">1/2</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l9-ex1" value="c"
+                  data-explicacao="A diagonal principal foi trocada, mas faltou inverter o sinal dos elementos da secundária (1 e 5 devem virar −1 e −5)."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">1</span><span class="matriz-el">5</span><span class="matriz-el">3</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l9-ex1" value="d"
+                  data-explicacao="Os sinais foram trocados na diagonal errada: quem muda de sinal é a SECUNDÁRIA (b e c); a principal só troca de lugar."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">−2</span><span class="matriz-el">1</span><span class="matriz-el">5</span><span class="matriz-el">−3</span></span></span></label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Qual destas matrizes <strong>não</strong> tem inversa?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="l9-ex2" value="a"
+                  data-explicacao="É a identidade: det = 1 ≠ 0. Ela é a sua própria inversa (I · I = I)."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">0</span><span class="matriz-el">0</span><span class="matriz-el">1</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l9-ex2" value="b"
+                  data-explicacao="det = 0·0 − 1·1 = −1 ≠ 0, então tem inversa (por sinal, ela mesma: trocar duas vezes volta ao início)."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">0</span><span class="matriz-el">1</span><span class="matriz-el">1</span><span class="matriz-el">0</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l9-ex2" value="c"
+                  data-explicacao="det = 2·2 − 4·1 = 0: a 1ª linha é o dobro da 2ª. Com determinante zero, não existe inversa."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">4</span><span class="matriz-el">1</span><span class="matriz-el">2</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l9-ex2" value="d"
+                  data-explicacao="det = 2·1 − 1·1 = 1 ≠ 0, então tem inversa."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">1</span><span class="matriz-el">1</span><span class="matriz-el">1</span></span></span></label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Qual é a inversa de <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">0</span><span class="matriz-el">0</span><span class="matriz-el">4</span></span></span>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="l9-ex3" value="a"
+                  data-explicacao="Essa é a matriz OPOSTA (−A): somada a A dá a matriz nula, mas multiplicada por A não dá a identidade."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">−2</span><span class="matriz-el">0</span><span class="matriz-el">0</span><span class="matriz-el">−4</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l9-ex3" value="b"
+                  data-explicacao="Em uma matriz diagonal, basta inverter cada elemento da diagonal: 1/2 e 1/4. Conferindo: 2·(1/2) = 1 e 4·(1/4) = 1."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1/2</span><span class="matriz-el">0</span><span class="matriz-el">0</span><span class="matriz-el">1/4</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l9-ex3" value="c"
+                  data-explicacao="A diagonal foi trocada de lugar, mas faltou dividir pelo determinante (det = 8): (1/8) com linhas (4, 0) e (0, 2) dá a diagonal 1/2 e 1/4."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">4</span><span class="matriz-el">0</span><span class="matriz-el">0</span><span class="matriz-el">2</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l9-ex3" value="d"
+                  data-explicacao="Os inversos estão certos (1/2 e 1/4), mas foram colocados fora da diagonal. Assim, A vezes essa matriz não dá a identidade."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">0</span><span class="matriz-el">1/2</span><span class="matriz-el">1/4</span><span class="matriz-el">0</span></span></span></label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Se A é invertível e <strong>A·X = B</strong>, então X é igual a:</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="l9-ex4" value="a"
+                  data-explicacao="Não existe divisão de matrizes. O que faz esse papel é multiplicar pela inversa."> B / A</label>
+                <label class="alternativa"><input type="radio" name="l9-ex4" value="b"
+                  data-explicacao="A ordem importa. Como A está à ESQUERDA de X, A⁻¹ precisa entrar pela esquerda nos dois lados: A⁻¹·A·X = A⁻¹·B."> B · A⁻¹</label>
+                <label class="alternativa"><input type="radio" name="l9-ex4" value="c"
+                  data-explicacao="A·B não isola X. É preciso 'desfazer' A, e quem desfaz A é a sua inversa."> A · B</label>
+                <label class="alternativa"><input type="radio" name="l9-ex4" value="d"
+                  data-explicacao="Multiplicando os dois lados por A⁻¹ pela esquerda: A⁻¹·A·X = A⁻¹·B ⇒ I·X = A⁻¹·B ⇒ X = A⁻¹·B."> A⁻¹ · B</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Sabendo que <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">1</span><span class="matriz-el">5</span><span class="matriz-el">3</span></span></span>⁻¹ = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">3</span><span class="matriz-el">−1</span><span class="matriz-el">−5</span><span class="matriz-el">2</span></span></span>, qual é a solução de <strong>2x + y = 1</strong> e <strong>5x + 3y = 2</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="l9-ex5" value="a"
+                  data-explicacao="X = A⁻¹·B: x = 3·1 + (−1)·2 = 1 e y = −5·1 + 2·2 = −1. Conferindo: 2 − 1 = 1 ✓ e 5 − 3 = 2 ✓."> x = 1, y = −1</label>
+                <label class="alternativa"><input type="radio" name="l9-ex5" value="b"
+                  data-explicacao="Esse é A·B (com a matriz original): 2·1 + 1·2 = 4 e 5·1 + 3·2 = 11. É preciso multiplicar pela INVERSA."> x = 4, y = 11</label>
+                <label class="alternativa"><input type="radio" name="l9-ex5" value="c"
+                  data-explicacao="Foram usadas as COLUNAS de A⁻¹ em vez das linhas: 3·1 + (−5)·2 = −7. No produto, cada LINHA de A⁻¹ multiplica B."> x = −7, y = 3</label>
+                <label class="alternativa"><input type="radio" name="l9-ex5" value="d"
+                  data-explicacao="O x está certo, mas no y o sinal se perdeu: −5·1 + 2·2 = −5 + 4 = −1."> x = 1, y = 1</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Se <strong>det A = 4</strong>, quanto vale det(A⁻¹)?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="l9-ex6" value="a"
+                  data-explicacao="O sinal não muda: det(A⁻¹) = 1/det A, que continua positivo."> −4</label>
+                <label class="alternativa"><input type="radio" name="l9-ex6" value="b"
+                  data-explicacao="det(A·A⁻¹) = det I = 1, e det(A·A⁻¹) = det A · det(A⁻¹). Logo 4 · det(A⁻¹) = 1 e det(A⁻¹) = 1/4."> 1/4</label>
+                <label class="alternativa"><input type="radio" name="l9-ex6" value="c"
+                  data-explicacao="Se fosse 4, teríamos det(A·A⁻¹) = 4·4 = 16, mas det I = 1. A inversa 'desfaz' a mudança de área: divide em vez de multiplicar."> 4</label>
+                <label class="alternativa"><input type="radio" name="l9-ex6" value="d"
+                  data-explicacao="det = 0 é justamente o caso em que NÃO existe inversa. Como det A = 4 ≠ 0, A⁻¹ existe e seu determinante é 1/4."> 0</label>
+              </div>
+            </li>
+          </ol>
+        </div>
       </section>
 
       <!-- Lição 10 -->
@@ -887,6 +2112,7 @@
   <script src="js/utils/matematica.js"></script>
   <!-- 2. Componentes reaproveitáveis -->
   <script src="js/componentes/plano.js"></script>
+  <script src="js/componentes/matriz.js"></script>
   <script src="js/componentes/exercicios.js"></script>
   <!-- 3. Aplicação: navegação, progresso e tema -->
   <script src="js/app.js"></script>
@@ -894,5 +2120,11 @@
   <script src="js/licoes/licao-01.js"></script>
   <script src="js/licoes/licao-02.js"></script>
   <script src="js/licoes/licao-03.js"></script>
+  <script src="js/licoes/licao-04.js"></script>
+  <script src="js/licoes/licao-05.js"></script>
+  <script src="js/licoes/licao-06.js"></script>
+  <script src="js/licoes/licao-07.js"></script>
+  <script src="js/licoes/licao-08.js"></script>
+  <script src="js/licoes/licao-09.js"></script>
 </body>
 </html>

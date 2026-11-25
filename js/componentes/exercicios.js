@@ -267,9 +267,15 @@ function atualizarExplicacaoCompleta(exercicio, mostrar) {
       const item = document.createElement('li');
       item.className = ehCerta ? 'explicacao-certa' : 'explicacao-errada';
 
+      // Cabeçalho: "✓ b) <conteúdo da alternativa> — correta".
+      // O conteúdo é COPIADO da alternativa (sem o botão de opção), para que
+      // matrizes e outras marcações apareçam iguais às do exercício.
       const cabecalho = document.createElement('strong');
-      cabecalho.textContent = (ehCerta ? '✓ ' : '✕ ') + letra + ') ' + rotulo.textContent.trim() +
-        (ehCerta ? ' — correta' : ' — errada');
+      cabecalho.append((ehCerta ? '✓ ' : '✕ ') + letra + ') ');
+      Array.from(rotulo.childNodes).forEach((no) => {
+        if (no !== radio) cabecalho.append(no.cloneNode(true));
+      });
+      cabecalho.append(ehCerta ? ' — correta' : ' — errada');
 
       const texto = document.createElement('span');
       texto.textContent = radio.dataset.explicacao;

@@ -22,12 +22,19 @@ js/
     matematica.js           Funções de cálculo e formatação (lerNumero, formatarNumero, modulo...)
   componentes/
     plano.js                Plano cartesiano em SVG reaproveitável (criarPlanoCartesiano)
+    matriz.js               Editor e exibição de matrizes (criarEditorMatriz, htmlMatriz)
     exercicios.js           Correção automática dos exercícios (lê o HTML, não precisa de JS por lição)
   app.js                    Navegação por hash, desbloqueio de lições, progresso salvo e tema
   licoes/
     licao-01.js             Laboratório da Lição 1 (só o que é específico da lição)
     licao-02.js             Laboratório da Lição 2
     licao-03.js             Laboratório da Lição 3
+    licao-04.js             Laboratório da Lição 4
+    licao-05.js             Laboratório da Lição 5
+    licao-06.js             Laboratório da Lição 6
+    licao-07.js             Laboratório da Lição 7
+    licao-08.js             Laboratório da Lição 8
+    licao-09.js             Laboratório da Lição 9
 ```
 
 **A ordem dos `<link>` e `<script>` no `index.html` importa:** os estilos vão do
@@ -113,3 +120,7 @@ celular no bloco **RESPONSIVO** do fim do mesmo arquivo.
 - **Números no padrão brasileiro**: vírgula decimal e `;` separando coordenadas
   decimais, como em `(2,5; 4)`. Use `formatarNumero` e `formatarPonto`.
 - **Cores** sempre por variável (`var(--cor-…)`), para funcionar nos temas claro e escuro.
+- **Matrizes no HTML** usam a marcação de grade (nunca `<table>` dentro de `<p>`, que é
+  HTML inválido): `<span class="matriz"><span class="matriz-grade" style="--colunas: 2">`
+  com um `<span class="matriz-el">` por elemento. Use `matriz-inline` para matrizes no
+  meio do texto. No JavaScript, gere com `htmlMatriz()`.

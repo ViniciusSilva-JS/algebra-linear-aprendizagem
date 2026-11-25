@@ -427,6 +427,128 @@ progress.progresso::-moz-progress-bar {
 
 
 /* =========================================================================
+   MATRIZES (js/componentes/matriz.js)
+   <span class="matriz"><table>…</table></span>
+   Os colchetes são desenhados com ::before e ::after.
+   ========================================================================= */
+.matriz {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0.15em 0.25em;
+  padding: 0.1em 0.45em;
+  font-family: var(--fonte-formula);
+  font-variant-numeric: tabular-nums;
+}
+
+.matriz::before,
+.matriz::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0.4em;
+  border: 2px solid currentColor;
+}
+
+.matriz::before {
+  left: 0;
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+}
+
+.matriz::after {
+  right: 0;
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+}
+
+/* Os elementos ficam numa grade com --colunas colunas (definido no HTML) */
+.matriz-grade {
+  display: inline-grid;
+  grid-template-columns: repeat(var(--colunas, 2), auto);
+  align-items: center;
+  gap: 0.15em 0.55em;
+  padding: 0.1em 0;
+}
+
+.matriz-el {
+  min-width: 1.4em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Elemento realçado (ex.: elementos usados numa conta) */
+.matriz-el.destaque {
+  border-radius: var(--raio-pequeno);
+  background: var(--cor-laboratorio-suave);
+  color: var(--cor-laboratorio);
+  font-weight: 700;
+}
+
+/* Barra vertical da matriz aumentada [A | I] */
+.matriz-el.separador {
+  padding-left: 0.6em;
+  border-left: 1.5px solid currentColor;
+}
+
+/* Matriz pequena dentro de texto (enunciados e alternativas) */
+.matriz-inline {
+  font-size: 0.95em;
+}
+
+.matriz-inline .matriz-grade {
+  gap: 0.05em 0.45em;
+}
+
+/* Editor: um campo por elemento (tabela, pois fica dentro de <div>) */
+.matriz-editor table {
+  border-collapse: separate;
+  border-spacing: 0.3em;
+}
+
+.matriz-editor input[type="text"] {
+  width: 3.6rem;
+  min-height: 2.4rem;
+  padding: var(--esp-1);
+  text-align: center;
+  font-family: var(--fonte-formula);
+}
+
+.matriz-editor input.destaque {
+  border-color: var(--cor-laboratorio);
+  box-shadow: 0 0 0 3px var(--cor-laboratorio-suave);
+}
+
+/* Elementos clicáveis de um resultado */
+.matriz-celula {
+  min-width: 2.2em;
+  padding: 0.1em 0.35em;
+  border: 1px solid transparent;
+  border-radius: var(--raio-pequeno);
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.matriz-celula:hover {
+  border-color: var(--cor-laboratorio);
+}
+
+.matriz-celula.selecionada {
+  background: var(--cor-laboratorio);
+  color: var(--cor-sobre-primaria);
+  font-weight: 700;
+}
+
+.matriz-celula:focus-visible {
+  outline: 2px solid var(--cor-laboratorio);
+  outline-offset: 1px;
+}
+
+
+/* =========================================================================
    RESPONSIVO (celular — até 768px)
    ========================================================================= */
 @media (max-width: 768px) {
