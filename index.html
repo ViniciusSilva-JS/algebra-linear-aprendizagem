@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Álgebra Linear — Trilha de Aprendizagem</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===================== CABEÇALHO ===================== -->
+  <header id="cabecalho" class="cabecalho">
+    <h1 class="cabecalho-titulo">Álgebra Linear — Trilha de Aprendizagem</h1>
+    <p class="cabecalho-descricao">
+      Aprenda Álgebra Linear e Geometria Analítica passo a passo, do plano
+      cartesiano às aplicações com dados reais.
+    </p>
+  </header>
+
+  <!-- ===================== ESCOLHA DE MATÉRIA E NÍVEL ===================== -->
+  <section id="configuracao" class="configuracao" aria-labelledby="configuracao-titulo">
+    <h2 id="configuracao-titulo" class="configuracao-titulo">Monte sua trilha</h2>
+
+    <form id="form-configuracao" class="form-configuracao">
+
+      <fieldset id="escolha-materia" class="escolha escolha-materia">
+        <legend>Qual matéria você quer estudar?</legend>
+        <label class="opcao opcao-materia">
+          <input type="radio" name="materia" value="algebra-linear" checked>
+          Álgebra Linear
+        </label>
+        <label class="opcao opcao-materia">
+          <input type="radio" name="materia" value="geometria-analitica">
+          Geometria Analítica
+        </label>
+      </fieldset>
+
+      <fieldset id="escolha-nivel" class="escolha escolha-nivel">
+        <legend>Qual é o seu nível?</legend>
+        <label class="opcao opcao-nivel">
+          <input type="radio" name="nivel" value="basico" checked>
+          Básico
+        </label>
+        <label class="opcao opcao-nivel">
+          <input type="radio" name="nivel" value="intermediario">
+          Intermediário
+        </label>
+        <label class="opcao opcao-nivel">
+          <input type="radio" name="nivel" value="avancado">
+          Avançado
+        </label>
+      </fieldset>
+
+      <button type="submit" id="btn-comecar" class="btn btn-comecar">Começar trilha</button>
+    </form>
+  </section>
+
+  <div class="layout">
+
+    <!-- ===================== NAVEGAÇÃO (TRILHA) ===================== -->
+    <nav id="trilha" class="trilha" aria-label="Trilha de lições">
+      <h2 class="trilha-titulo">Trilha de lições</h2>
+      <ol class="trilha-lista">
+        <li class="trilha-item" data-licao="1"><a class="trilha-link" href="#licao-1">Plano cartesiano e pontos</a></li>
+        <li class="trilha-item" data-licao="2"><a class="trilha-link" href="#licao-2">Vetores no plano</a></li>
+        <li class="trilha-item" data-licao="3"><a class="trilha-link" href="#licao-3">Produto escalar e ângulo</a></li>
+        <li class="trilha-item" data-licao="4"><a class="trilha-link" href="#licao-4">Retas no plano</a></li>
+        <li class="trilha-item" data-licao="5"><a class="trilha-link" href="#licao-5">Matrizes</a></li>
+        <li class="trilha-item" data-licao="6"><a class="trilha-link" href="#licao-6">Multiplicação de matrizes</a></li>
+        <li class="trilha-item" data-licao="7"><a class="trilha-link" href="#licao-7">Determinantes</a></li>
+        <li class="trilha-item" data-licao="8"><a class="trilha-link" href="#licao-8">Sistemas lineares</a></li>
+        <li class="trilha-item" data-licao="9"><a class="trilha-link" href="#licao-9">Matriz inversa</a></li>
+        <li class="trilha-item" data-licao="10"><a class="trilha-link" href="#licao-10">Transformações lineares no plano</a></li>
+        <li class="trilha-item" data-licao="11"><a class="trilha-link" href="#licao-11">Autovalores e autovetores</a></li>
+        <li class="trilha-item" data-licao="12"><a class="trilha-link" href="#licao-12">Aplicação com dados reais</a></li>
+      </ol>
+    </nav>
+
+    <!-- ===================== CONTEÚDO PRINCIPAL ===================== -->
+    <main id="conteudo" class="conteudo">
+
+      <!-- Boas-vindas -->
+      <section id="inicio" class="secao-inicio">
+        <h2>Bem-vindo à trilha</h2>
+        <p>
+          Esta trilha é organizada em lições sequenciais. Cada lição é dividida
+          em três etapas:
+        </p>
+        <ol class="passos">
+          <li class="passo"><strong>Teoria:</strong> estude os conceitos apresentados na lição.</li>
+          <li class="passo"><strong>Laboratório:</strong> teste as ideias de forma interativa.</li>
+          <li class="passo"><strong>Exercícios:</strong> resolva os exercícios para liberar a próxima lição.</li>
+        </ol>
+        <p>Comece pela lição 1 e avance no seu ritmo.</p>
+      </section>
+
+      <!-- Lição 1 -->
+      <section id="licao-1" class="licao" data-licao="1">
+        <h2 class="licao-titulo">1. Plano cartesiano e pontos</h2>
+        <div class="teoria"><p>Conteúdo em construção</p></div>
+        <div class="laboratorio"><p>Laboratório em construção</p></div>
+        <div class="exercicios"><p>Exercícios em construção</p></div>
+      </section>
+
+      <!-- Lição 2 -->
+      <section id="licao-2" class="licao" data-licao="2">
+        <h2 class="licao-titulo">2. Vetores no plano</h2>
+        <div class="teoria"><p>Conteúdo em construção</p></div>
+        <div class="laboratorio"><p>Laboratório em construção</p></div>
+        <div class="exercicios"><p>Exercícios em construção</p></div>
+      </section>
+
+      <!-- Lição 3 -->
+      <section id="licao-3" class="licao" data-licao="3">
+        <h2 class="licao-titulo">3. Produto escalar e ângulo</h2>
+        <div class="teoria"><p>Conteúdo em construção</p></div>
+        <div class="laboratorio"><p>Laboratório em construção</p></div>
+        <div class="exercicios"><p>Exercícios em construção</p></div>
+      </section>
+
+      <!-- Lição 4 -->
+      <section id="licao-4" class="licao" data-licao="4">
+        <h2 class="licao-titulo">4. Retas no plano</h2>
+        <div class="teoria"><p>Conteúdo em construção</p></div>
+        <div class="laboratorio"><p>Laboratório em construção</p></div>
+        <div class="exercicios"><p>Exercícios em construção</p></div>
+      </section>
+
+      <!-- Lição 5 -->
+      <section id="licao-5" class="licao" data-licao="5">
+        <h2 class="licao-titulo">5. Matrizes</h2>
+        <div class="teoria"><p>Conteúdo em construção</p></div>
+        <div class="laboratorio"><p>Laboratório em construção</p></div>
+        <div class="exercicios"><p>Exercícios em construção</p></div>
+      </section>
+
+      <!-- Lição 6 -->
+      <section id="licao-6" class="licao" data-licao="6">
+        <h2 class="licao-titulo">6. Multiplicação de matrizes</h2>
+        <div class="teoria"><p>Conteúdo em construção</p></div>
+        <div class="laboratorio"><p>Laboratório em construção</p></div>
+        <div class="exercicios"><p>Exercícios em construção</p></div>
+      </section>
+
+      <!-- Lição 7 -->
+      <section id="licao-7" class="licao" data-licao="7">
+        <h2 class="licao-titulo">7. Determinantes</h2>
+        <div class="teoria"><p>Conteúdo em construção</p></div>
+        <div class="laboratorio"><p>Laboratório em construção</p></div>
+        <div class="exercicios"><p>Exercícios em construção</p></div>
+      </section>
+
+      <!-- Lição 8 -->
+      <section id="licao-8" class="licao" data-licao="8">
+        <h2 class="licao-titulo">8. Sistemas lineares</h2>
+        <div class="teoria"><p>Conteúdo em construção</p></div>
+        <div class="laboratorio"><p>Laboratório em construção</p></div>
+        <div class="exercicios"><p>Exercícios em construção</p></div>
+      </section>
+
+      <!-- Lição 9 -->
+      <section id="licao-9" class="licao" data-licao="9">
+        <h2 class="licao-titulo">9. Matriz inversa</h2>
+        <div class="teoria"><p>Conteúdo em construção</p></div>
+        <div class="laboratorio"><p>Laboratório em construção</p></div>
+        <div class="exercicios"><p>Exercícios em construção</p></div>
+      </section>
+
+      <!-- Lição 10 -->
+      <section id="licao-10" class="licao" data-licao="10">
+        <h2 class="licao-titulo">10. Transformações lineares no plano</h2>
+        <div class="teoria"><p>Conteúdo em construção</p></div>
+        <div class="laboratorio"><p>Laboratório em construção</p></div>
+        <div class="exercicios"><p>Exercícios em construção</p></div>
+      </section>
+
+      <!-- Lição 11 -->
+      <section id="licao-11" class="licao" data-licao="11">
+        <h2 class="licao-titulo">11. Autovalores e autovetores</h2>
+        <div class="teoria"><p>Conteúdo em construção</p></div>
+        <div class="laboratorio"><p>Laboratório em construção</p></div>
+        <div class="exercicios"><p>Exercícios em construção</p></div>
+      </section>
+
+      <!-- Lição 12 -->
+      <section id="licao-12" class="licao" data-licao="12">
+        <h2 class="licao-titulo">12. Aplicação com dados reais</h2>
+        <div class="teoria"><p>Conteúdo em construção</p></div>
+        <div class="laboratorio"><p>Laboratório em construção</p></div>
+        <div class="exercicios"><p>Exercícios em construção</p></div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ===================== RODAPÉ ===================== -->
+  <footer id="rodape" class="rodape">
+    <p class="rodape-disciplina">Álgebra Linear e Geometria Analítica</p>
+    <ul class="integrantes">
+      <li class="integrante">Integrante 1</li>
+      <li class="integrante">Integrante 2</li>
+      <li class="integrante">Integrante 3</li>
+    </ul>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
