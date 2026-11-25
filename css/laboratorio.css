@@ -305,6 +305,55 @@
 
 
 /* =========================================================================
+   MATRIZES NO LABORATÓRIO (Lição 5 em diante)
+   ========================================================================= */
+
+/* Linha de controles: tamanho, k, sortear */
+.lab-matrizes-controles {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--esp-3) var(--esp-4);
+  margin: var(--esp-3) 0;
+}
+
+.lab-matrizes-controles label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-2);
+  font-weight: 600;
+}
+
+.lab-matrizes-controles select,
+.lab-matrizes-controles input[type="number"] {
+  width: 5rem;
+}
+
+/* Editores lado a lado */
+.lab-matrizes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--esp-4) var(--esp-6);
+  margin: var(--esp-4) 0;
+}
+
+.lab-matriz-bloco {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-2);
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;                /* matriz larga rola dentro do bloco */
+}
+
+/* Resultado um pouco maior que o texto */
+.matriz-resultado {
+  font-size: 1.15em;
+}
+
+
+/* =========================================================================
    RESPONSIVO
    ========================================================================= */
 @media (max-width: 900px) {

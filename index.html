@@ -1016,9 +1016,260 @@
       <!-- Lição 5 -->
       <section id="licao-5" class="licao" data-licao="5">
         <h2 class="licao-titulo">5. Matrizes</h2>
-        <div class="teoria"><p>Conteúdo em construção</p></div>
-        <div class="laboratorio"><p>Laboratório em construção</p></div>
-        <div class="exercicios"><p>Exercícios em construção</p></div>
+
+        <!-- ---------- TEORIA ---------- -->
+        <div class="teoria">
+          <h3>O que é uma matriz</h3>
+          <p>
+            Uma <strong>matriz</strong> é uma tabela de números organizada em
+            <strong>linhas</strong> (horizontais) e <strong>colunas</strong> (verticais).
+            Uma matriz com m linhas e n colunas tem <strong>ordem m×n</strong> (lê-se "m por n").
+          </p>
+          <div class="formula">
+            A =
+            <span class="matriz"><span class="matriz-grade" style="--colunas: 3"><span class="matriz-el">1</span><span class="matriz-el">5</span><span class="matriz-el">−2</span><span class="matriz-el">0</span><span class="matriz-el">3</span><span class="matriz-el">8</span></span></span>
+            &nbsp;→&nbsp; ordem 2×3 (2 linhas e 3 colunas)
+          </div>
+          <p>
+            Cada número é um <strong>elemento</strong>, indicado por a<sub>ij</sub>: o
+            <strong>primeiro índice (i) é a linha</strong> e o <strong>segundo (j) é a coluna</strong>.
+            Na matriz acima, a₁₂ = 5 (linha 1, coluna 2) e a₂₃ = 8 (linha 2, coluna 3).
+          </p>
+
+          <h3>Lei de formação</h3>
+          <p>Às vezes a matriz é dada por uma regra que calcula cada elemento a partir de i e j.</p>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              A = [a<sub>ij</sub>] de ordem 2×2 com a<sub>ij</sub> = i + j:
+              a₁₁ = 2, a₁₂ = 3, a₂₁ = 3, a₂₂ = 4, ou seja,
+              A =
+              <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">3</span><span class="matriz-el">3</span><span class="matriz-el">4</span></span></span>.
+            </p>
+          </div>
+
+          <h3>Tipos importantes</h3>
+          <ul>
+            <li><strong>Quadrada:</strong> mesmo número de linhas e colunas (n×n). Os elementos a₁₁, a₂₂, a₃₃… formam a <strong>diagonal principal</strong>.</li>
+            <li><strong>Nula:</strong> todos os elementos são zero.</li>
+            <li><strong>Diagonal:</strong> quadrada, com zeros fora da diagonal principal.</li>
+            <li>
+              <strong>Identidade (Iₙ):</strong> diagonal com todos os elementos da diagonal iguais a 1.
+              Ex.: I₂ =
+              <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">0</span><span class="matriz-el">0</span><span class="matriz-el">1</span></span></span>.
+              Ela funciona como o "número 1" das matrizes.
+            </li>
+            <li><strong>Linha</strong> (1×n) e <strong>coluna</strong> (m×1): só uma linha ou só uma coluna. Uma matriz coluna 2×1 é como um vetor do plano.</li>
+          </ul>
+
+          <h3>Igualdade, soma e subtração</h3>
+          <p>
+            Duas matrizes são <strong>iguais</strong> quando têm a mesma ordem e os elementos
+            correspondentes são iguais. Para <strong>somar ou subtrair</strong>, as matrizes precisam
+            ter a <strong>mesma ordem</strong>, e a conta é feita elemento a elemento:
+            c<sub>ij</sub> = a<sub>ij</sub> + b<sub>ij</sub>.
+          </p>
+          <div class="formula">
+            <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el">3</span><span class="matriz-el">4</span></span></span>
+            +
+            <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">5</span><span class="matriz-el">0</span><span class="matriz-el">−1</span><span class="matriz-el">2</span></span></span>
+            =
+            <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">6</span><span class="matriz-el">2</span><span class="matriz-el">2</span><span class="matriz-el">6</span></span></span>
+          </div>
+
+          <h3>Multiplicação por um número</h3>
+          <p>Cada elemento é multiplicado pelo número:</p>
+          <div class="formula">
+            2 ·
+            <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">−3</span><span class="matriz-el">0</span><span class="matriz-el">4</span></span></span>
+            =
+            <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">−6</span><span class="matriz-el">0</span><span class="matriz-el">8</span></span></span>
+          </div>
+
+          <h3>Transposta</h3>
+          <p>
+            A <strong>transposta</strong> Aᵀ é obtida trocando linhas por colunas: a primeira linha
+            de A vira a primeira coluna de Aᵀ, e assim por diante. Se A é m×n, então Aᵀ é n×m.
+          </p>
+          <div class="formula">
+            <span class="matriz"><span class="matriz-grade" style="--colunas: 3"><span class="matriz-el">1</span><span class="matriz-el">5</span><span class="matriz-el">−2</span><span class="matriz-el">0</span><span class="matriz-el">3</span><span class="matriz-el">8</span></span></span><sup>T</sup>
+            =
+            <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">0</span><span class="matriz-el">5</span><span class="matriz-el">3</span><span class="matriz-el">−2</span><span class="matriz-el">8</span></span></span>
+          </div>
+          <p>
+            Uma matriz quadrada que é igual à sua transposta (A = Aᵀ) é chamada de
+            <strong>simétrica</strong>: ela "se espelha" na diagonal principal.
+          </p>
+        </div>
+
+        <!-- ---------- LABORATÓRIO ---------- -->
+        <div class="laboratorio">
+          <h3>Opere com matrizes</h3>
+          <p>
+            Escolha a operação e o tamanho, edite os elementos e
+            <strong>clique em um elemento do resultado</strong> para ver de onde ele veio.
+          </p>
+
+          <fieldset class="escolha lab-operacao">
+            <legend>Operação</legend>
+            <label class="opcao"><input type="radio" name="l5-operacao" value="soma" checked> A + B</label>
+            <label class="opcao"><input type="radio" name="l5-operacao" value="subtracao"> A − B</label>
+            <label class="opcao"><input type="radio" name="l5-operacao" value="escalar"> k · A</label>
+            <label class="opcao"><input type="radio" name="l5-operacao" value="transposta"> Aᵀ</label>
+          </fieldset>
+
+          <div class="lab-matrizes-controles">
+            <label>Linhas
+              <select id="l5-linhas"><option>1</option><option selected>2</option><option>3</option></select>
+            </label>
+            <label>Colunas
+              <select id="l5-colunas"><option>1</option><option>2</option><option selected>3</option></select>
+            </label>
+            <label id="l5-grupo-k">k <input type="number" id="l5-k" value="2" step="0.5"></label>
+            <button type="button" id="l5-sortear" class="btn-secundario">🎲 Valores aleatórios</button>
+          </div>
+
+          <div class="lab-matrizes">
+            <div class="lab-matriz-bloco">
+              <span class="lab-rotulo lab-rotulo-a">Matriz A</span>
+              <div id="l5-a"></div>
+            </div>
+            <div class="lab-matriz-bloco" id="l5-bloco-b">
+              <span class="lab-rotulo lab-rotulo-b">Matriz B</span>
+              <div id="l5-b"></div>
+            </div>
+          </div>
+
+          <div id="l5-resultados" class="lab-resultados" aria-live="polite"></div>
+        </div>
+
+        <!-- ---------- EXERCÍCIOS ---------- -->
+        <div class="exercicios" data-licao="5">
+          <h3>Pratique</h3>
+          <p>Escolha uma alternativa em cada exercício. Acerte todos para liberar a lição 6.</p>
+
+          <ol class="lista-exercicios">
+            <li class="exercicio">
+              <p>
+                Qual é a ordem da matriz
+                <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">4</span><span class="matriz-el">0</span><span class="matriz-el">−2</span><span class="matriz-el">5</span><span class="matriz-el">3</span></span></span>?
+              </p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="l5-ex1" value="a"
+                  data-explicacao="A matriz tem 3 linhas (horizontais) e 2 colunas (verticais). A ordem é sempre linhas × colunas: 3×2."> 3×2</label>
+                <label class="alternativa"><input type="radio" name="l5-ex1" value="b"
+                  data-explicacao="A ordem foi invertida. Primeiro vem o número de LINHAS (3) e depois o de COLUNAS (2)."> 2×3</label>
+                <label class="alternativa"><input type="radio" name="l5-ex1" value="c"
+                  data-explicacao="6 é o número total de elementos (3 · 2). A ordem informa linhas e colunas separadamente."> 6</label>
+                <label class="alternativa"><input type="radio" name="l5-ex1" value="d"
+                  data-explicacao="3×3 seria uma matriz quadrada com 9 elementos. Aqui há só 2 colunas."> 3×3</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>
+                Na matriz A =
+                <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 3"><span class="matriz-el">2</span><span class="matriz-el">−1</span><span class="matriz-el">4</span><span class="matriz-el">7</span><span class="matriz-el">0</span><span class="matriz-el">3</span></span></span>,
+                qual é o elemento a₂₃?
+              </p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="l5-ex2" value="a"
+                  data-explicacao="4 é o a₁₃ (linha 1, coluna 3). O primeiro índice de a₂₃ indica a linha 2."> 4</label>
+                <label class="alternativa"><input type="radio" name="l5-ex2" value="b"
+                  data-explicacao="7 é o a₂₁ (linha 2, coluna 1). O segundo índice de a₂₃ indica a coluna 3."> 7</label>
+                <label class="alternativa"><input type="radio" name="l5-ex2" value="c"
+                  data-explicacao="a₂₃ está na linha 2 e na coluna 3: o elemento é 3."> 3</label>
+                <label class="alternativa"><input type="radio" name="l5-ex2" value="d"
+                  data-explicacao="0 é o a₂₂ (linha 2, coluna 2). Ande mais uma coluna para chegar à coluna 3."> 0</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Qual é a matriz A = [a<sub>ij</sub>] de ordem 2×2 com <strong>a<sub>ij</sub> = 2i − j</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="l5-ex3" value="a"
+                  data-explicacao="a₁₁ = 2·1 − 1 = 1, a₁₂ = 2·1 − 2 = 0, a₂₁ = 2·2 − 1 = 3, a₂₂ = 2·2 − 2 = 2. Linhas (1, 0) e (3, 2).">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">0</span><span class="matriz-el">3</span><span class="matriz-el">2</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l5-ex3" value="b"
+                  data-explicacao="Essa é a transposta da resposta certa: i e j foram trocados (foi usado 2j − i). Lembre: i é a linha, j é a coluna.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">3</span><span class="matriz-el">0</span><span class="matriz-el">2</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l5-ex3" value="c"
+                  data-explicacao="Esses valores vêm de i + j. A regra pede 2i − j: dobre a linha e subtraia a coluna.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">3</span><span class="matriz-el">3</span><span class="matriz-el">4</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l5-ex3" value="d"
+                  data-explicacao="Esses valores vêm de i − 2j: o 2 foi aplicado no j. A regra é 2i − j (o 2 multiplica a linha).">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">−1</span><span class="matriz-el">−3</span><span class="matriz-el">0</span><span class="matriz-el">−2</span></span></span></label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>
+                Se A =
+                <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">−2</span><span class="matriz-el">3</span><span class="matriz-el">0</span></span></span>
+                e B =
+                <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">4</span><span class="matriz-el">5</span><span class="matriz-el">−1</span><span class="matriz-el">2</span></span></span>,
+                quanto vale A + B?
+              </p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="l5-ex4" value="a"
+                  data-explicacao="Esse é o resultado de A − B (1 − 4 = −3, −2 − 5 = −7…). Na soma, os elementos correspondentes são somados.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">−3</span><span class="matriz-el">−7</span><span class="matriz-el">4</span><span class="matriz-el">−2</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l5-ex4" value="b"
+                  data-explicacao="Somando elemento a elemento: 1 + 4 = 5, −2 + 5 = 3, 3 + (−1) = 2 e 0 + 2 = 2.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">5</span><span class="matriz-el">3</span><span class="matriz-el">2</span><span class="matriz-el">2</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l5-ex4" value="c"
+                  data-explicacao="Os elementos foram multiplicados (1·4, −2·5…). A soma de matrizes é feita somando, posição por posição.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">4</span><span class="matriz-el">−10</span><span class="matriz-el">−3</span><span class="matriz-el">0</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l5-ex4" value="d"
+                  data-explicacao="Quase certo, mas houve erro de sinal no a₁₂: −2 + 5 = 3, e não −3.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">5</span><span class="matriz-el">−3</span><span class="matriz-el">2</span><span class="matriz-el">2</span></span></span></label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>
+                Se A =
+                <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">−1</span><span class="matriz-el">0</span><span class="matriz-el">4</span></span></span>,
+                quanto vale 3A?
+              </p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="l5-ex5" value="a"
+                  data-explicacao="Só o primeiro elemento foi multiplicado. O número multiplica TODOS os elementos da matriz.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">6</span><span class="matriz-el">−1</span><span class="matriz-el">0</span><span class="matriz-el">4</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l5-ex5" value="b"
+                  data-explicacao="Foi somado 3 a cada elemento. Multiplicar por 3 é diferente de somar 3.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">5</span><span class="matriz-el">2</span><span class="matriz-el">3</span><span class="matriz-el">7</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l5-ex5" value="c"
+                  data-explicacao="Quase: o erro está no zero. 3 · 0 = 0, e não 3.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">6</span><span class="matriz-el">−3</span><span class="matriz-el">3</span><span class="matriz-el">12</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l5-ex5" value="d"
+                  data-explicacao="Cada elemento vezes 3: 3·2 = 6, 3·(−1) = −3, 3·0 = 0 e 3·4 = 12.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">6</span><span class="matriz-el">−3</span><span class="matriz-el">0</span><span class="matriz-el">12</span></span></span></label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>
+                Qual é a transposta de
+                <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 3"><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el">3</span><span class="matriz-el">4</span><span class="matriz-el">5</span><span class="matriz-el">6</span></span></span>?
+              </p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="l5-ex6" value="a"
+                  data-explicacao="Aqui só a ordem das linhas foi trocada. Na transposta, cada LINHA vira uma COLUNA, e a matriz 2×3 vira 3×2.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 3"><span class="matriz-el">4</span><span class="matriz-el">5</span><span class="matriz-el">6</span><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el">3</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l5-ex6" value="b"
+                  data-explicacao="As colunas foram espelhadas (lidas de trás para frente). A transposta troca linhas por colunas.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 3"><span class="matriz-el">3</span><span class="matriz-el">2</span><span class="matriz-el">1</span><span class="matriz-el">6</span><span class="matriz-el">5</span><span class="matriz-el">4</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l5-ex6" value="c"
+                  data-explicacao="A linha (1, 2, 3) vira a 1ª coluna e a linha (4, 5, 6) vira a 2ª coluna. A ordem passa de 2×3 para 3×2.">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">4</span><span class="matriz-el">2</span><span class="matriz-el">5</span><span class="matriz-el">3</span><span class="matriz-el">6</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l5-ex6" value="d"
+                  data-explicacao="Os números foram distribuídos em 3 linhas, mas na ordem de leitura (1, 2 / 3, 4 / 5, 6). Na transposta, a coluna 1 deve ser a linha 1 original: (1, 2, 3).">
+                  <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el">3</span><span class="matriz-el">4</span><span class="matriz-el">5</span><span class="matriz-el">6</span></span></span></label>
+              </div>
+            </li>
+          </ol>
+        </div>
       </section>
 
       <!-- Lição 6 -->
@@ -1098,6 +1349,7 @@
   <script src="js/utils/matematica.js"></script>
   <!-- 2. Componentes reaproveitáveis -->
   <script src="js/componentes/plano.js"></script>
+  <script src="js/componentes/matriz.js"></script>
   <script src="js/componentes/exercicios.js"></script>
   <!-- 3. Aplicação: navegação, progresso e tema -->
   <script src="js/app.js"></script>
@@ -1106,5 +1358,6 @@
   <script src="js/licoes/licao-02.js"></script>
   <script src="js/licoes/licao-03.js"></script>
   <script src="js/licoes/licao-04.js"></script>
+  <script src="js/licoes/licao-05.js"></script>
 </body>
 </html>

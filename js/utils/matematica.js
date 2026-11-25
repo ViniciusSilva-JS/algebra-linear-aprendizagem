@@ -8,6 +8,7 @@
    3. Vetores no plano
    4. Produto escalar e ângulo
    5. Frações e equações de reta
+   6. Matrizes
    ========================================================================= */
 
 'use strict';
@@ -274,4 +275,61 @@ function formatarEquacaoGeral(a, b, c) {
     else saida += (t.valor < 0 ? ' − ' : ' + ') + numero + t.texto;
   });
   return (saida || '0') + ' = 0';
+}
+
+
+/* =========================================================================
+   6. MATRIZES
+   Uma matriz é um array de linhas: [[1, 2, 3], [4, 5, 6]] é 2×3.
+   ========================================================================= */
+
+/** Cria uma matriz linhas×colunas com valor(i, j) (índices começando em 0). */
+function criarMatriz(linhas, colunas, valor) {
+  const M = [];
+  for (let i = 0; i < linhas; i++) {
+    M.push([]);
+    for (let j = 0; j < colunas; j++) M[i].push(valor(i, j));
+  }
+  return M;
+}
+
+/** Ordem da matriz como texto: "2×3". */
+function ordemMatriz(M) {
+  return M.length + '×' + M[0].length;
+}
+
+function somarMatrizes(A, B) {
+  return criarMatriz(A.length, A[0].length, (i, j) => A[i][j] + B[i][j]);
+}
+
+function subtrairMatrizes(A, B) {
+  return criarMatriz(A.length, A[0].length, (i, j) => A[i][j] - B[i][j]);
+}
+
+function multiplicarMatrizPorEscalar(k, A) {
+  return criarMatriz(A.length, A[0].length, (i, j) => k * A[i][j]);
+}
+
+/** Transposta: as linhas viram colunas. */
+function transposta(A) {
+  return criarMatriz(A[0].length, A.length, (i, j) => A[j][i]);
+}
+
+/** Matriz identidade n×n (1 na diagonal principal, 0 no resto). */
+function identidade(n) {
+  return criarMatriz(n, n, (i, j) => (i === j ? 1 : 0));
+}
+
+/**
+ * Produto A·B (exige colunas de A = linhas de B).
+ * c[i][j] = linha i de A "produto escalar" coluna j de B.
+ * Devolve null se as ordens não permitirem a multiplicação.
+ */
+function multiplicarMatrizes(A, B) {
+  if (A[0].length !== B.length) return null;
+  return criarMatriz(A.length, B[0].length, (i, j) => {
+    let soma = 0;
+    for (let k = 0; k < B.length; k++) soma += A[i][k] * B[k][j];
+    return soma;
+  });
 }
