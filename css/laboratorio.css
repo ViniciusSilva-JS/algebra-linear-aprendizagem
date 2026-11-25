@@ -305,6 +305,45 @@
 
 
 /* =========================================================================
+   SISTEMAS LINEARES (Lição 8 em diante)
+   ========================================================================= */
+
+/* Equação "[a] x + [b] y = [c]" com campos pequenos */
+.lab-equacao {
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--esp-2);
+  font-family: var(--fonte-formula);
+  font-size: 1.05rem;
+}
+
+.lab-equacao input[type="number"] {
+  width: 3.4rem;
+  padding-inline: var(--esp-1);
+}
+
+/* Variação da área do laboratório com a coluna de controles mais larga */
+.lab-area.controles-largos {
+  grid-template-columns: minmax(0, 1fr) 290px;
+}
+
+.lab-equacao-1 legend,
+.texto-reta-1 { color: var(--cor-laboratorio); }
+
+.lab-equacao-2 legend,
+.texto-reta-2 { color: var(--cor-exercicios); }
+
+.texto-reta-1,
+.texto-reta-2 {
+  font-family: var(--fonte-formula);
+  font-weight: 700;
+}
+
+/* Ponto de encontro das retas (a solução) */
+.ponto-solucao { fill: var(--cor-acerto); }
+
+
+/* =========================================================================
    MATRIZES NO LABORATÓRIO (Lição 5 em diante)
    ========================================================================= */
 
@@ -408,7 +447,8 @@
    RESPONSIVO
    ========================================================================= */
 @media (max-width: 900px) {
-  .lab-area {
+  .lab-area,
+  .lab-area.controles-largos {
     grid-template-columns: minmax(0, 1fr);
   }
 

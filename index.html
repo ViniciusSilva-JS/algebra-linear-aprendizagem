@@ -1650,9 +1650,225 @@
       <!-- Lição 8 -->
       <section id="licao-8" class="licao" data-licao="8">
         <h2 class="licao-titulo">8. Sistemas lineares</h2>
-        <div class="teoria"><p>Conteúdo em construção</p></div>
-        <div class="laboratorio"><p>Laboratório em construção</p></div>
-        <div class="exercicios"><p>Exercícios em construção</p></div>
+
+        <!-- ---------- TEORIA ---------- -->
+        <div class="teoria">
+          <h3>O que é um sistema linear</h3>
+          <p>
+            Uma <strong>equação linear</strong> tem incógnitas apenas multiplicadas por números e
+            somadas, como 2x + 3y = 7 (sem x², xy, √x…). Um <strong>sistema linear</strong> é um
+            conjunto de equações lineares que devem valer <strong>ao mesmo tempo</strong>. Uma
+            <strong>solução</strong> é um conjunto de valores que satisfaz todas as equações.
+          </p>
+          <div class="formula">
+            { x + y = 5 &nbsp;&nbsp;e&nbsp;&nbsp; 2x − y = 1 } &nbsp;→&nbsp; solução: x = 2, y = 3
+          </div>
+          <p>Confira: 2 + 3 = 5 ✓ e 2·2 − 3 = 1 ✓.</p>
+
+          <h3>Forma matricial</h3>
+          <p>
+            Todo sistema pode ser escrito como <strong>A·X = B</strong>, em que A é a matriz dos
+            coeficientes, X a matriz das incógnitas e B a dos termos independentes
+            (é a multiplicação de matrizes da lição 6):
+          </p>
+          <div class="formula"><span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el">−1</span></span></span> · <span class="matriz"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">x</span><span class="matriz-el">y</span></span></span> = <span class="matriz"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">5</span><span class="matriz-el">1</span></span></span></div>
+
+          <h3>Interpretação geométrica (2 incógnitas)</h3>
+          <p>
+            Cada equação com x e y é uma <strong>reta</strong> (lição 4). Resolver o sistema é
+            encontrar o ponto comum às retas. Há três possibilidades:
+          </p>
+          <div class="tabela-rolagem">
+            <table class="tabela">
+              <thead>
+                <tr><th>As retas são…</th><th>Soluções</th><th>Classificação</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>concorrentes (cruzam-se)</td><td>exatamente uma</td><td><strong>SPD</strong>: possível e determinado</td></tr>
+                <tr><td>coincidentes (a mesma reta)</td><td>infinitas</td><td><strong>SPI</strong>: possível e indeterminado</td></tr>
+                <tr><td>paralelas (nunca se cruzam)</td><td>nenhuma</td><td><strong>SI</strong>: impossível</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Método da substituição</h3>
+          <p>Isole uma incógnita em uma equação e substitua na outra.</p>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              Da 1ª equação, y = 5 − x. Na 2ª: 2x − (5 − x) = 1 ⇒ 3x − 5 = 1 ⇒ x = 2.
+              Então y = 5 − 2 = <strong>3</strong>.
+            </p>
+          </div>
+
+          <h3>Escalonamento (eliminação de Gauss)</h3>
+          <p>
+            Para sistemas maiores, usamos operações que não mudam a solução: trocar equações de
+            lugar, multiplicar uma equação por um número diferente de zero e somar a uma equação
+            um múltiplo de outra. O objetivo é zerar incógnitas até ficar uma "escada".
+          </p>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo (3×3)</p>
+            <p>
+              L₁: x + y + z = 6 &nbsp;|&nbsp; L₂: 2x + y − z = 1 &nbsp;|&nbsp; L₃: x − y + 2z = 5<br>
+              L₂ ← L₂ − 2·L₁: &nbsp;−y − 3z = −11<br>
+              L₃ ← L₃ − L₁: &nbsp;−2y + z = −1<br>
+              L₃ ← L₃ − 2·L₂: &nbsp;7z = 21 ⇒ <strong>z = 3</strong><br>
+              Voltando: −y − 9 = −11 ⇒ <strong>y = 2</strong>, e x = 6 − 2 − 3 ⇒ <strong>x = 1</strong>.
+            </p>
+          </div>
+
+          <h3>Regra de Cramer</h3>
+          <p>
+            Para a₁x + b₁y = c₁ e a₂x + b₂y = c₂, calcule três determinantes: D (dos coeficientes)
+            e D<sub>x</sub>, D<sub>y</sub> (trocando a coluna de x ou de y pelos termos independentes):
+          </p>
+          <div class="formula">
+            D = <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">a₁</span><span class="matriz-el">b₁</span><span class="matriz-el">a₂</span><span class="matriz-el">b₂</span></span></span> &nbsp; D<sub>x</sub> = <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">c₁</span><span class="matriz-el">b₁</span><span class="matriz-el">c₂</span><span class="matriz-el">b₂</span></span></span> &nbsp; D<sub>y</sub> = <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">a₁</span><span class="matriz-el">c₁</span><span class="matriz-el">a₂</span><span class="matriz-el">c₂</span></span></span>
+          </div>
+          <div class="formula">x = D<sub>x</sub> / D &nbsp;&nbsp;&nbsp; y = D<sub>y</sub> / D</div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              x + y = 5 e 2x − y = 1: D = 1·(−1) − 1·2 = −3, D<sub>x</sub> = 5·(−1) − 1·1 = −6,
+              D<sub>y</sub> = 1·1 − 5·2 = −9. Logo x = −6/−3 = <strong>2</strong> e y = −9/−3 = <strong>3</strong>.
+            </p>
+          </div>
+          <p>
+            <strong>Ligação com o determinante:</strong> o sistema tem solução única (SPD) se, e só se,
+            <strong>D ≠ 0</strong>. Quando D = 0, ele é SPI ou SI, ou seja, as retas são coincidentes ou paralelas.
+          </p>
+        </div>
+
+        <!-- ---------- LABORATÓRIO ---------- -->
+        <div class="laboratorio">
+          <h3>Duas equações, duas retas</h3>
+          <p>
+            Edite os coeficientes e veja as duas retas no plano. A solução é o ponto onde elas se
+            cruzam. Use os exemplos para ver os três casos.
+          </p>
+
+          <div class="lab-matrizes-controles">
+            <span class="lab-rotulo">Exemplos:</span>
+            <button type="button" class="btn-secundario" data-l8-exemplo="2,1,4,1,-3,-5">Concorrentes</button>
+            <button type="button" class="btn-secundario" data-l8-exemplo="1,2,4,2,4,8">Coincidentes</button>
+            <button type="button" class="btn-secundario" data-l8-exemplo="1,-1,2,2,-2,-3">Paralelas</button>
+          </div>
+
+          <div class="lab-area controles-largos">
+            <svg id="l8-plano" class="plano-cartesiano" viewBox="-11 -11 22 22"
+                 role="img" aria-label="As duas retas do sistema e o ponto de interseção"></svg>
+
+            <div class="lab-controles">
+              <fieldset class="lab-ponto lab-equacao lab-equacao-1">
+                <legend>Equação 1</legend>
+                <input type="number" id="l8-a1" value="2" step="1" aria-label="coeficiente de x na equação 1"> x +
+                <input type="number" id="l8-b1" value="1" step="1" aria-label="coeficiente de y na equação 1"> y =
+                <input type="number" id="l8-c1" value="4" step="1" aria-label="termo independente da equação 1">
+              </fieldset>
+              <fieldset class="lab-ponto lab-equacao lab-equacao-2">
+                <legend>Equação 2</legend>
+                <input type="number" id="l8-a2" value="1" step="1" aria-label="coeficiente de x na equação 2"> x +
+                <input type="number" id="l8-b2" value="-3" step="1" aria-label="coeficiente de y na equação 2"> y =
+                <input type="number" id="l8-c2" value="-5" step="1" aria-label="termo independente da equação 2">
+              </fieldset>
+            </div>
+          </div>
+
+          <div id="l8-resultados" class="lab-resultados" aria-live="polite"></div>
+        </div>
+
+        <!-- ---------- EXERCÍCIOS ---------- -->
+        <div class="exercicios" data-licao="8">
+          <h3>Pratique</h3>
+          <p>Escolha uma alternativa em cada exercício. Acerte todos para liberar a lição 9.</p>
+
+          <ol class="lista-exercicios">
+            <li class="exercicio">
+              <p>Qual é a solução do sistema <strong>x + y = 7</strong> e <strong>x − y = 1</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="l8-ex1" value="a"
+                  data-explicacao="x e y foram trocados. Com x = 3 e y = 4, a 2ª equação dá 3 − 4 = −1, e não 1."> x = 3, y = 4</label>
+                <label class="alternativa"><input type="radio" name="l8-ex1" value="b"
+                  data-explicacao="Somando as equações: 2x = 8 ⇒ x = 4. Daí y = 7 − 4 = 3. Conferindo: 4 + 3 = 7 ✓ e 4 − 3 = 1 ✓."> x = 4, y = 3</label>
+                <label class="alternativa"><input type="radio" name="l8-ex1" value="c"
+                  data-explicacao="Ao somar as equações obtemos 2x = 8. Faltou dividir por 2: x = 4, e não 8."> x = 8, y = −1</label>
+                <label class="alternativa"><input type="radio" name="l8-ex1" value="d"
+                  data-explicacao="(2, 5) satisfaz só a 1ª equação (2 + 5 = 7). Na 2ª, 2 − 5 = −3 ≠ 1. A solução precisa valer nas DUAS."> x = 2, y = 5</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Como se classifica o sistema <strong>2x + 4y = 6</strong> e <strong>x + 2y = 3</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="l8-ex2" value="a"
+                  data-explicacao="SPD exigiria D ≠ 0, mas D = 2·2 − 4·1 = 0. As retas não se cruzam em um único ponto."> SPD (uma solução)</label>
+                <label class="alternativa"><input type="radio" name="l8-ex2" value="b"
+                  data-explicacao="SI seria o caso de retas paralelas distintas. Aqui a 1ª equação é exatamente o dobro da 2ª (inclusive o 6 = 2·3), então é a mesma reta."> SI (nenhuma solução)</label>
+                <label class="alternativa"><input type="radio" name="l8-ex2" value="c"
+                  data-explicacao="A 1ª equação é a 2ª multiplicada por 2: as duas representam a MESMA reta. Todos os pontos dela são solução: infinitas soluções (SPI)."> SPI (infinitas soluções)</label>
+                <label class="alternativa"><input type="radio" name="l8-ex2" value="d"
+                  data-explicacao="É um sistema linear, sim: x e y aparecem só multiplicados por números e somados."> não é um sistema linear</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>O sistema <strong>x + y = 2</strong> e <strong>x + y = 5</strong> é:</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="l8-ex3" value="a"
+                  data-explicacao="Para ter uma única solução, as retas precisariam ter inclinações diferentes. Aqui as duas têm m = −1."> possível e determinado</label>
+                <label class="alternativa"><input type="radio" name="l8-ex3" value="b"
+                  data-explicacao="Seriam infinitas soluções se fossem a mesma reta, mas x + y não pode valer 2 e 5 ao mesmo tempo."> possível e indeterminado</label>
+                <label class="alternativa"><input type="radio" name="l8-ex3" value="c"
+                  data-explicacao="(1, 1) satisfaz só a 1ª equação. Nenhum par satisfaz as duas, já que x + y não pode ser 2 e 5 ao mesmo tempo."> possível, com solução (1, 1)</label>
+                <label class="alternativa"><input type="radio" name="l8-ex3" value="d"
+                  data-explicacao="x + y não pode ser 2 e 5 ao mesmo tempo. Geometricamente, são duas retas paralelas (mesma inclinação, cortes diferentes), que nunca se cruzam: sistema impossível (SI)."> impossível</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>No sistema <strong>3x + 2y = 8</strong> e <strong>x − y = 1</strong>, quanto vale o determinante D dos coeficientes?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="l8-ex4" value="a"
+                  data-explicacao="A matriz dos coeficientes tem linhas (3, 2) e (1, −1). D = 3·(−1) − 2·1 = −3 − 2 = −5."> −5</label>
+                <label class="alternativa"><input type="radio" name="l8-ex4" value="b"
+                  data-explicacao="5 é b·c − a·d (ordem invertida). D = a·d − b·c = 3·(−1) − 2·1."> 5</label>
+                <label class="alternativa"><input type="radio" name="l8-ex4" value="c"
+                  data-explicacao="−1 = −3 + 2: a diagonal secundária foi somada. Ela deve ser subtraída: −3 − 2 = −5."> −1</label>
+                <label class="alternativa"><input type="radio" name="l8-ex4" value="d"
+                  data-explicacao="−3 é só a diagonal principal, 3·(−1). Falta subtrair 2·1."> −3</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Escrevendo o sistema <strong>x + 2y = 5</strong> e <strong>3x − y = 1</strong> na forma A·X = B, qual é a matriz A dos coeficientes?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="l8-ex5" value="a"
+                  data-explicacao="Essa é a transposta: os coeficientes de cada EQUAÇÃO devem formar uma LINHA de A."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">3</span><span class="matriz-el">2</span><span class="matriz-el">−1</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l8-ex5" value="b"
+                  data-explicacao="Cada linha de A são os coeficientes de uma equação: (1, 2) da primeira e (3, −1) da segunda. Os termos 5 e 1 ficam em B."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el">3</span><span class="matriz-el">−1</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l8-ex5" value="c"
+                  data-explicacao="O sinal do coeficiente de y na 2ª equação foi perdido: 3x − y tem coeficiente −1."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el">3</span><span class="matriz-el">1</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l8-ex5" value="d"
+                  data-explicacao="Os termos independentes (5 e 1) não entram em A, e sim em B. A é só a matriz dos coeficientes."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 3"><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el">5</span><span class="matriz-el">3</span><span class="matriz-el">−1</span><span class="matriz-el">1</span></span></span></label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Para quais valores de k o sistema <strong>kx + 2y = 3</strong> e <strong>3x + 6y = 9</strong> tem <strong>uma única solução</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="l8-ex6" value="a"
+                  data-explicacao="Com k = 1, D = 1·6 − 2·3 = 0 e as equações viram a mesma reta (a 2ª é 3 vezes a 1ª): infinitas soluções, e não uma única."> k = 1</label>
+                <label class="alternativa"><input type="radio" name="l8-ex6" value="b"
+                  data-explicacao="k = 0 dá solução única, sim (D = −6 ≠ 0), mas não é o único valor: qualquer k diferente de 1 serve."> apenas k = 0</label>
+                <label class="alternativa"><input type="radio" name="l8-ex6" value="c"
+                  data-explicacao="Solução única ⇔ D ≠ 0. D = 6k − 2·3 = 6k − 6, que é diferente de zero quando k ≠ 1."> k ≠ 1</label>
+                <label class="alternativa"><input type="radio" name="l8-ex6" value="d"
+                  data-explicacao="Não é para qualquer k: com k = 1 o determinante zera e o sistema passa a ter infinitas soluções."> qualquer valor de k</label>
+              </div>
+            </li>
+          </ol>
+        </div>
       </section>
 
       <!-- Lição 9 -->
@@ -1720,5 +1936,6 @@
   <script src="js/licoes/licao-05.js"></script>
   <script src="js/licoes/licao-06.js"></script>
   <script src="js/licoes/licao-07.js"></script>
+  <script src="js/licoes/licao-08.js"></script>
 </body>
 </html>

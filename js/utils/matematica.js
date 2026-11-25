@@ -10,6 +10,7 @@
    5. Frações e equações de reta
    6. Matrizes
    7. Determinantes
+   8. Sistemas lineares
    ========================================================================= */
 
 'use strict';
@@ -390,4 +391,38 @@ function sarrus(A) {
     descendentes, ascendentes, somaDescendentes, somaAscendentes,
     det: somaDescendentes - somaAscendentes,
   };
+}
+
+
+/* =========================================================================
+   8. SISTEMAS LINEARES
+   ========================================================================= */
+
+/**
+ * Resolve o sistema 2×2   a1·x + b1·y = c1
+ *                          a2·x + b2·y = c2
+ * pela regra de Cramer e classifica:
+ *   'SPD' — possível e determinado (uma solução: retas concorrentes)
+ *   'SPI' — possível e indeterminado (infinitas: retas coincidentes)
+ *   'SI'  — impossível (nenhuma: retas paralelas)
+ * Devolve { D, Dx, Dy, tipo, x, y } (x e y só no SPD).
+ */
+function resolverSistema2x2(a1, b1, c1, a2, b2, c2) {
+  const D = a1 * b2 - b1 * a2;
+  const Dx = c1 * b2 - b1 * c2;
+  const Dy = a1 * c2 - c1 * a2;
+
+  if (!quaseIgual(D, 0)) {
+    return { D, Dx, Dy, tipo: 'SPD', x: Dx / D, y: Dy / D };
+  }
+
+  // D = 0: as retas são paralelas ou coincidentes (ou há equação "vazia").
+  // Uma equação 0x + 0y = c é impossível se c ≠ 0 e não restringe nada se c = 0.
+  const vazia1 = quaseIgual(a1, 0) && quaseIgual(b1, 0);
+  const vazia2 = quaseIgual(a2, 0) && quaseIgual(b2, 0);
+  if ((vazia1 && !quaseIgual(c1, 0)) || (vazia2 && !quaseIgual(c2, 0))) {
+    return { D, Dx, Dy, tipo: 'SI' };
+  }
+  if (vazia1 || vazia2) return { D, Dx, Dy, tipo: 'SPI' };
+  return { D, Dx, Dy, tipo: quaseIgual(Dx, 0) && quaseIgual(Dy, 0) ? 'SPI' : 'SI' };
 }
