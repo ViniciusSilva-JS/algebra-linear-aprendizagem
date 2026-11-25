@@ -219,65 +219,77 @@
         </div>
 
         <!-- ---------- EXERCÍCIOS ---------- -->
-        <!-- Cada campo tem data-resposta; js/exercicios.js corrige tudo.
-             Acertando todos, a lição é concluída e a próxima é liberada. -->
+        <!-- Múltipla escolha: o grupo .alternativas tem data-resposta com o
+             valor da alternativa certa. Cada alternativa errada pode ter um
+             data-dica explicando o engano. js/exercicios.js corrige tudo;
+             acertando todos, a lição é concluída e a próxima é liberada. -->
         <div class="exercicios" data-licao="1">
           <h3>Pratique</h3>
-          <p>Acerte todos os exercícios para liberar a lição 2. Pode usar vírgula ou ponto nos decimais.</p>
+          <p>Escolha uma alternativa em cada exercício. Acerte todos para liberar a lição 2.</p>
 
           <ol class="lista-exercicios">
             <li class="exercicio" data-dica="Olhe o sinal de cada coordenada: x negativo e y positivo.">
               <p>Em qual quadrante está o ponto <strong>P(−3, 5)</strong>?</p>
-              <div class="resposta">
-                <select data-resposta="2" aria-label="Posição do ponto P">
-                  <option value="">Escolha…</option>
-                  <option value="1">1º quadrante</option>
-                  <option value="2">2º quadrante</option>
-                  <option value="3">3º quadrante</option>
-                  <option value="4">4º quadrante</option>
-                  <option value="eixo-x">Sobre o eixo x</option>
-                  <option value="eixo-y">Sobre o eixo y</option>
-                </select>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="l1-ex1" value="a"
+                  data-dica="No 1º quadrante as duas coordenadas são positivas, mas aqui x = −3."> 1º quadrante</label>
+                <label class="alternativa"><input type="radio" name="l1-ex1" value="b"> 2º quadrante</label>
+                <label class="alternativa"><input type="radio" name="l1-ex1" value="c"
+                  data-dica="No 3º quadrante as duas coordenadas são negativas, mas aqui y = 5."> 3º quadrante</label>
+                <label class="alternativa"><input type="radio" name="l1-ex1" value="d"
+                  data-dica="No 4º quadrante temos x positivo e y negativo — é o contrário deste ponto."> 4º quadrante</label>
               </div>
             </li>
 
             <li class="exercicio" data-dica="Quando uma das coordenadas é zero, o ponto não está em quadrante nenhum.">
               <p>Onde está o ponto <strong>R(0, −7)</strong>?</p>
-              <div class="resposta">
-                <select data-resposta="eixo-y" aria-label="Posição do ponto R">
-                  <option value="">Escolha…</option>
-                  <option value="1">1º quadrante</option>
-                  <option value="2">2º quadrante</option>
-                  <option value="3">3º quadrante</option>
-                  <option value="4">4º quadrante</option>
-                  <option value="eixo-x">Sobre o eixo x</option>
-                  <option value="eixo-y">Sobre o eixo y</option>
-                </select>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="l1-ex2" value="a"
+                  data-dica="Com x = 0 o ponto não está em quadrante nenhum."> 3º quadrante</label>
+                <label class="alternativa"><input type="radio" name="l1-ex2" value="b"
+                  data-dica="Com x = 0 o ponto não está em quadrante nenhum."> 4º quadrante</label>
+                <label class="alternativa"><input type="radio" name="l1-ex2" value="c"
+                  data-dica="Pontos sobre o eixo x têm y = 0. Aqui é o x que vale 0."> Sobre o eixo x</label>
+                <label class="alternativa"><input type="radio" name="l1-ex2" value="d"> Sobre o eixo y</label>
               </div>
             </li>
 
             <li class="exercicio" data-dica="Calcule Δx = 4 − 1 e Δy = 6 − 2, depois use √(Δx² + Δy²).">
               <p>Qual é a distância entre <strong>A(1, 2)</strong> e <strong>B(4, 6)</strong>?</p>
-              <div class="resposta">
-                <label>d(A, B) = <input type="text" inputmode="decimal" class="campo-curto" data-resposta="5"></label>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="l1-ex3" value="a"
+                  data-dica="25 é Δx² + Δy². Falta tirar a raiz quadrada."> 25</label>
+                <label class="alternativa"><input type="radio" name="l1-ex3" value="b"
+                  data-dica="7 é Δx + Δy. A distância não é a soma dos catetos: use Pitágoras."> 7</label>
+                <label class="alternativa"><input type="radio" name="l1-ex3" value="c"> 5</label>
+                <label class="alternativa"><input type="radio" name="l1-ex3" value="d"
+                  data-dica="1 é Δy − Δx. Eleve cada diferença ao quadrado e some."> 1</label>
               </div>
             </li>
 
             <li class="exercicio" data-dica="Some as abscissas e divida por 2; depois faça o mesmo com as ordenadas.">
               <p>Qual é o ponto médio do segmento de <strong>C(−2, 3)</strong> a <strong>D(6, −5)</strong>?</p>
-              <div class="resposta">
-                M = (
-                <input type="text" inputmode="decimal" class="campo-curto" data-resposta="2" aria-label="Coordenada x do ponto médio">
-                ,
-                <input type="text" inputmode="decimal" class="campo-curto" data-resposta="-1" aria-label="Coordenada y do ponto médio">
-                )
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="l1-ex4" value="a"> M(2, −1)</label>
+                <label class="alternativa"><input type="radio" name="l1-ex4" value="b"
+                  data-dica="Você subtraiu as coordenadas. No ponto médio elas são somadas: (x₁ + x₂)/2."> M(4, −4)</label>
+                <label class="alternativa"><input type="radio" name="l1-ex4" value="c"
+                  data-dica="Você somou as coordenadas, mas esqueceu de dividir por 2."> M(4, −2)</label>
+                <label class="alternativa"><input type="radio" name="l1-ex4" value="d"
+                  data-dica="Os sinais ficaram trocados. Confira: (−2 + 6)/2 e (3 + (−5))/2."> M(−2, 1)</label>
               </div>
             </li>
 
             <li class="exercicio" data-dica="Δx = 3 − (−2) = 5. Cuidado com o sinal ao calcular Δy.">
               <p>Qual é a distância entre <strong>E(−2, −3)</strong> e <strong>F(3, 9)</strong>?</p>
-              <div class="resposta">
-                <label>d(E, F) = <input type="text" inputmode="decimal" class="campo-curto" data-resposta="13"></label>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="l1-ex5" value="a"
+                  data-dica="17 é Δx + Δy. A distância usa Pitágoras: √(Δx² + Δy²)."> 17</label>
+                <label class="alternativa"><input type="radio" name="l1-ex5" value="b"> 13</label>
+                <label class="alternativa"><input type="radio" name="l1-ex5" value="c"
+                  data-dica="Cuidado com o sinal: 3 − (−2) = 5, e não 3 + (−2) = 1."> √37</label>
+                <label class="alternativa"><input type="radio" name="l1-ex5" value="d"
+                  data-dica="169 é Δx² + Δy². Falta tirar a raiz quadrada."> 169</label>
               </div>
             </li>
           </ol>

@@ -13,8 +13,23 @@
            <select data-resposta="2">…</select>           ← opção
          </div>
        </li>
+       <li class="exercicio" data-dica="Dica geral">       ← múltipla escolha
+         <p>Enunciado</p>
+         <div class="alternativas" data-resposta="b">
+           <label class="alternativa">
+             <input type="radio" name="ex1" value="a"
+                    data-dica="Explica este engano"> 25
+           </label>
+           <label class="alternativa">
+             <input type="radio" name="ex1" value="b"> 5
+           </label>
+         </div>
+       </li>
      </ol>
    </div>
+
+   - Na múltipla escolha, o data-dica da alternativa errada escolhida tem
+     prioridade sobre a dica geral do exercício.
 
    - Um exercício está certo quando TODOS os seus campos estão certos.
    - Acertando todos, chama concluirLicao(n) (do js/app.js).
@@ -80,9 +95,11 @@ function prepararBlocoDeExercicios(bloco) {
     }
   });
 
-  // Ao editar um campo, tira a cor verde/vermelha dele.
+  // Ao editar um campo ou trocar de alternativa, tira a cor verde/vermelha.
   bloco.addEventListener('input', (evento) => {
     evento.target.classList.remove('acerto', 'erro');
+    const grupo = evento.target.closest('.alternativas');
+    if (grupo) limparAlternativas(grupo);
   });
 }
 
@@ -93,6 +110,14 @@ function prepararBlocoDeExercicios(bloco) {
    ========================================================================= */
 function corrigirCampo(campo) {
   const esperado = campo.dataset.resposta;
+
+  // Múltipla escolha: compara a alternativa marcada.
+  if (campo.classList.contains('alternativas')) {
+    const marcada = campo.querySelector('input[type="radio"]:checked');
+    if (!marcada) return 'vazio';
+    return marcada.value === esperado ? 'certo' : 'errado';
+  }
+
   const valor = campo.value.trim();
 
   if (valor === '') return 'vazio';
@@ -115,6 +140,14 @@ function corrigirCampo(campo) {
 }
 
 
+/** Tira as marcas de certa/errada de todas as alternativas de um grupo. */
+function limparAlternativas(grupo) {
+  grupo.querySelectorAll('.alternativa').forEach((alternativa) => {
+    alternativa.classList.remove('certa', 'errada');
+  });
+}
+
+
 /* =========================================================================
    3. CORREÇÃO DE UM EXERCÍCIO
    Pinta cada campo e escreve o feedback. Devolve true se estiver certo.
@@ -125,9 +158,24 @@ function corrigirExercicio(exercicio) {
 
   let algumVazio = false;
   let tudoCerto = true;
+  let dicaEspecifica = null; // dica da alternativa errada escolhida
 
   campos.forEach((campo) => {
     const resultado = corrigirCampo(campo);
+
+    // Múltipla escolha: pinta só a alternativa marcada.
+    if (campo.classList.contains('alternativas')) {
+      const marcada = campo.querySelector('input[type="radio"]:checked');
+      limparAlternativas(campo);
+      if (marcada) {
+        marcada.closest('.alternativa').classList.add(resultado === 'certo' ? 'certa' : 'errada');
+        if (resultado === 'errado' && marcada.dataset.dica) dicaEspecifica = marcada.dataset.dica;
+      }
+      if (resultado === 'vazio') algumVazio = true;
+      if (resultado !== 'certo') tudoCerto = false;
+      return;
+    }
+
     campo.classList.remove('acerto', 'erro');
 
     if (resultado === 'vazio') {
@@ -147,10 +195,10 @@ function corrigirExercicio(exercicio) {
     feedback.textContent = 'Correto!';
     feedback.classList.add('acerto');
   } else if (algumVazio) {
-    feedback.textContent = 'Preencha a resposta antes de verificar.';
+    feedback.textContent = 'Responda este exercício antes de verificar.';
     feedback.classList.add('erro');
   } else {
-    const dica = exercicio.dataset.dica;
+    const dica = dicaEspecifica || exercicio.dataset.dica;
     feedback.textContent = dica ? 'Ainda não. Dica: ' + dica : 'Ainda não. Tente de novo.';
     feedback.classList.add('erro');
   }
@@ -184,7 +232,8 @@ function corrigirBloco(bloco, exercicios, resumo, numeroLicao) {
 
     // Leva o aluno até o primeiro exercício errado.
     const primeiroErrado = exercicios.find((e) => !e.classList.contains('correto'));
-    const campo = primeiroErrado && primeiroErrado.querySelector('[data-resposta]');
+    const campo = primeiroErrado &&
+      (primeiroErrado.querySelector('input:checked') || primeiroErrado.querySelector('input, select'));
     if (campo) campo.focus();
   }
   resumo.hidden = false;
