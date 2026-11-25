@@ -396,6 +396,38 @@
   opacity: 0.5;
 }
 
+/* Passos de Gauss-Jordan (Lição 9): cada operação com a matriz aumentada */
+.passos-gauss summary {
+  display: list-item;
+  cursor: pointer;
+}
+
+.lista-passos-gauss {
+  list-style: none;
+  margin: var(--esp-2) 0 0;
+  padding: 0;
+  display: grid;
+  gap: var(--esp-2);
+}
+
+.passo-gauss {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--esp-2) var(--esp-4);
+  padding: var(--esp-2) var(--esp-3);
+  background: var(--cor-superficie-2);
+  border-radius: var(--raio);
+  overflow-x: auto;
+}
+
+.passo-gauss-descricao {
+  min-width: 11rem;
+  font-family: var(--fonte-formula);
+  font-weight: 700;
+  color: var(--cor-laboratorio);
+}
+
 /* Laboratório sem o plano (ex.: modo 3×3): controles ocupam a largura toda */
 .lab-area.sem-plano {
   grid-template-columns: minmax(0, 1fr);

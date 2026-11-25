@@ -55,6 +55,8 @@ function nomeElemento(letra, i, j) {
      clicavel     true → cada elemento vira um botão (data-i, data-j)
      selecionada  [i, j] do botão marcado como selecionado
      destacar     lista de [i, j] para realçar (ex.: [[0,0], [0,1]])
+     separarColuna  índice da coluna antes da qual vai uma barra vertical
+                    (matriz aumentada [A | I]: separarColuna = n)
      classe       classe extra no contêiner (ex.: 'matriz-r')
    ========================================================================= */
 function htmlMatriz(M, opcoes) {
@@ -68,7 +70,8 @@ function htmlMatriz(M, opcoes) {
     '<span class="matriz-grade" style="--colunas: ' + M[0].length + '">';
   M.forEach((linha, i) => {
     linha.forEach((valor, j) => {
-      const classes = 'matriz-el' + (estaDestacado(i, j) ? ' destaque' : '');
+      const classes = 'matriz-el' + (estaDestacado(i, j) ? ' destaque' : '') +
+        (opcoes.separarColuna === j ? ' separador' : '');
       const texto = formatar(valor);
       if (opcoes.clicavel) {
         const sel = opcoes.selecionada && opcoes.selecionada[0] === i && opcoes.selecionada[1] === j;

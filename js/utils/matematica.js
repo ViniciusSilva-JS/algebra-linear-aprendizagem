@@ -11,6 +11,7 @@
    6. Matrizes
    7. Determinantes
    8. Sistemas lineares
+   9. Matriz inversa
    ========================================================================= */
 
 'use strict';
@@ -425,4 +426,60 @@ function resolverSistema2x2(a1, b1, c1, a2, b2, c2) {
   }
   if (vazia1 || vazia2) return { D, Dx, Dy, tipo: 'SPI' };
   return { D, Dx, Dy, tipo: quaseIgual(Dx, 0) && quaseIgual(Dy, 0) ? 'SPI' : 'SI' };
+}
+
+
+/* =========================================================================
+   9. MATRIZ INVERSA (Gauss-Jordan com os passos registrados)
+   ========================================================================= */
+
+/**
+ * Inversa pelo método de Gauss-Jordan: [A | I] → [I | A⁻¹].
+ * Registra cada operação para o laboratório mostrar o passo a passo.
+ * Devolve { inversa, passos }, com inversa = null se A não for invertível.
+ * Cada passo é { descricao, matriz } (matriz = estado de [A | I] depois dele).
+ */
+function inversaComPassos(A) {
+  const n = A.length;
+  const L = (i) => 'L' + String(i + 1).split('').map((d) => '₀₁₂₃₄₅₆₇₈₉'[d]).join('');
+  const copia = (M) => M.map((linha) => linha.slice());
+  // arredonda "sujeira" de ponto flutuante (ex.: 0.30000000000000004)
+  const limpar = (v) => (quaseIgual(v, Math.round(v * 1e9) / 1e9, 1e-12) ? Math.round(v * 1e9) / 1e9 : v);
+
+  const M = A.map((linha, i) => linha.concat(identidade(n)[i]));
+  const passos = [{ descricao: 'Montamos [A | I]', matriz: copia(M) }];
+
+  for (let col = 0; col < n; col++) {
+    // 1) pivô: primeira linha (a partir de col) com elemento não nulo nesta coluna
+    let linhaPivo = -1;
+    for (let i = col; i < n; i++) {
+      if (!quaseIgual(M[i][col], 0)) { linhaPivo = i; break; }
+    }
+    if (linhaPivo === -1) return { inversa: null, passos: passos };
+
+    if (linhaPivo !== col) {
+      [M[linhaPivo], M[col]] = [M[col], M[linhaPivo]];
+      passos.push({ descricao: L(col) + ' ↔ ' + L(linhaPivo) + ' (troca de linhas)', matriz: copia(M) });
+    }
+
+    // 2) deixa o pivô igual a 1
+    const pivo = M[col][col];
+    if (!quaseIgual(pivo, 1)) {
+      M[col] = M[col].map((v) => limpar(v / pivo));
+      passos.push({ descricao: L(col) + ' ← ' + L(col) + ' ÷ ' + (pivo < 0 ? '(' + formatarFracao(pivo) + ')' : formatarFracao(pivo)), matriz: copia(M) });
+    }
+
+    // 3) zera o resto da coluna
+    for (let i = 0; i < n; i++) {
+      const fator = M[i][col];
+      if (i === col || quaseIgual(fator, 0)) continue;
+      M[i] = M[i].map((v, j) => limpar(v - fator * M[col][j]));
+      const sinal = fator > 0 ? ' − ' : ' + ';
+      const abs = Math.abs(fator);
+      const vezes = quaseIgual(abs, 1) ? '' : formatarFracao(abs) + '·';
+      passos.push({ descricao: L(i) + ' ← ' + L(i) + sinal + vezes + L(col), matriz: copia(M) });
+    }
+  }
+
+  return { inversa: M.map((linha) => linha.slice(n)), passos: passos };
 }

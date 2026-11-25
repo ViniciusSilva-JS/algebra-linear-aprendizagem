@@ -1874,9 +1874,197 @@
       <!-- Lição 9 -->
       <section id="licao-9" class="licao" data-licao="9">
         <h2 class="licao-titulo">9. Matriz inversa</h2>
-        <div class="teoria"><p>Conteúdo em construção</p></div>
-        <div class="laboratorio"><p>Laboratório em construção</p></div>
-        <div class="exercicios"><p>Exercícios em construção</p></div>
+
+        <!-- ---------- TEORIA ---------- -->
+        <div class="teoria">
+          <h3>O que é a inversa</h3>
+          <p>
+            Para números, o inverso de 5 é 1/5, porque 5 · 1/5 = 1. Com matrizes, o papel do 1 é
+            da identidade I. A <strong>inversa</strong> de uma matriz quadrada A é a matriz
+            A⁻¹ tal que:
+          </p>
+          <div class="formula">A · A⁻¹ = A⁻¹ · A = I</div>
+          <p>
+            Uma matriz que tem inversa é chamada de <strong>invertível</strong>. A condição é simples:
+          </p>
+          <div class="formula">A tem inversa &nbsp;⇔&nbsp; det A ≠ 0</div>
+          <p>
+            Se det A = 0, a matriz "achata" o plano (lição 7): pontos diferentes vão parar no mesmo
+            lugar, e não há como desfazer. Não existe "divisão de matrizes"; quem faz esse papel é
+            multiplicar pela inversa.
+          </p>
+
+          <h3>Fórmula para 2×2</h3>
+          <div class="formula"><span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">a</span><span class="matriz-el">b</span><span class="matriz-el">c</span><span class="matriz-el">d</span></span></span>⁻¹ = (1 / det A) · <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">d</span><span class="matriz-el">−b</span><span class="matriz-el">−c</span><span class="matriz-el">a</span></span></span></div>
+          <p>Em palavras: troque os elementos da diagonal principal de lugar, troque o sinal dos da secundária e divida tudo pelo determinante.</p>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              A = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">1</span><span class="matriz-el">5</span><span class="matriz-el">3</span></span></span>: det A = 2·3 − 1·5 = 1, então
+              A⁻¹ = (1/1) · <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">3</span><span class="matriz-el">−1</span><span class="matriz-el">−5</span><span class="matriz-el">2</span></span></span> = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">3</span><span class="matriz-el">−1</span><span class="matriz-el">−5</span><span class="matriz-el">2</span></span></span>.
+            </p>
+            <p>Conferindo: A · A⁻¹ = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">6−5</span><span class="matriz-el">−2+2</span><span class="matriz-el">15−15</span><span class="matriz-el">−5+6</span></span></span> = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">0</span><span class="matriz-el">0</span><span class="matriz-el">1</span></span></span> = I ✓</p>
+          </div>
+
+          <h3>Método de Gauss-Jordan (qualquer ordem)</h3>
+          <p>
+            Escreva a matriz aumentada [A | I] e use operações de linha (as mesmas do escalonamento)
+            até o lado esquerdo virar I. O que estiver do lado direito será A⁻¹:
+          </p>
+          <div class="formula">[ A | I ] &nbsp;→ operações de linha →&nbsp; [ I | A⁻¹ ]</div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <div class="formula"><span class="matriz"><span class="matriz-grade" style="--colunas: 4"><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el separador">1</span><span class="matriz-el">0</span><span class="matriz-el">3</span><span class="matriz-el">4</span><span class="matriz-el separador">0</span><span class="matriz-el">1</span></span></span></div>
+            <p>L₂ ← L₂ − 3·L₁ (zerar abaixo do pivô):</p>
+            <div class="formula"><span class="matriz"><span class="matriz-grade" style="--colunas: 4"><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el separador">1</span><span class="matriz-el">0</span><span class="matriz-el">0</span><span class="matriz-el">−2</span><span class="matriz-el separador">−3</span><span class="matriz-el">1</span></span></span></div>
+            <p>L₂ ← L₂ ÷ (−2) (deixar o pivô igual a 1):</p>
+            <div class="formula"><span class="matriz"><span class="matriz-grade" style="--colunas: 4"><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el separador">1</span><span class="matriz-el">0</span><span class="matriz-el">0</span><span class="matriz-el">1</span><span class="matriz-el separador">3/2</span><span class="matriz-el">−1/2</span></span></span></div>
+            <p>L₁ ← L₁ − 2·L₂ (zerar acima do pivô):</p>
+            <div class="formula"><span class="matriz"><span class="matriz-grade" style="--colunas: 4"><span class="matriz-el">1</span><span class="matriz-el">0</span><span class="matriz-el separador">−2</span><span class="matriz-el">1</span><span class="matriz-el">0</span><span class="matriz-el">1</span><span class="matriz-el separador">3/2</span><span class="matriz-el">−1/2</span></span></span> &nbsp;⇒&nbsp; A⁻¹ = <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">−2</span><span class="matriz-el">1</span><span class="matriz-el">3/2</span><span class="matriz-el">−1/2</span></span></span></div>
+          </div>
+
+          <h3>Resolvendo sistemas com a inversa</h3>
+          <p>Se A·X = B e A é invertível, multiplicamos os dois lados por A⁻¹ <strong>pela esquerda</strong>:</p>
+          <div class="formula">A·X = B &nbsp;⇒&nbsp; A⁻¹·A·X = A⁻¹·B &nbsp;⇒&nbsp; X = A⁻¹·B</div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              2x + y = 4 e 5x + 3y = 11: A = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">1</span><span class="matriz-el">5</span><span class="matriz-el">3</span></span></span> e A⁻¹ = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">3</span><span class="matriz-el">−1</span><span class="matriz-el">−5</span><span class="matriz-el">2</span></span></span> (do exemplo acima).<br>
+              X = A⁻¹·B = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">3</span><span class="matriz-el">−1</span><span class="matriz-el">−5</span><span class="matriz-el">2</span></span></span> · <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">4</span><span class="matriz-el">11</span></span></span> = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">12−11</span><span class="matriz-el">−20+22</span></span></span> = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">1</span><span class="matriz-el">2</span></span></span>, ou seja,
+              <strong>x = 1 e y = 2</strong>.
+            </p>
+          </div>
+
+          <h3>Propriedades</h3>
+          <ul>
+            <li>(A⁻¹)⁻¹ = A.</li>
+            <li>(A·B)⁻¹ = B⁻¹·A⁻¹ (a ordem se inverte, como ao tirar meia e sapato: primeiro o sapato!).</li>
+            <li>(Aᵀ)⁻¹ = (A⁻¹)ᵀ.</li>
+            <li>det(A⁻¹) = 1 / det A.</li>
+          </ul>
+        </div>
+
+        <!-- ---------- LABORATÓRIO ---------- -->
+        <div class="laboratorio">
+          <h3>Calcule a inversa passo a passo</h3>
+          <p>
+            Edite a matriz e acompanhe o método de Gauss-Jordan transformando [A | I] em [I | A⁻¹].
+            No final, a página confere se A · A⁻¹ dá mesmo a identidade. Tente uma matriz com
+            determinante zero para ver o que acontece.
+          </p>
+
+          <fieldset class="escolha lab-operacao">
+            <legend>Tamanho</legend>
+            <label class="opcao"><input type="radio" name="l9-tamanho" value="2" checked> 2×2</label>
+            <label class="opcao"><input type="radio" name="l9-tamanho" value="3"> 3×3</label>
+          </fieldset>
+
+          <div class="lab-matrizes">
+            <div class="lab-matriz-bloco">
+              <span class="lab-rotulo lab-rotulo-a">Matriz A</span>
+              <div id="l9-a2"></div>
+              <div id="l9-a3" hidden></div>
+            </div>
+          </div>
+          <div class="lab-matrizes-controles">
+            <button type="button" id="l9-sortear" class="btn-secundario">🎲 Valores aleatórios</button>
+            <button type="button" id="l9-singular" class="btn-secundario">Exemplo sem inversa</button>
+          </div>
+
+          <div id="l9-resultados" class="lab-resultados" aria-live="polite"></div>
+        </div>
+
+        <!-- ---------- EXERCÍCIOS ---------- -->
+        <div class="exercicios" data-licao="9">
+          <h3>Pratique</h3>
+          <p>Escolha uma alternativa em cada exercício. Acerte todos para liberar a lição 10.</p>
+
+          <ol class="lista-exercicios">
+            <li class="exercicio">
+              <p>Qual é a inversa de <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">3</span><span class="matriz-el">1</span><span class="matriz-el">5</span><span class="matriz-el">2</span></span></span>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="l9-ex1" value="a"
+                  data-explicacao="det = 3·2 − 1·5 = 1. Trocando a diagonal principal de lugar e o sinal da secundária: linhas (2, −1) e (−5, 3), divididas por 1."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">−1</span><span class="matriz-el">−5</span><span class="matriz-el">3</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l9-ex1" value="b"
+                  data-explicacao="Cada elemento foi invertido (1/3, 1/5…). A inversa de uma matriz NÃO é feita elemento por elemento."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1/3</span><span class="matriz-el">1</span><span class="matriz-el">1/5</span><span class="matriz-el">1/2</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l9-ex1" value="c"
+                  data-explicacao="A diagonal principal foi trocada, mas faltou inverter o sinal dos elementos da secundária (1 e 5 devem virar −1 e −5)."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">1</span><span class="matriz-el">5</span><span class="matriz-el">3</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l9-ex1" value="d"
+                  data-explicacao="Os sinais foram trocados na diagonal errada: quem muda de sinal é a SECUNDÁRIA (b e c); a principal só troca de lugar."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">−2</span><span class="matriz-el">1</span><span class="matriz-el">5</span><span class="matriz-el">−3</span></span></span></label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Qual destas matrizes <strong>não</strong> tem inversa?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="l9-ex2" value="a"
+                  data-explicacao="É a identidade: det = 1 ≠ 0. Ela é a sua própria inversa (I · I = I)."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">0</span><span class="matriz-el">0</span><span class="matriz-el">1</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l9-ex2" value="b"
+                  data-explicacao="det = 0·0 − 1·1 = −1 ≠ 0, então tem inversa (por sinal, ela mesma: trocar duas vezes volta ao início)."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">0</span><span class="matriz-el">1</span><span class="matriz-el">1</span><span class="matriz-el">0</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l9-ex2" value="c"
+                  data-explicacao="det = 2·2 − 4·1 = 0: a 1ª linha é o dobro da 2ª. Com determinante zero, não existe inversa."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">4</span><span class="matriz-el">1</span><span class="matriz-el">2</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l9-ex2" value="d"
+                  data-explicacao="det = 2·1 − 1·1 = 1 ≠ 0, então tem inversa."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">1</span><span class="matriz-el">1</span><span class="matriz-el">1</span></span></span></label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Qual é a inversa de <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">0</span><span class="matriz-el">0</span><span class="matriz-el">4</span></span></span>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="l9-ex3" value="a"
+                  data-explicacao="Essa é a matriz OPOSTA (−A): somada a A dá a matriz nula, mas multiplicada por A não dá a identidade."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">−2</span><span class="matriz-el">0</span><span class="matriz-el">0</span><span class="matriz-el">−4</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l9-ex3" value="b"
+                  data-explicacao="Em uma matriz diagonal, basta inverter cada elemento da diagonal: 1/2 e 1/4. Conferindo: 2·(1/2) = 1 e 4·(1/4) = 1."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1/2</span><span class="matriz-el">0</span><span class="matriz-el">0</span><span class="matriz-el">1/4</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l9-ex3" value="c"
+                  data-explicacao="A diagonal foi trocada de lugar, mas faltou dividir pelo determinante (det = 8): (1/8) com linhas (4, 0) e (0, 2) dá a diagonal 1/2 e 1/4."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">4</span><span class="matriz-el">0</span><span class="matriz-el">0</span><span class="matriz-el">2</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l9-ex3" value="d"
+                  data-explicacao="Os inversos estão certos (1/2 e 1/4), mas foram colocados fora da diagonal. Assim, A vezes essa matriz não dá a identidade."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">0</span><span class="matriz-el">1/2</span><span class="matriz-el">1/4</span><span class="matriz-el">0</span></span></span></label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Se A é invertível e <strong>A·X = B</strong>, então X é igual a:</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="l9-ex4" value="a"
+                  data-explicacao="Não existe divisão de matrizes. O que faz esse papel é multiplicar pela inversa."> B / A</label>
+                <label class="alternativa"><input type="radio" name="l9-ex4" value="b"
+                  data-explicacao="A ordem importa. Como A está à ESQUERDA de X, A⁻¹ precisa entrar pela esquerda nos dois lados: A⁻¹·A·X = A⁻¹·B."> B · A⁻¹</label>
+                <label class="alternativa"><input type="radio" name="l9-ex4" value="c"
+                  data-explicacao="A·B não isola X. É preciso 'desfazer' A, e quem desfaz A é a sua inversa."> A · B</label>
+                <label class="alternativa"><input type="radio" name="l9-ex4" value="d"
+                  data-explicacao="Multiplicando os dois lados por A⁻¹ pela esquerda: A⁻¹·A·X = A⁻¹·B ⇒ I·X = A⁻¹·B ⇒ X = A⁻¹·B."> A⁻¹ · B</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Sabendo que <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">1</span><span class="matriz-el">5</span><span class="matriz-el">3</span></span></span>⁻¹ = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">3</span><span class="matriz-el">−1</span><span class="matriz-el">−5</span><span class="matriz-el">2</span></span></span>, qual é a solução de <strong>2x + y = 1</strong> e <strong>5x + 3y = 2</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="l9-ex5" value="a"
+                  data-explicacao="X = A⁻¹·B: x = 3·1 + (−1)·2 = 1 e y = −5·1 + 2·2 = −1. Conferindo: 2 − 1 = 1 ✓ e 5 − 3 = 2 ✓."> x = 1, y = −1</label>
+                <label class="alternativa"><input type="radio" name="l9-ex5" value="b"
+                  data-explicacao="Esse é A·B (com a matriz original): 2·1 + 1·2 = 4 e 5·1 + 3·2 = 11. É preciso multiplicar pela INVERSA."> x = 4, y = 11</label>
+                <label class="alternativa"><input type="radio" name="l9-ex5" value="c"
+                  data-explicacao="Foram usadas as COLUNAS de A⁻¹ em vez das linhas: 3·1 + (−5)·2 = −7. No produto, cada LINHA de A⁻¹ multiplica B."> x = −7, y = 3</label>
+                <label class="alternativa"><input type="radio" name="l9-ex5" value="d"
+                  data-explicacao="O x está certo, mas no y o sinal se perdeu: −5·1 + 2·2 = −5 + 4 = −1."> x = 1, y = 1</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Se <strong>det A = 4</strong>, quanto vale det(A⁻¹)?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="l9-ex6" value="a"
+                  data-explicacao="O sinal não muda: det(A⁻¹) = 1/det A, que continua positivo."> −4</label>
+                <label class="alternativa"><input type="radio" name="l9-ex6" value="b"
+                  data-explicacao="det(A·A⁻¹) = det I = 1, e det(A·A⁻¹) = det A · det(A⁻¹). Logo 4 · det(A⁻¹) = 1 e det(A⁻¹) = 1/4."> 1/4</label>
+                <label class="alternativa"><input type="radio" name="l9-ex6" value="c"
+                  data-explicacao="Se fosse 4, teríamos det(A·A⁻¹) = 4·4 = 16, mas det I = 1. A inversa 'desfaz' a mudança de área: divide em vez de multiplicar."> 4</label>
+                <label class="alternativa"><input type="radio" name="l9-ex6" value="d"
+                  data-explicacao="det = 0 é justamente o caso em que NÃO existe inversa. Como det A = 4 ≠ 0, A⁻¹ existe e seu determinante é 1/4."> 0</label>
+              </div>
+            </li>
+          </ol>
+        </div>
       </section>
 
       <!-- Lição 10 -->
@@ -1937,5 +2125,6 @@
   <script src="js/licoes/licao-06.js"></script>
   <script src="js/licoes/licao-07.js"></script>
   <script src="js/licoes/licao-08.js"></script>
+  <script src="js/licoes/licao-09.js"></script>
 </body>
 </html>

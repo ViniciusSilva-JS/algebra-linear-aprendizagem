@@ -486,6 +486,12 @@ progress.progresso::-moz-progress-bar {
   font-weight: 700;
 }
 
+/* Barra vertical da matriz aumentada [A | I] */
+.matriz-el.separador {
+  padding-left: 0.6em;
+  border-left: 1.5px solid currentColor;
+}
+
 /* Matriz pequena dentro de texto (enunciados e alternativas) */
 .matriz-inline {
   font-size: 0.95em;
