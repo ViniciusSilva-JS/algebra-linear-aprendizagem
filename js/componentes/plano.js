@@ -12,6 +12,7 @@
      plano.linha(0, 0, 3, 2, 'segmento');
      plano.poligonal([[0,0], [3,0], [3,2]], 'cateto');
      plano.arco(0, 0, 1.2, 0, Math.PI / 4, 'arco-angulo'); // arco de 0° a 45°
+     plano.reta(2, -1, 3, 'reta');                 // reta 2x − y = 3 inteira
      const p = plano.pontoDoClique(evento);       // {x, y} inteiros
 
    Todas as coordenadas são MATEMÁTICAS (y para cima). A conversão para o
@@ -75,8 +76,21 @@ function criarPlanoCartesiano(svg, opcoes) {
   criarTexto('y', { x: 0.45, y: -limite - 0.4, class: 'plano-rotulo plano-nome-eixo' }, fundo);
   criarTexto('O', { x: -0.35, y: 0.85, class: 'plano-rotulo', 'text-anchor': 'end' }, fundo);
 
+  // Recorte: os desenhos não passam da área da grade (com meia unidade de folga,
+  // para pontos e rótulos na borda não ficarem cortados ao meio).
+  // Cada plano precisa de um id próprio, porque pode haver vários na página.
+  criarPlanoCartesiano.contador = (criarPlanoCartesiano.contador || 0) + 1;
+  const idRecorte = 'plano-recorte-' + criarPlanoCartesiano.contador;
+  const defs = criar('defs', {}, svg);
+  const recorte = criar('clipPath', { id: idRecorte }, defs);
+  const folga = limite + 0.5;
+  criar('rect', { x: -folga, y: -folga, width: 2 * folga, height: 2 * folga }, recorte);
+
   // Camada dos desenhos que mudam (apagada a cada limpar()).
-  let camada = criar('g', { class: 'plano-camada' }, svg);
+  function novaCamada() {
+    return criar('g', { class: 'plano-camada', 'clip-path': 'url(#' + idRecorte + ')' }, svg);
+  }
+  let camada = novaCamada();
 
 
   /* -----------------------------------------------------------------------
@@ -84,7 +98,7 @@ function criarPlanoCartesiano(svg, opcoes) {
      ----------------------------------------------------------------------- */
   function limpar() {
     camada.remove();
-    camada = criar('g', { class: 'plano-camada' }, svg);
+    camada = novaCamada();
   }
 
   function linha(x1, y1, x2, y2, classe) {
@@ -146,6 +160,21 @@ function criarPlanoCartesiano(svg, opcoes) {
   }
 
   /**
+   * Reta inteira de equação a·x + b·y = c, atravessando todo o plano.
+   * (O SVG corta o que passar da borda.)
+   */
+  function reta(a, b, c, classe) {
+    const L = limite + 1;
+    if (Math.abs(b) > 1e-12) {
+      return linha(-L, (c - a * -L) / b, L, (c - a * L) / b, classe);
+    }
+    if (Math.abs(a) > 1e-12) {
+      return linha(c / a, -L, c / a, L, classe); // reta vertical x = c/a
+    }
+    return null; // 0x + 0y = c não é uma reta
+  }
+
+  /**
    * Escreve um texto logo depois da ponta de uma seta de (x1, y1) a (x2, y2),
    * afastado 0,7 unidade na direção da seta. Ex.: o nome do vetor.
    */
@@ -197,5 +226,5 @@ function criarPlanoCartesiano(svg, opcoes) {
     return Math.abs(x) <= limite && Math.abs(y) <= limite;
   }
 
-  return { limite, limpar, linha, poligonal, poligono, ponto, texto, seta, rotuloSeta, arco, pontoDoClique, cabe };
+  return { limite, limpar, linha, poligonal, poligono, ponto, texto, seta, rotuloSeta, arco, reta, pontoDoClique, cabe };
 }

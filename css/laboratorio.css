@@ -279,6 +279,32 @@
 
 
 /* =========================================================================
+   RETAS (Lição 4 em diante)
+   ========================================================================= */
+.reta {
+  fill: none;
+  stroke-width: 0.09;
+  stroke-linecap: round;
+}
+
+.reta-principal {
+  stroke: var(--cor-laboratorio);
+}
+
+.reta-perpendicular {
+  stroke: var(--cor-acerto);
+  stroke-dasharray: 0.35 0.2;
+}
+
+/* Segunda reta (ex.: sistemas lineares) */
+.reta-secundaria {
+  stroke: var(--cor-exercicios);
+}
+
+.lab-rotulo-verde { color: var(--cor-acerto); }
+
+
+/* =========================================================================
    RESPONSIVO
    ========================================================================= */
 @media (max-width: 900px) {

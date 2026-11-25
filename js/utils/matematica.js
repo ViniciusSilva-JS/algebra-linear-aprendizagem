@@ -7,6 +7,7 @@
    2. Geometria analítica no plano
    3. Vetores no plano
    4. Produto escalar e ângulo
+   5. Frações e equações de reta
    ========================================================================= */
 
 'use strict';
@@ -182,4 +183,95 @@ function projecao(u, v) {
   const quadradoModuloV = produtoEscalar(v, v);
   if (quadradoModuloV === 0) return null;
   return multiplicarPorEscalar(produtoEscalar(u, v) / quadradoModuloV, v);
+}
+
+
+/* =========================================================================
+   5. FRAÇÕES E EQUAÇÕES DE RETA
+   ========================================================================= */
+
+/** Máximo divisor comum de dois inteiros (sempre positivo). */
+function mdc(a, b) {
+  a = Math.abs(Math.round(a));
+  b = Math.abs(Math.round(b));
+  while (b) { const resto = a % b; a = b; b = resto; }
+  return a;
+}
+
+/**
+ * Mostra um número como fração quando ele é uma fração "simples"
+ * (denominador até 100). Ex.: 0.5 → "1/2" | -1.6666… → "−5/3" | 3 → "3".
+ * Se não for uma fração simples, mostra o decimal.
+ */
+function formatarFracao(x) {
+  if (!Number.isFinite(x)) return '—';
+  if (quaseIgual(x, Math.round(x), 1e-9)) return formatarNumero(Math.round(x));
+  for (let d = 2; d <= 100; d++) {
+    const n = x * d;
+    if (quaseIgual(n, Math.round(n), 1e-9)) {
+      return (x < 0 ? '−' : '') + Math.abs(Math.round(n)) + '/' + d;
+    }
+  }
+  return formatarNumero(x);
+}
+
+/**
+ * Coeficiente pronto para ficar na frente de uma variável:
+ * 1 → "" | −1 → "−" | 2 → "2" | 0.5 → "(1/2)".
+ */
+function coeficiente(c) {
+  if (quaseIgual(c, 1)) return '';
+  if (quaseIgual(c, -1)) return '−';
+  const texto = formatarFracao(c);
+  return texto.includes('/') ? '(' + texto + ')' : texto;
+}
+
+/** Equação reduzida da reta: y = mx + b, escrita do jeito "bonito". */
+function formatarEquacaoReduzida(m, b) {
+  let texto = 'y = ';
+  const temX = !quaseIgual(m, 0);
+  if (temX) texto += coeficiente(m) + 'x';
+  if (!temX) return texto + formatarFracao(b);
+  if (quaseIgual(b, 0)) return texto;
+  return texto + (b > 0 ? ' + ' : ' − ') + formatarFracao(Math.abs(b));
+}
+
+/**
+ * Reta que passa por A e B, na forma geral a·x + b·y + c = 0 com
+ * coeficientes inteiros simplificados (para pontos de coordenadas inteiras).
+ * Devolve também m (coef. angular) e n (coef. linear); m = null se vertical.
+ */
+function retaPorDoisPontos(A, B) {
+  let a = A.y - B.y;
+  let b = B.x - A.x;
+  let c = A.x * B.y - B.x * A.y;
+  const inteiros = [a, b, c].every((v) => Number.isInteger(v));
+  if (inteiros) {
+    const divisor = mdc(mdc(a, b), c) || 1;
+    a /= divisor; b /= divisor; c /= divisor;
+  }
+  // deixa o primeiro coeficiente não nulo positivo
+  if (a < 0 || (a === 0 && b < 0)) { a = -a; b = -b; c = -c; }
+  const vertical = quaseIgual(b, 0);
+  return {
+    a: a, b: b, c: c,
+    m: vertical ? null : -a / b,
+    n: vertical ? null : -c / b,
+  };
+}
+
+/** Equação geral "ax + by + c = 0", escrita do jeito "bonito". */
+function formatarEquacaoGeral(a, b, c) {
+  const termos = [];
+  if (!quaseIgual(a, 0)) termos.push({ valor: a, texto: 'x' });
+  if (!quaseIgual(b, 0)) termos.push({ valor: b, texto: 'y' });
+  if (!quaseIgual(c, 0)) termos.push({ valor: c, texto: '' });
+  let saida = '';
+  termos.forEach((t, i) => {
+    const abs = Math.abs(t.valor);
+    const numero = t.texto && quaseIgual(abs, 1) ? '' : formatarFracao(abs);
+    if (i === 0) saida += (t.valor < 0 ? '−' : '') + numero + t.texto;
+    else saida += (t.valor < 0 ? ' − ' : ' + ') + numero + t.texto;
+  });
+  return (saida || '0') + ' = 0';
 }
