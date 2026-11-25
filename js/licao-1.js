@@ -1,25 +1,25 @@
 /* =========================================================================
    js/licao-1.js — Laboratório da Lição 1: Plano cartesiano e pontos
-   Desenha um plano cartesiano em SVG com os pontos A e B, o segmento AB,
-   os catetos Δx e Δy e o ponto médio M, e mostra as contas passo a passo.
+   Mostra os pontos A e B, o segmento AB, os catetos Δx e Δy e o ponto
+   médio M, com as contas passo a passo. O plano vem do js/plano.js.
 
    Índice
-   1. Elementos e configurações
-   2. Ajudantes de SVG
-   3. Desenho do fundo (grade, eixos e números)
-   4. Leitura dos pontos
-   5. Desenho dos pontos e resultados
-   6. Eventos (campos, clique no plano, sorteio)
+   1. Elementos
+   2. Leitura dos pontos
+   3. Desenho e resultados
+   4. Eventos (campos, clique no plano, sorteio)
    ========================================================================= */
 
 (function () {
   'use strict';
 
   /* =======================================================================
-     1. ELEMENTOS E CONFIGURAÇÕES
+     1. ELEMENTOS
      ======================================================================= */
   const svg = document.getElementById('l1-plano');
   if (!svg) return; // lição não está na página
+
+  const plano = criarPlanoCartesiano(svg, { limite: 10 });
 
   const campos = {
     ax: document.getElementById('l1-ax'),
@@ -31,120 +31,62 @@
   const dicaClique = document.getElementById('l1-dica-clique');
   const btnSortear = document.getElementById('l1-sortear');
 
-  const LIMITE = 10;           // o plano vai de −10 a 10 nos dois eixos
-  const SVG_NS = 'http://www.w3.org/2000/svg';
-  let proximoClique = 'A';     // qual ponto o próximo clique no plano move
-
-  /*
-    Sistema de coordenadas do SVG:
-    viewBox="-11 -11 22 22" → o centro do SVG é a origem.
-    No SVG o eixo y aponta para BAIXO, por isso desenhamos sempre em (x, −y).
-  */
+  let proximoClique = 'A'; // qual ponto o próximo clique no plano move
 
 
   /* =======================================================================
-     2. AJUDANTES DE SVG
-     ======================================================================= */
-
-  /** Cria um elemento SVG com atributos e o coloca dentro de `pai`. */
-  function criarSvg(tag, atributos, pai) {
-    const elemento = document.createElementNS(SVG_NS, tag);
-    Object.keys(atributos).forEach((nome) => elemento.setAttribute(nome, atributos[nome]));
-    if (pai) pai.appendChild(elemento);
-    return elemento;
-  }
-
-  /** Cria um texto SVG. */
-  function criarTexto(conteudo, atributos, pai) {
-    const texto = criarSvg('text', atributos, pai);
-    texto.textContent = conteudo;
-    return texto;
-  }
-
-
-  /* =======================================================================
-     3. DESENHO DO FUNDO (feito uma vez só)
-     ======================================================================= */
-  function desenharFundo() {
-    const fundo = criarSvg('g', { class: 'plano-fundo' }, svg);
-
-    for (let i = -LIMITE; i <= LIMITE; i++) {
-      const classe = i === 0 ? 'plano-eixo' : 'plano-grade';
-      // linha vertical (x = i) e horizontal (y = i)
-      criarSvg('line', { x1: i, y1: -LIMITE, x2: i, y2: LIMITE, class: classe }, fundo);
-      criarSvg('line', { x1: -LIMITE, y1: i, x2: LIMITE, y2: i, class: classe }, fundo);
-
-      // números nos eixos, de 2 em 2
-      if (i !== 0 && i % 2 === 0) {
-        criarTexto(formatarNumero(i), { x: i, y: 0.85, class: 'plano-rotulo', 'text-anchor': 'middle' }, fundo);
-        criarTexto(formatarNumero(i), { x: -0.35, y: -i + 0.2, class: 'plano-rotulo', 'text-anchor': 'end' }, fundo);
-      }
-    }
-
-    // nomes dos eixos e da origem
-    criarTexto('x', { x: 10.55, y: -0.35, class: 'plano-rotulo plano-nome-eixo', 'text-anchor': 'middle' }, fundo);
-    criarTexto('y', { x: 0.45, y: -10.4, class: 'plano-rotulo plano-nome-eixo' }, fundo);
-    criarTexto('O', { x: -0.35, y: 0.85, class: 'plano-rotulo', 'text-anchor': 'end' }, fundo);
-  }
-
-  // Camada redesenhada a cada mudança (pontos, segmento, catetos).
-  let camada = null;
-
-
-  /* =======================================================================
-     4. LEITURA DOS PONTOS
+     2. LEITURA DOS PONTOS
      ======================================================================= */
 
   /** Lê um campo; devolve null se o valor for inválido ou fora do plano. */
   function lerCoordenada(campo) {
     const valor = lerNumero(campo.value);
-    if (Number.isNaN(valor) || valor < -LIMITE || valor > LIMITE) return null;
+    if (Number.isNaN(valor) || Math.abs(valor) > plano.limite) return null;
     return valor;
   }
 
   function lerPontos() {
-    const ax = lerCoordenada(campos.ax);
-    const ay = lerCoordenada(campos.ay);
-    const bx = lerCoordenada(campos.bx);
-    const by = lerCoordenada(campos.by);
+    const valores = {};
+    let tudoValido = true;
 
-    // marca em vermelho os campos inválidos
-    [['ax', ax], ['ay', ay], ['bx', bx], ['by', by]].forEach(([nome, valor]) => {
-      campos[nome].classList.toggle('erro', valor === null);
+    Object.keys(campos).forEach((nome) => {
+      valores[nome] = lerCoordenada(campos[nome]);
+      const invalido = valores[nome] === null;
+      campos[nome].classList.toggle('erro', invalido); // marca em vermelho
+      if (invalido) tudoValido = false;
     });
 
-    if ([ax, ay, bx, by].includes(null)) return null;
-    return { A: { x: ax, y: ay }, B: { x: bx, y: by } };
+    if (!tudoValido) return null;
+    return {
+      A: { x: valores.ax, y: valores.ay },
+      B: { x: valores.bx, y: valores.by },
+    };
   }
 
 
   /* =======================================================================
-     5. DESENHO DOS PONTOS E RESULTADOS
+     3. DESENHO E RESULTADOS
      ======================================================================= */
 
-  /** Desenha um ponto com rótulo, ex.: "A(1, 2)". */
+  /** Desenha um ponto com rótulo, ex.: "A(1, 2)", do lado com mais espaço. */
   function desenharPonto(ponto, nome, classe) {
-    criarSvg('circle', { cx: ponto.x, cy: -ponto.y, r: 0.32, class: 'ponto ' + classe }, camada);
-
-    // rótulo do lado que tiver mais espaço
+    plano.ponto(ponto.x, ponto.y, 0.32, 'ponto ' + classe);
     const aDireita = ponto.x <= 5;
-    criarTexto(nome + formatarPonto(ponto.x, ponto.y), {
-      x: ponto.x + (aDireita ? 0.5 : -0.5),
-      y: -ponto.y - 0.5,
-      class: 'rotulo-ponto',
-      'text-anchor': aDireita ? 'start' : 'end',
-    }, camada);
+    plano.texto(
+      nome + formatarPonto(ponto.x, ponto.y),
+      ponto.x + (aDireita ? 0.5 : -0.5),
+      ponto.y + 0.5,
+      'rotulo-ponto',
+      aDireita ? 'start' : 'end'
+    );
   }
 
   function atualizar() {
-    // apaga o desenho anterior
-    if (camada) camada.remove();
-    camada = criarSvg('g', { class: 'plano-camada' }, svg);
+    plano.limpar();
 
     const pontos = lerPontos();
     if (!pontos) {
-      resultados.innerHTML =
-        '<p class="erro">Use números de −10 a 10 nas coordenadas.</p>';
+      resultados.innerHTML = '<p class="erro">Use números de −10 a 10 nas coordenadas.</p>';
       return;
     }
 
@@ -152,20 +94,16 @@
     const M = pontoMedio(A.x, A.y, B.x, B.y);
     const dx = B.x - A.x;
     const dy = B.y - A.y;
-    const d = distancia(A.x, A.y, B.x, B.y);
 
     // --- desenho ---
     if (dx !== 0 && dy !== 0) {
       // catetos do triângulo retângulo (tracejados)
-      criarSvg('polyline', {
-        points: A.x + ',' + (-A.y) + ' ' + B.x + ',' + (-A.y) + ' ' + B.x + ',' + (-B.y),
-        class: 'cateto',
-      }, camada);
-      criarTexto('Δx', { x: (A.x + B.x) / 2, y: -A.y + (dy > 0 ? 0.8 : -0.4), class: 'rotulo-cateto', 'text-anchor': 'middle' }, camada);
-      criarTexto('Δy', { x: B.x + (dx > 0 ? 0.3 : -0.3), y: -(A.y + B.y) / 2, class: 'rotulo-cateto', 'text-anchor': dx > 0 ? 'start' : 'end' }, camada);
+      plano.poligonal([[A.x, A.y], [B.x, A.y], [B.x, B.y]], 'cateto');
+      plano.texto('Δx', (A.x + B.x) / 2, A.y + (dy > 0 ? -0.8 : 0.4), 'rotulo-cateto', 'middle');
+      plano.texto('Δy', B.x + (dx > 0 ? 0.3 : -0.3), (A.y + B.y) / 2, 'rotulo-cateto', dx > 0 ? 'start' : 'end');
     }
-    criarSvg('line', { x1: A.x, y1: -A.y, x2: B.x, y2: -B.y, class: 'segmento' }, camada);
-    criarSvg('circle', { cx: M.x, cy: -M.y, r: 0.22, class: 'ponto ponto-m' }, camada);
+    plano.linha(A.x, A.y, B.x, B.y, 'segmento');
+    plano.ponto(M.x, M.y, 0.22, 'ponto ponto-m');
     desenharPonto(A, 'A', 'ponto-a');
     desenharPonto(B, 'B', 'ponto-b');
 
@@ -173,10 +111,7 @@
     const f = formatarNumero;
     const p = formatarComParenteses;
     const soma = dx * dx + dy * dy;
-    const raizExata = Number.isInteger(d);
-    const textoDistancia = soma === 0
-      ? '0 (os pontos são iguais)'
-      : '√' + f(soma) + (raizExata ? ' = ' : ' ≈ ') + f(d);
+    const textoDistancia = soma === 0 ? '0 (os pontos são iguais)' : formatarRaiz(soma);
 
     resultados.innerHTML = `
       <div class="lab-resultado">
@@ -204,22 +139,15 @@
 
 
   /* =======================================================================
-     6. EVENTOS
+     4. EVENTOS
      ======================================================================= */
 
   // Digitar nos campos redesenha na hora.
   Object.values(campos).forEach((campo) => campo.addEventListener('input', atualizar));
 
-  // Clique no plano: posiciona A ou B (alternando) no ponto inteiro mais próximo.
+  // Clique no plano: posiciona A ou B, alternando.
   svg.addEventListener('click', (evento) => {
-    const ponto = svg.createSVGPoint();
-    ponto.x = evento.clientX;
-    ponto.y = evento.clientY;
-    const local = ponto.matrixTransform(svg.getScreenCTM().inverse());
-
-    const limitar = (v) => Math.max(-LIMITE, Math.min(LIMITE, v));
-    const x = limitar(Math.round(local.x));
-    const y = limitar(Math.round(-local.y)); // desfaz a inversão do eixo y
+    const { x, y } = plano.pontoDoClique(evento);
 
     if (proximoClique === 'A') {
       campos.ax.value = x;
@@ -249,7 +177,5 @@
     atualizar();
   });
 
-  // Desenho inicial
-  desenharFundo();
-  atualizar();
+  atualizar(); // desenho inicial
 })();

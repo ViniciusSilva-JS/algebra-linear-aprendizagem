@@ -5,6 +5,7 @@
    Índice
    1. Leitura e formatação de números
    2. Geometria analítica no plano
+   3. Vetores no plano
    ========================================================================= */
 
 'use strict';
@@ -74,6 +75,17 @@ function formatarPonto(x, y) {
   return '(' + formatarNumero(x) + separador + formatarNumero(y) + ')';
 }
 
+/**
+ * Mostra a raiz quadrada de um número já com o resultado:
+ * 25 → "√25 = 5"   |   10 → "√10 ≈ 3,16"   |   0 → "0"
+ */
+function formatarRaiz(valorDentro) {
+  if (valorDentro === 0) return '0';
+  const raiz = Math.sqrt(valorDentro);
+  const exata = quaseIgual(raiz, Math.round(raiz));
+  return '√' + formatarNumero(valorDentro) + (exata ? ' = ' : ' ≈ ') + formatarNumero(raiz);
+}
+
 /** Compara dois números com uma tolerância (para respostas decimais). */
 function quaseIgual(a, b, tolerancia) {
   if (tolerancia === undefined) tolerancia = 1e-9;
@@ -108,4 +120,32 @@ function distancia(x1, y1, x2, y2) {
 /** Ponto médio entre (x1, y1) e (x2, y2). */
 function pontoMedio(x1, y1, x2, y2) {
   return { x: (x1 + x2) / 2, y: (y1 + y2) / 2 };
+}
+
+
+/* =========================================================================
+   3. VETORES NO PLANO
+   Um vetor é representado como { x, y } (suas componentes).
+   ========================================================================= */
+
+/** Módulo (tamanho) do vetor: √(x² + y²). */
+function modulo(v) {
+  return Math.hypot(v.x, v.y);
+}
+
+function somarVetores(u, v) {
+  return { x: u.x + v.x, y: u.y + v.y };
+}
+
+function subtrairVetores(u, v) {
+  return { x: u.x - v.x, y: u.y - v.y };
+}
+
+function multiplicarPorEscalar(k, v) {
+  return { x: k * v.x, y: k * v.y };
+}
+
+/** Vetor que vai do ponto A até o ponto B: B − A. */
+function vetorEntrePontos(A, B) {
+  return { x: B.x - A.x, y: B.y - A.y };
 }

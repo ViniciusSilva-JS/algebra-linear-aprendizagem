@@ -1712,3 +1712,96 @@ input.campo-curto {
 .explicacao-errada strong {
   color: var(--cor-erro);
 }
+
+
+/* =========================================================================
+   21. VETORES (Lição 2 em diante)
+   ========================================================================= */
+
+/* Notação de vetor: letra em negrito com uma setinha em cima */
+.vet {
+  position: relative;
+  display: inline-block;
+  font-family: var(--fonte-formula);
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.vet::before {
+  content: "→";
+  position: absolute;
+  left: 50%;
+  top: -0.62em;
+  transform: translateX(-50%);
+  font-size: 0.7em;
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* Setas no plano (js/plano.js).
+   A classe do vetor só define a variável --cor-vetor; cada parte da seta
+   decide onde usar a cor (linha = contorno, ponta e rótulo = preenchimento). */
+.vetor-u { --cor-vetor: var(--cor-teoria); }
+.vetor-v { --cor-vetor: var(--cor-exercicios); }
+.vetor-r { --cor-vetor: var(--cor-laboratorio); }
+
+.seta-linha {
+  stroke: var(--cor-vetor, var(--cor-texto));
+  stroke-width: 0.12;
+  stroke-linecap: round;
+}
+
+.seta-ponta {
+  fill: var(--cor-vetor, var(--cor-texto));
+  stroke: none;
+}
+
+/* Cópias auxiliares (regra ponta com cauda) */
+.seta-linha.tracejado {
+  stroke-width: 0.07;
+  stroke-dasharray: 0.3 0.2;
+}
+
+.seta-ponta.tracejado {
+  opacity: 0.6;
+}
+
+/* Resultado de k·u desenhado por baixo de u, mais grosso */
+.seta-linha.vetor-largo {
+  stroke-width: 0.26;
+  opacity: 0.85;
+}
+
+/* Paralelogramo da soma */
+.regiao-paralelogramo {
+  fill: var(--cor-laboratorio);
+  fill-opacity: 0.1;
+  stroke: none;
+}
+
+/* Nome do vetor perto da ponta */
+.rotulo-vetor {
+  font-family: var(--fonte-formula);
+  font-size: 0.75px;
+  font-style: italic;
+  font-weight: 700;
+  fill: var(--cor-vetor, var(--cor-texto));
+  stroke: var(--cor-superficie);   /* contorno da cor do fundo: texto legível sobre as linhas */
+  stroke-width: 0.2;
+  stroke-linejoin: round;
+  paint-order: stroke;
+}
+
+/* Laboratório: escolha da operação e campos que não estão em uso */
+.lab-operacao {
+  margin-bottom: var(--esp-2);
+}
+
+.lab-ponto-m legend {
+  color: var(--cor-laboratorio);
+}
+
+.lab-ponto.inativo {
+  opacity: 0.45;
+}

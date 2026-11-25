@@ -306,9 +306,265 @@
       <!-- Lição 2 -->
       <section id="licao-2" class="licao" data-licao="2">
         <h2 class="licao-titulo">2. Vetores no plano</h2>
-        <div class="teoria"><p>Conteúdo em construção</p></div>
-        <div class="laboratorio"><p>Laboratório em construção</p></div>
-        <div class="exercicios"><p>Exercícios em construção</p></div>
+
+        <!-- ---------- TEORIA ---------- -->
+        <div class="teoria">
+          <h3>O que é um vetor</h3>
+          <p>
+            Algumas grandezas ficam bem descritas só por um número, como a temperatura
+            (25 °C) ou a massa (3 kg): são as grandezas <strong>escalares</strong>.
+            Outras precisam de mais informação. Dizer que alguém andou 5 metros não basta:
+            andou para onde? Essas são as grandezas <strong>vetoriais</strong>, como
+            deslocamento, velocidade e força.
+          </p>
+          <p>Um <strong>vetor</strong> é representado por uma seta e tem três características:</p>
+          <ul>
+            <li><strong>Módulo:</strong> o tamanho da seta.</li>
+            <li><strong>Direção:</strong> a reta em que a seta está (horizontal, vertical, inclinada…).</li>
+            <li><strong>Sentido:</strong> para qual lado da reta a seta aponta.</li>
+          </ul>
+
+          <h3>Componentes de um vetor</h3>
+          <p>
+            No plano, um vetor é descrito por suas <strong>componentes</strong>: quanto ele
+            anda na horizontal e quanto anda na vertical. Escrevemos
+            <span class="vet">v</span> = (x, y). Por exemplo, <span class="vet">v</span> = (4, 3)
+            anda 4 unidades para a direita e 3 para cima.
+          </p>
+          <p>
+            Se o vetor começa no ponto A e termina no ponto B, suas componentes são
+            "ponto final menos ponto inicial":
+          </p>
+          <div class="formula"><span class="vet">AB</span> = B − A = (x<sub>B</sub> − x<sub>A</sub> , y<sub>B</sub> − y<sub>A</sub>)</div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>A(1, 2) e B(5, 5): <span class="vet">AB</span> = (5 − 1, 5 − 2) = <strong>(4, 3)</strong>.</p>
+          </div>
+          <p>
+            O que importa num vetor são as componentes, e não o lugar onde a seta está
+            desenhada. Setas com o mesmo módulo, direção e sentido representam
+            <strong>o mesmo vetor</strong>, mesmo em posições diferentes. Por isso costumamos
+            desenhá-lo saindo da origem.
+          </p>
+
+          <h3>Módulo</h3>
+          <p>
+            As componentes formam os catetos de um triângulo retângulo, e a seta é a
+            hipotenusa. Pelo Teorema de Pitágoras (o mesmo da distância entre pontos):
+          </p>
+          <div class="formula">|<span class="vet">v</span>| = √(x² + y²)</div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>|(4, 3)| = √(4² + 3²) = √(16 + 9) = √25 = <strong>5</strong>.</p>
+          </div>
+
+          <h3>Soma e subtração</h3>
+          <p>Para somar ou subtrair vetores, operamos <strong>componente a componente</strong>:</p>
+          <div class="formula">(x₁, y₁) + (x₂, y₂) = (x₁ + x₂ , y₁ + y₂)</div>
+          <p>
+            Geometricamente, para fazer <span class="vet">u</span> + <span class="vet">v</span>,
+            colocamos o início de <span class="vet">v</span> na ponta de <span class="vet">u</span>
+            (regra "ponta com cauda"). O resultado vai do início de <span class="vet">u</span>
+            até a ponta de <span class="vet">v</span>, e é a diagonal do paralelogramo formado
+            pelos dois vetores.
+          </p>
+          <p>
+            Subtrair é somar o oposto: <span class="vet">u</span> − <span class="vet">v</span> =
+            <span class="vet">u</span> + (−<span class="vet">v</span>), em que −<span class="vet">v</span>
+            tem o mesmo módulo e a mesma direção de <span class="vet">v</span>, mas sentido contrário.
+          </p>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              <span class="vet">u</span> = (1, 3) e <span class="vet">v</span> = (4, −1):<br>
+              <span class="vet">u</span> + <span class="vet">v</span> = (1 + 4, 3 + (−1)) = <strong>(5, 2)</strong><br>
+              <span class="vet">u</span> − <span class="vet">v</span> = (1 − 4, 3 − (−1)) = <strong>(−3, 4)</strong>
+            </p>
+          </div>
+
+          <h3>Multiplicação por um número (escalar)</h3>
+          <p>Multiplicar um vetor por um número real k multiplica cada componente por k:</p>
+          <div class="formula">k · (x, y) = (k·x , k·y)</div>
+          <p>
+            O resultado tem sempre a <strong>mesma direção</strong> do vetor original
+            (os dois são paralelos), e o módulo fica multiplicado por |k|:
+            |k · <span class="vet">v</span>| = |k| · |<span class="vet">v</span>|.
+          </p>
+          <div class="tabela-rolagem">
+            <table class="tabela">
+              <thead>
+                <tr><th>Valor de k</th><th>O que acontece com o vetor</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>k &gt; 1</td><td>Aumenta, mantendo o sentido</td></tr>
+                <tr><td>0 &lt; k &lt; 1</td><td>Diminui, mantendo o sentido</td></tr>
+                <tr><td>k = 0</td><td>Vira o vetor nulo (0, 0)</td></tr>
+                <tr><td>k &lt; 0</td><td>Inverte o sentido (e muda de tamanho se k ≠ −1)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              <span class="vet">v</span> = (2, −1):
+              3<span class="vet">v</span> = <strong>(6, −3)</strong>,
+              −2<span class="vet">v</span> = <strong>(−4, 2)</strong> e
+              ½<span class="vet">v</span> = <strong>(1; −0,5)</strong>.
+            </p>
+          </div>
+
+          <h3>Vetor unitário (versor)</h3>
+          <p>
+            Um vetor de módulo 1 é chamado de <strong>unitário</strong>. Para obter o vetor
+            unitário com a mesma direção e sentido de <span class="vet">v</span>, basta dividir
+            <span class="vet">v</span> pelo seu módulo:
+          </p>
+          <div class="formula">versor de <span class="vet">v</span> = <span class="vet">v</span> / |<span class="vet">v</span>|</div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              <span class="vet">v</span> = (3, 4) tem módulo 5, então seu versor é
+              (3/5, 4/5) = <strong>(0,6; 0,8)</strong>, e √(0,6² + 0,8²) = √1 = 1.
+            </p>
+          </div>
+        </div>
+
+        <!-- ---------- LABORATÓRIO ---------- -->
+        <div class="laboratorio">
+          <h3>Monte e combine vetores</h3>
+          <p>
+            Escolha uma operação e mude as componentes de <span class="vet">u</span>,
+            de <span class="vet">v</span> e o número k. Você também pode
+            <strong>clicar no plano</strong> para mover a ponta dos vetores.
+          </p>
+
+          <fieldset class="escolha lab-operacao">
+            <legend>Operação</legend>
+            <label class="opcao"><input type="radio" name="l2-operacao" value="soma" checked> u + v</label>
+            <label class="opcao"><input type="radio" name="l2-operacao" value="subtracao"> u − v</label>
+            <label class="opcao"><input type="radio" name="l2-operacao" value="escalar"> k · u</label>
+          </fieldset>
+
+          <div class="lab-area">
+            <svg id="l2-plano" class="plano-cartesiano" viewBox="-11 -11 22 22"
+                 role="img" aria-label="Plano cartesiano com os vetores u, v e o resultado da operação"></svg>
+
+            <div class="lab-controles">
+              <fieldset class="lab-ponto lab-ponto-a">
+                <legend>Vetor u</legend>
+                <label>x <input type="number" id="l2-ux" value="3" min="-10" max="10" step="1"></label>
+                <label>y <input type="number" id="l2-uy" value="1" min="-10" max="10" step="1"></label>
+              </fieldset>
+              <fieldset class="lab-ponto lab-ponto-b">
+                <legend>Vetor v</legend>
+                <label>x <input type="number" id="l2-vx" value="1" min="-10" max="10" step="1"></label>
+                <label>y <input type="number" id="l2-vy" value="3" min="-10" max="10" step="1"></label>
+              </fieldset>
+              <fieldset class="lab-ponto lab-ponto-m">
+                <legend>Número k</legend>
+                <label>k <input type="number" id="l2-k" value="2" min="-3" max="3" step="0.5"></label>
+              </fieldset>
+              <p id="l2-dica-clique" class="lab-dica">Próximo clique no plano move a ponta de <strong>u</strong>.</p>
+              <button type="button" id="l2-sortear" class="btn-secundario">🎲 Vetores aleatórios</button>
+            </div>
+          </div>
+
+          <div id="l2-resultados" class="lab-resultados" aria-live="polite"></div>
+        </div>
+
+        <!-- ---------- EXERCÍCIOS ---------- -->
+        <!-- Mesmo formato da lição 1: data-resposta no grupo e
+             data-explicacao em todas as alternativas. -->
+        <div class="exercicios" data-licao="2">
+          <h3>Pratique</h3>
+          <p>Escolha uma alternativa em cada exercício. Acerte todos para liberar a lição 3.</p>
+
+          <ol class="lista-exercicios">
+            <li class="exercicio">
+              <p>Dados os pontos <strong>A(1, 2)</strong> e <strong>B(4, −2)</strong>, quais são as componentes do vetor <span class="vet">AB</span>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="l2-ex1" value="a"
+                  data-explicacao="AB = B − A = (4 − 1, −2 − 2) = (3, −4): o vetor anda 3 para a direita e 4 para baixo."> (3, −4)</label>
+                <label class="alternativa"><input type="radio" name="l2-ex1" value="b"
+                  data-explicacao="(−3, 4) é A − B, ou seja, o vetor BA, que aponta no sentido contrário. Para AB, faça ponto final menos ponto inicial: B − A."> (−3, 4)</label>
+                <label class="alternativa"><input type="radio" name="l2-ex1" value="c"
+                  data-explicacao="(5, 0) é A + B. As componentes de um vetor vêm da diferença entre os pontos, não da soma."> (5, 0)</label>
+                <label class="alternativa"><input type="radio" name="l2-ex1" value="d"
+                  data-explicacao="(4, −2) são as coordenadas do ponto B. Isso só seria o vetor AB se A fosse a origem (0, 0)."> (4, −2)</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Qual é o módulo do vetor <span class="vet">v</span> = <strong>(−6, 8)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="l2-ex2" value="a"
+                  data-explicacao="2 é −6 + 8, a soma das componentes. O módulo usa Pitágoras: √(x² + y²)."> 2</label>
+                <label class="alternativa"><input type="radio" name="l2-ex2" value="b"
+                  data-explicacao="14 é 6 + 8, a soma dos tamanhos das componentes (os catetos). O módulo é a hipotenusa, que é menor que essa soma."> 14</label>
+                <label class="alternativa"><input type="radio" name="l2-ex2" value="c"
+                  data-explicacao="100 é (−6)² + 8² = 36 + 64. Faltou o último passo: tirar a raiz quadrada."> 100</label>
+                <label class="alternativa"><input type="radio" name="l2-ex2" value="d"
+                  data-explicacao="|v| = √((−6)² + 8²) = √(36 + 64) = √100 = 10. O sinal negativo some ao elevar ao quadrado."> 10</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Se <span class="vet">u</span> = <strong>(2, −1)</strong> e <span class="vet">v</span> = <strong>(−3, 4)</strong>, quanto vale <span class="vet">u</span> + <span class="vet">v</span>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="l2-ex3" value="a"
+                  data-explicacao="(5, −5) é u − v: 2 − (−3) = 5 e −1 − 4 = −5. Na soma, as componentes são somadas."> (5, −5)</label>
+                <label class="alternativa"><input type="radio" name="l2-ex3" value="b"
+                  data-explicacao="(−6, −4) vem de multiplicar as componentes (2 · (−3) e −1 · 4). A soma de vetores é feita somando componente a componente."> (−6, −4)</label>
+                <label class="alternativa"><input type="radio" name="l2-ex3" value="c"
+                  data-explicacao="u + v = (2 + (−3), −1 + 4) = (−1, 3)."> (−1, 3)</label>
+                <label class="alternativa"><input type="radio" name="l2-ex3" value="d"
+                  data-explicacao="O y está certo (−1 + 4 = 3), mas houve erro de sinal no x: 2 + (−3) = −1, e não 1."> (1, 3)</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Se <span class="vet">w</span> = <strong>(2, −5)</strong>, quanto vale −2<span class="vet">w</span>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="l2-ex4" value="a"
+                  data-explicacao="Só a primeira componente foi multiplicada. O número k multiplica TODAS as componentes do vetor."> (−4, −5)</label>
+                <label class="alternativa"><input type="radio" name="l2-ex4" value="b"
+                  data-explicacao="−2w = (−2 · 2, −2 · (−5)) = (−4, 10). Repare que o sentido se inverteu, como esperado para k negativo."> (−4, 10)</label>
+                <label class="alternativa"><input type="radio" name="l2-ex4" value="c"
+                  data-explicacao="(0, −7) vem de somar −2 a cada componente. Multiplicar por um escalar não é o mesmo que somar."> (0, −7)</label>
+                <label class="alternativa"><input type="radio" name="l2-ex4" value="d"
+                  data-explicacao="(4, −10) é 2w. O sinal de menos do −2 foi esquecido; com ele, os sinais das componentes se invertem."> (4, −10)</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Se <span class="vet">u</span> = <strong>(4, 1)</strong> e <span class="vet">v</span> = <strong>(1, −3)</strong>, quanto vale <span class="vet">u</span> − <span class="vet">v</span>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="l2-ex5" value="a"
+                  data-explicacao="(5, −2) é u + v. Na subtração, cada componente de v é subtraída da de u."> (5, −2)</label>
+                <label class="alternativa"><input type="radio" name="l2-ex5" value="b"
+                  data-explicacao="(−3, −4) é v − u, a ordem invertida. Na subtração a ordem importa: v − u é o oposto de u − v."> (−3, −4)</label>
+                <label class="alternativa"><input type="radio" name="l2-ex5" value="c"
+                  data-explicacao="O x está certo, mas no y foi feito 1 − 3. O correto é 1 − (−3) = 1 + 3 = 4: subtrair um negativo é somar."> (3, −2)</label>
+                <label class="alternativa"><input type="radio" name="l2-ex5" value="d"
+                  data-explicacao="u − v = (4 − 1, 1 − (−3)) = (3, 4)."> (3, 4)</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Comparado ao vetor <span class="vet">v</span>, o vetor −3<span class="vet">v</span> tem:</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="l2-ex6" value="a"
+                  data-explicacao="O módulo realmente fica 3 vezes maior, mas o k é negativo, e k negativo inverte o sentido."> o mesmo sentido e módulo 3 vezes maior</label>
+                <label class="alternativa"><input type="radio" name="l2-ex6" value="b"
+                  data-explicacao="Como k = −3 é negativo, o sentido se inverte; e como |k| = 3, o módulo fica 3 vezes maior. A direção continua a mesma."> sentido oposto e módulo 3 vezes maior</label>
+                <label class="alternativa"><input type="radio" name="l2-ex6" value="c"
+                  data-explicacao="O sentido se inverte, sim, mas |−3| = 3 é maior que 1, então o vetor aumenta. Para diminuir, |k| teria que ser menor que 1."> sentido oposto e módulo 3 vezes menor</label>
+                <label class="alternativa"><input type="radio" name="l2-ex6" value="d"
+                  data-explicacao="Multiplicar por um número nunca muda a direção: k·v é sempre paralelo a v. Só o sentido e o tamanho podem mudar."> direção perpendicular a v</label>
+              </div>
+            </li>
+          </ol>
+        </div>
       </section>
 
       <!-- Lição 3 -->
@@ -410,6 +666,8 @@
   <script src="js/app.js"></script>
   <script src="js/matematica.js"></script>
   <script src="js/exercicios.js"></script>
+  <script src="js/plano.js"></script>
   <script src="js/licao-1.js"></script>
+  <script src="js/licao-2.js"></script>
 </body>
 </html>
