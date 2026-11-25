@@ -111,9 +111,177 @@
       <!-- Lição 1 -->
       <section id="licao-1" class="licao" data-licao="1">
         <h2 class="licao-titulo">1. Plano cartesiano e pontos</h2>
-        <div class="teoria"><p>Conteúdo em construção</p></div>
-        <div class="laboratorio"><p>Laboratório em construção</p></div>
-        <div class="exercicios"><p>Exercícios em construção</p></div>
+
+        <!-- ---------- TEORIA ---------- -->
+        <div class="teoria">
+          <h3>O plano cartesiano</h3>
+          <p>
+            O plano cartesiano é formado por duas retas numéricas perpendiculares:
+            o <strong>eixo x</strong> (horizontal, das <em>abscissas</em>) e o
+            <strong>eixo y</strong> (vertical, das <em>ordenadas</em>). Elas se cruzam
+            no ponto <strong>O(0, 0)</strong>, chamado de <strong>origem</strong>.
+          </p>
+
+          <h3>Coordenadas de um ponto</h3>
+          <p>
+            Todo ponto do plano é identificado por um <strong>par ordenado</strong>
+            <strong>P(x, y)</strong>: primeiro andamos <em>x</em> unidades na horizontal
+            (direita se positivo, esquerda se negativo) e depois <em>y</em> unidades na
+            vertical (para cima se positivo, para baixo se negativo).
+          </p>
+          <p>
+            A ordem importa: <strong>(2, 3)</strong> e <strong>(3, 2)</strong> são pontos diferentes.
+          </p>
+
+          <h3>Quadrantes</h3>
+          <p>
+            Os eixos dividem o plano em quatro regiões, os <strong>quadrantes</strong>,
+            numerados no sentido anti-horário a partir do canto superior direito.
+          </p>
+          <div class="tabela-rolagem">
+            <table class="tabela">
+              <thead>
+                <tr><th>Quadrante</th><th>Sinal de x</th><th>Sinal de y</th><th>Exemplo</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>1º</td><td>+</td><td>+</td><td>(3, 2)</td></tr>
+                <tr><td>2º</td><td>−</td><td>+</td><td>(−3, 2)</td></tr>
+                <tr><td>3º</td><td>−</td><td>−</td><td>(−3, −2)</td></tr>
+                <tr><td>4º</td><td>+</td><td>−</td><td>(3, −2)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Pontos com <strong>x = 0</strong> estão sobre o eixo y, e pontos com
+            <strong>y = 0</strong> estão sobre o eixo x. Esses pontos
+            <strong>não pertencem a nenhum quadrante</strong>.
+          </p>
+
+          <h3>Distância entre dois pontos</h3>
+          <p>
+            Dados A(x₁, y₁) e B(x₂, y₂), as diferenças <strong>Δx = x₂ − x₁</strong> e
+            <strong>Δy = y₂ − y₁</strong> formam os catetos de um triângulo retângulo cuja
+            hipotenusa é o segmento AB. Pelo Teorema de Pitágoras:
+          </p>
+          <div class="formula">d(A, B) = √[(x₂ − x₁)² + (y₂ − y₁)²]</div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              A(1, 1) e B(7, 9): Δx = 7 − 1 = 6 e Δy = 9 − 1 = 8.<br>
+              d = √(6² + 8²) = √(36 + 64) = √100 = <strong>10</strong>.
+            </p>
+          </div>
+
+          <h3>Ponto médio</h3>
+          <p>
+            O ponto médio M do segmento AB fica exatamente no meio do caminho:
+            cada coordenada é a média das coordenadas de A e B.
+          </p>
+          <div class="formula">M = ( (x₁ + x₂) / 2 , (y₁ + y₂) / 2 )</div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              A(2, 4) e B(8, 10): M = ( (2 + 8)/2 , (4 + 10)/2 ) = <strong>(5, 7)</strong>.
+            </p>
+          </div>
+        </div>
+
+        <!-- ---------- LABORATÓRIO ---------- -->
+        <div class="laboratorio">
+          <h3>Explore o plano</h3>
+          <p>
+            Digite as coordenadas de A e B ou <strong>clique no plano</strong> para
+            posicionar os pontos. Veja os quadrantes, a distância e o ponto médio
+            sendo calculados na hora.
+          </p>
+
+          <div class="lab-area">
+            <svg id="l1-plano" class="plano-cartesiano" viewBox="-11 -11 22 22"
+                 role="img" aria-label="Plano cartesiano com os pontos A e B"></svg>
+
+            <div class="lab-controles">
+              <fieldset class="lab-ponto lab-ponto-a">
+                <legend>Ponto A</legend>
+                <label>x <input type="number" id="l1-ax" value="-3" min="-10" max="10" step="1"></label>
+                <label>y <input type="number" id="l1-ay" value="-1" min="-10" max="10" step="1"></label>
+              </fieldset>
+              <fieldset class="lab-ponto lab-ponto-b">
+                <legend>Ponto B</legend>
+                <label>x <input type="number" id="l1-bx" value="4" min="-10" max="10" step="1"></label>
+                <label>y <input type="number" id="l1-by" value="3" min="-10" max="10" step="1"></label>
+              </fieldset>
+              <p id="l1-dica-clique" class="lab-dica">Próximo clique no plano move o ponto <strong>A</strong>.</p>
+              <button type="button" id="l1-sortear" class="btn-secundario">🎲 Pontos aleatórios</button>
+            </div>
+          </div>
+
+          <div id="l1-resultados" class="lab-resultados" aria-live="polite"></div>
+        </div>
+
+        <!-- ---------- EXERCÍCIOS ---------- -->
+        <!-- Cada campo tem data-resposta; js/exercicios.js corrige tudo.
+             Acertando todos, a lição é concluída e a próxima é liberada. -->
+        <div class="exercicios" data-licao="1">
+          <h3>Pratique</h3>
+          <p>Acerte todos os exercícios para liberar a lição 2. Pode usar vírgula ou ponto nos decimais.</p>
+
+          <ol class="lista-exercicios">
+            <li class="exercicio" data-dica="Olhe o sinal de cada coordenada: x negativo e y positivo.">
+              <p>Em qual quadrante está o ponto <strong>P(−3, 5)</strong>?</p>
+              <div class="resposta">
+                <select data-resposta="2" aria-label="Posição do ponto P">
+                  <option value="">Escolha…</option>
+                  <option value="1">1º quadrante</option>
+                  <option value="2">2º quadrante</option>
+                  <option value="3">3º quadrante</option>
+                  <option value="4">4º quadrante</option>
+                  <option value="eixo-x">Sobre o eixo x</option>
+                  <option value="eixo-y">Sobre o eixo y</option>
+                </select>
+              </div>
+            </li>
+
+            <li class="exercicio" data-dica="Quando uma das coordenadas é zero, o ponto não está em quadrante nenhum.">
+              <p>Onde está o ponto <strong>R(0, −7)</strong>?</p>
+              <div class="resposta">
+                <select data-resposta="eixo-y" aria-label="Posição do ponto R">
+                  <option value="">Escolha…</option>
+                  <option value="1">1º quadrante</option>
+                  <option value="2">2º quadrante</option>
+                  <option value="3">3º quadrante</option>
+                  <option value="4">4º quadrante</option>
+                  <option value="eixo-x">Sobre o eixo x</option>
+                  <option value="eixo-y">Sobre o eixo y</option>
+                </select>
+              </div>
+            </li>
+
+            <li class="exercicio" data-dica="Calcule Δx = 4 − 1 e Δy = 6 − 2, depois use √(Δx² + Δy²).">
+              <p>Qual é a distância entre <strong>A(1, 2)</strong> e <strong>B(4, 6)</strong>?</p>
+              <div class="resposta">
+                <label>d(A, B) = <input type="text" inputmode="decimal" class="campo-curto" data-resposta="5"></label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-dica="Some as abscissas e divida por 2; depois faça o mesmo com as ordenadas.">
+              <p>Qual é o ponto médio do segmento de <strong>C(−2, 3)</strong> a <strong>D(6, −5)</strong>?</p>
+              <div class="resposta">
+                M = (
+                <input type="text" inputmode="decimal" class="campo-curto" data-resposta="2" aria-label="Coordenada x do ponto médio">
+                ,
+                <input type="text" inputmode="decimal" class="campo-curto" data-resposta="-1" aria-label="Coordenada y do ponto médio">
+                )
+              </div>
+            </li>
+
+            <li class="exercicio" data-dica="Δx = 3 − (−2) = 5. Cuidado com o sinal ao calcular Δy.">
+              <p>Qual é a distância entre <strong>E(−2, −3)</strong> e <strong>F(3, 9)</strong>?</p>
+              <div class="resposta">
+                <label>d(E, F) = <input type="text" inputmode="decimal" class="campo-curto" data-resposta="13"></label>
+              </div>
+            </li>
+          </ol>
+        </div>
       </section>
 
       <!-- Lição 2 -->
@@ -221,5 +389,8 @@
   <div id="aviso" class="aviso" role="alert" hidden></div>
 
   <script src="js/app.js"></script>
+  <script src="js/matematica.js"></script>
+  <script src="js/exercicios.js"></script>
+  <script src="js/licao-1.js"></script>
 </body>
 </html>

@@ -385,9 +385,13 @@ function criarRodapesDasLicoes() {
     const rodape = document.createElement('div');
     rodape.className = 'licao-rodape';
 
-    // Botão provisório de concluir
-    const btnConcluir = criarBotao('Marcar como concluída', 'btn btn-concluir');
-    btnConcluir.dataset.concluir = String(n);
+    // Botão provisório de concluir: só nas lições que ainda não têm
+    // exercícios (.exercicio). Nas outras, quem conclui é o js/exercicios.js.
+    if (!secao.querySelector('.exercicio')) {
+      const btnConcluir = criarBotao('Marcar como concluída', 'btn btn-concluir');
+      btnConcluir.dataset.concluir = String(n);
+      rodape.append(btnConcluir);
+    }
 
     // Navegação entre lições
     const navegacao = document.createElement('div');
@@ -406,7 +410,7 @@ function criarRodapesDasLicoes() {
       navegacao.append(btnProxima);
     }
 
-    rodape.append(btnConcluir, navegacao);
+    rodape.append(navegacao);
     secao.append(rodape);
   });
 }

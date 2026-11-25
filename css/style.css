@@ -22,6 +22,7 @@
    17. Responsivo (celular)
    18. Acessibilidade e preferências
    19. Elementos e estados controlados pelo JavaScript
+   20. Conteúdo das lições (tabela, exemplo, laboratório, exercícios)
    ========================================================================= */
 
 
@@ -851,12 +852,14 @@ select:focus {
 }
 
 /* Campo marcado como certo/errado pelo JS */
-input.acerto {
+input.acerto,
+select.acerto {
   border-color: var(--cor-acerto);
   box-shadow: 0 0 0 3px var(--cor-acerto-fundo);
 }
 
-input.erro {
+input.erro,
+select.erro {
   border-color: var(--cor-erro);
   box-shadow: 0 0 0 3px var(--cor-erro-fundo);
 }
@@ -875,8 +878,8 @@ label {
 }
 
 /* Mensagens em bloco (div/p) — inputs têm estilo próprio na seção 12 */
-:not(input).acerto,
-:not(input).erro {
+:not(input):not(select).acerto,
+:not(input):not(select).erro {
   display: flex;
   align-items: flex-start;
   gap: var(--esp-2);
@@ -887,24 +890,24 @@ label {
   font-weight: 500;
 }
 
-:not(input).acerto {
+:not(input):not(select).acerto {
   background: var(--cor-acerto-fundo);
   border-color: var(--cor-acerto-borda);
   color: var(--cor-acerto);
 }
 
-:not(input).acerto::before {
+:not(input):not(select).acerto::before {
   content: "✓";
   font-weight: 700;
 }
 
-:not(input).erro {
+:not(input):not(select).erro {
   background: var(--cor-erro-fundo);
   border-color: var(--cor-erro-borda);
   color: var(--cor-erro);
 }
 
-:not(input).erro::before {
+:not(input):not(select).erro::before {
   content: "✕";
   font-weight: 700;
 }
@@ -1290,5 +1293,299 @@ a:focus-visible {
 
   .licao-navegacao > * {
     flex: 1 1 auto;
+  }
+}
+
+
+/* =========================================================================
+   20. CONTEÚDO DAS LIÇÕES
+   ========================================================================= */
+
+/* --- Espaço entre os tópicos da teoria --- */
+.teoria h3:not(:first-child) {
+  margin-top: var(--esp-6);
+}
+
+/* --- Tabelas --- */
+.tabela-rolagem {
+  overflow-x: auto;                /* tabela larga rola só dentro da caixa */
+  margin: var(--esp-4) 0;
+}
+
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.tabela th,
+.tabela td {
+  padding: var(--esp-2) var(--esp-3);
+  border-bottom: var(--borda);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.tabela th {
+  color: var(--cor-texto-suave);
+  font-size: var(--tamanho-pequeno);
+  font-weight: 600;
+}
+
+/* --- Caixa de exemplo resolvido --- */
+.exemplo {
+  margin: var(--esp-4) 0;
+  padding: var(--esp-3) var(--esp-4);
+  background: var(--cor-superficie-2);
+  border-radius: var(--raio);
+}
+
+.exemplo-titulo {
+  margin-bottom: var(--esp-1);
+  color: var(--cor-cartao);
+  font-size: var(--tamanho-pequeno);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* --- Laboratório: plano + controles lado a lado --- */
+.lab-area {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 210px;
+  gap: var(--esp-5);
+  align-items: start;
+  margin: var(--esp-4) 0;
+}
+
+.lab-controles {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-3);
+}
+
+.lab-ponto {
+  margin: 0;
+  padding: var(--esp-2) var(--esp-3) var(--esp-3);
+  border: var(--borda);
+  border-radius: var(--raio);
+  display: flex;
+  gap: var(--esp-3);
+}
+
+.lab-ponto legend {
+  padding: 0 var(--esp-1);
+  font-weight: 700;
+}
+
+.lab-ponto-a legend { color: var(--cor-teoria); }
+.lab-ponto-b legend { color: var(--cor-exercicios); }
+
+.lab-ponto label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-2);
+  font-weight: 600;
+}
+
+.lab-ponto input[type="number"] {
+  width: 4.5rem;
+}
+
+.lab-dica {
+  margin: 0;
+  font-size: var(--tamanho-pequeno);
+  color: var(--cor-texto-suave);
+}
+
+/* Resultados do laboratório */
+.lab-resultados {
+  display: grid;
+  gap: var(--esp-3);
+}
+
+.lab-resultado .formula {
+  margin: var(--esp-1) 0 0;
+  font-size: 1.05rem;
+}
+
+.lab-rotulo {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--cor-texto-suave);
+}
+
+.lab-rotulo-a { color: var(--cor-teoria); }
+.lab-rotulo-b { color: var(--cor-exercicios); }
+.lab-rotulo-m { color: var(--cor-laboratorio); }
+
+/* --- Plano cartesiano em SVG (cores seguem o tema) --- */
+.plano-cartesiano {
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 1 / 1;
+  background: var(--cor-superficie);
+  border: var(--borda);
+  border-radius: var(--raio);
+  cursor: crosshair;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.plano-grade {
+  stroke: var(--cor-borda);
+  stroke-width: 0.04;
+}
+
+.plano-eixo {
+  stroke: var(--cor-texto-suave);
+  stroke-width: 0.09;
+}
+
+.plano-rotulo {
+  fill: var(--cor-texto-suave);
+  font-family: var(--fonte-base);
+  font-size: 0.55px;              /* unidades do SVG: 1 = um quadradinho */
+}
+
+.plano-nome-eixo {
+  font-size: 0.75px;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.segmento {
+  stroke: var(--cor-texto);
+  stroke-width: 0.1;
+  stroke-linecap: round;
+}
+
+.cateto {
+  fill: none;
+  stroke: var(--cor-texto-suave);
+  stroke-width: 0.06;
+  stroke-dasharray: 0.3 0.2;
+}
+
+.ponto-a { fill: var(--cor-teoria); }
+.ponto-b { fill: var(--cor-exercicios); }
+.ponto-m { fill: var(--cor-laboratorio); }
+
+.rotulo-ponto,
+.rotulo-cateto {
+  font-family: var(--fonte-base);
+  paint-order: stroke;            /* contorno da cor do fundo deixa o texto legível */
+  stroke: var(--cor-superficie);
+  stroke-width: 0.18;
+  stroke-linejoin: round;
+}
+
+.rotulo-ponto {
+  fill: var(--cor-texto);
+  font-size: 0.65px;
+  font-weight: 700;
+}
+
+.rotulo-cateto {
+  fill: var(--cor-texto-suave);
+  font-size: 0.55px;
+  font-style: italic;
+}
+
+/* --- Exercícios --- */
+.lista-exercicios {
+  list-style: none;
+  margin: var(--esp-4) 0;
+  padding: 0;
+  counter-reset: exercicio;
+  display: grid;
+  gap: var(--esp-4);
+}
+
+.exercicio {
+  counter-increment: exercicio;
+  padding: var(--esp-4);
+  background: var(--cor-superficie-2);
+  border: 1px solid transparent;
+  border-radius: var(--raio);
+  transition: border-color var(--transicao);
+}
+
+/* Número do exercício antes do enunciado */
+.exercicio > p:first-child::before {
+  content: counter(exercicio) ". ";
+  font-weight: 700;
+  color: var(--cor-exercicios);
+}
+
+.exercicio > p:first-child {
+  margin-bottom: var(--esp-3);
+}
+
+.exercicio.correto {
+  border-color: var(--cor-acerto-borda);
+}
+
+.resposta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--esp-2);
+}
+
+.resposta label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-2);
+}
+
+input.campo-curto {
+  width: 5.5rem;
+}
+
+.exercicio select {
+  width: auto;
+  min-width: 12rem;
+}
+
+.exercicio .feedback {
+  margin-bottom: 0;
+  font-size: 0.95rem;
+}
+
+.exercicios-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--esp-3);
+}
+
+/* --- Celular --- */
+@media (max-width: 900px) {
+  .lab-area {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .plano-cartesiano {
+    margin-inline: auto;
+  }
+
+  .lab-controles {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .lab-ponto {
+    flex: 1 1 12rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .exercicio select {
+    width: 100%;
+    min-width: 0;
   }
 }
