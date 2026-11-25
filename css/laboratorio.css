@@ -118,36 +118,36 @@
 
 .plano-grade {
   stroke: var(--cor-borda);
-  stroke-width: 0.04;
+  stroke-width: calc(0.04 * var(--escala-plano, 1));
 }
 
 .plano-eixo {
   stroke: var(--cor-texto-suave);
-  stroke-width: 0.09;
+  stroke-width: calc(0.09 * var(--escala-plano, 1));
 }
 
 .plano-rotulo {
   fill: var(--cor-texto-suave);
   font-family: var(--fonte-base);
-  font-size: 0.55px;              /* unidades do SVG: 1 = um quadradinho */
+  font-size: calc(0.55px * var(--escala-plano, 1));              /* unidades do SVG: 1 = um quadradinho */
 }
 
 .plano-nome-eixo {
-  font-size: 0.75px;
+  font-size: calc(0.75px * var(--escala-plano, 1));
   font-style: italic;
   font-weight: 700;
 }
 
 .segmento {
   stroke: var(--cor-texto);
-  stroke-width: 0.1;
+  stroke-width: calc(0.1 * var(--escala-plano, 1));
   stroke-linecap: round;
 }
 
 .cateto {
   fill: none;
   stroke: var(--cor-texto-suave);
-  stroke-width: 0.06;
+  stroke-width: calc(0.06 * var(--escala-plano, 1));
   stroke-dasharray: 0.3 0.2;
 }
 
@@ -160,19 +160,19 @@
   font-family: var(--fonte-base);
   paint-order: stroke;            /* contorno da cor do fundo deixa o texto legível */
   stroke: var(--cor-superficie);
-  stroke-width: 0.18;
+  stroke-width: calc(0.18 * var(--escala-plano, 1));
   stroke-linejoin: round;
 }
 
 .rotulo-ponto {
   fill: var(--cor-texto);
-  font-size: 0.65px;
+  font-size: calc(0.65px * var(--escala-plano, 1));
   font-weight: 700;
 }
 
 .rotulo-cateto {
   fill: var(--cor-texto-suave);
-  font-size: 0.55px;
+  font-size: calc(0.55px * var(--escala-plano, 1));
   font-style: italic;
 }
 
@@ -190,7 +190,7 @@
 
 .seta-linha {
   stroke: var(--cor-vetor, var(--cor-texto));
-  stroke-width: 0.12;
+  stroke-width: calc(0.12 * var(--escala-plano, 1));
   stroke-linecap: round;
 }
 
@@ -201,7 +201,7 @@
 
 /* Cópias auxiliares (regra ponta com cauda) */
 .seta-linha.tracejado {
-  stroke-width: 0.07;
+  stroke-width: calc(0.07 * var(--escala-plano, 1));
   stroke-dasharray: 0.3 0.2;
 }
 
@@ -211,7 +211,7 @@
 
 /* Resultado de k·u desenhado por baixo de u, mais grosso */
 .seta-linha.vetor-largo {
-  stroke-width: 0.26;
+  stroke-width: calc(0.26 * var(--escala-plano, 1));
   opacity: 0.85;
 }
 
@@ -225,12 +225,12 @@
 /* Nome do vetor perto da ponta */
 .rotulo-vetor {
   font-family: var(--fonte-formula);
-  font-size: 0.75px;
+  font-size: calc(0.75px * var(--escala-plano, 1));
   font-style: italic;
   font-weight: 700;
   fill: var(--cor-vetor, var(--cor-texto));
   stroke: var(--cor-superficie);   /* contorno da cor do fundo: texto legível sobre as linhas */
-  stroke-width: 0.2;
+  stroke-width: calc(0.2 * var(--escala-plano, 1));
   stroke-linejoin: round;
   paint-order: stroke;
 }
@@ -244,7 +244,7 @@
 .arco-angulo {
   fill: none;
   stroke: var(--cor-texto);
-  stroke-width: 0.07;
+  stroke-width: calc(0.07 * var(--escala-plano, 1));
   stroke-linejoin: round;
 }
 
@@ -252,10 +252,10 @@
 .rotulo-angulo {
   fill: var(--cor-texto);
   font-family: var(--fonte-formula);
-  font-size: 0.7px;
+  font-size: calc(0.7px * var(--escala-plano, 1));
   font-style: italic;
   stroke: var(--cor-superficie);
-  stroke-width: 0.18;
+  stroke-width: calc(0.18 * var(--escala-plano, 1));
   stroke-linejoin: round;
   paint-order: stroke;
 }
@@ -283,7 +283,7 @@
    ========================================================================= */
 .reta {
   fill: none;
-  stroke-width: 0.09;
+  stroke-width: calc(0.09 * var(--escala-plano, 1));
   stroke-linecap: round;
 }
 
@@ -447,7 +447,7 @@
   fill: var(--cor-laboratorio);
   fill-opacity: 0.18;
   stroke: var(--cor-laboratorio);
-  stroke-width: 0.05;
+  stroke-width: calc(0.05 * var(--escala-plano, 1));
 }
 
 .regiao-det.negativa {
@@ -459,17 +459,17 @@
 .quadrado-unitario {
   fill: none;
   stroke: var(--cor-texto-suave);
-  stroke-width: 0.05;
+  stroke-width: calc(0.05 * var(--escala-plano, 1));
   stroke-dasharray: 0.2 0.15;
 }
 
 .rotulo-area {
   fill: var(--cor-texto);
   font-family: var(--fonte-base);
-  font-size: 0.6px;
+  font-size: calc(0.6px * var(--escala-plano, 1));
   font-weight: 700;
   stroke: var(--cor-superficie);
-  stroke-width: 0.16;
+  stroke-width: calc(0.16 * var(--escala-plano, 1));
   stroke-linejoin: round;
   paint-order: stroke;
 }

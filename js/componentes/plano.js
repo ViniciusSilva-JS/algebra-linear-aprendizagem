@@ -38,6 +38,12 @@ function criarPlanoCartesiano(svg, opcoes) {
   const lado = 2 * limite + 2;
   svg.setAttribute('viewBox', (-limite - 1) + ' ' + (-limite - 1) + ' ' + lado + ' ' + lado);
 
+  // Escala visual: com limite 10 vale 1. Com um plano menor (mais zoom), os
+  // textos e traços (CSS) e as pontas de seta encolhem na mesma proporção,
+  // para ficarem do mesmo tamanho na tela.
+  const escala = (limite + 1) / 11;
+  svg.style.setProperty('--escala-plano', escala);
+
 
   /* -----------------------------------------------------------------------
      1. CRIAÇÃO DE ELEMENTOS SVG
@@ -67,14 +73,14 @@ function criarPlanoCartesiano(svg, opcoes) {
     criar('line', { x1: -limite, y1: i, x2: limite, y2: i, class: classe }, fundo); // horizontal
 
     if (i !== 0 && i % passoRotulos === 0) {
-      criarTexto(formatarNumero(i), { x: i, y: 0.85, class: 'plano-rotulo', 'text-anchor': 'middle' }, fundo);
-      criarTexto(formatarNumero(i), { x: -0.35, y: -i + 0.2, class: 'plano-rotulo', 'text-anchor': 'end' }, fundo);
+      criarTexto(formatarNumero(i), { x: i, y: 0.85 * escala, class: 'plano-rotulo', 'text-anchor': 'middle' }, fundo);
+      criarTexto(formatarNumero(i), { x: -0.35 * escala, y: -i + 0.2 * escala, class: 'plano-rotulo', 'text-anchor': 'end' }, fundo);
     }
   }
 
-  criarTexto('x', { x: limite + 0.55, y: -0.35, class: 'plano-rotulo plano-nome-eixo', 'text-anchor': 'middle' }, fundo);
-  criarTexto('y', { x: 0.45, y: -limite - 0.4, class: 'plano-rotulo plano-nome-eixo' }, fundo);
-  criarTexto('O', { x: -0.35, y: 0.85, class: 'plano-rotulo', 'text-anchor': 'end' }, fundo);
+  criarTexto('x', { x: limite + 0.55, y: -0.35 * escala, class: 'plano-rotulo plano-nome-eixo', 'text-anchor': 'middle' }, fundo);
+  criarTexto('y', { x: 0.45 * escala, y: -limite - 0.4, class: 'plano-rotulo plano-nome-eixo' }, fundo);
+  criarTexto('O', { x: -0.35 * escala, y: 0.85 * escala, class: 'plano-rotulo', 'text-anchor': 'end' }, fundo);
 
   // Recorte: os desenhos não passam da área da grade (com meia unidade de folga,
   // para pontos e rótulos na borda não ficarem cortados ao meio).
@@ -144,7 +150,7 @@ function criarPlanoCartesiano(svg, opcoes) {
     const uy = dy / comprimento;
 
     // tamanho da ponta (menor em setas muito curtas)
-    const tamanho = Math.min(0.65, comprimento * 0.5);
+    const tamanho = Math.min(0.65 * escala, comprimento * 0.5);
     const largura = tamanho * 0.5;
 
     // base da ponta: recua "tamanho" a partir da ponta
@@ -183,8 +189,8 @@ function criarPlanoCartesiano(svg, opcoes) {
     const dy = y2 - y1;
     const comprimento = Math.hypot(dx, dy);
     if (comprimento < 1e-9) return null;
-    const tx = x2 + (dx / comprimento) * 0.7;
-    const ty = y2 + (dy / comprimento) * 0.7 - 0.2;
+    const tx = x2 + (dx / comprimento) * 0.7 * escala;
+    const ty = y2 + (dy / comprimento) * 0.7 * escala - 0.2 * escala;
     return texto(conteudo, tx, ty, classe, 'middle');
   }
 
@@ -226,5 +232,5 @@ function criarPlanoCartesiano(svg, opcoes) {
     return Math.abs(x) <= limite && Math.abs(y) <= limite;
   }
 
-  return { limite, limpar, linha, poligonal, poligono, ponto, texto, seta, rotuloSeta, arco, reta, pontoDoClique, cabe };
+  return { limite, escala, limpar, linha, poligonal, poligono, ponto, texto, seta, rotuloSeta, arco, reta, pontoDoClique, cabe };
 }

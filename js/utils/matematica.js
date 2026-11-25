@@ -12,6 +12,7 @@
    7. Determinantes
    8. Sistemas lineares
    9. Matriz inversa
+   10. Transformações lineares no plano
    ========================================================================= */
 
 'use strict';
@@ -482,4 +483,26 @@ function inversaComPassos(A) {
   }
 
   return { inversa: M.map((linha) => linha.slice(n)), passos: passos };
+}
+
+
+/* =========================================================================
+   10. TRANSFORMAÇÕES LINEARES NO PLANO
+   ========================================================================= */
+
+/** Aplica a matriz 2×2 M ao ponto/vetor p = {x, y}: devolve M·p. */
+function aplicarMatriz(M, p) {
+  return { x: M[0][0] * p.x + M[0][1] * p.y, y: M[1][0] * p.x + M[1][1] * p.y };
+}
+
+/**
+ * Matriz de rotação de `graus` no sentido anti-horário:
+ * [[cos θ, −sen θ], [sen θ, cos θ]]. Valores como 6e-17 viram 0.
+ */
+function matrizRotacao(graus) {
+  const t = graus * Math.PI / 180;
+  const limpo = (v) => (Math.abs(v) < 1e-12 ? 0 : v);
+  const c = limpo(Math.cos(t));
+  const s = limpo(Math.sin(t));
+  return [[c, limpo(-s)], [s, c]];
 }
