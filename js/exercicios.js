@@ -18,18 +18,23 @@
          <div class="alternativas" data-resposta="b">
            <label class="alternativa">
              <input type="radio" name="ex1" value="a"
-                    data-dica="Explica este engano"> 25
+                    data-explicacao="Por que 25 está errada"> 25
            </label>
            <label class="alternativa">
-             <input type="radio" name="ex1" value="b"> 5
+             <input type="radio" name="ex1" value="b"
+                    data-explicacao="Por que 5 está certa"> 5
            </label>
          </div>
        </li>
      </ol>
    </div>
 
-   - Na múltipla escolha, o data-dica da alternativa errada escolhida tem
-     prioridade sobre a dica geral do exercício.
+   - Múltipla escolha com data-explicacao em cada alternativa:
+     • errou → mostra a explicação da alternativa escolhida (por que está
+       errada), sem revelar a certa;
+     • acertou → abre o quadro "Por que cada alternativa?" com a
+       explicação de TODAS as alternativas.
+   - Sem explicação na alternativa, usa a data-dica geral do exercício.
 
    - Um exercício está certo quando TODOS os seus campos estão certos.
    - Acertando todos, chama concluirLicao(n) (do js/app.js).
@@ -100,6 +105,15 @@ function prepararBlocoDeExercicios(bloco) {
     evento.target.classList.remove('acerto', 'erro');
     const grupo = evento.target.closest('.alternativas');
     if (grupo) limparAlternativas(grupo);
+
+    // Mudou a resposta: esconde o feedback e a explicação até verificar de novo.
+    const exercicio = evento.target.closest('.exercicio');
+    if (exercicio) {
+      exercicio.classList.remove('correto');
+      const feedback = exercicio.querySelector('.feedback');
+      if (feedback) feedback.hidden = true;
+      atualizarExplicacaoCompleta(exercicio, false);
+    }
   });
 }
 
@@ -158,7 +172,7 @@ function corrigirExercicio(exercicio) {
 
   let algumVazio = false;
   let tudoCerto = true;
-  let dicaEspecifica = null; // dica da alternativa errada escolhida
+  let explicacaoDoErro = null; // explicação da alternativa errada escolhida
 
   campos.forEach((campo) => {
     const resultado = corrigirCampo(campo);
@@ -169,7 +183,9 @@ function corrigirExercicio(exercicio) {
       limparAlternativas(campo);
       if (marcada) {
         marcada.closest('.alternativa').classList.add(resultado === 'certo' ? 'certa' : 'errada');
-        if (resultado === 'errado' && marcada.dataset.dica) dicaEspecifica = marcada.dataset.dica;
+        if (resultado === 'errado') {
+          explicacaoDoErro = marcada.dataset.explicacao || marcada.dataset.dica || null;
+        }
       }
       if (resultado === 'vazio') algumVazio = true;
       if (resultado !== 'certo') tudoCerto = false;
@@ -197,15 +213,75 @@ function corrigirExercicio(exercicio) {
   } else if (algumVazio) {
     feedback.textContent = 'Responda este exercício antes de verificar.';
     feedback.classList.add('erro');
+  } else if (explicacaoDoErro) {
+    feedback.textContent = 'Ainda não. ' + explicacaoDoErro;
+    feedback.classList.add('erro');
   } else {
-    const dica = dicaEspecifica || exercicio.dataset.dica;
+    const dica = exercicio.dataset.dica;
     feedback.textContent = dica ? 'Ainda não. Dica: ' + dica : 'Ainda não. Tente de novo.';
     feedback.classList.add('erro');
   }
   feedback.hidden = false;
 
+  // Explicação completa: só aparece depois de acertar.
+  atualizarExplicacaoCompleta(exercicio, tudoCerto);
+
   exercicio.classList.toggle('correto', tudoCerto);
   return tudoCerto;
+}
+
+/**
+ * Cria (ou remove) o quadro "Por que cada alternativa?" com a explicação
+ * de todas as alternativas do exercício: ✓ na certa e ✕ nas erradas.
+ */
+function atualizarExplicacaoCompleta(exercicio, mostrar) {
+  const antigo = exercicio.querySelector('.explicacao');
+  if (antigo) antigo.remove();
+  if (!mostrar) return;
+
+  const grupos = exercicio.querySelectorAll('.alternativas');
+  if (grupos.length === 0) return;
+
+  const quadro = document.createElement('details');
+  quadro.className = 'explicacao';
+  quadro.open = true;
+
+  const titulo = document.createElement('summary');
+  titulo.textContent = 'Por que cada alternativa?';
+  quadro.append(titulo);
+
+  const lista = document.createElement('ul');
+  lista.className = 'explicacao-lista';
+
+  grupos.forEach((grupo) => {
+    const certa = grupo.dataset.resposta;
+    const opcoes = Array.from(grupo.querySelectorAll('.alternativa'));
+
+    opcoes.forEach((rotulo, indice) => {
+      const radio = rotulo.querySelector('input[type="radio"]');
+      if (!radio || !radio.dataset.explicacao) return;
+
+      const ehCerta = radio.value === certa;
+      const letra = String.fromCharCode(97 + indice); // 0 → "a", 1 → "b"...
+
+      const item = document.createElement('li');
+      item.className = ehCerta ? 'explicacao-certa' : 'explicacao-errada';
+
+      const cabecalho = document.createElement('strong');
+      cabecalho.textContent = (ehCerta ? '✓ ' : '✕ ') + letra + ') ' + rotulo.textContent.trim() +
+        (ehCerta ? ' — correta' : ' — errada');
+
+      const texto = document.createElement('span');
+      texto.textContent = radio.dataset.explicacao;
+
+      item.append(cabecalho, texto);
+      lista.append(item);
+    });
+  });
+
+  if (lista.children.length === 0) return;
+  quadro.append(lista);
+  exercicio.append(quadro);
 }
 
 

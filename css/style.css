@@ -1665,3 +1665,50 @@ input.campo-curto {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* --- Explicação de todas as alternativas (aparece ao acertar) --- */
+.explicacao {
+  margin-top: var(--esp-3);
+  padding: var(--esp-3) var(--esp-4);
+  background: var(--cor-superficie);
+  border: var(--borda);
+  border-radius: var(--raio);
+}
+
+.explicacao summary {
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--cor-texto);
+}
+
+.explicacao-lista {
+  list-style: none;
+  margin: var(--esp-3) 0 0;
+  padding: 0;
+  display: grid;
+  gap: var(--esp-3);
+}
+
+.explicacao-lista li {
+  display: grid;
+  gap: var(--esp-1);
+  padding-left: var(--esp-3);
+  border-left: 3px solid var(--cor-borda);
+  font-size: 0.95rem;
+}
+
+.explicacao-lista li span {
+  color: var(--cor-texto-suave);
+}
+
+.explicacao-lista .explicacao-certa {
+  border-left-color: var(--cor-acerto);
+}
+
+.explicacao-certa strong {
+  color: var(--cor-acerto);
+}
+
+.explicacao-errada strong {
+  color: var(--cor-erro);
+}
