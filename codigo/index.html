@@ -2070,9 +2070,261 @@
       <!-- Lição 10 -->
       <section id="licao-10" class="licao" data-licao="10">
         <h2 class="licao-titulo">10. Transformações lineares no plano</h2>
-        <div class="teoria"><p>Conteúdo em construção</p></div>
-        <div class="laboratorio"><p>Laboratório em construção</p></div>
-        <div class="exercicios"><p>Exercícios em construção</p></div>
+
+        <!-- ---------- TEORIA ---------- -->
+        <div class="teoria">
+          <h3>O que é uma transformação</h3>
+          <p>
+            Uma <strong>transformação</strong> T do plano é uma regra que leva cada vetor (ou ponto)
+            (x, y) a um novo vetor T(x, y). Girar, espelhar, esticar e inclinar figuras são exemplos.
+            Ela é <strong>linear</strong> quando respeita a soma e a multiplicação por número:
+          </p>
+          <div class="formula">T(u + v) = T(u) + T(v) &nbsp;&nbsp;e&nbsp;&nbsp; T(k·u) = k·T(u)</div>
+          <p>
+            Na prática, isso quer dizer que a <strong>origem fica parada</strong> (T(0, 0) = (0, 0)),
+            <strong>retas continuam retas</strong> e retas paralelas continuam paralelas. A grade
+            quadriculada pode virar uma grade de paralelogramos, mas nunca se curva.
+          </p>
+          <p>
+            Por isso, <strong>transladar</strong> (empurrar tudo para o lado, como
+            T(x, y) = (x + 1, y)) <strong>não</strong> é linear: a origem sairia do lugar.
+          </p>
+
+          <h3>Toda transformação linear é uma matriz</h3>
+          <p>
+            Todo vetor é uma combinação dos vetores da base
+            <span class="vet">i</span> = (1, 0) e <span class="vet">j</span> = (0, 1):
+            (x, y) = x·<span class="vet">i</span> + y·<span class="vet">j</span>. Pela linearidade,
+          </p>
+          <div class="formula">T(x, y) = x·T(<span class="vet">i</span>) + y·T(<span class="vet">j</span>)</div>
+          <p>
+            Ou seja, basta saber para onde vão <span class="vet">i</span> e <span class="vet">j</span>.
+            Colocando T(<span class="vet">i</span>) e T(<span class="vet">j</span>) como
+            <strong>colunas</strong> de uma matriz A, aplicar T é multiplicar A pelo vetor:
+          </p>
+          <div class="formula">T(x, y) = A · <span class="matriz"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">x</span><span class="matriz-el">y</span></span></span> = <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">a</span><span class="matriz-el">b</span><span class="matriz-el">c</span><span class="matriz-el">d</span></span></span> · <span class="matriz"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">x</span><span class="matriz-el">y</span></span></span> = <span class="matriz"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">ax + by</span><span class="matriz-el">cx + dy</span></span></span></div>
+          <p>A 1ª coluna (a, c) é T(<span class="vet">i</span>), e a 2ª coluna (b, d) é T(<span class="vet">j</span>).</p>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              Se T(<span class="vet">i</span>) = (2, 1) e T(<span class="vet">j</span>) = (−1, 1), então
+              A = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">−1</span><span class="matriz-el">1</span><span class="matriz-el">1</span></span></span>.
+              Para onde vai o ponto (3, 2)?
+            </p>
+            <p>
+              A · <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">3</span><span class="matriz-el">2</span></span></span>
+              = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">2·3 + (−1)·2</span><span class="matriz-el">1·3 + 1·2</span></span></span>
+              = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">4</span><span class="matriz-el">5</span></span></span>,
+              ou seja, <strong>T(3, 2) = (4, 5)</strong>.
+            </p>
+            <p>Conferindo pelas colunas: 3·T(<span class="vet">i</span>) + 2·T(<span class="vet">j</span>) = (6, 3) + (−2, 2) = (4, 5) ✓</p>
+          </div>
+
+          <h3>Transformações importantes</h3>
+          <div class="tabela-rolagem">
+            <table class="tabela">
+              <thead>
+                <tr><th>Transformação</th><th>Matriz</th><th>(x, y) vira…</th><th>det</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Escala por k</td><td><span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">k</span><span class="matriz-el">0</span><span class="matriz-el">0</span><span class="matriz-el">k</span></span></span></td><td>(kx, ky)</td><td>k²</td></tr>
+                <tr><td>Reflexão no eixo x</td><td><span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">0</span><span class="matriz-el">0</span><span class="matriz-el">−1</span></span></span></td><td>(x, −y)</td><td>−1</td></tr>
+                <tr><td>Reflexão no eixo y</td><td><span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">−1</span><span class="matriz-el">0</span><span class="matriz-el">0</span><span class="matriz-el">1</span></span></span></td><td>(−x, y)</td><td>−1</td></tr>
+                <tr><td>Reflexão na reta y = x</td><td><span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">0</span><span class="matriz-el">1</span><span class="matriz-el">1</span><span class="matriz-el">0</span></span></span></td><td>(y, x)</td><td>−1</td></tr>
+                <tr><td>Rotação de θ (anti-horária)</td><td><span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">cos θ</span><span class="matriz-el">−sen θ</span><span class="matriz-el">sen θ</span><span class="matriz-el">cos θ</span></span></span></td><td>(x·cos θ − y·sen θ, x·sen θ + y·cos θ)</td><td>1</td></tr>
+                <tr><td>Cisalhamento horizontal</td><td><span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">k</span><span class="matriz-el">0</span><span class="matriz-el">1</span></span></span></td><td>(x + ky, y)</td><td>1</td></tr>
+                <tr><td>Projeção no eixo x</td><td><span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">0</span><span class="matriz-el">0</span><span class="matriz-el">0</span></span></span></td><td>(x, 0)</td><td>0</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              Rotação de 90°: cos 90° = 0 e sen 90° = 1, então
+              A = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">0</span><span class="matriz-el">−1</span><span class="matriz-el">1</span><span class="matriz-el">0</span></span></span>.
+              O ponto (3, 1) vai para (0·3 + (−1)·1, 1·3 + 0·1) = <strong>(−1, 3)</strong>.
+            </p>
+          </div>
+
+          <h3>Composição: uma transformação depois da outra</h3>
+          <p>
+            Aplicar primeiro B e depois A é o mesmo que aplicar a matriz <strong>A·B</strong>
+            (lê-se da direita para a esquerda, como em A·(B·v)). Como a multiplicação de matrizes
+            não é comutativa (lição 6), a <strong>ordem importa</strong>.
+          </p>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              G = rotação de 90° = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">0</span><span class="matriz-el">−1</span><span class="matriz-el">1</span><span class="matriz-el">0</span></span></span>
+              e R = reflexão no eixo x = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">0</span><span class="matriz-el">0</span><span class="matriz-el">−1</span></span></span>.
+            </p>
+            <p>
+              Primeiro girar, depois refletir: R·G =
+              <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1·0 + 0·1</span><span class="matriz-el">1·(−1) + 0·0</span><span class="matriz-el">0·0 + (−1)·1</span><span class="matriz-el">0·(−1) + (−1)·0</span></span></span>
+              = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">0</span><span class="matriz-el">−1</span><span class="matriz-el">−1</span><span class="matriz-el">0</span></span></span>.
+            </p>
+            <p>
+              Na ordem contrária, G·R = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">0</span><span class="matriz-el">1</span><span class="matriz-el">1</span><span class="matriz-el">0</span></span></span>,
+              que é outra transformação (a reflexão na reta y = x).
+            </p>
+          </div>
+
+          <h3>O que o determinante conta</h3>
+          <ul>
+            <li><strong>|det A|</strong> é o fator de área: toda figura tem a área multiplicada por |det A| (lição 7).</li>
+            <li><strong>det A &lt; 0</strong>: a transformação espelha o plano (a figura aparece "do avesso").</li>
+            <li><strong>det A = 0</strong>: o plano é achatado em uma reta ou em um ponto. Pontos diferentes caem no mesmo lugar, então não há como desfazer: A não tem inversa (lição 9).</li>
+            <li><strong>det A ≠ 0</strong>: a inversa A⁻¹ é a transformação que desfaz A. Ex.: a inversa da rotação de 90° é a rotação de −90°.</li>
+          </ul>
+        </div>
+
+        <!-- ---------- LABORATÓRIO ---------- -->
+        <div class="laboratorio">
+          <h3>Veja a matriz deformar o plano</h3>
+          <p>
+            A letra <strong>F</strong> tracejada é a figura original; a verde é a figura depois da
+            transformação. As setas são T(<span class="vet">i</span>) e T(<span class="vet">j</span>),
+            as colunas da matriz, e a grade roxa mostra o que acontece com o plano inteiro.
+            Escolha um modelo, edite a matriz ou clique no plano.
+          </p>
+
+          <div class="lab-area controles-largos" id="l10-area">
+            <svg id="l10-plano" class="plano-cartesiano" viewBox="-7 -7 14 14"
+                 role="img" aria-label="Letra F original e transformada pela matriz, com a grade transformada"></svg>
+
+            <div class="lab-controles">
+              <label class="lab-campo">
+                Modelo
+                <select id="l10-modelo">
+                  <option value="identidade">Identidade (não muda nada)</option>
+                  <option value="escala">Escala por 2</option>
+                  <option value="esticar">Esticar só na horizontal</option>
+                  <option value="reflexao-x">Reflexão no eixo x</option>
+                  <option value="reflexao-y">Reflexão no eixo y</option>
+                  <option value="reflexao-yx">Reflexão na reta y = x</option>
+                  <option value="rotacao" selected>Rotação</option>
+                  <option value="cisalhamento">Cisalhamento</option>
+                  <option value="projecao">Projeção no eixo x</option>
+                  <option value="personalizada">Personalizada</option>
+                </select>
+              </label>
+
+              <label class="lab-campo" id="l10-angulo-campo">
+                <span>Ângulo θ = <output id="l10-angulo-valor" for="l10-angulo">45°</output></span>
+                <input type="range" id="l10-angulo" min="-180" max="180" step="15" value="45">
+              </label>
+
+              <span class="lab-rotulo">Matriz A</span>
+              <div id="l10-a"></div>
+              <p id="l10-dica" class="lab-dica">Clique no plano para mover a ponta de <strong>T(i)</strong>.</p>
+
+              <label class="lab-check"><input type="checkbox" id="l10-grade" checked> Mostrar a grade transformada</label>
+              <button type="button" id="l10-animar" class="btn-secundario">▶ Animar a transformação</button>
+            </div>
+          </div>
+
+          <div id="l10-resultados" class="lab-resultados" aria-live="polite"></div>
+        </div>
+
+        <!-- ---------- EXERCÍCIOS ---------- -->
+        <div class="exercicios" data-licao="10">
+          <h3>Pratique</h3>
+          <p>Escolha uma alternativa em cada exercício. Acerte todos para liberar a lição 11.</p>
+
+          <ol class="lista-exercicios">
+            <li class="exercicio">
+              <p>A matriz <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">0</span><span class="matriz-el">0</span><span class="matriz-el">−1</span></span></span> leva o ponto (3, 2) em:</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="l10-ex1" value="a"
+                  data-explicacao="Esse seria o resultado da reflexão no eixo y, que troca o sinal do x. Aqui o −1 está na 2ª linha, então quem muda de sinal é o y."> (−3, 2)</label>
+                <label class="alternativa"><input type="radio" name="l10-ex1" value="b"
+                  data-explicacao="Trocar x e y de lugar é a reflexão na reta y = x, cuja matriz tem 0 na diagonal e 1 fora dela."> (2, 3)</label>
+                <label class="alternativa"><input type="radio" name="l10-ex1" value="c"
+                  data-explicacao="A · (3, 2) = (1·3 + 0·2, 0·3 + (−1)·2) = (3, −2). É a reflexão no eixo x: o x fica, o y troca de sinal."> (3, −2)</label>
+                <label class="alternativa"><input type="radio" name="l10-ex1" value="d"
+                  data-explicacao="Os dois sinais mudaram, o que é a rotação de 180° (matriz −I). Na 1ª linha, 1·3 + 0·2 = 3 continua positivo."> (−3, −2)</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Qual matriz gira o plano <strong>90° no sentido anti-horário</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="l10-ex2" value="a"
+                  data-explicacao="Com θ = 90°: cos θ = 0 e sen θ = 1, então [cos θ  −sen θ; sen θ  cos θ] = [0 −1; 1 0]. Conferindo: i = (1, 0) vai para a 1ª coluna, (0, 1), que é i girado 90°."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">0</span><span class="matriz-el">−1</span><span class="matriz-el">1</span><span class="matriz-el">0</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l10-ex2" value="b"
+                  data-explicacao="Essa gira 90° no sentido HORÁRIO: i = (1, 0) vai para a 1ª coluna, (0, −1), que aponta para baixo. O sinal de menos ficou no lugar errado."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">0</span><span class="matriz-el">1</span><span class="matriz-el">−1</span><span class="matriz-el">0</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l10-ex2" value="c"
+                  data-explicacao="Essa é a reflexão na reta y = x (troca x e y). Tem det = −1, enquanto toda rotação tem det = 1."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">0</span><span class="matriz-el">1</span><span class="matriz-el">1</span><span class="matriz-el">0</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l10-ex2" value="d"
+                  data-explicacao="Essa é a rotação de 180° (cos 180° = −1, sen 180° = 0): cada vetor passa a apontar para o lado oposto."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">−1</span><span class="matriz-el">0</span><span class="matriz-el">0</span><span class="matriz-el">−1</span></span></span></label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Uma transformação linear leva <span class="vet">i</span> = (1, 0) em (2, 1) e <span class="vet">j</span> = (0, 1) em (−1, 3). Qual é a sua matriz?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="l10-ex3" value="a"
+                  data-explicacao="As imagens foram escritas como LINHAS. Elas precisam ser as COLUNAS: assim, A·(1, 0) devolve exatamente a 1ª coluna, (2, 1)."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">1</span><span class="matriz-el">−1</span><span class="matriz-el">3</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l10-ex3" value="b"
+                  data-explicacao="As colunas estão trocadas: a 1ª coluna precisa ser T(i) = (2, 1), e a 2ª, T(j) = (−1, 3)."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">−1</span><span class="matriz-el">2</span><span class="matriz-el">3</span><span class="matriz-el">1</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l10-ex3" value="c"
+                  data-explicacao="Esse é T(1, 1) = T(i) + T(j) = (2 − 1, 1 + 3) = (1, 4): um vetor, não a matriz da transformação."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">1</span><span class="matriz-el">4</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l10-ex3" value="d"
+                  data-explicacao="T(i) = (2, 1) é a 1ª coluna e T(j) = (−1, 3) é a 2ª. Conferindo: A·(1, 0) = (2, 1) ✓ e A·(0, 1) = (−1, 3) ✓."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">−1</span><span class="matriz-el">1</span><span class="matriz-el">3</span></span></span></label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Qual destas transformações <strong>não</strong> é linear?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="l10-ex4" value="a"
+                  data-explicacao="É linear: é a matriz [2 0; 0 3], que estica 2 vezes na horizontal e 3 na vertical."> T(x, y) = (2x, 3y)</label>
+                <label class="alternativa"><input type="radio" name="l10-ex4" value="b"
+                  data-explicacao="Não é linear: T(0, 0) = (1, 0), e toda transformação linear deixa a origem parada. Somar uma constante é uma translação, que não pode ser escrita como A·(x, y)."> T(x, y) = (x + 1, y)</label>
+                <label class="alternativa"><input type="radio" name="l10-ex4" value="c"
+                  data-explicacao="É linear: é a matriz [0 1; 1 0], a reflexão na reta y = x."> T(x, y) = (y, x)</label>
+                <label class="alternativa"><input type="radio" name="l10-ex4" value="d"
+                  data-explicacao="É linear: cada coordenada é uma combinação de x e y sem termo constante. A matriz é [1 1; 1 −1]."> T(x, y) = (x + y, x − y)</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>
+                R = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">0</span><span class="matriz-el">0</span><span class="matriz-el">−1</span></span></span> (reflexão no eixo x) e
+                G = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">0</span><span class="matriz-el">−1</span><span class="matriz-el">1</span><span class="matriz-el">0</span></span></span> (rotação de 90°).
+                Qual matriz faz <strong>primeiro a reflexão e depois a rotação</strong>?
+              </p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="l10-ex5" value="a"
+                  data-explicacao="Esse é R·G, que faz primeiro a ROTAÇÃO (G atua primeiro sobre o vetor, por estar mais perto dele). A ordem foi invertida."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">0</span><span class="matriz-el">−1</span><span class="matriz-el">−1</span><span class="matriz-el">0</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l10-ex5" value="b"
+                  data-explicacao="Essa é a soma R + G. Fazer uma transformação depois da outra corresponde ao PRODUTO das matrizes, não à soma."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">−1</span><span class="matriz-el">1</span><span class="matriz-el">−1</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l10-ex5" value="c"
+                  data-explicacao="Primeiro R e depois G é G·R (a primeira fica à direita, perto do vetor): G·R = [0·1 + (−1)·0, 0·0 + (−1)(−1); 1·1 + 0·0, 1·0 + 0·(−1)] = [0 1; 1 0]. Resultado: a reflexão na reta y = x."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">0</span><span class="matriz-el">1</span><span class="matriz-el">1</span><span class="matriz-el">0</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l10-ex5" value="d"
+                  data-explicacao="Os elementos foram multiplicados posição por posição (1·0, 0·(−1)…). O produto de matrizes é linha × coluna."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">0</span><span class="matriz-el">0</span><span class="matriz-el">0</span><span class="matriz-el">0</span></span></span></label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>
+                Uma figura de área 3 passa pelo cisalhamento
+                <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el">0</span><span class="matriz-el">1</span></span></span>.
+                Qual é a área da figura transformada?
+              </p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="l10-ex6" value="a"
+                  data-explicacao="O 2 inclina a figura, mas não é o fator de área. Quem dá esse fator é o determinante: 1·1 − 2·0 = 1."> 6</label>
+                <label class="alternativa"><input type="radio" name="l10-ex6" value="b"
+                  data-explicacao="det = 1·1 − 2·0 = 1, então a área é multiplicada por 1: continua 3. O cisalhamento inclina a figura como um baralho empurrado de lado, sem mudar a área."> 3</label>
+                <label class="alternativa"><input type="radio" name="l10-ex6" value="c"
+                  data-explicacao="Foram somados todos os elementos (1 + 2 + 0 + 1 = 4) e multiplicados por 3. O fator de área é o determinante, não a soma dos elementos."> 12</label>
+                <label class="alternativa"><input type="radio" name="l10-ex6" value="d"
+                  data-explicacao="A área só vira zero quando det = 0 (a figura é achatada em uma reta). Aqui det = 1."> 0</label>
+              </div>
+            </li>
+          </ol>
+        </div>
       </section>
 
       <!-- Lição 11 -->
@@ -2126,5 +2378,6 @@
   <script src="js/licoes/licao-07.js"></script>
   <script src="js/licoes/licao-08.js"></script>
   <script src="js/licoes/licao-09.js"></script>
+  <script src="js/licoes/licao-10.js"></script>
 </body>
 </html>

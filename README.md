@@ -5,37 +5,42 @@ Cada lição tem **Teoria**, **Laboratório** (interativo) e **Exercícios** (m�
 escolha). Acertar todos os exercícios libera a próxima lição.
 
 HTML, CSS e JavaScript puros, sem bibliotecas e sem servidor: basta abrir o
-`index.html` no navegador.
+`codigo/index.html` no navegador.
 
 ## Estrutura
 
 ```
-index.html                  Página única: cabeçalho, trilha e o conteúdo das 12 lições
-css/
-  base.css                  Variáveis (cores, fontes, espaços), tema claro/escuro, reset, tipografia
-  layout.css                Cabeçalho, trilha (nav), grade da página, cartões das lições, rodapé
-  componentes.css           Botões, campos, mensagens, aviso, fórmula, notação de vetor, progresso, tabela
-  exercicios.css            Lista de exercícios, alternativas e quadro de explicações
-  laboratorio.css           Área do laboratório, plano cartesiano em SVG, setas de vetores
-js/
-  utils/
-    matematica.js           Funções de cálculo e formatação (lerNumero, formatarNumero, modulo...)
-  componentes/
-    plano.js                Plano cartesiano em SVG reaproveitável (criarPlanoCartesiano)
-    matriz.js               Editor e exibição de matrizes (criarEditorMatriz, htmlMatriz)
-    exercicios.js           Correção automática dos exercícios (lê o HTML, não precisa de JS por lição)
-  app.js                    Navegação por hash, desbloqueio de lições, progresso salvo e tema
-  licoes/
-    licao-01.js             Laboratório da Lição 1 (só o que é específico da lição)
-    licao-02.js             Laboratório da Lição 2
-    licao-03.js             Laboratório da Lição 3
-    licao-04.js             Laboratório da Lição 4
-    licao-05.js             Laboratório da Lição 5
-    licao-06.js             Laboratório da Lição 6
-    licao-07.js             Laboratório da Lição 7
-    licao-08.js             Laboratório da Lição 8
-    licao-09.js             Laboratório da Lição 9
+codigo/                       Código do site
+  index.html                  Página única: cabeçalho, trilha e o conteúdo das 12 lições
+  css/
+    base.css                  Variáveis (cores, fontes, espaços), tema claro/escuro, reset, tipografia
+    layout.css                Cabeçalho, trilha (nav), grade da página, cartões das lições, rodapé
+    componentes.css           Botões, campos, mensagens, aviso, fórmula, notação de vetor, progresso, tabela
+    exercicios.css            Lista de exercícios, alternativas e quadro de explicações
+    laboratorio.css           Área do laboratório, plano cartesiano em SVG, setas de vetores
+  js/
+    utils/
+      matematica.js           Funções de cálculo e formatação (lerNumero, formatarNumero, modulo...)
+    componentes/
+      plano.js                Plano cartesiano em SVG reaproveitável (criarPlanoCartesiano)
+      matriz.js               Editor e exibição de matrizes (criarEditorMatriz, htmlMatriz)
+      exercicios.js           Correção automática dos exercícios (lê o HTML, não precisa de JS por lição)
+    app.js                    Navegação por hash, desbloqueio de lições, progresso salvo e tema
+    licoes/
+      licao-01.js             Laboratório da Lição 1 (só o que é específico da lição)
+      licao-02.js             Laboratório da Lição 2
+      licao-03.js             Laboratório da Lição 3
+      licao-04.js             Laboratório da Lição 4
+      licao-05.js             Laboratório da Lição 5
+      licao-06.js             Laboratório da Lição 6
+      licao-07.js             Laboratório da Lição 7
+      licao-08.js             Laboratório da Lição 8
+      licao-09.js             Laboratório da Lição 9
+      licao-10.js             Laboratório da Lição 10
+README.md
 ```
+
+Os caminhos dentro do `index.html` são relativos à pasta `codigo/` (`css/…`, `js/…`).
 
 **A ordem dos `<link>` e `<script>` no `index.html` importa:** os estilos vão do
 mais geral ao mais específico, e cada script usa funções dos anteriores
@@ -45,7 +50,7 @@ mais geral ao mais específico, e cada script usa funções dos anteriores
 
 Exemplo para a lição 3. Troque o número conforme a lição.
 
-### 1. HTML — dentro de `<section id="licao-3">` no `index.html`
+### 1. HTML — dentro de `<section id="licao-3">` no `codigo/index.html`
 
 ```html
 <div class="teoria">
@@ -84,7 +89,7 @@ Exemplo para a lição 3. Troque o número conforme a lição.
 </div>
 ```
 
-### 2. JavaScript — criar `js/licoes/licao-03.js`
+### 2. JavaScript — criar `codigo/js/licoes/licao-03.js`
 
 ```js
 (function () {
@@ -96,7 +101,7 @@ Exemplo para a lição 3. Troque o número conforme a lição.
 })();
 ```
 
-E adicionar no fim do `index.html`, depois da lição anterior:
+E adicionar no fim do `codigo/index.html`, depois da lição anterior:
 
 ```html
 <script src="js/licoes/licao-03.js"></script>
@@ -104,7 +109,7 @@ E adicionar no fim do `index.html`, depois da lição anterior:
 
 ### 3. CSS (só se precisar)
 
-Coloque estilos novos no arquivo do assunto (`laboratorio.css`, `exercicios.css`,
+Coloque estilos novos em `codigo/css/`, no arquivo do assunto (`laboratorio.css`, `exercicios.css`,
 `componentes.css`…), sempre usando as variáveis do `base.css`, e os ajustes de
 celular no bloco **RESPONSIVO** do fim do mesmo arquivo.
 
@@ -113,7 +118,7 @@ celular no bloco **RESPONSIVO** do fim do mesmo arquivo.
 - **Nomes em português**, com código e comentários em português.
 - **Ids por lição** com prefixo `lN-` (`l3-plano`, `l3-ex1`…), para não colidir.
 - **Arquivos de lição com dois dígitos** (`licao-03.js`, `licao-10.js`), para ficarem em ordem.
-- **Funções de matemática** reaproveitáveis vão em `js/utils/matematica.js`; o que
+- **Funções de matemática** reaproveitáveis vão em `codigo/js/utils/matematica.js`; o que
   só uma lição usa fica no arquivo da lição.
 - **Exercícios** de múltipla escolha com 4 alternativas, e **toda alternativa** com
   `data-explicacao`. As erradas mostram o erro comum que leva a elas.
