@@ -1,0 +1,418 @@
+/* =========================================================================
+   css/componentes.css — Peças reaproveitáveis
+   Botões, campos, mensagens de acerto/erro, aviso flutuante, fórmula,
+   notação de vetor, barra de progresso, tabela e caixa de exemplo.
+
+   Seções
+   - Botões
+   - Campos de formulário
+   - Mensagens (acerto / erro) e aviso flutuante
+   - Fórmula e notação de vetor
+   - Barra de progresso
+   - Tabela e exemplo resolvido
+   - Responsivo
+   ========================================================================= */
+
+
+/* =========================================================================
+   11. COMPONENTES: BOTÕES
+   ========================================================================= */
+.btn,
+.btn-secundario {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--esp-2);
+  min-height: 2.75rem;             /* área de toque confortável */
+  padding: var(--esp-2) var(--esp-5);
+  border: 1px solid transparent;
+  border-radius: var(--raio);
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--transicao), border-color var(--transicao),
+              color var(--transicao), transform var(--transicao);
+}
+
+/* Botão principal */
+.btn {
+  background: var(--cor-primaria);
+  color: var(--cor-sobre-primaria);
+}
+
+.btn:hover {
+  background: var(--cor-primaria-hover);
+  color: var(--cor-sobre-primaria);
+}
+
+/* Botão secundário (contorno) */
+.btn-secundario {
+  background: var(--cor-superficie);
+  border-color: var(--cor-borda);
+  color: var(--cor-texto);
+}
+
+.btn-secundario:hover {
+  border-color: var(--cor-primaria);
+  color: var(--cor-primaria);
+}
+
+.btn:active,
+.btn-secundario:active {
+  transform: translateY(1px);
+}
+
+.btn:focus-visible,
+.btn-secundario:focus-visible {
+  outline: 2px solid var(--cor-primaria);
+  outline-offset: 2px;
+}
+
+.btn:disabled,
+.btn-secundario:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Botão de começar a trilha */
+.btn-comecar {
+  padding-inline: var(--esp-6);
+}
+
+
+/* Botão de tema no cabeçalho */
+.btn-tema {
+  position: absolute;
+  top: var(--esp-4);
+  right: var(--esp-4);
+  min-height: 2.5rem;
+  padding-inline: var(--esp-4);
+  font-size: var(--tamanho-pequeno);
+}
+
+/* Botão "Recomeçar trilha" na tela inicial */
+.btn-recomecar {
+  margin-top: var(--esp-4);
+}
+
+/* Botão provisório "Marcar como concluída" */
+.btn-concluir {
+  align-self: flex-start;
+}
+
+/* Lição já concluída: botão vira um selo verde */
+.btn-concluir:disabled {
+  opacity: 1;
+  cursor: default;
+  background: var(--cor-acerto-fundo);
+  border-color: var(--cor-acerto-borda);
+  color: var(--cor-acerto);
+}
+
+/* "Próxima lição" bloqueada: clicável (mostra o aviso), mas apagada */
+.btn-secundario[aria-disabled="true"] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-secundario[aria-disabled="true"]:hover {
+  border-color: var(--cor-borda);
+  color: var(--cor-texto);
+}
+
+
+/* =========================================================================
+   12. COMPONENTES: CAMPOS DE FORMULÁRIO
+   ========================================================================= */
+input[type="number"],
+input[type="text"],
+select {
+  min-height: 2.75rem;
+  width: 8rem;
+  max-width: 100%;
+  padding: var(--esp-2) var(--esp-3);
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  color: var(--cor-texto);
+  transition: border-color var(--transicao), box-shadow var(--transicao);
+}
+
+input[type="number"] {
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+input[type="number"]:hover,
+input[type="text"]:hover,
+select:hover {
+  border-color: var(--cor-texto-suave);
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus,
+select:focus {
+  outline: none;
+  border-color: var(--cor-primaria);
+  box-shadow: 0 0 0 3px var(--cor-primaria-suave);
+}
+
+/* Campo marcado como certo/errado pelo JS */
+input.acerto,
+select.acerto {
+  border-color: var(--cor-acerto);
+  box-shadow: 0 0 0 3px var(--cor-acerto-fundo);
+}
+
+input.erro,
+select.erro {
+  border-color: var(--cor-erro);
+  box-shadow: 0 0 0 3px var(--cor-erro-fundo);
+}
+
+label {
+  cursor: pointer;
+}
+
+
+/* =========================================================================
+   13. COMPONENTES: MENSAGENS (ACERTO / ERRO)
+   ========================================================================= */
+.acerto,
+.erro {
+  color: var(--cor-texto);
+}
+
+/* Mensagens em bloco (div/p) — inputs têm estilo próprio na seção 12 */
+:not(input):not(select).acerto,
+:not(input):not(select).erro {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--esp-2);
+  margin-block: var(--esp-3);
+  padding: var(--esp-3) var(--esp-4);
+  border: 1px solid;
+  border-radius: var(--raio);
+  font-weight: 500;
+}
+
+:not(input):not(select).acerto {
+  background: var(--cor-acerto-fundo);
+  border-color: var(--cor-acerto-borda);
+  color: var(--cor-acerto);
+}
+
+:not(input):not(select).acerto::before {
+  content: "✓";
+  font-weight: 700;
+}
+
+:not(input):not(select).erro {
+  background: var(--cor-erro-fundo);
+  border-color: var(--cor-erro-borda);
+  color: var(--cor-erro);
+}
+
+:not(input):not(select).erro::before {
+  content: "✕";
+  font-weight: 700;
+}
+
+
+/* Aviso flutuante (usa as cores de .erro / .acerto) */
+#aviso {
+  position: fixed;
+  left: 50%;
+  bottom: var(--esp-5);
+  z-index: 100;
+  width: max-content;
+  max-width: calc(100% - 2 * var(--esp-4));
+  margin: 0;
+  transform: translateX(-50%);
+  box-shadow: var(--sombra-forte);
+  animation: aviso-entrar 200ms ease;
+}
+
+#aviso.erro::before {
+  content: "🔒";
+}
+
+@keyframes aviso-entrar {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 0.5rem);
+  }
+}
+
+
+/* =========================================================================
+   14. COMPONENTES: FÓRMULA
+   ========================================================================= */
+.formula {
+  margin: var(--esp-4) 0;
+  padding: var(--esp-4) var(--esp-5);
+  background: var(--cor-formula-fundo);
+  border: 1px solid var(--cor-formula-borda);
+  border-radius: var(--raio);
+  font-family: var(--fonte-formula);
+  font-size: 1.15rem;
+  line-height: 1.6;
+  text-align: center;
+  overflow-x: auto;                /* fórmulas longas rolam só dentro da caixa */
+  white-space: nowrap;
+}
+
+/* Variante para fórmulas em várias linhas */
+.formula.multilinha {
+  white-space: pre;
+  text-align: left;
+}
+
+
+
+/* Notação de vetor: letra em negrito com uma setinha em cima */
+.vet {
+  position: relative;
+  display: inline-block;
+  font-family: var(--fonte-formula);
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.vet::before {
+  content: "→";
+  position: absolute;
+  left: 50%;
+  top: -0.62em;
+  transform: translateX(-50%);
+  font-size: 0.7em;
+  font-style: normal;
+  font-weight: 400;
+}
+
+
+/* =========================================================================
+   15. COMPONENTES: BARRA DE PROGRESSO
+   Duas formas de uso:
+   a) <div class="progresso"><div class="progresso-barra" style="width: 40%"></div></div>
+   b) <progress class="progresso" value="4" max="12"></progress>
+   ========================================================================= */
+.progresso {
+  display: block;
+  width: 100%;
+  height: 0.6rem;
+  overflow: hidden;
+  background: var(--cor-superficie-2);
+  border: 0;
+  border-radius: var(--raio-pilula);
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* (a) versão com div */
+.progresso-barra {
+  height: 100%;
+  width: 0;
+  background: var(--cor-primaria);
+  border-radius: inherit;
+  transition: width 400ms ease;
+}
+
+/* (b) versão com <progress> */
+progress.progresso::-webkit-progress-bar {
+  background: var(--cor-superficie-2);
+  border-radius: var(--raio-pilula);
+}
+
+progress.progresso::-webkit-progress-value {
+  background: var(--cor-primaria);
+  border-radius: var(--raio-pilula);
+  transition: width 400ms ease;
+}
+
+progress.progresso::-moz-progress-bar {
+  background: var(--cor-primaria);
+  border-radius: var(--raio-pilula);
+}
+
+/* Texto opcional ao lado/abaixo da barra, ex.: "4 de 12 lições" */
+.progresso-texto {
+  margin-top: var(--esp-1);
+  font-size: var(--tamanho-pequeno);
+  color: var(--cor-texto-suave);
+}
+
+
+/* =========================================================================
+   TABELA E EXEMPLO RESOLVIDO
+   ========================================================================= */
+/* --- Tabelas --- */
+.tabela-rolagem {
+  overflow-x: auto;                /* tabela larga rola só dentro da caixa */
+  margin: var(--esp-4) 0;
+}
+
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.tabela th,
+.tabela td {
+  padding: var(--esp-2) var(--esp-3);
+  border-bottom: var(--borda);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.tabela th {
+  color: var(--cor-texto-suave);
+  font-size: var(--tamanho-pequeno);
+  font-weight: 600;
+}
+
+/* --- Caixa de exemplo resolvido --- */
+.exemplo {
+  margin: var(--esp-4) 0;
+  padding: var(--esp-3) var(--esp-4);
+  background: var(--cor-superficie-2);
+  border-radius: var(--raio);
+}
+
+.exemplo-titulo {
+  margin-bottom: var(--esp-1);
+  color: var(--cor-cartao);
+  font-size: var(--tamanho-pequeno);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+
+
+/* =========================================================================
+   RESPONSIVO (celular — até 768px)
+   ========================================================================= */
+@media (max-width: 768px) {
+  .btn-comecar {
+    width: 100%;
+  }
+
+  .btn-tema {
+    position: static;
+    margin-top: var(--esp-4);
+  }
+
+  .btn-concluir {
+    align-self: stretch;
+  }
+
+  .formula {
+    padding: var(--esp-3) var(--esp-4);
+    font-size: 1.05rem;
+  }
+}

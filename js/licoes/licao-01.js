@@ -1,7 +1,7 @@
 /* =========================================================================
-   js/licao-1.js — Laboratório da Lição 1: Plano cartesiano e pontos
+   js/licoes/licao-01.js — Laboratório da Lição 1: Plano cartesiano e pontos
    Mostra os pontos A e B, o segmento AB, os catetos Δx e Δy e o ponto
-   médio M, com as contas passo a passo. O plano vem do js/plano.js.
+   médio M, com as contas passo a passo. O plano vem do js/componentes/plano.js.
 
    Índice
    1. Elementos

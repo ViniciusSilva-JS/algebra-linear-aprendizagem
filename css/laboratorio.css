@@ -1,0 +1,259 @@
+/* =========================================================================
+   css/laboratorio.css — Laboratórios interativos
+   Área do laboratório (plano + controles), resultados, plano cartesiano
+   em SVG (js/componentes/plano.js) e setas de vetores.
+
+   Seções
+   - Área do laboratório
+   - Plano cartesiano em SVG
+   - Setas e vetores
+   - Responsivo
+   ========================================================================= */
+
+
+/* =========================================================================
+   ÁREA DO LABORATÓRIO
+   ========================================================================= */
+.lab-area {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 210px;
+  gap: var(--esp-5);
+  align-items: start;
+  margin: var(--esp-4) 0;
+}
+
+.lab-controles {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-3);
+}
+
+.lab-ponto {
+  margin: 0;
+  padding: var(--esp-2) var(--esp-3) var(--esp-3);
+  border: var(--borda);
+  border-radius: var(--raio);
+  display: flex;
+  gap: var(--esp-3);
+}
+
+.lab-ponto legend {
+  padding: 0 var(--esp-1);
+  font-weight: 700;
+}
+
+.lab-ponto-a legend { color: var(--cor-teoria); }
+.lab-ponto-b legend { color: var(--cor-exercicios); }
+
+.lab-ponto label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-2);
+  font-weight: 600;
+}
+
+.lab-ponto input[type="number"] {
+  width: 4.5rem;
+}
+
+.lab-dica {
+  margin: 0;
+  font-size: var(--tamanho-pequeno);
+  color: var(--cor-texto-suave);
+}
+
+/* Resultados do laboratório */
+.lab-resultados {
+  display: grid;
+  gap: var(--esp-3);
+}
+
+.lab-resultado .formula {
+  margin: var(--esp-1) 0 0;
+  font-size: 1.05rem;
+}
+
+.lab-rotulo {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--cor-texto-suave);
+}
+
+.lab-rotulo-a { color: var(--cor-teoria); }
+.lab-rotulo-b { color: var(--cor-exercicios); }
+.lab-rotulo-m { color: var(--cor-laboratorio); }
+
+
+/* Laboratório: escolha da operação e campos que não estão em uso */
+.lab-operacao {
+  margin-bottom: var(--esp-2);
+}
+
+.lab-ponto-m legend {
+  color: var(--cor-laboratorio);
+}
+
+.lab-ponto.inativo {
+  opacity: 0.45;
+}
+
+
+/* =========================================================================
+   PLANO CARTESIANO EM SVG (cores seguem o tema)
+   ========================================================================= */
+.plano-cartesiano {
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 1 / 1;
+  background: var(--cor-superficie);
+  border: var(--borda);
+  border-radius: var(--raio);
+  cursor: crosshair;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.plano-grade {
+  stroke: var(--cor-borda);
+  stroke-width: 0.04;
+}
+
+.plano-eixo {
+  stroke: var(--cor-texto-suave);
+  stroke-width: 0.09;
+}
+
+.plano-rotulo {
+  fill: var(--cor-texto-suave);
+  font-family: var(--fonte-base);
+  font-size: 0.55px;              /* unidades do SVG: 1 = um quadradinho */
+}
+
+.plano-nome-eixo {
+  font-size: 0.75px;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.segmento {
+  stroke: var(--cor-texto);
+  stroke-width: 0.1;
+  stroke-linecap: round;
+}
+
+.cateto {
+  fill: none;
+  stroke: var(--cor-texto-suave);
+  stroke-width: 0.06;
+  stroke-dasharray: 0.3 0.2;
+}
+
+.ponto-a { fill: var(--cor-teoria); }
+.ponto-b { fill: var(--cor-exercicios); }
+.ponto-m { fill: var(--cor-laboratorio); }
+
+.rotulo-ponto,
+.rotulo-cateto {
+  font-family: var(--fonte-base);
+  paint-order: stroke;            /* contorno da cor do fundo deixa o texto legível */
+  stroke: var(--cor-superficie);
+  stroke-width: 0.18;
+  stroke-linejoin: round;
+}
+
+.rotulo-ponto {
+  fill: var(--cor-texto);
+  font-size: 0.65px;
+  font-weight: 700;
+}
+
+.rotulo-cateto {
+  fill: var(--cor-texto-suave);
+  font-size: 0.55px;
+  font-style: italic;
+}
+
+
+
+/* =========================================================================
+   SETAS E VETORES
+   ========================================================================= */
+/* Setas no plano (js/componentes/plano.js).
+   A classe do vetor só define a variável --cor-vetor; cada parte da seta
+   decide onde usar a cor (linha = contorno, ponta e rótulo = preenchimento). */
+.vetor-u { --cor-vetor: var(--cor-teoria); }
+.vetor-v { --cor-vetor: var(--cor-exercicios); }
+.vetor-r { --cor-vetor: var(--cor-laboratorio); }
+
+.seta-linha {
+  stroke: var(--cor-vetor, var(--cor-texto));
+  stroke-width: 0.12;
+  stroke-linecap: round;
+}
+
+.seta-ponta {
+  fill: var(--cor-vetor, var(--cor-texto));
+  stroke: none;
+}
+
+/* Cópias auxiliares (regra ponta com cauda) */
+.seta-linha.tracejado {
+  stroke-width: 0.07;
+  stroke-dasharray: 0.3 0.2;
+}
+
+.seta-ponta.tracejado {
+  opacity: 0.6;
+}
+
+/* Resultado de k·u desenhado por baixo de u, mais grosso */
+.seta-linha.vetor-largo {
+  stroke-width: 0.26;
+  opacity: 0.85;
+}
+
+/* Paralelogramo da soma */
+.regiao-paralelogramo {
+  fill: var(--cor-laboratorio);
+  fill-opacity: 0.1;
+  stroke: none;
+}
+
+/* Nome do vetor perto da ponta */
+.rotulo-vetor {
+  font-family: var(--fonte-formula);
+  font-size: 0.75px;
+  font-style: italic;
+  font-weight: 700;
+  fill: var(--cor-vetor, var(--cor-texto));
+  stroke: var(--cor-superficie);   /* contorno da cor do fundo: texto legível sobre as linhas */
+  stroke-width: 0.2;
+  stroke-linejoin: round;
+  paint-order: stroke;
+}
+
+
+/* =========================================================================
+   RESPONSIVO
+   ========================================================================= */
+@media (max-width: 900px) {
+  .lab-area {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .plano-cartesiano {
+    margin-inline: auto;
+  }
+
+  .lab-controles {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .lab-ponto {
+    flex: 1 1 12rem;
+  }
+}

@@ -386,7 +386,7 @@ function criarRodapesDasLicoes() {
     rodape.className = 'licao-rodape';
 
     // Botão provisório de concluir: só nas lições que ainda não têm
-    // exercícios (.exercicio). Nas outras, quem conclui é o js/exercicios.js.
+    // exercícios (.exercicio). Nas outras, quem conclui é o js/componentes/exercicios.js.
     if (!secao.querySelector('.exercicio')) {
       const btnConcluir = criarBotao('Marcar como concluída', 'btn btn-concluir');
       btnConcluir.dataset.concluir = String(n);

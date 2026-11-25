@@ -1,5 +1,5 @@
 /* =========================================================================
-   js/matematica.js — Funções de matemática e formatação
+   js/utils/matematica.js — Funções de matemática e formatação
    Reaproveitadas pelos laboratórios e exercícios de todas as lições.
 
    Índice

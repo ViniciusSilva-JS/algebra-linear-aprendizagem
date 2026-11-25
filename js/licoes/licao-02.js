@@ -1,8 +1,8 @@
 /* =========================================================================
-   js/licao-2.js — Laboratório da Lição 2: Vetores no plano
+   js/licoes/licao-02.js — Laboratório da Lição 2: Vetores no plano
    Desenha os vetores u e v saindo da origem e o resultado da operação
    escolhida (u + v, u − v ou k · u), com as contas passo a passo.
-   O plano vem do js/plano.js e as contas do js/matematica.js.
+   O plano vem do js/componentes/plano.js e as contas do js/utils/matematica.js.
 
    Índice
    1. Elementos

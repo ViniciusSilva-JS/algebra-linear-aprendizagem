@@ -4,7 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Álgebra Linear — Trilha de Aprendizagem</title>
-  <link rel="stylesheet" href="css/style.css">
+  <!-- Estilos: a ORDEM importa (do mais geral para o mais específico) -->
+  <link rel="stylesheet" href="css/base.css">         <!-- variáveis, temas, reset, tipografia -->
+  <link rel="stylesheet" href="css/layout.css">       <!-- cabeçalho, trilha, cartões, rodapé -->
+  <link rel="stylesheet" href="css/componentes.css">  <!-- botões, campos, mensagens, fórmula -->
+  <link rel="stylesheet" href="css/exercicios.css">   <!-- múltipla escolha e explicações -->
+  <link rel="stylesheet" href="css/laboratorio.css">  <!-- plano cartesiano e vetores -->
 </head>
 <body>
 
@@ -223,7 +228,7 @@
              valor da alternativa certa. TODA alternativa tem data-explicacao:
              - se o aluno erra, aparece a explicação da alternativa escolhida;
              - se acerta, aparece a explicação de todas as alternativas.
-             js/exercicios.js corrige tudo; acertando todos, a lição é
+             js/componentes/exercicios.js corrige tudo; acertando todos, a lição é
              concluída e a próxima é liberada. -->
         <div class="exercicios" data-licao="1">
           <h3>Pratique</h3>
@@ -663,11 +668,16 @@
   <!-- Aviso flutuante (mostrado pelo js/app.js) -->
   <div id="aviso" class="aviso" role="alert" hidden></div>
 
+  <!-- Scripts: a ORDEM importa (cada um usa funções dos anteriores) -->
+  <!-- 1. Ferramentas -->
+  <script src="js/utils/matematica.js"></script>
+  <!-- 2. Componentes reaproveitáveis -->
+  <script src="js/componentes/plano.js"></script>
+  <script src="js/componentes/exercicios.js"></script>
+  <!-- 3. Aplicação: navegação, progresso e tema -->
   <script src="js/app.js"></script>
-  <script src="js/matematica.js"></script>
-  <script src="js/exercicios.js"></script>
-  <script src="js/plano.js"></script>
-  <script src="js/licao-1.js"></script>
-  <script src="js/licao-2.js"></script>
+  <!-- 4. Laboratórios de cada lição (um arquivo por lição) -->
+  <script src="js/licoes/licao-01.js"></script>
+  <script src="js/licoes/licao-02.js"></script>
 </body>
 </html>

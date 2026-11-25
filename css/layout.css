@@ -1,0 +1,640 @@
+/* =========================================================================
+   css/layout.css — Estrutura da página
+   Cabeçalho, escolha de matéria/nível, grade (trilha + conteúdo),
+   trilha de lições, tela inicial, cartões das lições e rodapé.
+
+   Seções
+   - Cabeçalho
+   - Configuração (matéria e nível)
+   - Layout geral
+   - Trilha de lições (nav)
+   - Conteúdo principal e boas-vindas
+   - Lições e cartões (teoria, laboratório, exercícios)
+   - Rodapé
+   - Responsivo
+   ========================================================================= */
+
+
+/* =========================================================================
+   5. CABEÇALHO
+   ========================================================================= */
+.cabecalho {
+  padding: var(--esp-6) var(--esp-5);
+  background: var(--cor-superficie);
+  border-bottom: var(--borda);
+}
+
+.cabecalho > * {
+  max-width: calc(var(--largura-nav) + var(--largura-conteudo) + var(--esp-6));
+  margin-inline: auto;
+}
+
+.cabecalho-titulo {
+  margin-bottom: var(--esp-2);
+  color: var(--cor-texto);
+}
+
+.cabecalho-descricao {
+  margin-bottom: 0;
+  color: var(--cor-texto-suave);
+}
+
+
+/* Espaço para o botão de tema (o botão em si está em componentes.css) */
+.cabecalho {
+  position: relative;
+}
+
+.cabecalho-titulo {
+  padding-right: 10rem;
+}
+
+
+/* =========================================================================
+   6. CONFIGURAÇÃO (ESCOLHA DE MATÉRIA E NÍVEL)
+   ========================================================================= */
+.configuracao {
+  width: 100%;
+  max-width: calc(var(--largura-nav) + var(--largura-conteudo) + var(--esp-6));
+  margin: var(--esp-5) auto 0;
+  padding: var(--esp-5);
+  background: var(--cor-superficie);
+  border: var(--borda);
+  border-radius: var(--raio-grande);
+  box-shadow: var(--sombra);
+}
+
+.configuracao-titulo {
+  font-size: var(--tamanho-h3);
+}
+
+.form-configuracao {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--esp-5);
+}
+
+/* Cada grupo de opções (fieldset) */
+.escolha {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--esp-2);
+}
+
+.escolha legend {
+  padding: 0;
+  margin-bottom: var(--esp-2);
+  font-size: var(--tamanho-pequeno);
+  font-weight: 600;
+  color: var(--cor-texto-suave);
+}
+
+/* Opções em formato de "pílula" clicável */
+.opcao {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-2);
+  padding: var(--esp-2) var(--esp-4);
+  border: var(--borda);
+  border-radius: var(--raio-pilula);
+  background: var(--cor-superficie);
+  cursor: pointer;
+  user-select: none;
+  transition: border-color var(--transicao), background-color var(--transicao);
+}
+
+.opcao:hover {
+  border-color: var(--cor-primaria);
+}
+
+.opcao input[type="radio"] {
+  margin: 0;
+  accent-color: var(--cor-primaria);
+}
+
+/* Destaca a opção marcada (navegadores modernos) */
+.opcao:has(input:checked) {
+  border-color: var(--cor-primaria);
+  background: var(--cor-primaria-suave);
+  color: var(--cor-primaria);
+  font-weight: 600;
+}
+
+.opcao:has(input:focus-visible) {
+  outline: 2px solid var(--cor-primaria);
+  outline-offset: 2px;
+}
+
+
+/* =========================================================================
+   7. LAYOUT GERAL (NAV À ESQUERDA + CONTEÚDO À DIREITA)
+   ========================================================================= */
+.layout {
+  flex: 1;                         /* empurra o rodapé para baixo */
+  width: 100%;
+  max-width: calc(var(--largura-nav) + var(--largura-conteudo) + var(--esp-6));
+  margin: 0 auto;
+  padding: var(--esp-5);
+  display: grid;
+  grid-template-columns: var(--largura-nav) minmax(0, 1fr);
+  gap: var(--esp-6);
+  align-items: start;
+}
+
+
+/* =========================================================================
+   8. TRILHA DE LIÇÕES (NAV)
+   ========================================================================= */
+.trilha {
+  position: sticky;                /* "fixa" ao rolar a página */
+  top: var(--esp-4);
+  max-height: calc(100vh - 2 * var(--esp-4));
+  overflow-y: auto;
+  padding: var(--esp-4);
+  background: var(--cor-superficie);
+  border: var(--borda);
+  border-radius: var(--raio-grande);
+  box-shadow: var(--sombra);
+}
+
+.trilha-titulo {
+  margin: 0 0 var(--esp-3);
+  padding: 0 var(--esp-2);
+  font-size: var(--tamanho-pequeno);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--cor-texto-suave);
+}
+
+/* Botão que abre/fecha a trilha no celular (escondido no desktop) */
+.trilha-toggle {
+  display: none;
+  width: 100%;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--esp-3);
+  padding: var(--esp-2) var(--esp-3);
+  background: var(--cor-superficie-2);
+  border: var(--borda);
+  border-radius: var(--raio);
+  color: var(--cor-texto);
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.trilha-toggle::after {
+  content: "▾";
+  flex: 0 0 auto;
+  transition: transform var(--transicao);
+}
+
+.trilha.aberta .trilha-toggle::after {
+  transform: rotate(180deg);
+}
+
+.trilha-toggle-texto {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.trilha-toggle:focus-visible {
+  outline: 2px solid var(--cor-primaria);
+  outline-offset: 2px;
+}
+
+.trilha-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: licao;
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-1);
+}
+
+.trilha-item {
+  counter-increment: licao;
+}
+
+/* Link de cada lição */
+.trilha-link {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-3);
+  padding: var(--esp-2) var(--esp-3);
+  border-radius: var(--raio);
+  color: var(--cor-texto);
+  text-decoration: none;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  transition: background-color var(--transicao), color var(--transicao);
+}
+
+.trilha-link:hover {
+  background: var(--cor-superficie-2);
+  color: var(--cor-texto);
+}
+
+/* Número da lição em um "círculo" (gerado pelo contador CSS) */
+.trilha-link::before {
+  content: counter(licao);
+  flex: 0 0 auto;
+  display: inline-grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  border: var(--borda);
+  background: var(--cor-superficie-2);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--cor-texto-suave);
+  transition: inherit;
+}
+
+/* Ícone de estado (cadeado / ✓) fica à direita */
+.trilha-link::after {
+  margin-left: auto;
+  flex: 0 0 auto;
+  font-size: 0.85rem;
+}
+
+/* --- Estado: lição atual --- */
+.trilha-item.ativa .trilha-link,
+.trilha-link.ativa {
+  background: var(--cor-primaria-suave);
+  color: var(--cor-primaria);
+  font-weight: 650;
+}
+
+.trilha-item.ativa .trilha-link::before,
+.trilha-link.ativa::before {
+  background: var(--cor-primaria);
+  border-color: var(--cor-primaria);
+  color: var(--cor-sobre-primaria);
+}
+
+/* --- Estado: lição concluída (✓) --- */
+.trilha-item.concluida .trilha-link::before,
+.trilha-link.concluida::before {
+  border-color: var(--cor-concluida);
+  color: var(--cor-concluida);
+}
+
+.trilha-item.concluida .trilha-link::after,
+.trilha-link.concluida::after {
+  content: "✓";
+  font-weight: 700;
+  color: var(--cor-concluida);
+}
+
+/* --- Estado: lição bloqueada (🔒) --- */
+.trilha-item.bloqueada .trilha-link,
+.trilha-link.bloqueada {
+  color: var(--cor-bloqueada);
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+.trilha-item.bloqueada .trilha-link:hover,
+.trilha-link.bloqueada:hover {
+  background: transparent;
+  color: var(--cor-bloqueada);
+}
+
+.trilha-item.bloqueada .trilha-link::before,
+.trilha-link.bloqueada::before {
+  color: var(--cor-bloqueada);
+  background: transparent;
+  border-style: dashed;
+}
+
+.trilha-item.bloqueada .trilha-link::after,
+.trilha-link.bloqueada::after {
+  content: "🔒";
+  font-size: 0.8rem;
+  filter: grayscale(1);
+}
+
+
+/* =========================================================================
+   9. CONTEÚDO PRINCIPAL E BOAS-VINDAS
+   ========================================================================= */
+.conteudo {
+  min-width: 0;                    /* evita estouro horizontal no grid */
+  max-width: var(--largura-conteudo);
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-7);               /* espaço entre as seções/lições */
+}
+
+/* Ao clicar num link da trilha, a seção não fica colada no topo */
+.conteudo > section {
+  scroll-margin-top: var(--esp-5);
+}
+
+.secao-inicio {
+  padding: var(--esp-5) var(--esp-5);
+  background: var(--cor-superficie);
+  border: var(--borda);
+  border-radius: var(--raio-grande);
+  box-shadow: var(--sombra);
+}
+
+.passos {
+  margin: 0 0 var(--esp-4);
+  padding: 0;
+  list-style: none;
+  counter-reset: passo;
+  display: grid;
+  gap: var(--esp-3);
+}
+
+.passo {
+  counter-increment: passo;
+  position: relative;
+  padding: var(--esp-3) var(--esp-4) var(--esp-3) 3.25rem;
+  background: var(--cor-superficie-2);
+  border-radius: var(--raio);
+}
+
+.passo::before {
+  content: counter(passo);
+  position: absolute;
+  left: var(--esp-3);
+  top: var(--esp-3);
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: var(--cor-primaria);
+  color: var(--cor-sobre-primaria);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+/* Cores de cada passo combinam com os cartões das lições */
+.passo:nth-child(1)::before { background: var(--cor-teoria); }
+.passo:nth-child(2)::before { background: var(--cor-laboratorio); }
+.passo:nth-child(3)::before { background: var(--cor-exercicios); }
+
+
+/* Painel de progresso da tela inicial (a barra está em componentes.css) */
+.painel-progresso {
+  margin-top: var(--esp-5);
+  padding-top: var(--esp-5);
+  border-top: var(--borda);
+}
+
+
+/* =========================================================================
+   10. LIÇÕES E CARTÕES
+   ========================================================================= */
+.licao {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-4);
+}
+
+.licao-titulo {
+  margin-bottom: var(--esp-1);
+  padding-bottom: var(--esp-3);
+  border-bottom: 2px solid var(--cor-borda);
+}
+
+/* --- Base comum dos cartões --- */
+.teoria,
+.laboratorio,
+.exercicios {
+  --cor-cartao: var(--cor-primaria);
+  --cor-cartao-suave: var(--cor-primaria-suave);
+
+  position: relative;
+  padding: var(--esp-5);
+  padding-top: calc(var(--esp-5) + 1.9rem);   /* espaço para a etiqueta */
+  background: var(--cor-superficie);
+  border: var(--borda);
+  border-left: 4px solid var(--cor-cartao);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+}
+
+/* Etiqueta com o tipo do cartão (gerada pelo CSS, sem mexer no HTML) */
+.teoria::before,
+.laboratorio::before,
+.exercicios::before {
+  position: absolute;
+  top: var(--esp-4);
+  left: var(--esp-5);
+  padding: 0.15rem 0.65rem;
+  border-radius: var(--raio-pilula);
+  background: var(--cor-cartao-suave);
+  color: var(--cor-cartao);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Títulos dentro dos cartões usam a cor do tipo */
+.teoria h3,
+.laboratorio h3,
+.exercicios h3 {
+  color: var(--cor-cartao);
+}
+
+/* --- Teoria (azul) --- */
+.teoria {
+  --cor-cartao: var(--cor-teoria);
+  --cor-cartao-suave: var(--cor-teoria-suave);
+}
+.teoria::before { content: "📘 Teoria"; }
+
+/* --- Laboratório (roxo) --- */
+.laboratorio {
+  --cor-cartao: var(--cor-laboratorio);
+  --cor-cartao-suave: var(--cor-laboratorio-suave);
+}
+.laboratorio::before { content: "🧪 Laboratório"; }
+
+/* --- Exercícios (âmbar) --- */
+.exercicios {
+  --cor-cartao: var(--cor-exercicios);
+  --cor-cartao-suave: var(--cor-exercicios-suave);
+}
+.exercicios::before { content: "✏️ Exercícios"; }
+
+/* Linha para alinhar campo + botão dentro de um exercício/laboratório */
+.linha {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--esp-3);
+  margin-block: var(--esp-3);
+}
+
+
+/* Espaço entre os tópicos da teoria */
+.teoria h3:not(:first-child) {
+  margin-top: var(--esp-6);
+}
+
+/* Rodapé de cada lição: botões anterior/próxima (criados pelo js/app.js) */
+.licao-rodape {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-4);
+  margin-top: var(--esp-2);
+  padding-top: var(--esp-4);
+  border-top: var(--borda);
+}
+
+.licao-navegacao {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--esp-3);
+}
+
+.licao-navegacao .btn-proxima {
+  margin-left: auto;
+}
+
+
+/* =========================================================================
+   16. RODAPÉ
+   ========================================================================= */
+.rodape {
+  margin-top: var(--esp-7);
+  padding: var(--esp-5);
+  background: var(--cor-superficie);
+  border-top: var(--borda);
+  color: var(--cor-texto-suave);
+  font-size: var(--tamanho-pequeno);
+  text-align: center;
+}
+
+.rodape-disciplina {
+  margin-bottom: var(--esp-2);
+  font-weight: 600;
+  color: var(--cor-texto);
+}
+
+.integrantes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--esp-2) var(--esp-5);
+}
+
+
+/* =========================================================================
+   RESPONSIVO (celular — até 768px)
+   A trilha vira uma barra presa no topo, com menu recolhível.
+   ========================================================================= */
+@media (max-width: 768px) {
+  .cabecalho {
+    padding: var(--esp-5) var(--esp-4);
+  }
+
+  .cabecalho-titulo {
+    padding-right: 0;
+  }
+
+  .configuracao {
+    margin: var(--esp-4) var(--esp-4) 0;
+    width: auto;
+    padding: var(--esp-4);
+  }
+
+  .form-configuracao {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--esp-4);
+  }
+
+  /* Layout em uma coluna */
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--esp-5);
+    padding: 0 var(--esp-4) var(--esp-4);
+  }
+
+  /* Trilha vira uma barra presa no topo */
+  .trilha {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    max-height: none;
+    overflow: visible;
+    margin-inline: calc(-1 * var(--esp-4));   /* encosta nas bordas da tela */
+    padding: var(--esp-2) var(--esp-4);
+    border-radius: 0;
+    border-width: 0 0 1px;
+    box-shadow: var(--sombra);
+  }
+
+  /* O botão do menu substitui o título */
+  .trilha-titulo {
+    display: none;
+  }
+
+  .trilha-toggle {
+    display: flex;
+  }
+
+  /* Lista fica escondida até o menu ser aberto (classe .aberta via JS) */
+  .trilha-lista {
+    display: none;
+    max-height: 65vh;
+    overflow-y: auto;
+    margin-top: var(--esp-2);
+    padding-top: var(--esp-2);
+    border-top: var(--borda);
+  }
+
+  .trilha.aberta .trilha-lista {
+    display: flex;
+  }
+
+  /* Seções não ficam escondidas atrás da barra fixa */
+  .conteudo > section {
+    scroll-margin-top: 4.5rem;
+  }
+
+  .conteudo {
+    gap: var(--esp-6);
+  }
+
+  .secao-inicio,
+  .teoria,
+  .laboratorio,
+  .exercicios {
+    padding-left: var(--esp-4);
+    padding-right: var(--esp-4);
+  }
+
+  .teoria::before,
+  .laboratorio::before,
+  .exercicios::before {
+    left: var(--esp-4);
+  }
+
+  .licao-navegacao > * {
+    flex: 1 1 auto;
+  }
+}

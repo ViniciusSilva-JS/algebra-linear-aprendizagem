@@ -1,5 +1,5 @@
 /* =========================================================================
-   js/plano.js — Plano cartesiano em SVG reaproveitável
+   js/componentes/plano.js — Plano cartesiano em SVG reaproveitável
    Usado pelos laboratórios de todas as lições.
 
    Uso:

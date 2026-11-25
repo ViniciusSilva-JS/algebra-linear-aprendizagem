@@ -1,5 +1,5 @@
 /* =========================================================================
-   js/exercicios.js — Correção automática dos exercícios
+   js/componentes/exercicios.js — Correção automática dos exercícios
    Funciona para QUALQUER lição, só com marcações no HTML:
 
    <div class="exercicios" data-licao="1">
