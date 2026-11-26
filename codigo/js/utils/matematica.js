@@ -14,6 +14,7 @@
    9. Matriz inversa
    10. Transformações lineares no plano
    11. Autovalores e autovetores
+   12. Mínimos quadrados (ajuste de curvas)
    ========================================================================= */
 
 'use strict';
@@ -570,4 +571,48 @@ function autovetor2x2(A, lambda) {
 
   if (x < 0 || (zero(x) && y < 0)) { x = -x; y = -y; }
   return { x: zero(x) ? 0 : x, y: zero(y) ? 0 : y };
+}
+
+
+/* =========================================================================
+   12. MÍNIMOS QUADRADOS (AJUSTE DE CURVAS)
+   ========================================================================= */
+
+/**
+ * Ajusta o polinômio y = c₀ + c₁·t + … + c_g·t^g aos pontos (tᵢ, yᵢ) pelo
+ * método dos mínimos quadrados, resolvendo as equações normais
+ * Aᵀ·A·x = Aᵀ·b com x = (Aᵀ·A)⁻¹·Aᵀ·b (inversa por Gauss-Jordan, com passos).
+ *
+ * Devolve null se Aᵀ·A não tiver inversa (ex.: menos pontos que coeficientes).
+ * Senão: { A, b, AtA, Atb, inversa, passos, coeficientes, avaliar(t),
+ *          previstos, residuos, sqRes, sqTot, r2 }.
+ */
+function minimosQuadrados(ts, ys, grau) {
+  const A = ts.map((t) => {
+    const linha = [];
+    for (let k = 0; k <= grau; k++) linha.push(Math.pow(t, k));
+    return linha;
+  });
+  const b = ys.map((y) => [y]);
+  const At = transposta(A);
+  const AtA = multiplicarMatrizes(At, A);
+  const Atb = multiplicarMatrizes(At, b);
+
+  const { inversa, passos } = inversaComPassos(AtA);
+  if (!inversa) return null;
+
+  const coeficientes = multiplicarMatrizes(inversa, Atb).map((linha) => linha[0]);
+  const avaliar = (t) => coeficientes.reduce((soma, c, k) => soma + c * Math.pow(t, k), 0);
+  const previstos = ts.map(avaliar);
+  const residuos = ys.map((y, i) => y - previstos[i]);
+  const media = ys.reduce((soma, y) => soma + y, 0) / ys.length;
+  const sqRes = residuos.reduce((soma, e) => soma + e * e, 0);
+  const sqTot = ys.reduce((soma, y) => soma + (y - media) * (y - media), 0);
+
+  return {
+    A: A, b: b, AtA: AtA, Atb: Atb, inversa: inversa, passos: passos,
+    coeficientes: coeficientes, avaliar: avaliar, previstos: previstos,
+    residuos: residuos, sqRes: sqRes, sqTot: sqTot,
+    r2: sqTot === 0 ? 1 : 1 - sqRes / sqTot,
+  };
 }

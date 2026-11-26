@@ -2589,9 +2589,245 @@
       <!-- Lição 12 -->
       <section id="licao-12" class="licao" data-licao="12">
         <h2 class="licao-titulo">12. Aplicação com dados reais</h2>
-        <div class="teoria"><p>Conteúdo em construção</p></div>
-        <div class="laboratorio"><p>Laboratório em construção</p></div>
-        <div class="exercicios"><p>Exercícios em construção</p></div>
+
+        <!-- ---------- TEORIA ---------- -->
+        <div class="teoria">
+          <h3>O problema: prever a população do Brasil</h3>
+          <p>
+            O IBGE conta a população do país nos censos demográficos. Com esses números, queremos
+            responder: <strong>qual curva simples descreve o crescimento</strong> e quanto ela prevê
+            para os próximos anos? Esta lição junta quase tudo da trilha: matrizes (5), multiplicação
+            (6), sistemas (8), inversa (9) e projeção (3).
+          </p>
+          <div class="tabela-rolagem">
+            <table class="tabela">
+              <thead>
+                <tr><th>Censo</th><th>t (décadas desde 1940)</th><th>População residente</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>1940</td><td>0</td><td>41.236.315</td></tr>
+                <tr><td>1950</td><td>1</td><td>51.944.397</td></tr>
+                <tr><td>1960</td><td>2</td><td>70.992.343</td></tr>
+                <tr><td>1970</td><td>3</td><td>94.508.583</td></tr>
+                <tr><td>1980</td><td>4</td><td>121.150.573</td></tr>
+                <tr><td>1991</td><td>5,1</td><td>146.917.459</td></tr>
+                <tr><td>2000</td><td>6</td><td>169.590.693</td></tr>
+                <tr><td>2010</td><td>7</td><td>190.755.799</td></tr>
+                <tr><td>2022</td><td>8,2</td><td>203.080.756</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="fonte">
+            Fonte: IBGE, Censos Demográficos. Sistema SIDRA, tabela 1286 (1940 a 2010) e
+            tabela 4709 (2022). Usamos t = (ano − 1940) / 10 para trabalhar com números pequenos.
+          </p>
+
+          <h3>Por que o sistema não tem solução</h3>
+          <p>
+            Queremos uma reta P(t) = c₀ + c₁·t que passe pelos pontos. Cada censo dá uma equação
+            c₀ + c₁·tᵢ = Pᵢ: são <strong>9 equações e só 2 incógnitas</strong>. Em forma de matriz:
+          </p>
+          <div class="formula">A · x = b, &nbsp; com &nbsp; A = <span class="matriz"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">t₁</span><span class="matriz-el">1</span><span class="matriz-el">t₂</span><span class="matriz-el">⋮</span><span class="matriz-el">⋮</span><span class="matriz-el">1</span><span class="matriz-el">t₉</span></span></span>, &nbsp; x = <span class="matriz"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">c₀</span><span class="matriz-el">c₁</span></span></span>, &nbsp; b = <span class="matriz"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">P₁</span><span class="matriz-el">P₂</span><span class="matriz-el">⋮</span><span class="matriz-el">P₉</span></span></span></div>
+          <p>
+            Como os pontos não estão todos sobre uma mesma reta, esse sistema é
+            <strong>impossível</strong> (lição 8). Então mudamos a pergunta: em vez de acertar todos os
+            pontos, buscamos a reta que <strong>erra o mínimo possível</strong>.
+          </p>
+
+          <h3>Mínimos quadrados</h3>
+          <p>
+            O erro (resíduo) em cada censo é eᵢ = Pᵢ − P(tᵢ). Escolhemos c₀ e c₁ que tornam
+            <strong>a soma dos quadrados dos erros</strong> a menor possível:
+          </p>
+          <div class="formula">SQ<sub>res</sub> = e₁² + e₂² + … + e₉² &nbsp;→&nbsp; mínimo</div>
+          <p>
+            Geometricamente, A·x percorre um plano (todas as combinações das colunas de A), e o melhor
+            A·x é a <strong>projeção</strong> de b sobre esse plano (lição 3): o vetor de erros
+            b − A·x fica perpendicular às colunas de A. Perpendicular quer dizer produto escalar zero,
+            ou seja, Aᵀ·(b − A·x) = 0. Daí saem as <strong>equações normais</strong>:
+          </p>
+          <div class="formula">Aᵀ·A · x = Aᵀ·b &nbsp;&nbsp;⇒&nbsp;&nbsp; x = (Aᵀ·A)⁻¹ · Aᵀ·b</div>
+          <p>Aᵀ·A é uma matriz quadrada pequena (2×2 para a reta), então o sistema se resolve como nas lições 8 e 9.</p>
+
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo pequeno (três pontos)</p>
+            <p>Ajustar uma reta aos pontos (0, 1), (1, 2) e (2, 4):</p>
+            <p>
+              A = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">0</span><span class="matriz-el">1</span><span class="matriz-el">1</span><span class="matriz-el">1</span><span class="matriz-el">2</span></span></span>,
+              b = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">1</span><span class="matriz-el">2</span><span class="matriz-el">4</span></span></span>
+              e Aᵀ = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 3"><span class="matriz-el">1</span><span class="matriz-el">1</span><span class="matriz-el">1</span><span class="matriz-el">0</span><span class="matriz-el">1</span><span class="matriz-el">2</span></span></span>.
+            </p>
+            <p>
+              <strong>1.</strong> Aᵀ·A = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1+1+1</span><span class="matriz-el">0+1+2</span><span class="matriz-el">0+1+2</span><span class="matriz-el">0+1+4</span></span></span>
+              = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">3</span><span class="matriz-el">3</span><span class="matriz-el">3</span><span class="matriz-el">5</span></span></span>
+              &nbsp;e&nbsp; Aᵀ·b = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">1+2+4</span><span class="matriz-el">0·1+1·2+2·4</span></span></span>
+              = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">7</span><span class="matriz-el">10</span></span></span>.
+            </p>
+            <p>
+              <strong>2.</strong> det(Aᵀ·A) = 3·5 − 3·3 = 6, então
+              (Aᵀ·A)⁻¹ = (1/6)·<span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">5</span><span class="matriz-el">−3</span><span class="matriz-el">−3</span><span class="matriz-el">3</span></span></span>.
+            </p>
+            <p>
+              <strong>3.</strong> x = (1/6)·<span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">5·7 − 3·10</span><span class="matriz-el">−3·7 + 3·10</span></span></span>
+              = (1/6)·<span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">5</span><span class="matriz-el">9</span></span></span>
+              = <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 1"><span class="matriz-el">5/6</span><span class="matriz-el">3/2</span></span></span>
+              &nbsp;⇒&nbsp; <strong>y = 5/6 + 1,5·t</strong>.
+            </p>
+            <p>
+              Erros: 1 − 5/6 = 1/6, &nbsp;2 − 7/3 = −1/3, &nbsp;4 − 23/6 = 1/6. Nenhuma outra reta tem soma
+              dos quadrados menor que (1/6)² + (1/3)² + (1/6)² = 1/6.
+            </p>
+          </div>
+
+          <h3>Reta ou parábola?</h3>
+          <p>
+            O mesmo método ajusta uma parábola P(t) = c₀ + c₁·t + c₂·t²: basta acrescentar a A uma
+            coluna com os valores de t². Continua sendo um problema <strong>linear</strong>, porque as
+            incógnitas c₀, c₁ e c₂ aparecem só multiplicadas por números. Aᵀ·A passa a ser 3×3.
+          </p>
+          <p>Para comparar modelos, usamos o <strong>coeficiente de determinação</strong>:</p>
+          <div class="formula">R² = 1 − SQ<sub>res</sub> / SQ<sub>tot</sub>, &nbsp; com &nbsp; SQ<sub>tot</sub> = Σ (Pᵢ − média)²</div>
+          <p>R² = 1 quer dizer que a curva passa por todos os pontos; quanto mais perto de 1, menor o erro em relação à variação dos dados.</p>
+
+          <h3>Olhar crítico</h3>
+          <ul>
+            <li><strong>Padrão nos erros:</strong> se os resíduos formam blocos (positivos, depois negativos, depois positivos), o modelo não acompanha a forma dos dados, mesmo com R² alto.</li>
+            <li><strong>Testar com um dado escondido:</strong> ajuste sem o último censo e veja se o modelo acerta esse valor. É um teste mais honesto que o R².</li>
+            <li><strong>Extrapolar é arriscado:</strong> um modelo ajustado de 1940 a 2022 não sabe nada sobre mudanças futuras, como a queda da natalidade. Quanto mais longe dos dados, menos confiável a previsão.</li>
+          </ul>
+        </div>
+
+        <!-- ---------- LABORATÓRIO ---------- -->
+        <div class="laboratorio">
+          <h3>Ajuste um modelo aos censos</h3>
+          <p>
+            Escolha reta ou parábola e veja as matrizes do problema, as equações normais resolvidas
+            passo a passo, a curva sobre os dados reais e os erros. Depois, esconda o censo de 2022 e
+            confira se o modelo consegue prevê-lo.
+          </p>
+
+          <div class="lab-matrizes-controles">
+            <fieldset class="escolha lab-operacao">
+              <legend>Modelo</legend>
+              <label class="opcao"><input type="radio" name="l12-modelo" value="1" checked> Reta</label>
+              <label class="opcao"><input type="radio" name="l12-modelo" value="2"> Parábola</label>
+            </fieldset>
+            <label>Prever o ano <input type="number" id="l12-ano" value="2030" min="1940" max="2100" step="1"></label>
+          </div>
+          <div class="lab-matrizes-controles">
+            <label class="lab-check"><input type="checkbox" id="l12-residuos" checked> Mostrar os erros (resíduos)</label>
+            <label class="lab-check"><input type="checkbox" id="l12-validar"> Esconder o censo de 2022 para testar a previsão</label>
+          </div>
+
+          <figure class="grafico-dados">
+            <ul class="grafico-legenda" aria-hidden="true">
+              <li><span class="legenda-marca legenda-ponto"></span> Censo (usado no ajuste)</li>
+              <li><span class="legenda-marca legenda-escondido"></span> Censo escondido (teste)</li>
+              <li><span class="legenda-marca legenda-curva"></span> Modelo</li>
+              <li><span class="legenda-marca legenda-previsao"></span> Previsão</li>
+            </ul>
+            <div class="grafico-caixa">
+              <svg id="l12-grafico" class="grafico" viewBox="0 0 640 380"
+                   role="img" aria-label="População do Brasil nos censos de 1940 a 2022 e a curva ajustada"></svg>
+              <div id="l12-dica" class="grafico-dica" hidden></div>
+            </div>
+            <figcaption class="fonte">População residente em milhões. Fonte: IBGE, Censos Demográficos (SIDRA, tabelas 1286 e 4709).</figcaption>
+          </figure>
+
+          <div id="l12-resultados" class="lab-resultados" aria-live="polite"></div>
+        </div>
+
+        <!-- ---------- EXERCÍCIOS ---------- -->
+        <div class="exercicios" data-licao="12">
+          <h3>Pratique</h3>
+          <p>Escolha uma alternativa em cada exercício. Acerte todos para concluir a trilha.</p>
+
+          <ol class="lista-exercicios">
+            <li class="exercicio">
+              <p>Por que o sistema A·x = b com os 9 censos e as 2 incógnitas da reta (c₀ e c₁) não tem solução?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="l12-ex1" value="a"
+                  data-explicacao="Ter muitas equações não dá infinitas soluções. Infinitas soluções aparecem quando as equações são dependentes, como na lição 8. Aqui as equações se contradizem."> Porque ele tem infinitas soluções</label>
+                <label class="alternativa"><input type="radio" name="l12-ex1" value="b"
+                  data-explicacao="Determinante só existe para matriz QUADRADA. A é 9×2, então não tem determinante. O motivo é outro: as equações se contradizem."> Porque det A = 0</label>
+                <label class="alternativa"><input type="radio" name="l12-ex1" value="c"
+                  data-explicacao="Cada censo exige que a reta passe pelo seu ponto. Como os 9 pontos não estão alinhados, nenhuma reta satisfaz todas as equações ao mesmo tempo: o sistema é impossível. Por isso buscamos a reta de menor erro."> Porque os pontos não estão todos sobre uma mesma reta</label>
+                <label class="alternativa"><input type="radio" name="l12-ex1" value="d"
+                  data-explicacao="Números grandes não impedem um sistema de ter solução. Usamos t em décadas só para facilitar as contas."> Porque os anos são números grandes demais</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Quais são as equações normais do método dos mínimos quadrados?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="l12-ex2" value="a"
+                  data-explicacao="O erro b − A·x precisa ser perpendicular às colunas de A: Aᵀ·(b − A·x) = 0, ou seja, Aᵀ·A·x = Aᵀ·b. Aᵀ·A é quadrada, então o sistema pode ser resolvido."> Aᵀ·A·x = Aᵀ·b</label>
+                <label class="alternativa"><input type="radio" name="l12-ex2" value="b"
+                  data-explicacao="A não é quadrada (é 9×2), então não tem inversa. É justamente por isso que precisamos de Aᵀ·A, que é 2×2."> x = A⁻¹·b</label>
+                <label class="alternativa"><input type="radio" name="l12-ex2" value="c"
+                  data-explicacao="As ordens não batem: A·x é 9×1 e Aᵀ·b é 2×1. Os dois lados precisam ser multiplicados por Aᵀ."> A·x = Aᵀ·b</label>
+                <label class="alternativa"><input type="radio" name="l12-ex2" value="d"
+                  data-explicacao="Aᵀ é 2×9; para Aᵀ·x fazer sentido, x teria 9 elementos. Além disso, a equação original A·x = b é que precisa ser multiplicada por Aᵀ dos dois lados."> Aᵀ·x = b</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Para ajustar uma reta aos valores t = 0, 1 e 2, quanto vale Aᵀ·A?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="l12-ex3" value="a"
+                  data-explicacao="O último elemento é a soma dos QUADRADOS, Σt² = 0 + 1 + 4 = 5, e não o quadrado da soma, (Σt)² = 3² = 9."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">3</span><span class="matriz-el">3</span><span class="matriz-el">3</span><span class="matriz-el">9</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l12-ex3" value="b"
+                  data-explicacao="Aᵀ·A = [n, Σt; Σt, Σt²] = [3, 0+1+2; 0+1+2, 0+1+4] = [3 3; 3 5]. É a mesma do exemplo da teoria."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">3</span><span class="matriz-el">3</span><span class="matriz-el">3</span><span class="matriz-el">5</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l12-ex3" value="c"
+                  data-explicacao="O 1º elemento é a soma da coluna de 1s, que é o número de pontos, n = 3. O maior valor de t (2) não entra ali."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">3</span><span class="matriz-el">3</span><span class="matriz-el">5</span></span></span></label>
+                <label class="alternativa"><input type="radio" name="l12-ex3" value="d"
+                  data-explicacao="Essas são as duas primeiras linhas de A ([1 0] e [1 1]), não o produto Aᵀ·A, que soma linha × coluna de todos os pontos."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">0</span><span class="matriz-el">1</span><span class="matriz-el">1</span></span></span></label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Um modelo hipotético é P(t) = 40 + 20·t (em milhões), com t em décadas desde 1940. Quanto ele prevê para <strong>2030</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="l12-ex4" value="a"
+                  data-explicacao="Foi usado t = 90 (anos) em vez de décadas. Com t = (2030 − 1940)/10 = 9: 40 + 20·9 = 220."> 1.840 milhões</label>
+                <label class="alternativa"><input type="radio" name="l12-ex4" value="b"
+                  data-explicacao="Esse é P(8), o valor para 2020. Para 2030, t = (2030 − 1940)/10 = 9."> 200 milhões</label>
+                <label class="alternativa"><input type="radio" name="l12-ex4" value="c"
+                  data-explicacao="Faltou somar o c₀ = 40, que é o valor do modelo em t = 0 (1940): 40 + 20·9 = 220."> 180 milhões</label>
+                <label class="alternativa"><input type="radio" name="l12-ex4" value="d"
+                  data-explicacao="t = (2030 − 1940)/10 = 9, então P(9) = 40 + 20·9 = 220 milhões."> 220 milhões</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Um modelo teve <strong>R² = 0,99</strong> nos dados de 1940 a 2022. O que isso garante?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="l12-ex5" value="a"
+                  data-explicacao="R² mede o ajuste aos dados que JÁ existem. Ele não diz nada sobre previsões longe deles, como 2100."> Que a previsão para 2100 terá 99% de acerto</label>
+                <label class="alternativa"><input type="radio" name="l12-ex5" value="b"
+                  data-explicacao="R² = 1 − SQres/SQtot = 0,99 quer dizer que os erros ao quadrado somam só 1% da variação total dos dados. É uma medida do ajuste nos dados usados, não uma garantia sobre o futuro."> Que os erros são pequenos perto da variação dos dados usados</label>
+                <label class="alternativa"><input type="radio" name="l12-ex5" value="c"
+                  data-explicacao="R² alto não exige que algum ponto esteja exatamente sobre a curva. Os erros podem ser todos pequenos e diferentes de zero."> Que 99% dos pontos estão exatamente sobre a curva</label>
+                <label class="alternativa"><input type="radio" name="l12-ex5" value="d"
+                  data-explicacao="R² não tem unidade: é uma razão entre somas de quadrados. Ele não é o tamanho do erro em milhões."> Que o erro médio é de 0,99 milhão de pessoas</label>
+              </div>
+            </li>
+
+            <li class="exercicio">
+              <p>Por que vale a pena ajustar o modelo <strong>sem</strong> o censo de 2022 e depois comparar a previsão com o valor real?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="l12-ex6" value="a"
+                  data-explicacao="É uma validação: o modelo é testado com um dado que ele não viu. Se errar muito, as previsões para o futuro também merecem desconfiança."> Para testar o modelo com um dado que ele não usou</label>
+                <label class="alternativa"><input type="radio" name="l12-ex6" value="b"
+                  data-explicacao="Com menos pontos o R² pode até subir, mas esse não é o objetivo. Melhorar o número sem testar o modelo seria enganar a si mesmo."> Para o R² ficar maior</label>
+                <label class="alternativa"><input type="radio" name="l12-ex6" value="c"
+                  data-explicacao="O dado de 2022 é oficial (IBGE). Ele é escondido de propósito, só para servir de prova."> Porque o dado de 2022 está errado</label>
+                <label class="alternativa"><input type="radio" name="l12-ex6" value="d"
+                  data-explicacao="Com 8 pontos e 2 incógnitas, o sistema A·x = b continua com mais equações que incógnitas. Ele só ficaria quadrado com 2 pontos."> Para o sistema A·x = b ficar quadrado</label>
+              </div>
+            </li>
+          </ol>
+        </div>
       </section>
 
     </main>
@@ -2631,5 +2867,6 @@
   <script src="js/licoes/licao-09.js"></script>
   <script src="js/licoes/licao-10.js"></script>
   <script src="js/licoes/licao-11.js"></script>
+  <script src="js/licoes/licao-12.js"></script>
 </body>
 </html>

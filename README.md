@@ -38,6 +38,7 @@ codigo/                       Código do site
       licao-09.js             Laboratório da Lição 9
       licao-10.js             Laboratório da Lição 10
       licao-11.js             Laboratório da Lição 11
+      licao-12.js             Laboratório da Lição 12 (dados reais dos censos do IBGE)
 README.md
 ```
 

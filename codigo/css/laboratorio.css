@@ -589,6 +589,164 @@
 
 
 /* =========================================================================
+   GRÁFICO DE DADOS REAIS (Lição 12)
+   ========================================================================= */
+
+/* Fonte dos dados (abaixo de tabelas e gráficos) */
+.fonte {
+  margin: var(--esp-2) 0 0;
+  font-size: var(--tamanho-pequeno);
+  color: var(--cor-texto-suave);
+}
+
+.grafico-dados {
+  margin: var(--esp-4) 0;
+}
+
+/* Fórmula com matriz alta/larga: rola dentro da caixa no celular */
+.formula-rolagem {
+  overflow-x: auto;
+}
+
+/* Legenda em uma linha acima do gráfico */
+.grafico-legenda {
+  list-style: none;
+  margin: 0 0 var(--esp-2);
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--esp-2) var(--esp-4);
+  font-size: var(--tamanho-pequeno);
+  color: var(--cor-texto-suave);
+}
+
+.grafico-legenda li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-2);
+}
+
+.legenda-marca {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  flex: none;
+}
+
+.legenda-ponto { border-radius: 50%; background: var(--cor-teoria); }
+.legenda-escondido { border-radius: 50%; border: 2px solid var(--cor-exercicios); }
+.legenda-curva { height: 3px; width: 18px; border-radius: 2px; background: var(--cor-laboratorio); }
+.legenda-previsao { width: 10px; height: 10px; transform: rotate(45deg); background: var(--cor-acerto); }
+
+.grafico-caixa {
+  position: relative;               /* referência para a dica */
+}
+
+.grafico {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--cor-superficie);
+  border: var(--borda);
+  border-radius: var(--raio);
+}
+
+.grafico-grade { stroke: var(--cor-borda); stroke-width: 1; }
+.grafico-base { stroke: var(--cor-texto-suave); stroke-width: 1; }
+
+.grafico-rotulo {
+  fill: var(--cor-texto-suave);
+  font-family: var(--fonte-base);
+  font-size: 12px;
+}
+
+.grafico-rotulo-forte {
+  fill: var(--cor-texto);
+  font-weight: 700;
+  paint-order: stroke;
+  stroke: var(--cor-superficie);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+
+.grafico-curva {
+  fill: none;
+  stroke: var(--cor-laboratorio);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.grafico-curva.extrapolacao {
+  stroke-dasharray: 6 5;
+  opacity: 0.8;
+}
+
+.grafico-residuo {
+  stroke: var(--cor-exercicios);
+  stroke-width: 2;
+  stroke-dasharray: 3 3;
+}
+
+/* Pontos com anel da cor do fundo, para se destacarem sobre a curva */
+.grafico-ponto {
+  fill: var(--cor-teoria);
+  stroke: var(--cor-superficie);
+  stroke-width: 2;
+}
+
+.grafico-ponto.escondido {
+  fill: var(--cor-superficie);
+  stroke: var(--cor-exercicios);
+  stroke-width: 2.5;
+}
+
+.grafico-previsao {
+  fill: var(--cor-acerto);
+  stroke: var(--cor-superficie);
+  stroke-width: 2;
+}
+
+/* Área invisível (maior que o ponto) que ativa a dica */
+.grafico-alvo {
+  fill: transparent;
+  cursor: pointer;
+}
+
+.grafico-alvo:focus-visible {
+  outline: none;
+  stroke: var(--cor-primaria);
+  stroke-width: 2;
+}
+
+.grafico-dica {
+  position: absolute;
+  z-index: 2;
+  max-width: 16rem;
+  padding: var(--esp-2) var(--esp-3);
+  background: var(--cor-superficie);
+  border: var(--borda);
+  border-radius: var(--raio);
+  box-shadow: 0 4px 14px rgb(0 0 0 / 0.18);
+  font-size: var(--tamanho-pequeno);
+  line-height: 1.45;
+  pointer-events: none;
+}
+
+/* Tabela de números: alinhados à direita para comparar */
+.tabela-numeros td:not(:first-child),
+.tabela-numeros th:not(:first-child) {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.linha-escondida td {
+  color: var(--cor-exercicios);
+  font-style: italic;
+}
+
+
+/* =========================================================================
    RESPONSIVO
    ========================================================================= */
 @media (max-width: 900px) {
