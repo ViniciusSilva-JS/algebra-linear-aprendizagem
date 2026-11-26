@@ -53,7 +53,7 @@ const CHAVE_MATERIA = 'trilha-alga:materia';
 const CHAVE_NIVEL = 'trilha-alga:nivel';
 const CHAVE_TEMA = 'trilha-alga:tema';
 const TEMPO_AVISO = 3500; // quanto tempo (ms) o aviso fica na tela
-const TITULO_ORIGINAL = document.title;
+const SUFIXO_TITULO = ' — Trilha de Aprendizagem'; // "Geometria Analítica — Trilha de Aprendizagem"
 
 
 /* =========================================================================
@@ -83,6 +83,7 @@ const barraProgresso = document.getElementById('progresso-barra');
 const textoProgresso = document.getElementById('progresso-texto');
 const btnRecomecar = document.getElementById('btn-recomecar');
 
+const tituloMateria = document.getElementById('titulo-materia'); // nome da matéria no cabeçalho
 const btnTema = document.getElementById('btn-tema');
 const aviso = document.getElementById('aviso');
 
@@ -287,7 +288,7 @@ function mostrarTela(trilha, n) {
 
   // Título da aba do navegador.
   document.title = n === 0
-    ? TITULO_ORIGINAL
+    ? TRILHAS[trilhaAtual].nome + SUFIXO_TITULO
     : tituloDaLicao(trilha, n) + ' — ' + TRILHAS[trilha].nome;
 
   atualizarNav();
@@ -328,6 +329,10 @@ function atualizarNav() {
     if (daTrilha) btnMenu.setAttribute('aria-controls', lista.id);
   });
   tituloNav.textContent = 'Trilha: ' + TRILHAS[trilhaAtual].nome;
+
+  // Cabeçalho e título da aba mostram a matéria escolhida.
+  if (tituloMateria) tituloMateria.textContent = TRILHAS[trilhaAtual].nome;
+  if (telaAtual.n === 0) document.title = TRILHAS[trilhaAtual].nome + SUFIXO_TITULO;
   nav.setAttribute('aria-label', 'Trilha de lições de ' + TRILHAS[trilhaAtual].nome);
 
   itensTrilha.forEach((item) => {
