@@ -1,8 +1,10 @@
 # Álgebra Linear — Trilha de Aprendizagem
 
-Site de estudo de Álgebra Linear e Geometria Analítica em 12 lições sequenciais.
+Site de estudo com **duas trilhas** de 12 lições sequenciais cada: **Álgebra Linear**
+e **Geometria Analítica** (a matéria é escolhida na tela inicial, e cada trilha guarda o seu progresso).
 Cada lição tem **Teoria**, **Laboratório** (interativo) e **Exercícios** (múltipla
-escolha). Acertar todos os exercícios libera a próxima lição.
+escolha). Acertar todos os exercícios libera a próxima lição. O **nível** escolhido
+(Básico, Intermediário ou Avançado) decide quais exercícios aparecem.
 
 HTML, CSS e JavaScript puros, sem bibliotecas e sem servidor: basta abrir o
 `codigo/index.html` no navegador.
@@ -11,7 +13,7 @@ HTML, CSS e JavaScript puros, sem bibliotecas e sem servidor: basta abrir o
 
 ```
 codigo/                       Código do site
-  index.html                  Página única: cabeçalho, trilha e o conteúdo das 12 lições
+  index.html                  Página única: cabeçalho, as duas trilhas e o conteúdo de todas as lições
   css/
     base.css                  Variáveis (cores, fontes, espaços), tema claro/escuro, reset, tipografia
     layout.css                Cabeçalho, trilha (nav), grade da página, cartões das lições, rodapé
@@ -24,8 +26,8 @@ codigo/                       Código do site
     componentes/
       plano.js                Plano cartesiano em SVG reaproveitável (criarPlanoCartesiano)
       matriz.js               Editor e exibição de matrizes (criarEditorMatriz, htmlMatriz)
-      exercicios.js           Correção automática dos exercícios (lê o HTML, não precisa de JS por lição)
-    app.js                    Navegação por hash, desbloqueio de lições, progresso salvo e tema
+      exercicios.js           Correção automática dos exercícios e filtro por nível (lê o HTML)
+    app.js                    Trilhas (matéria), nível, navegação por hash, desbloqueio, progresso e tema
     licoes/
       licao-01.js             Laboratório da Lição 1 (só o que é específico da lição)
       licao-02.js             Laboratório da Lição 2
@@ -39,6 +41,7 @@ codigo/                       Código do site
       licao-10.js             Laboratório da Lição 10
       licao-11.js             Laboratório da Lição 11
       licao-12.js             Laboratório da Lição 12 (dados reais dos censos do IBGE)
+      ga-01.js                Geometria Analítica, Lição 1 (ângulo e distância entre retas)
 README.md
 ```
 
@@ -109,6 +112,30 @@ E adicionar no fim do `codigo/index.html`, depois da lição anterior:
 <script src="js/licoes/licao-03.js"></script>
 ```
 
+### Lições de Geometria Analítica
+
+Mesmo padrão, com três diferenças:
+
+- a seção é `<section id="ga-3" class="licao" data-trilha="ga" data-licao="3">` (o hash fica `#ga-3`);
+- o item da navegação vai na lista `<ol id="trilha-lista-ga">`;
+- ids com prefixo `gN-` (`g3-plano`, `g3-b1`…) e arquivo `codigo/js/licoes/ga-03.js`.
+
+O `app.js` conta as lições de cada trilha pelo próprio HTML; não há número fixo no código.
+
+### Níveis dos exercícios
+
+Cada `<li class="exercicio">` pode ter `data-nivel="basico"`, `"intermediario"` ou
+`"avancado"` (sem o atributo, conta como básico). Só aparecem os do nível escolhido
+na tela inicial, e o aluno precisa acertar esses para concluir a lição. Se a lição
+ainda não tiver exercícios de um nível, aparecem os do básico com um aviso. O ideal
+é **6 exercícios por nível**:
+
+- **Básico:** aplicação direta da fórmula.
+- **Intermediário:** duas etapas, ou a fórmula usada "ao contrário" (achar um parâmetro).
+- **Avançado:** juntar ideias, casos com mais de uma resposta, armadilhas comuns.
+
+Nomes dos rádios por nível: `g1-b1` (básico), `g1-i1` (intermediário), `g1-a1` (avançado).
+
 ### 3. CSS (só se precisar)
 
 Coloque estilos novos em `codigo/css/`, no arquivo do assunto (`laboratorio.css`, `exercicios.css`,
@@ -118,7 +145,8 @@ celular no bloco **RESPONSIVO** do fim do mesmo arquivo.
 ## Convenções
 
 - **Nomes em português**, com código e comentários em português.
-- **Ids por lição** com prefixo `lN-` (`l3-plano`, `l3-ex1`…), para não colidir.
+- **Ids por lição** com prefixo `lN-` em Álgebra Linear (`l3-plano`, `l3-ex1`…) e `gN-` em
+  Geometria Analítica (`g1-plano`…), para não colidir.
 - **Arquivos de lição com dois dígitos** (`licao-03.js`, `licao-10.js`), para ficarem em ordem.
 - **Funções de matemática** reaproveitáveis vão em `codigo/js/utils/matematica.js`; o que
   só uma lição usa fica no arquivo da lição.

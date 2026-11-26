@@ -1,6 +1,13 @@
 /* =========================================================================
    Álgebra Linear — Trilha de Aprendizagem
-   js/app.js — Navegação, desbloqueio de lições, progresso e tema
+   js/app.js — Navegação, trilhas, desbloqueio de lições, progresso, nível e tema
+
+   O site tem DUAS trilhas, cada uma com o seu progresso:
+   - Álgebra Linear      → seções  id="licao-N"  (hash #licao-N)
+   - Geometria Analítica → seções  id="ga-N" data-trilha="ga"  (hash #ga-N)
+   A matéria escolhida na tela inicial decide qual trilha aparece na
+   navegação. O nível escolhido decide quais exercícios aparecem
+   (ver js/componentes/exercicios.js).
 
    Índice
    1.  Configurações
@@ -8,15 +15,16 @@
    3.  Estado (o que o sistema "lembra" enquanto está aberto)
    4.  Armazenamento (localStorage com try/catch)
    5.  Regras da trilha (liberada / concluída)
-   6.  Navegação por hash (#inicio, #licao-1 ... #licao-12)
+   6.  Navegação por hash (#inicio, #licao-1, #ga-1 ...)
    7.  Atualização da interface (nav, lições, progresso)
-   8.  concluirLicao(numero) e recomeçar
+   8.  concluirLicao(numero, trilha) e recomeçar
    9.  Rodapé de cada lição (botões criados pelo JS)
    10. Menu no celular
    11. Aviso flutuante
-   12. Tema claro / escuro
-   13. Eventos
-   14. Inicialização
+   12. Matéria e nível
+   13. Tema claro / escuro
+   14. Eventos
+   15. Inicialização
    ========================================================================= */
 
 'use strict';
@@ -25,10 +33,26 @@
 /* =========================================================================
    1. CONFIGURAÇÕES
    ========================================================================= */
-const TOTAL_LICOES = 12;
-const CHAVE_CONCLUIDAS = 'trilha-alga:concluidas'; // chave do progresso no localStorage
-const CHAVE_TEMA = 'trilha-alga:tema';             // chave do tema no localStorage
-const TEMPO_AVISO = 3500;                          // quanto tempo (ms) o aviso fica na tela
+const TRILHAS = {
+  al: {
+    nome: 'Álgebra Linear',
+    materia: 'algebra-linear',            // value do rádio na tela inicial
+    prefixo: 'licao',                     // hash e id: #licao-3
+    chave: 'trilha-alga:concluidas',      // progresso no localStorage
+  },
+  ga: {
+    nome: 'Geometria Analítica',
+    materia: 'geometria-analitica',
+    prefixo: 'ga',
+    chave: 'trilha-alga:concluidas-ga',
+  },
+};
+const NIVEIS = ['basico', 'intermediario', 'avancado'];
+
+const CHAVE_MATERIA = 'trilha-alga:materia';
+const CHAVE_NIVEL = 'trilha-alga:nivel';
+const CHAVE_TEMA = 'trilha-alga:tema';
+const TEMPO_AVISO = 3500; // quanto tempo (ms) o aviso fica na tela
 const TITULO_ORIGINAL = document.title;
 
 
@@ -40,10 +64,14 @@ const raiz = document.documentElement; // a tag <html>
 const secaoConfiguracao = document.getElementById('configuracao');
 const formConfiguracao = document.getElementById('form-configuracao');
 const btnComecar = document.getElementById('btn-comecar');
+const radiosMateria = Array.from(document.querySelectorAll('input[name="materia"]'));
+const radiosNivel = Array.from(document.querySelectorAll('input[name="nivel"]'));
 
 const nav = document.getElementById('trilha');
+const tituloNav = nav.querySelector('.trilha-titulo');
 const btnMenu = document.getElementById('btn-menu');
 const textoMenu = btnMenu.querySelector('.trilha-toggle-texto');
+const listasTrilha = Array.from(document.querySelectorAll('.trilha-lista'));
 const itensTrilha = Array.from(document.querySelectorAll('.trilha-item'));
 
 const conteudo = document.getElementById('conteudo');
@@ -58,14 +86,33 @@ const btnRecomecar = document.getElementById('btn-recomecar');
 const btnTema = document.getElementById('btn-tema');
 const aviso = document.getElementById('aviso');
 
+/** Trilha de um elemento: data-trilha="ga" ou, sem o atributo, Álgebra Linear. */
+function trilhaDe(elemento) {
+  const t = elemento.closest('[data-trilha]');
+  return t && TRILHAS[t.dataset.trilha] ? t.dataset.trilha : 'al';
+}
+
+/** Seção de cada lição: secoes.al[3] é a lição 3 de Álgebra Linear. */
+const secoes = { al: {}, ga: {} };
+secoesLicao.forEach((secao) => {
+  secoes[trilhaDe(secao)][Number(secao.dataset.licao)] = secao;
+});
+
+/** Quantas lições a trilha tem (contadas no próprio HTML). */
+function totalDeLicoes(trilha) {
+  return Object.keys(secoes[trilha]).length;
+}
+
 
 /* =========================================================================
    3. ESTADO
    ========================================================================= */
-let concluidas = new Set();  // números das lições concluídas, ex.: {1, 2}
-let telaAtual = 0;           // 0 = tela inicial; 1 a 12 = número da lição
-let primeiraTela = true;     // na 1ª exibição não movemos o foco do teclado
-let timerAviso = null;       // controla o sumiço automático do aviso
+const concluidas = { al: new Set(), ga: new Set() }; // ex.: concluidas.al = {1, 2}
+let trilhaAtual = 'al';                       // trilha mostrada na navegação
+let telaAtual = { trilha: 'al', n: 0 };       // n = 0 → tela inicial
+let nivelAtual = 'basico';
+let primeiraTela = true;   // na 1ª exibição não movemos o foco do teclado
+let timerAviso = null;     // controla o sumiço automático do aviso
 
 
 /* =========================================================================
@@ -97,24 +144,24 @@ function gravarStorage(chave, valor) {
   }
 }
 
-/** Carrega as lições concluídas, aceitando só números válidos (1 a 12). */
-function carregarProgresso() {
-  const texto = lerStorage(CHAVE_CONCLUIDAS);
+/** Carrega as lições concluídas de uma trilha, aceitando só números válidos. */
+function carregarProgresso(trilha) {
+  const texto = lerStorage(TRILHAS[trilha].chave);
   if (!texto) return new Set();
 
   try {
     const lista = JSON.parse(texto);
     if (!Array.isArray(lista)) return new Set();
-    return new Set(lista.filter(ehNumeroDeLicao));
+    return new Set(lista.filter((n) => ehNumeroDeLicao(trilha, n)));
   } catch (erro) {
     return new Set(); // texto corrompido: começa do zero
   }
 }
 
 /** Salva as lições concluídas como uma lista em ordem, ex.: "[1,2,3]". */
-function salvarProgresso() {
-  const lista = Array.from(concluidas).sort((a, b) => a - b);
-  gravarStorage(CHAVE_CONCLUIDAS, JSON.stringify(lista));
+function salvarProgresso(trilha) {
+  const lista = Array.from(concluidas[trilha]).sort((a, b) => a - b);
+  gravarStorage(TRILHAS[trilha].chave, JSON.stringify(lista));
 }
 
 
@@ -122,31 +169,37 @@ function salvarProgresso() {
    5. REGRAS DA TRILHA
    ========================================================================= */
 
-/** Confere se n é um número inteiro de 1 a 12. */
-function ehNumeroDeLicao(n) {
-  return Number.isInteger(n) && n >= 1 && n <= TOTAL_LICOES;
+/** Confere se n é o número de uma lição que existe na trilha. */
+function ehNumeroDeLicao(trilha, n) {
+  return Number.isInteger(n) && n >= 1 && n <= totalDeLicoes(trilha);
 }
 
 /** A lição 1 está sempre liberada; as outras, só se a anterior foi concluída. */
-function estaLiberada(n) {
-  return n === 1 || concluidas.has(n - 1);
+function estaLiberada(trilha, n) {
+  return n === 1 || concluidas[trilha].has(n - 1);
 }
 
-function estaConcluida(n) {
-  return concluidas.has(n);
+function estaConcluida(trilha, n) {
+  return concluidas[trilha].has(n);
+}
+
+/** É a última lição da trilha? (usado pelos exercícios na mensagem final) */
+function ehUltimaLicao(trilha, n) {
+  return n === totalDeLicoes(trilha);
 }
 
 /** Primeira lição ainda não concluída (para o botão "Começar/Continuar"). */
-function proximaLicaoParaEstudar() {
-  for (let n = 1; n <= TOTAL_LICOES; n++) {
-    if (!estaConcluida(n)) return n;
+function proximaLicaoParaEstudar(trilha) {
+  const total = totalDeLicoes(trilha);
+  for (let n = 1; n <= total; n++) {
+    if (!estaConcluida(trilha, n)) return n;
   }
-  return TOTAL_LICOES; // tudo concluído: abre a última
+  return total; // tudo concluído: abre a última
 }
 
 /** Título de uma lição, lido do próprio HTML (ex.: "3. Produto escalar e ângulo"). */
-function tituloDaLicao(n) {
-  const secao = secoesLicao.find((s) => Number(s.dataset.licao) === n);
+function tituloDaLicao(trilha, n) {
+  const secao = secoes[trilha][n];
   const titulo = secao && secao.querySelector('.licao-titulo');
   return titulo ? titulo.textContent.trim() : 'Lição ' + n;
 }
@@ -154,77 +207,88 @@ function tituloDaLicao(n) {
 
 /* =========================================================================
    6. NAVEGAÇÃO POR HASH
-   A tela atual fica na URL (ex.: index.html#licao-3). Assim:
+   A tela atual fica na URL (ex.: index.html#licao-3 ou #ga-2). Assim:
    - o botão voltar/avançar do navegador funciona;
    - um link direto abre a lição certa.
    ========================================================================= */
 
-/** Monta o hash de uma tela: 0 → "#inicio", 3 → "#licao-3". */
-function hashDaTela(n) {
-  return n === 0 ? '#inicio' : '#licao-' + n;
+/** Monta o hash de uma tela: n = 0 → "#inicio", ('ga', 2) → "#ga-2". */
+function hashDaTela(trilha, n) {
+  return n === 0 ? '#inicio' : '#' + TRILHAS[trilha].prefixo + '-' + n;
 }
 
-/** Lê o hash da URL e devolve o número da tela (0 = início). */
-function telaDoHash() {
-  const hash = decodeURIComponent(window.location.hash.slice(1)); // tira o "#"
-  const encontrado = /^licao-(\d+)$/.exec(hash);
+/** Converte "licao-3", "#ga-2" ou "inicio" em { trilha, n }. */
+function telaDoTexto(texto) {
+  const limpo = String(texto).replace(/^#/, '');
+  const encontrado = /^([a-z]+)-(\d+)$/.exec(limpo);
   if (encontrado) {
-    const n = Number(encontrado[1]);
-    if (ehNumeroDeLicao(n)) return n;
+    const trilha = Object.keys(TRILHAS).find((t) => TRILHAS[t].prefixo === encontrado[1]);
+    const n = Number(encontrado[2]);
+    if (trilha && ehNumeroDeLicao(trilha, n)) return { trilha, n };
   }
-  return 0; // hash vazio ou desconhecido → tela inicial
+  return { trilha: trilhaAtual, n: 0 }; // vazio ou desconhecido → tela inicial
+}
+
+function telaDoHash() {
+  return telaDoTexto(decodeURIComponent(window.location.hash.slice(1)));
 }
 
 /**
  * Pedido para ir a uma tela (clique na nav, botões etc.).
  * Se a lição estiver bloqueada, mostra o aviso e não sai do lugar.
  */
-function irPara(n) {
-  if (n !== 0 && !estaLiberada(n)) {
+function irPara(trilha, n) {
+  if (n !== 0 && !estaLiberada(trilha, n)) {
     mostrarAviso('Conclua a lição anterior primeiro');
     return;
   }
 
-  if (window.location.hash === hashDaTela(n)) {
+  if (window.location.hash === hashDaTela(trilha, n)) {
     // Já estamos nesse hash (o evento hashchange não dispararia): só mostra.
-    mostrarTela(n);
+    mostrarTela(trilha, n);
   } else {
     // Muda a URL; o evento "hashchange" chama aoMudarHash() em seguida.
-    window.location.hash = hashDaTela(n);
+    window.location.hash = hashDaTela(trilha, n);
   }
 }
 
 /** Chamado quando o hash muda (clique, voltar/avançar, link direto). */
 function aoMudarHash() {
-  const n = telaDoHash();
+  const { trilha, n } = telaDoHash();
 
-  if (n !== 0 && !estaLiberada(n)) {
+  if (n !== 0 && !estaLiberada(trilha, n)) {
     // Ex.: link direto para #licao-5 sem ter feito a 4.
     mostrarAviso('Conclua a lição anterior primeiro');
     // Troca a URL de volta SEM criar uma nova entrada no histórico.
-    history.replaceState(null, '', hashDaTela(telaAtual));
-    mostrarTela(telaAtual);
+    history.replaceState(null, '', hashDaTela(telaAtual.trilha, telaAtual.n));
+    mostrarTela(telaAtual.trilha, telaAtual.n);
     return;
   }
 
-  mostrarTela(n);
+  mostrarTela(trilha, n);
 }
 
 /** Mostra uma tela e esconde todas as outras. */
-function mostrarTela(n) {
-  telaAtual = n;
+function mostrarTela(trilha, n) {
+  telaAtual = { trilha, n };
+
+  // Abrindo uma lição da outra matéria (ex.: link direto), a navegação acompanha.
+  if (n !== 0 && trilha !== trilhaAtual) escolherMateria(trilha);
 
   // Tela inicial e escolha de matéria/nível só aparecem no início.
   secaoInicio.hidden = n !== 0;
   secaoConfiguracao.hidden = n !== 0;
 
   // Mostra apenas a lição escolhida.
+  const atual = n === 0 ? null : secoes[trilha][n];
   secoesLicao.forEach((secao) => {
-    secao.hidden = Number(secao.dataset.licao) !== n;
+    secao.hidden = secao !== atual;
   });
 
   // Título da aba do navegador.
-  document.title = n === 0 ? TITULO_ORIGINAL : tituloDaLicao(n) + ' — Álgebra Linear';
+  document.title = n === 0
+    ? TITULO_ORIGINAL
+    : tituloDaLicao(trilha, n) + ' — ' + TRILHAS[trilha].nome;
 
   atualizarNav();
   fecharMenu();
@@ -235,8 +299,7 @@ function mostrarTela(n) {
   // Acessibilidade: leva o foco do teclado/leitor de tela para o título
   // da nova tela (menos na primeira carga da página).
   if (!primeiraTela) {
-    const secao = n === 0 ? secaoInicio : secoesLicao[n - 1];
-    const titulo = secao.querySelector('h2');
+    const titulo = (atual || secaoInicio).querySelector('h2');
     if (titulo) {
       titulo.setAttribute('tabindex', '-1');
       titulo.focus({ preventScroll: true });
@@ -257,16 +320,25 @@ function atualizarTudo() {
   atualizarProgresso();
 }
 
-/** Aplica .ativa, .concluida e .bloqueada em cada item da trilha. */
+/** Mostra a lista da trilha escolhida e aplica .ativa, .concluida e .bloqueada. */
 function atualizarNav() {
+  listasTrilha.forEach((lista) => {
+    const daTrilha = trilhaDe(lista) === trilhaAtual;
+    lista.hidden = !daTrilha;
+    if (daTrilha) btnMenu.setAttribute('aria-controls', lista.id);
+  });
+  tituloNav.textContent = 'Trilha: ' + TRILHAS[trilhaAtual].nome;
+  nav.setAttribute('aria-label', 'Trilha de lições de ' + TRILHAS[trilhaAtual].nome);
+
   itensTrilha.forEach((item) => {
+    const trilha = trilhaDe(item);
     const n = Number(item.dataset.licao);
     const link = item.querySelector('.trilha-link');
-    const ativa = n === telaAtual;
-    const bloqueada = !estaLiberada(n);
+    const ativa = trilha === telaAtual.trilha && n === telaAtual.n;
+    const bloqueada = !estaLiberada(trilha, n);
 
     item.classList.toggle('ativa', ativa);
-    item.classList.toggle('concluida', estaConcluida(n));
+    item.classList.toggle('concluida', estaConcluida(trilha, n));
     item.classList.toggle('bloqueada', bloqueada);
 
     // Informações para leitores de tela.
@@ -285,27 +357,29 @@ function atualizarNav() {
   });
 
   // Texto do botão do menu no celular mostra onde o aluno está.
-  textoMenu.textContent = telaAtual === 0
-    ? 'Trilha de lições'
-    : 'Lição ' + tituloDaLicao(telaAtual);
+  textoMenu.textContent = telaAtual.n === 0
+    ? 'Trilha: ' + TRILHAS[trilhaAtual].nome
+    : 'Lição ' + tituloDaLicao(telaAtual.trilha, telaAtual.n);
 }
 
 /** Barra de progresso e texto "X de 12 lições concluídas" da tela inicial. */
 function atualizarProgresso() {
-  const total = concluidas.size;
-  const porcentagem = Math.round((total / TOTAL_LICOES) * 100);
-  const frase = total + ' de ' + TOTAL_LICOES + ' lições concluídas';
+  const total = totalDeLicoes(trilhaAtual);
+  const feitas = concluidas[trilhaAtual].size;
+  const porcentagem = total ? Math.round((feitas / total) * 100) : 0;
+  const frase = feitas + ' de ' + total + ' lições concluídas em ' + TRILHAS[trilhaAtual].nome;
 
   barraProgresso.style.width = porcentagem + '%';
-  caixaProgresso.setAttribute('aria-valuenow', String(total));
+  caixaProgresso.setAttribute('aria-valuemax', String(total));
+  caixaProgresso.setAttribute('aria-valuenow', String(feitas));
   caixaProgresso.setAttribute('aria-valuetext', frase);
   textoProgresso.textContent = frase;
 
   // Sem progresso, não há o que apagar.
-  btnRecomecar.disabled = total === 0;
+  btnRecomecar.disabled = feitas === 0;
 
   // O botão do formulário muda de texto se o aluno já começou.
-  btnComecar.textContent = total === 0 ? 'Começar trilha' : 'Continuar trilha';
+  btnComecar.textContent = feitas === 0 ? 'Começar trilha' : 'Continuar trilha';
 }
 
 
@@ -315,58 +389,62 @@ function atualizarProgresso() {
 
 /**
  * Marca a lição como concluída e libera a próxima.
- * Depois será chamada pelos exercícios quando o aluno acertar tudo.
+ * Chamada pelos exercícios quando o aluno acerta tudo.
  * Devolve true se deu certo e false se a lição não pôde ser concluída.
  */
-function concluirLicao(numero) {
+function concluirLicao(numero, trilha) {
+  const t = TRILHAS[trilha] ? trilha : 'al';
   const n = Number(numero);
 
-  if (!ehNumeroDeLicao(n)) return false;
-  if (!estaLiberada(n)) {
+  if (!ehNumeroDeLicao(t, n)) return false;
+  if (!estaLiberada(t, n)) {
     mostrarAviso('Conclua a lição anterior primeiro');
     return false;
   }
 
-  const eraNova = !concluidas.has(n);
-  concluidas.add(n);
-  salvarProgresso();
+  const eraNova = !concluidas[t].has(n);
+  concluidas[t].add(n);
+  salvarProgresso(t);
   atualizarTudo();
 
   if (eraNova) {
-    const mensagem = n < TOTAL_LICOES
+    const mensagem = !ehUltimaLicao(t, n)
       ? 'Lição ' + n + ' concluída! A lição ' + (n + 1) + ' foi liberada.'
-      : 'Parabéns! Você concluiu toda a trilha.';
+      : 'Parabéns! Você concluiu toda a trilha de ' + TRILHAS[t].nome + '.';
     mostrarAviso(mensagem, 'acerto');
   }
   return true;
 }
 
-/** Apaga todo o progresso (depois de pedir confirmação) e volta ao início. */
+/** Apaga o progresso da trilha escolhida (depois de confirmar) e volta ao início. */
 function recomecarTrilha() {
+  const nome = TRILHAS[trilhaAtual].nome;
   const confirmou = window.confirm(
-    'Tem certeza que deseja recomeçar a trilha?\n' +
-    'Todo o seu progresso será apagado.'
+    'Tem certeza que deseja recomeçar a trilha de ' + nome + '?\n' +
+    'Todo o seu progresso nela será apagado.'
   );
   if (!confirmou) return;
 
-  concluidas.clear();
-  gravarStorage(CHAVE_CONCLUIDAS, null);
+  concluidas[trilhaAtual].clear();
+  gravarStorage(TRILHAS[trilhaAtual].chave, null);
   atualizarTudo();
-  irPara(0);
+  irPara(trilhaAtual, 0);
   mostrarAviso('Progresso apagado. Bons estudos!', 'acerto');
 }
 
-// Deixa a função acessível para os próximos arquivos/etapas.
+// Deixa as funções acessíveis para os outros arquivos (exercícios).
 window.concluirLicao = concluirLicao;
+window.ehUltimaLicao = ehUltimaLicao;
 
 
 /* =========================================================================
    9. RODAPÉ DE CADA LIÇÃO
-   Criados aqui (e não no HTML) para não repetir o mesmo código 12 vezes.
+   Criados aqui (e não no HTML) para não repetir o mesmo código em cada lição.
    Cada lição ganha:
-   - botão PROVISÓRIO "Marcar como concluída" (depois vira os exercícios);
+   - botão "Marcar como concluída" (só nas lições ainda sem exercícios);
    - "◀ Lição anterior" (na lição 1: "◀ Início");
    - "Próxima lição ▶" (menos na última).
+   O destino fica em data-ir, no mesmo formato do hash ("licao-3", "ga-2", "inicio").
    ========================================================================= */
 
 /** Cria um <button> com texto e classes. */
@@ -380,16 +458,17 @@ function criarBotao(texto, classes) {
 
 function criarRodapesDasLicoes() {
   secoesLicao.forEach((secao) => {
+    const trilha = trilhaDe(secao);
     const n = Number(secao.dataset.licao);
 
     const rodape = document.createElement('div');
     rodape.className = 'licao-rodape';
 
-    // Botão provisório de concluir: só nas lições que ainda não têm
-    // exercícios (.exercicio). Nas outras, quem conclui é o js/componentes/exercicios.js.
+    // Botão de concluir: só nas lições que ainda não têm exercícios
+    // (.exercicio). Nas outras, quem conclui é o js/componentes/exercicios.js.
     if (!secao.querySelector('.exercicio')) {
       const btnConcluir = criarBotao('Marcar como concluída', 'btn btn-concluir');
-      btnConcluir.dataset.concluir = String(n);
+      btnConcluir.dataset.concluir = trilha + ':' + n;
       rodape.append(btnConcluir);
     }
 
@@ -401,12 +480,12 @@ function criarRodapesDasLicoes() {
       n === 1 ? '◀ Início' : '◀ Lição anterior',
       'btn-secundario btn-anterior'
     );
-    btnAnterior.dataset.ir = String(n - 1); // 0 = tela inicial
+    btnAnterior.dataset.ir = hashDaTela(trilha, n - 1).slice(1);
     navegacao.append(btnAnterior);
 
-    if (n < TOTAL_LICOES) {
+    if (!ehUltimaLicao(trilha, n)) {
       const btnProxima = criarBotao('Próxima lição ▶', 'btn-secundario btn-proxima');
-      btnProxima.dataset.ir = String(n + 1);
+      btnProxima.dataset.ir = hashDaTela(trilha, n + 1).slice(1);
       navegacao.append(btnProxima);
     }
 
@@ -418,18 +497,19 @@ function criarRodapesDasLicoes() {
 /** Atualiza o estado dos botões do rodapé conforme o progresso. */
 function atualizarRodapesDasLicoes() {
   secoesLicao.forEach((secao) => {
+    const trilha = trilhaDe(secao);
     const n = Number(secao.dataset.licao);
 
     const btnConcluir = secao.querySelector('.btn-concluir');
     if (btnConcluir) {
-      const feita = estaConcluida(n);
+      const feita = estaConcluida(trilha, n);
       btnConcluir.disabled = feita;
       btnConcluir.textContent = feita ? '✓ Lição concluída' : 'Marcar como concluída';
     }
 
     const btnProxima = secao.querySelector('.btn-proxima');
     if (btnProxima) {
-      const liberada = estaLiberada(n + 1);
+      const liberada = estaLiberada(trilha, n + 1);
       // Não usamos "disabled" para que o clique ainda mostre o aviso.
       btnProxima.setAttribute('aria-disabled', String(!liberada));
       btnProxima.textContent = liberada ? 'Próxima lição ▶' : 'Próxima lição 🔒';
@@ -484,7 +564,38 @@ function mostrarAviso(texto, tipo) {
 
 
 /* =========================================================================
-   12. TEMA CLARO / ESCURO
+   12. MATÉRIA E NÍVEL
+   - Matéria: troca a trilha da navegação e do progresso.
+   - Nível: troca os exercícios que aparecem (exercicios.js).
+   As duas escolhas ficam salvas para a próxima visita.
+   ========================================================================= */
+function escolherMateria(trilha) {
+  if (!TRILHAS[trilha]) return;
+  trilhaAtual = trilha;
+  radiosMateria.forEach((r) => { r.checked = r.value === TRILHAS[trilha].materia; });
+  gravarStorage(CHAVE_MATERIA, trilha);
+  atualizarTudo();
+}
+
+function escolherNivel(nivel) {
+  if (!NIVEIS.includes(nivel)) nivel = 'basico';
+  nivelAtual = nivel;
+  raiz.dataset.nivel = nivel;
+  radiosNivel.forEach((r) => { r.checked = r.value === nivel; });
+  gravarStorage(CHAVE_NIVEL, nivel);
+  if (typeof aplicarNivelExercicios === 'function') aplicarNivelExercicios(nivel);
+}
+
+function iniciarEscolhas() {
+  const materiaSalva = lerStorage(CHAVE_MATERIA);
+  trilhaAtual = TRILHAS[materiaSalva] ? materiaSalva : 'al';
+  radiosMateria.forEach((r) => { r.checked = r.value === TRILHAS[trilhaAtual].materia; });
+  escolherNivel(lerStorage(CHAVE_NIVEL));
+}
+
+
+/* =========================================================================
+   13. TEMA CLARO / ESCURO
    - Sem escolha salva: segue o sistema (o <html> fica sem data-theme).
    - Ao clicar no botão: grava "light" ou "dark" no data-theme e no
      localStorage.
@@ -529,7 +640,7 @@ function iniciarTema() {
 
 
 /* =========================================================================
-   13. EVENTOS
+   14. EVENTOS
    ========================================================================= */
 function registrarEventos() {
   // Voltar/avançar do navegador e mudanças de hash.
@@ -540,7 +651,8 @@ function registrarEventos() {
     const link = evento.target.closest('.trilha-link');
     if (!link) return;
     evento.preventDefault(); // quem decide se pode abrir é o irPara()
-    irPara(Number(link.closest('.trilha-item').dataset.licao));
+    const item = link.closest('.trilha-item');
+    irPara(trilhaDe(item), Number(item.dataset.licao));
   });
 
   // Botão do menu (celular).
@@ -558,19 +670,28 @@ function registrarEventos() {
   conteudo.addEventListener('click', (evento) => {
     const botaoIr = evento.target.closest('[data-ir]');
     if (botaoIr) {
-      irPara(Number(botaoIr.dataset.ir));
+      const destino = telaDoTexto(botaoIr.dataset.ir);
+      irPara(destino.trilha, destino.n);
       return;
     }
     const botaoConcluir = evento.target.closest('[data-concluir]');
     if (botaoConcluir) {
-      concluirLicao(Number(botaoConcluir.dataset.concluir));
+      const [trilha, n] = botaoConcluir.dataset.concluir.split(':');
+      concluirLicao(Number(n), trilha);
     }
   });
+
+  // Matéria e nível: valem na hora, mesmo antes de clicar em "Começar".
+  radiosMateria.forEach((r) => r.addEventListener('change', () => {
+    const trilha = Object.keys(TRILHAS).find((t) => TRILHAS[t].materia === r.value);
+    escolherMateria(trilha);
+  }));
+  radiosNivel.forEach((r) => r.addEventListener('change', () => escolherNivel(r.value)));
 
   // "Começar/Continuar trilha": abre a próxima lição sem recarregar a página.
   formConfiguracao.addEventListener('submit', (evento) => {
     evento.preventDefault();
-    irPara(proximaLicaoParaEstudar());
+    irPara(trilhaAtual, proximaLicaoParaEstudar(trilhaAtual));
   });
 
   btnRecomecar.addEventListener('click', recomecarTrilha);
@@ -579,11 +700,12 @@ function registrarEventos() {
 
 
 /* =========================================================================
-   14. INICIALIZAÇÃO
+   15. INICIALIZAÇÃO
    ========================================================================= */
 function iniciar() {
   iniciarTema();
-  concluidas = carregarProgresso();
+  Object.keys(TRILHAS).forEach((t) => { concluidas[t] = carregarProgresso(t); });
+  iniciarEscolhas();
   criarRodapesDasLicoes();
   registrarEventos();
   atualizarTudo();

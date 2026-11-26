@@ -37,19 +37,27 @@
    - Sem explicação na alternativa, usa a data-dica geral do exercício.
 
    - Um exercício está certo quando TODOS os seus campos estão certos.
-   - Acertando todos, chama concluirLicao(n) (do js/app.js).
+   - Acertando todos, chama concluirLicao(n, trilha) (do js/app.js).
+
+   NÍVEIS: cada exercício pode ter data-nivel="basico", "intermediario" ou
+   "avancado" (sem o atributo = básico). Só aparecem os exercícios do nível
+   escolhido na tela inicial. Se a lição ainda não tem exercícios daquele
+   nível, mostra os do básico com um aviso.
 
    Índice
    1. Preparação dos blocos de exercícios
    2. Correção de um campo
    3. Correção de um exercício
    4. Correção do bloco inteiro
-   5. Inicialização
+   5. Níveis
+   6. Inicialização
    ========================================================================= */
 
 'use strict';
 
 const TOLERANCIA_PADRAO = 0.01; // aceita pequenos arredondamentos (ex.: 3,61 para √13)
+const NOMES_NIVEL = { basico: 'Básico', intermediario: 'Intermediário', avancado: 'Avançado' };
+const blocosDeExercicios = []; // { bloco, todos, ativos, resumo, faixa }
 
 
 /* =========================================================================
@@ -62,6 +70,14 @@ function prepararBlocoDeExercicios(bloco) {
   if (exercicios.length === 0) return;
 
   const numeroLicao = Number(bloco.dataset.licao);
+  const trilhaEl = bloco.closest('[data-trilha]');
+  const trilha = trilhaEl ? trilhaEl.dataset.trilha : 'al';
+
+  // Faixa "Nível: …" logo abaixo do título "Pratique".
+  const faixa = document.createElement('p');
+  faixa.className = 'nivel-exercicios';
+  const titulo = bloco.querySelector('h3');
+  if (titulo) titulo.after(faixa); else bloco.prepend(faixa);
 
   // Um parágrafo de feedback (escondido) em cada exercício.
   exercicios.forEach((exercicio) => {
@@ -89,7 +105,12 @@ function prepararBlocoDeExercicios(bloco) {
   acoes.append(btnVerificar);
   bloco.append(acoes, resumo);
 
-  const verificar = () => corrigirBloco(bloco, exercicios, resumo, numeroLicao);
+  const estado = { bloco, todos: exercicios, ativos: exercicios, resumo, faixa };
+  blocosDeExercicios.push(estado);
+  aplicarNivelNoBloco(estado, document.documentElement.dataset.nivel || 'basico');
+
+  // Corrige só os exercícios do nível que está aparecendo.
+  const verificar = () => corrigirBloco(bloco, estado.ativos, resumo, numeroLicao, trilha);
   btnVerificar.addEventListener('click', verificar);
 
   // Enter dentro de um campo também verifica.
@@ -294,18 +315,19 @@ function atualizarExplicacaoCompleta(exercicio, mostrar) {
 /* =========================================================================
    4. CORREÇÃO DO BLOCO INTEIRO
    ========================================================================= */
-function corrigirBloco(bloco, exercicios, resumo, numeroLicao) {
+function corrigirBloco(bloco, exercicios, resumo, numeroLicao, trilha) {
   const acertos = exercicios.filter(corrigirExercicio).length;
   const total = exercicios.length;
 
   resumo.classList.remove('acerto', 'erro');
 
   if (acertos === total) {
+    const ultima = typeof ehUltimaLicao === 'function' && ehUltimaLicao(trilha, numeroLicao);
     resumo.textContent = 'Você acertou todos os ' + total + ' exercícios!' +
-      (numeroLicao < 12 ? ' A próxima lição está liberada.' : '');
+      (ultima ? '' : ' A próxima lição está liberada.');
     resumo.classList.add('acerto');
     if (typeof concluirLicao === 'function') {
-      concluirLicao(numeroLicao);
+      concluirLicao(numeroLicao, trilha);
     }
   } else {
     resumo.textContent = 'Você acertou ' + acertos + ' de ' + total +
@@ -323,6 +345,47 @@ function corrigirBloco(bloco, exercicios, resumo, numeroLicao) {
 
 
 /* =========================================================================
-   5. INICIALIZAÇÃO
+   5. NÍVEIS
+   ========================================================================= */
+function nivelDoExercicio(exercicio) {
+  return exercicio.dataset.nivel || 'basico';
+}
+
+/** Mostra só os exercícios do nível pedido (ou os básicos, se não houver). */
+function aplicarNivelNoBloco(estado, nivel) {
+  const doNivel = estado.todos.filter((e) => nivelDoExercicio(e) === nivel);
+  const emConstrucao = doNivel.length === 0;
+  estado.ativos = emConstrucao
+    ? estado.todos.filter((e) => nivelDoExercicio(e) === 'basico')
+    : doNivel;
+
+  estado.todos.forEach((e) => { e.hidden = !estado.ativos.includes(e); });
+
+  // Trocou o nível: o resultado anterior não vale mais.
+  estado.resumo.hidden = true;
+
+  const mostrado = emConstrucao ? 'basico' : nivel;
+  estado.faixa.innerHTML = '';
+  const etiqueta = document.createElement('span');
+  etiqueta.className = 'etiqueta-nivel etiqueta-nivel-' + mostrado;
+  etiqueta.textContent = 'Nível: ' + NOMES_NIVEL[mostrado];
+  estado.faixa.append(etiqueta);
+  if (emConstrucao) {
+    estado.faixa.append(' Os exercícios do nível ' + NOMES_NIVEL[nivel] +
+      ' desta lição ainda estão em construção. Por enquanto, faça os do nível Básico.');
+  } else {
+    estado.faixa.append(' Para trocar o nível, volte à tela inicial.');
+  }
+}
+
+/** Chamada pelo js/app.js quando o aluno escolhe outro nível. */
+function aplicarNivelExercicios(nivel) {
+  blocosDeExercicios.forEach((estado) => aplicarNivelNoBloco(estado, nivel));
+}
+window.aplicarNivelExercicios = aplicarNivelExercicios;
+
+
+/* =========================================================================
+   6. INICIALIZAÇÃO
    ========================================================================= */
 document.querySelectorAll('.exercicios[data-licao]').forEach(prepararBlocoDeExercicios);

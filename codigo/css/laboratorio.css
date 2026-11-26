@@ -755,6 +755,19 @@
 
 
 /* =========================================================================
+   GEOMETRIA ANALÍTICA — LIÇÃO 1: ÂNGULO E DISTÂNCIA ENTRE RETAS
+   ========================================================================= */
+/* Nome das retas desenhado no plano, na cor de cada reta */
+.rotulo-ponto.texto-reta-1 { fill: var(--cor-laboratorio); }
+.rotulo-ponto.texto-reta-2 { fill: var(--cor-exercicios); }
+
+/* Campos da reta s desligados enquanto a caixa não estiver marcada */
+.lab-equacao:disabled {
+  opacity: 0.5;
+}
+
+
+/* =========================================================================
    RESPONSIVO
    ========================================================================= */
 @media (max-width: 900px) {

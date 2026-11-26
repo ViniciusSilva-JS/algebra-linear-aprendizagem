@@ -69,6 +69,7 @@
       <button type="button" id="btn-menu" class="trilha-toggle" aria-expanded="false" aria-controls="trilha-lista">
         <span class="trilha-toggle-texto">Trilha de lições</span>
       </button>
+      <!-- Trilha de Álgebra Linear (sem data-trilha = Álgebra Linear) -->
       <ol id="trilha-lista" class="trilha-lista">
         <li class="trilha-item" data-licao="1"><a class="trilha-link" href="#licao-1">Plano cartesiano e pontos</a></li>
         <li class="trilha-item" data-licao="2"><a class="trilha-link" href="#licao-2">Vetores no plano</a></li>
@@ -82,6 +83,21 @@
         <li class="trilha-item" data-licao="10"><a class="trilha-link" href="#licao-10">Transformações lineares no plano</a></li>
         <li class="trilha-item" data-licao="11"><a class="trilha-link" href="#licao-11">Autovalores e autovetores</a></li>
         <li class="trilha-item" data-licao="12"><a class="trilha-link" href="#licao-12">Aplicação com dados reais</a></li>
+      </ol>
+      <!-- Trilha de Geometria Analítica (o js/app.js mostra só a da matéria escolhida) -->
+      <ol id="trilha-lista-ga" class="trilha-lista" data-trilha="ga" hidden>
+        <li class="trilha-item" data-licao="1"><a class="trilha-link" href="#ga-1">Ângulo e distância entre retas</a></li>
+        <li class="trilha-item" data-licao="2"><a class="trilha-link" href="#ga-2">Área de triângulo e alinhamento</a></li>
+        <li class="trilha-item" data-licao="3"><a class="trilha-link" href="#ga-3">Circunferência</a></li>
+        <li class="trilha-item" data-licao="4"><a class="trilha-link" href="#ga-4">Posições relativas com a circunferência</a></li>
+        <li class="trilha-item" data-licao="5"><a class="trilha-link" href="#ga-5">Parábola</a></li>
+        <li class="trilha-item" data-licao="6"><a class="trilha-link" href="#ga-6">Elipse</a></li>
+        <li class="trilha-item" data-licao="7"><a class="trilha-link" href="#ga-7">Hipérbole</a></li>
+        <li class="trilha-item" data-licao="8"><a class="trilha-link" href="#ga-8">Reconhecendo cônicas</a></li>
+        <li class="trilha-item" data-licao="9"><a class="trilha-link" href="#ga-9">Vetores no espaço</a></li>
+        <li class="trilha-item" data-licao="10"><a class="trilha-link" href="#ga-10">Produto vetorial e misto</a></li>
+        <li class="trilha-item" data-licao="11"><a class="trilha-link" href="#ga-11">Retas e planos no espaço</a></li>
+        <li class="trilha-item" data-licao="12"><a class="trilha-link" href="#ga-12">Aplicação com dados reais</a></li>
       </ol>
     </nav>
 
@@ -2830,6 +2846,479 @@
         </div>
       </section>
 
+
+      <!-- =================================================================
+           TRILHA DE GEOMETRIA ANALÍTICA
+           Seções com data-trilha="ga" e id="ga-N" (hash #ga-N).
+           ================================================================= -->
+
+      <!-- Geometria Analítica — Lição 1 -->
+      <section id="ga-1" class="licao" data-trilha="ga" data-licao="1">
+        <h2 class="licao-titulo">1. Ângulo e distância entre retas</h2>
+
+        <!-- ---------- TEORIA ---------- -->
+        <div class="teoria">
+          <p>
+            Esta trilha parte do que se vê nas lições 1 a 4 de Álgebra Linear: pontos, vetores,
+            produto escalar e a equação da reta. Aqui vamos <strong>medir</strong>: o ângulo
+            entre duas retas e a distância de um ponto até uma reta.
+          </p>
+
+          <h3>O vetor normal da reta</h3>
+          <p>Na equação geral da reta</p>
+          <div class="formula">r: a·x + b·y + c = 0</div>
+          <p>
+            os coeficientes de x e y formam um vetor <strong>perpendicular</strong> à reta, chamado
+            <strong>vetor normal</strong>:
+          </p>
+          <div class="formula"><span class="vet">n</span> = (a, b) &nbsp;&nbsp;e o vetor diretor é&nbsp;&nbsp; <span class="vet">d</span> = (−b, a)</div>
+          <p>
+            Por quê? Se A e B estão na reta, a·x<sub>A</sub> + b·y<sub>A</sub> + c = 0 e
+            a·x<sub>B</sub> + b·y<sub>B</sub> + c = 0. Subtraindo, a·(x<sub>B</sub> − x<sub>A</sub>) + b·(y<sub>B</sub> − y<sub>A</sub>) = 0,
+            ou seja, <span class="vet">n</span> · <span class="vet">AB</span> = 0: o vetor normal é perpendicular a qualquer
+            segmento da reta.
+          </p>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>Em 3x + 4y − 5 = 0, o vetor normal é <span class="vet">n</span> = (3, 4) e o diretor é <span class="vet">d</span> = (−4, 3). Confira: (3, 4)·(−4, 3) = −12 + 12 = 0.</p>
+          </div>
+
+          <h3>Ângulo entre duas retas</h3>
+          <p>
+            O ângulo entre duas retas é o mesmo ângulo entre os seus vetores normais, mas
+            sempre tomamos o <strong>agudo</strong> (de 0° a 90°). Por isso aparece o módulo:
+          </p>
+          <div class="formula">cos θ = |<span class="vet">n₁</span> · <span class="vet">n₂</span>| / (|<span class="vet">n₁</span>|·|<span class="vet">n₂</span>|) = |a₁a₂ + b₁b₂| / (√(a₁² + b₁²) · √(a₂² + b₂²))</div>
+          <p>Com os coeficientes angulares m₁ e m₂ (retas não verticais), vale também:</p>
+          <div class="formula">tg θ = |(m₁ − m₂) / (1 + m₁·m₂)|</div>
+          <ul>
+            <li>n₁ · n₂ = 0 → θ = 90°: as retas são <strong>perpendiculares</strong> (é o mesmo que m₁·m₂ = −1).</li>
+            <li>normais paralelos (a₁·b₂ − a₂·b₁ = 0) → θ = 0°: as retas são <strong>paralelas</strong> ou coincidentes.</li>
+          </ul>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              r: 2x − y + 1 = 0 e s: 3x + y − 4 = 0. Então n₁ = (2, −1), n₂ = (3, 1) e
+              n₁·n₂ = 6 − 1 = 5. Logo cos θ = 5 / (√5 · √10) = 5 / √50 = 1/√2, e
+              <strong>θ = 45°</strong>.
+            </p>
+            <p>
+              Conferindo com a tangente: m₁ = 2 e m₂ = −3, então tg θ = |(2 − (−3)) / (1 + 2·(−3))| = |5 / (−5)| = 1, e θ = 45°.
+            </p>
+          </div>
+
+          <h3>Distância de um ponto a uma reta</h3>
+          <p>A distância de P(x₀, y₀) até r: a·x + b·y + c = 0 é o comprimento do caminho mais curto, que é o <strong>perpendicular</strong>:</p>
+          <div class="formula">d(P, r) = |a·x₀ + b·y₀ + c| / √(a² + b²)</div>
+          <p>
+            <strong>De onde vem:</strong> pegue um ponto A qualquer da reta. A distância é o tamanho da
+            projeção do vetor <span class="vet">AP</span> sobre o vetor normal <span class="vet">n</span> (lição 3 de Álgebra Linear):
+            |<span class="vet">AP</span> · <span class="vet">n</span>| / |<span class="vet">n</span>|. Fazendo a conta, como a·x<sub>A</sub> + b·y<sub>A</sub> = −c,
+            o numerador vira exatamente |a·x₀ + b·y₀ + c|.
+          </p>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>P(3, 4) e r: 3x + 4y − 5 = 0: d = |3·3 + 4·4 − 5| / √(9 + 16) = |20| / 5 = <strong>4</strong>.</p>
+          </div>
+          <p>
+            <strong>O ponto mais perto (pé da perpendicular).</strong> Andando de P no sentido contrário de
+            <span class="vet">n</span>, chegamos ao ponto H da reta mais próximo de P:
+          </p>
+          <div class="formula">H = P − k·<span class="vet">n</span>, &nbsp;&nbsp;com&nbsp;&nbsp; k = (a·x₀ + b·y₀ + c) / (a² + b²)</div>
+          <p>No exemplo: k = 20 / 25 = 0,8 e H = (3, 4) − 0,8·(3, 4) = (0,6; 0,8). Confira: 3·0,6 + 4·0,8 − 5 = 0 ✓.</p>
+          <p>
+            <strong>Bônus, o sinal:</strong> o valor a·x₀ + b·y₀ + c (antes do módulo) é positivo de um lado da reta
+            e negativo do outro. Dois pontos com sinais opostos estão em lados opostos, e o segmento entre eles cruza a reta.
+          </p>
+
+          <h3>Distância entre retas paralelas</h3>
+          <p>Retas paralelas escritas com o <strong>mesmo</strong> vetor normal (a, b) diferem só no termo c:</p>
+          <div class="formula">d(r, s) = |c₁ − c₂| / √(a² + b²) &nbsp;&nbsp;para&nbsp;&nbsp; a·x + b·y + c₁ = 0 &nbsp;e&nbsp; a·x + b·y + c₂ = 0</div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              r: 3x + 4y − 5 = 0 e s: 6x + 8y + 20 = 0. Primeiro deixe s com o mesmo normal: dividindo por 2,
+              s: 3x + 4y + 10 = 0. Agora d = |−5 − 10| / 5 = 15 / 5 = <strong>3</strong>.
+              Sem essa divisão a conta daria errado!
+            </p>
+          </div>
+        </div>
+
+        <!-- ---------- LABORATÓRIO ---------- -->
+        <div class="laboratorio">
+          <h3>Medindo no plano</h3>
+          <p>
+            Escreva a reta <span class="texto-reta-1">r</span> e escolha o ponto P (ou <strong>clique no plano</strong>
+            para mover P). O laboratório traça o caminho mais curto até a reta e faz as contas.
+            Ligue a reta <span class="texto-reta-2">s</span> para medir o ângulo entre as duas.
+          </p>
+
+          <div class="lab-area controles-largos">
+            <svg id="g1-plano" class="plano-cartesiano" viewBox="-9 -9 18 18"
+                 role="img" aria-label="Plano com a reta r, o ponto P, o caminho mais curto de P até r e, opcionalmente, a reta s"></svg>
+
+            <div class="lab-controles">
+              <fieldset class="lab-ponto lab-equacao lab-equacao-1">
+                <legend>Reta r</legend>
+                <input type="number" id="g1-a1" value="3" step="1" aria-label="coeficiente a da reta r"> x +
+                <input type="number" id="g1-b1" value="4" step="1" aria-label="coeficiente b da reta r"> y +
+                <input type="number" id="g1-c1" value="-5" step="1" aria-label="termo c da reta r"> = 0
+              </fieldset>
+              <fieldset class="lab-ponto lab-ponto-a">
+                <legend>Ponto P</legend>
+                <label>x <input type="number" id="g1-px" value="3" min="-8" max="8" step="1"></label>
+                <label>y <input type="number" id="g1-py" value="4" min="-8" max="8" step="1"></label>
+              </fieldset>
+              <label class="lab-check"><input type="checkbox" id="g1-mostrar-s"> Mostrar a reta s (ângulo entre retas)</label>
+              <fieldset id="g1-campo-s" class="lab-ponto lab-equacao lab-equacao-2" disabled>
+                <legend>Reta s</legend>
+                <input type="number" id="g1-a2" value="7" step="1" aria-label="coeficiente a da reta s"> x +
+                <input type="number" id="g1-b2" value="1" step="1" aria-label="coeficiente b da reta s"> y +
+                <input type="number" id="g1-c2" value="5" step="1" aria-label="termo c da reta s"> = 0
+              </fieldset>
+              <p class="lab-dica">Coeficientes de −20 a 20; P de −8 a 8.</p>
+              <button type="button" id="g1-sortear" class="btn-secundario">🎲 Sortear</button>
+            </div>
+          </div>
+
+          <div id="g1-resultados" class="lab-resultados" aria-live="polite"></div>
+        </div>
+
+        <!-- ---------- EXERCÍCIOS ---------- -->
+        <div class="exercicios" data-licao="1">
+          <h3>Pratique</h3>
+          <p>Escolha uma alternativa em cada exercício. Acerte todos para liberar a lição 2.</p>
+
+          <ol class="lista-exercicios">
+            <!-- ===== BÁSICO ===== -->
+            <li class="exercicio" data-nivel="basico">
+              <p>Qual é a distância do ponto <strong>P(1, 2)</strong> até a reta <strong>3x + 4y + 4 = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g1-b1" value="a"
+                  data-explicacao="d = |3·1 + 4·2 + 4| / √(3² + 4²) = |15| / 5 = 3."> 3</label>
+                <label class="alternativa"><input type="radio" name="g1-b1" value="b"
+                  data-explicacao="15 é só o numerador |3·1 + 4·2 + 4|. Falta dividir por √(a² + b²) = √25 = 5."> 15</label>
+                <label class="alternativa"><input type="radio" name="g1-b1" value="c"
+                  data-explicacao="Dividiu por a + b = 7. O denominador é o tamanho do vetor normal: √(a² + b²) = √(9 + 16) = 5."> 15/7</label>
+                <label class="alternativa"><input type="radio" name="g1-b1" value="d"
+                  data-explicacao="Trocou o sinal de c: |3 + 8 − 4| = 7. O termo da reta é +4, então o numerador é |3 + 8 + 4| = 15."> 7/5</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Qual é um vetor <strong>normal</strong> (perpendicular) à reta <strong>2x − 5y + 7 = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g1-b2" value="a"
+                  data-explicacao="(5, 2) é um vetor DIRETOR (paralelo à reta): (2, −5)·(5, 2) = 10 − 10 = 0."> (5, 2)</label>
+                <label class="alternativa"><input type="radio" name="g1-b2" value="b"
+                  data-explicacao="Usou os coeficientes b e c. O vetor normal é formado pelos coeficientes de x e de y: (a, b)."> (−5, 7)</label>
+                <label class="alternativa"><input type="radio" name="g1-b2" value="c"
+                  data-explicacao="Em a·x + b·y + c = 0, o vetor normal é (a, b) = (2, −5), com o sinal de b junto."> (2, −5)</label>
+                <label class="alternativa"><input type="radio" name="g1-b2" value="d"
+                  data-explicacao="Perdeu o sinal de b. O coeficiente de y é −5, então o normal é (2, −5)."> (2, 5)</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Qual é o ângulo entre as retas <strong>x − y = 0</strong> e <strong>x = 0</strong> (o eixo y)?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g1-b3" value="a"
+                  data-explicacao="cos θ = |(1, −1)·(1, 0)| / (√2 · 1) = 1/√2, que é o cosseno de 45°, não de 30°."> 30°</label>
+                <label class="alternativa"><input type="radio" name="g1-b3" value="b"
+                  data-explicacao="Normais (1, −1) e (1, 0): cos θ = |1 + 0| / (√2 · 1) = 1/√2, então θ = 45°. A reta y = x é a diagonal, a meio caminho entre os eixos."> 45°</label>
+                <label class="alternativa"><input type="radio" name="g1-b3" value="c"
+                  data-explicacao="60° teria cos θ = 1/2. Aqui cos θ = 1/√2 ≈ 0,71, que é 45°."> 60°</label>
+                <label class="alternativa"><input type="radio" name="g1-b3" value="d"
+                  data-explicacao="Seriam perpendiculares se n₁·n₂ = 0, mas (1, −1)·(1, 0) = 1 ≠ 0."> 90°</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Qual é a distância entre as retas paralelas <strong>6x + 8y − 3 = 0</strong> e <strong>6x + 8y + 17 = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g1-b4" value="a"
+                  data-explicacao="20 é só |c₁ − c₂|. Falta dividir por √(6² + 8²) = 10."> 20</label>
+                <label class="alternativa"><input type="radio" name="g1-b4" value="b"
+                  data-explicacao="Fez |17 − 3| = 14, esquecendo o sinal de −3. O certo é |−3 − 17| = 20."> 1,4</label>
+                <label class="alternativa"><input type="radio" name="g1-b4" value="c"
+                  data-explicacao="As duas já têm o mesmo normal (6, 8): d = |−3 − 17| / √(36 + 64) = 20 / 10 = 2."> 2</label>
+                <label class="alternativa"><input type="radio" name="g1-b4" value="d"
+                  data-explicacao="Dividiu por a + b = 14. O denominador é √(a² + b²) = 10."> 10/7</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Qual é o ângulo entre <strong>r: 2x + 3y − 1 = 0</strong> e <strong>s: 3x − 2y + 5 = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g1-b5" value="a"
+                  data-explicacao="0° seria para retas paralelas, com normais múltiplos um do outro. (2, 3) e (3, −2) não são."> 0°</label>
+                <label class="alternativa"><input type="radio" name="g1-b5" value="b"
+                  data-explicacao="45° teria cos θ = 1/√2. Aqui n₁·n₂ = 2·3 + 3·(−2) = 0, então cos θ = 0."> 45°</label>
+                <label class="alternativa"><input type="radio" name="g1-b5" value="c"
+                  data-explicacao="60° teria cos θ = 1/2. Aqui o produto escalar dos normais dá 0."> 60°</label>
+                <label class="alternativa"><input type="radio" name="g1-b5" value="d"
+                  data-explicacao="n₁·n₂ = (2, 3)·(3, −2) = 6 − 6 = 0, então cos θ = 0 e θ = 90°: as retas são perpendiculares."> 90°</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Qual é a distância do ponto <strong>P(2, 5)</strong> até a reta horizontal <strong>y = 1</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g1-b6" value="a"
+                  data-explicacao="5 é a altura de P até o eixo x (y = 0). A reta é y = 1, uma unidade acima."> 5</label>
+                <label class="alternativa"><input type="radio" name="g1-b6" value="b"
+                  data-explicacao="Para uma reta horizontal, a distância é a diferença das alturas: |5 − 1| = 4. Pela fórmula, com 0x + 1y − 1 = 0: |0 + 5 − 1| / 1 = 4."> 4</label>
+                <label class="alternativa"><input type="radio" name="g1-b6" value="c"
+                  data-explicacao="Somou 5 + 1. A distância é a diferença |5 − 1| = 4."> 6</label>
+                <label class="alternativa"><input type="radio" name="g1-b6" value="d"
+                  data-explicacao="√20 é a distância de P até o ponto (0, 1), que não é o ponto mais perto da reta. O caminho mais curto é vertical, até (2, 1)."> √20 ≈ 4,47</label>
+              </div>
+            </li>
+
+            <!-- ===== INTERMEDIÁRIO ===== -->
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é o ponto da reta <strong>x + y − 2 = 0</strong> mais próximo de <strong>P(5, 5)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g1-i1" value="a"
+                  data-explicacao="(2, 0) está na reta, mas não é o mais perto: a distância até ele é √(9 + 25) ≈ 5,83, maior que até (1, 1), √32 ≈ 5,66."> (2, 0)</label>
+                <label class="alternativa"><input type="radio" name="g1-i1" value="b"
+                  data-explicacao="Usou k = 8 (o valor de 5 + 5 − 2) sem dividir por a² + b² = 2. Confira: −3 − 3 − 2 = −8 ≠ 0, nem está na reta."> (−3, −3)</label>
+                <label class="alternativa"><input type="radio" name="g1-i1" value="c"
+                  data-explicacao="Somou k·n em vez de subtrair, e andou para longe da reta: 9 + 9 − 2 = 16 ≠ 0."> (9, 9)</label>
+                <label class="alternativa"><input type="radio" name="g1-i1" value="d"
+                  data-explicacao="k = (5 + 5 − 2) / (1² + 1²) = 8/2 = 4 e H = P − k·n = (5, 5) − 4·(1, 1) = (1, 1). Confira: 1 + 1 − 2 = 0 ✓."> (1, 1)</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Para qual valor <strong>k &gt; 0</strong> a reta <strong>3x + 4y + k = 0</strong> fica a distância 2 da origem?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g1-i2" value="a"
+                  data-explicacao="Com k = 2, d = |2| / 5 = 0,4. Esqueceu que a distância ainda é dividida por √(3² + 4²) = 5."> 2</label>
+                <label class="alternativa"><input type="radio" name="g1-i2" value="b"
+                  data-explicacao="5 é o √(a² + b²). Com k = 5, d = 5/5 = 1, não 2."> 5</label>
+                <label class="alternativa"><input type="radio" name="g1-i2" value="c"
+                  data-explicacao="Da origem (0, 0): d = |3·0 + 4·0 + k| / 5 = |k| / 5. Para d = 2, |k| = 10 e, como k > 0, k = 10."> 10</label>
+                <label class="alternativa"><input type="radio" name="g1-i2" value="d"
+                  data-explicacao="Multiplicou 2 por a + b = 7. O denominador da fórmula é √(a² + b²) = 5, então k = 2·5 = 10."> 14</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é o ângulo agudo entre as retas <strong>y = 3x + 1</strong> e <strong>y = −2x + 4</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g1-i3" value="a"
+                  data-explicacao="tg θ = |(3 − (−2)) / (1 + 3·(−2))| = |5 / (−5)| = 1, e θ = 45°."> 45°</label>
+                <label class="alternativa"><input type="radio" name="g1-i3" value="b"
+                  data-explicacao="30° teria tg θ = 1/√3 ≈ 0,58. A conta dá tg θ = |5 / (−5)| = 1."> 30°</label>
+                <label class="alternativa"><input type="radio" name="g1-i3" value="c"
+                  data-explicacao="60° teria tg θ = √3 ≈ 1,73. Aqui tg θ = 1."> 60°</label>
+                <label class="alternativa"><input type="radio" name="g1-i3" value="d"
+                  data-explicacao="135° é o ângulo obtuso que aparece se esquecer o módulo (tg = −1). O ângulo entre retas é o agudo: 180° − 135° = 45°."> 135°</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Quais pontos do <strong>eixo x</strong> estão a distância 2 da reta <strong>4x − 3y + 2 = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g1-i4" value="a"
+                  data-explicacao="Esqueceu que o módulo dá dois casos: 4t + 2 = 10 e também 4t + 2 = −10."> Apenas (2, 0)</label>
+                <label class="alternativa"><input type="radio" name="g1-i4" value="b"
+                  data-explicacao="P(t, 0): |4t + 2| / 5 = 2 ⇒ 4t + 2 = ±10 ⇒ t = 2 ou t = −3. Há um ponto de cada lado da reta."> (2, 0) e (−3, 0)</label>
+                <label class="alternativa"><input type="radio" name="g1-i4" value="c"
+                  data-explicacao="No caso negativo, 4t + 2 = −10 dá 4t = −12 e t = −3, não 3."> (2, 0) e (3, 0)</label>
+                <label class="alternativa"><input type="radio" name="g1-i4" value="d"
+                  data-explicacao="Esqueceu de dividir por √(4² + 3²) = 5: resolveu |4t + 2| = 2 em vez de |4t + 2| = 10."> (0, 0) e (−1, 0)</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Os pontos <strong>P(0, 5)</strong> e <strong>Q(3, 0)</strong> estão de que lado da reta <strong>r: 2x − y + 1 = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g1-i5" value="a"
+                  data-explicacao="Substituindo: P dá 0 − 5 + 1 = −4 e Q dá 6 − 0 + 1 = 7. Sinais diferentes indicam lados diferentes."> Do mesmo lado</label>
+                <label class="alternativa"><input type="radio" name="g1-i5" value="b"
+                  data-explicacao="Se P estivesse sobre r, a substituição daria 0. Ela dá 2·0 − 5 + 1 = −4."> P está sobre r</label>
+                <label class="alternativa"><input type="radio" name="g1-i5" value="c"
+                  data-explicacao="P dá −4 (negativo) e Q dá 7 (positivo). Sinais opostos: estão em lados opostos, e o segmento PQ cruza a reta r."> Em lados opostos</label>
+                <label class="alternativa"><input type="radio" name="g1-i5" value="d"
+                  data-explicacao="Se Q estivesse sobre r, a substituição daria 0. Ela dá 2·3 − 0 + 1 = 7."> Q está sobre r</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é a distância entre as paralelas <strong>x + 2y − 3 = 0</strong> e <strong>2x + 4y + 4 = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g1-i6" value="a"
+                  data-explicacao="Dividindo a segunda por 2: x + 2y + 2 = 0 (mesmo normal (1, 2)). Então d = |−3 − 2| / √5 = 5/√5 = √5 ≈ 2,24."> √5 ≈ 2,24</label>
+                <label class="alternativa"><input type="radio" name="g1-i6" value="b"
+                  data-explicacao="Usou c₂ = 4 sem antes dividir a segunda equação por 2. Os normais precisam ser iguais: (1, 2) e (2, 4) não são."> 7/√5 ≈ 3,13</label>
+                <label class="alternativa"><input type="radio" name="g1-i6" value="c"
+                  data-explicacao="Misturou as duas formas: usou c₂ = 4 da equação original com o normal (2, 4). Ou divide tudo por 2, ou multiplica a primeira por 2: d = |−6 − 4| / √20 = √5."> 7/√20 ≈ 1,57</label>
+                <label class="alternativa"><input type="radio" name="g1-i6" value="d"
+                  data-explicacao="Errou o sinal: |−3 + 2| = 1. Com c₁ = −3 e c₂ = 2, |c₁ − c₂| = |−5| = 5."> 1/√5 ≈ 0,45</label>
+              </div>
+            </li>
+
+            <!-- ===== AVANÇADO ===== -->
+            <li class="exercicio" data-nivel="avancado">
+              <p>
+                Quais são as retas formadas pelos pontos que ficam à <strong>mesma distância</strong> de
+                r: 3x + 4y − 1 = 0 e s: 4x + 3y + 2 = 0? (as bissetrizes dos ângulos entre r e s)
+              </p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g1-a1" value="a"
+                  data-explicacao="É só uma das duas. |3x + 4y − 1| / 5 = |4x + 3y + 2| / 5 tem dois casos (sinal + e sinal −), e cada um dá uma bissetriz."> Apenas x − y + 3 = 0</label>
+                <label class="alternativa"><input type="radio" name="g1-a1" value="b"
+                  data-explicacao="Essa vem só do caso com sinal −. O caso com sinal + dá a outra bissetriz, x − y + 3 = 0."> Apenas 7x + 7y + 1 = 0</label>
+                <label class="alternativa"><input type="radio" name="g1-a1" value="c"
+                  data-explicacao="Igualando as distâncias: 3x + 4y − 1 = ±(4x + 3y + 2). Com +: −x + y − 3 = 0, ou x − y + 3 = 0. Com −: 7x + 7y + 1 = 0. As duas bissetrizes são perpendiculares entre si: (1, −1)·(7, 7) = 0."> x − y + 3 = 0 e 7x + 7y + 1 = 0</label>
+                <label class="alternativa"><input type="radio" name="g1-a1" value="d"
+                  data-explicacao="Os termos independentes estão com o sinal trocado. Com +: −1 − 2 = −3, então −x + y − 3 = 0 ⇒ x − y + 3 = 0; com −: −1 + 2 = +1."> x − y − 3 = 0 e 7x + 7y − 1 = 0</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>As retas paralelas a <strong>3x − 4y + 1 = 0</strong> que ficam a distância 2 dela são 3x − 4y + c = 0 com:</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g1-a2" value="a"
+                  data-explicacao="Resolveu |c − 1| = 2, esquecendo de dividir por √(3² + 4²) = 5. O certo é |c − 1| = 10."> c = 3 ou c = −1</label>
+                <label class="alternativa"><input type="radio" name="g1-a2" value="b"
+                  data-explicacao="Mesmo normal (3, −4): |c − 1| / 5 = 2 ⇒ c − 1 = ±10 ⇒ c = 11 ou c = −9. Uma de cada lado."> c = 11 ou c = −9</label>
+                <label class="alternativa"><input type="radio" name="g1-a2" value="c"
+                  data-explicacao="Esqueceu o c₁ = 1 da reta original: a conta é |c − 1| = 10, não |c| = 10."> c = 10 ou c = −10</label>
+                <label class="alternativa"><input type="radio" name="g1-a2" value="d"
+                  data-explicacao="Faltou o segundo caso do módulo: c − 1 = −10 dá c = −9, a paralela do outro lado."> Apenas c = 11</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Quais retas passam por <strong>P(2, 1)</strong> e formam 45° com o eixo x?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g1-a3" value="a"
+                  data-explicacao="Faltou a inclinação m = −1, que também faz 45° com o eixo x (tg θ = |m − 0| / |1 + 0| = 1)."> Apenas y = x − 1</label>
+                <label class="alternativa"><input type="radio" name="g1-a3" value="b"
+                  data-explicacao="Trocou os sinais de P: estas retas passam por (−2, −1). Confira: 2 + 1 = 3 ≠ 1."> y = x + 1 e y = −x − 3</label>
+                <label class="alternativa"><input type="radio" name="g1-a3" value="c"
+                  data-explicacao="Elas passam por P, mas são perpendiculares entre si e têm m = 2 e −1/2. Com o eixo x, tg θ = |m| = 2 ou 1/2, então não fazem 45°."> y = 2x − 3 e y = −x/2 + 2</label>
+                <label class="alternativa"><input type="radio" name="g1-a3" value="d"
+                  data-explicacao="45° com o eixo x (m = 0) exige |m| = 1, ou seja, m = 1 ou m = −1. Por P: y − 1 = ±(x − 2) ⇒ y = x − 1 e y = −x + 3."> y = x − 1 e y = −x + 3</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Qual é a distância de <strong>P(1, 2)</strong> até a reta que passa por <strong>A(−1, 0)</strong> e <strong>B(3, 3)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g1-a4" value="a"
+                  data-explicacao="AB = (4, 3), então o normal é (3, −4) e a reta é 3x − 4y + c = 0. Por A: −3 + c = 0, c = 3. d = |3·1 − 4·2 + 3| / 5 = |−2| / 5 = 2/5 = 0,4."> 2/5</label>
+                <label class="alternativa"><input type="radio" name="g1-a4" value="b"
+                  data-explicacao="2 é só o numerador |3 − 8 + 3|. Falta dividir por √(3² + 4²) = 5."> 2</label>
+                <label class="alternativa"><input type="radio" name="g1-a4" value="c"
+                  data-explicacao="Usou o vetor diretor (4, 3) como se fosse o normal: a reta 4x + 3y + 4 = 0 não passa por B (12 + 9 + 4 ≠ 0). O normal é perpendicular a AB: (3, −4)."> 14/5</label>
+                <label class="alternativa"><input type="radio" name="g1-a4" value="d"
+                  data-explicacao="Dividiu por |3| + |−4| = 7. O denominador é √(3² + (−4)²) = 5."> 2/7</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Qual é o ângulo agudo entre a reta vertical <strong>x = 2</strong> e a reta <strong>√3·x − y = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g1-a5" value="a"
+                  data-explicacao="60° é o ângulo de y = √3x com o eixo x (tg 60° = √3). A pergunta é o ângulo com a reta vertical: 90° − 60° = 30°."> 60°</label>
+                <label class="alternativa"><input type="radio" name="g1-a5" value="b"
+                  data-explicacao="Seriam perpendiculares se n₁·n₂ = 0, mas (1, 0)·(√3, −1) = √3 ≠ 0."> 90°</label>
+                <label class="alternativa"><input type="radio" name="g1-a5" value="c"
+                  data-explicacao="A fórmula da tangente não serve (a vertical não tem m), mas a do cosseno serve: n₁ = (1, 0), n₂ = (√3, −1). cos θ = |√3| / (1 · 2) = √3/2, então θ = 30°."> 30°</label>
+                <label class="alternativa"><input type="radio" name="g1-a5" value="d"
+                  data-explicacao="120° é obtuso. O ângulo entre retas é sempre o agudo, de 0° a 90°; por isso há o módulo na fórmula."> 120°</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Para quais valores de <strong>a</strong> as retas <strong>a·x + 2y − 1 = 0</strong> e <strong>3x − y + 4 = 0</strong> formam 45°?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g1-a6" value="a"
+                  data-explicacao="a = 2/3 zera o produto escalar 3a − 2: é o valor que deixa as retas perpendiculares (90°), não a 45°."> a = 2/3</label>
+                <label class="alternativa"><input type="radio" name="g1-a6" value="b"
+                  data-explicacao="cos² 45° = 1/2: (3a − 2)² / ((a² + 4)·10) = 1/2 ⇒ 2(9a² − 12a + 4) = 10a² + 40 ⇒ 8a² − 24a − 32 = 0 ⇒ a² − 3a − 4 = 0 ⇒ a = 4 ou a = −1. As duas conferem: tg θ = 1."> a = 4 ou a = −1</label>
+                <label class="alternativa"><input type="radio" name="g1-a6" value="c"
+                  data-explicacao="A equação a² − 3a − 4 = 0 tem duas raízes; a = −1 também dá 45° (m = 1/2 e 3: tg θ = |(1/2 − 3) / (1 + 3/2)| = 1)."> Apenas a = 4</label>
+                <label class="alternativa"><input type="radio" name="g1-a6" value="d"
+                  data-explicacao="Sinais trocados nas raízes: a² − 3a − 4 = (a − 4)(a + 1), então a = 4 ou a = −1."> a = −4 ou a = 1</label>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Geometria Analítica — Lições 2 a 12 (em construção) -->
+      <section id="ga-2" class="licao" data-trilha="ga" data-licao="2">
+        <h2 class="licao-titulo">2. Área de triângulo e alinhamento</h2>
+        <div class="teoria">
+          <p class="em-construcao">🚧 Lição em construção. Vai tratar de: área de um triângulo pelas coordenadas dos vértices (com determinante), condição para três pontos estarem alinhados e área de polígonos.</p>
+        </div>
+      </section>
+      <section id="ga-3" class="licao" data-trilha="ga" data-licao="3">
+        <h2 class="licao-titulo">3. Circunferência</h2>
+        <div class="teoria">
+          <p class="em-construcao">🚧 Lição em construção. Vai tratar de: equação reduzida (x − a)² + (y − b)² = r², equação geral, como achar centro e raio completando quadrados.</p>
+        </div>
+      </section>
+      <section id="ga-4" class="licao" data-trilha="ga" data-licao="4">
+        <h2 class="licao-titulo">4. Posições relativas com a circunferência</h2>
+        <div class="teoria">
+          <p class="em-construcao">🚧 Lição em construção. Vai tratar de: ponto dentro, sobre ou fora; reta secante, tangente ou externa; posições entre duas circunferências.</p>
+        </div>
+      </section>
+      <section id="ga-5" class="licao" data-trilha="ga" data-licao="5">
+        <h2 class="licao-titulo">5. Parábola</h2>
+        <div class="teoria">
+          <p class="em-construcao">🚧 Lição em construção. Vai tratar de: foco e diretriz, equação reduzida, vértice, eixo e a propriedade refletora (antenas parabólicas).</p>
+        </div>
+      </section>
+      <section id="ga-6" class="licao" data-trilha="ga" data-licao="6">
+        <h2 class="licao-titulo">6. Elipse</h2>
+        <div class="teoria">
+          <p class="em-construcao">🚧 Lição em construção. Vai tratar de: focos, eixos maior e menor, excentricidade e equação reduzida.</p>
+        </div>
+      </section>
+      <section id="ga-7" class="licao" data-trilha="ga" data-licao="7">
+        <h2 class="licao-titulo">7. Hipérbole</h2>
+        <div class="teoria">
+          <p class="em-construcao">🚧 Lição em construção. Vai tratar de: focos, assíntotas, excentricidade e equação reduzida.</p>
+        </div>
+      </section>
+      <section id="ga-8" class="licao" data-trilha="ga" data-licao="8">
+        <h2 class="licao-titulo">8. Reconhecendo cônicas</h2>
+        <div class="teoria">
+          <p class="em-construcao">🚧 Lição em construção. Vai tratar de: como descobrir, pela equação Ax² + Cy² + Dx + Ey + F = 0, se a curva é circunferência, elipse, parábola ou hipérbole.</p>
+        </div>
+      </section>
+      <section id="ga-9" class="licao" data-trilha="ga" data-licao="9">
+        <h2 class="licao-titulo">9. Vetores no espaço</h2>
+        <div class="teoria">
+          <p class="em-construcao">🚧 Lição em construção. Vai tratar de: coordenadas (x, y, z), distância no espaço, vetores em 3D, módulo e produto escalar.</p>
+        </div>
+      </section>
+      <section id="ga-10" class="licao" data-trilha="ga" data-licao="10">
+        <h2 class="licao-titulo">10. Produto vetorial e misto</h2>
+        <div class="teoria">
+          <p class="em-construcao">🚧 Lição em construção. Vai tratar de: produto vetorial (vetor perpendicular, área do paralelogramo) e produto misto (volume do paralelepípedo).</p>
+        </div>
+      </section>
+      <section id="ga-11" class="licao" data-trilha="ga" data-licao="11">
+        <h2 class="licao-titulo">11. Retas e planos no espaço</h2>
+        <div class="teoria">
+          <p class="em-construcao">🚧 Lição em construção. Vai tratar de: equações da reta e do plano em 3D, posições relativas e distância de ponto a plano.</p>
+        </div>
+      </section>
+      <section id="ga-12" class="licao" data-trilha="ga" data-licao="12">
+        <h2 class="licao-titulo">12. Aplicação com dados reais</h2>
+        <div class="teoria">
+          <p class="em-construcao">🚧 Lição em construção. Vai tratar de: um problema real resolvido com Geometria Analítica, com dados de fonte oficial.</p>
+        </div>
+      </section>
+
     </main>
   </div>
 
@@ -2868,5 +3357,7 @@
   <script src="js/licoes/licao-10.js"></script>
   <script src="js/licoes/licao-11.js"></script>
   <script src="js/licoes/licao-12.js"></script>
+  <!-- Trilha de Geometria Analítica -->
+  <script src="js/licoes/ga-01.js"></script>
 </body>
 </html>

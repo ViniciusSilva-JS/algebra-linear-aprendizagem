@@ -207,6 +207,28 @@ input.campo-curto {
 
 
 /* =========================================================================
+   NÍVEL DOS EXERCÍCIOS (faixa criada pelo js/componentes/exercicios.js)
+   ========================================================================= */
+.nivel-exercicios {
+  font-size: var(--tamanho-pequeno);
+  color: var(--cor-texto-suave);
+}
+
+.etiqueta-nivel {
+  display: inline-block;
+  margin-right: var(--esp-1);
+  padding: 2px var(--esp-3);
+  border: 1px solid currentColor;
+  border-radius: var(--raio-pilula);
+  font-weight: 700;
+}
+
+.etiqueta-nivel-basico        { color: var(--cor-nivel-basico);        background: var(--cor-nivel-basico-suave); }
+.etiqueta-nivel-intermediario { color: var(--cor-nivel-intermediario); background: var(--cor-nivel-intermediario-suave); }
+.etiqueta-nivel-avancado      { color: var(--cor-nivel-avancado);      background: var(--cor-nivel-avancado-suave); }
+
+
+/* =========================================================================
    RESPONSIVO
    ========================================================================= */
 @media (max-width: 768px) {

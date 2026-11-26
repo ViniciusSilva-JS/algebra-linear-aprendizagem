@@ -383,6 +383,14 @@ progress.progresso::-moz-progress-bar {
   border-radius: var(--raio);
 }
 
+/* Aviso das lições que ainda estão sendo escritas */
+.em-construcao {
+  padding: var(--esp-3) var(--esp-4);
+  border: 1px dashed var(--cor-exercicios);
+  border-radius: var(--raio);
+  background: var(--cor-exercicios-suave);
+}
+
 .exemplo-titulo {
   margin-bottom: var(--esp-1);
   color: var(--cor-cartao);
