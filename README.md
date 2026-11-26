@@ -44,6 +44,7 @@ codigo/                       Código do site
       ga-01.js                Geometria Analítica, Lição 1 (ângulo e distância entre retas)
       ga-02.js                Geometria Analítica, Lição 2 (área de triângulo e alinhamento)
       ga-03.js                Geometria Analítica, Lição 3 (circunferência)
+      ga-04.js                Geometria Analítica, Lição 4 (posições relativas com a circunferência)
 README.md
 ```
 

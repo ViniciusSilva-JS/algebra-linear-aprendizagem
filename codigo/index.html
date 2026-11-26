@@ -6081,8 +6081,410 @@
       </section>
       <section id="ga-4" class="licao" data-trilha="ga" data-licao="4">
         <h2 class="licao-titulo">4. Posições relativas com a circunferência</h2>
+
+        <!-- ---------- TEORIA ---------- -->
         <div class="teoria">
-          <p class="em-construcao">🚧 Lição em construção. Vai tratar de: ponto dentro, sobre ou fora; reta secante, tangente ou externa; posições entre duas circunferências.</p>
+          <p>
+            Tudo nesta lição se resolve com uma ideia: <strong>comparar uma distância com o raio</strong>.
+            Para a circunferência de centro C e raio r, as três perguntas são: onde está um ponto, como uma reta
+            passa e como duas circunferências se encontram.
+          </p>
+
+          <h3>Ponto e circunferência</h3>
+          <p>Compare a distância d(P, C) com o raio. Na prática, basta substituir P no lado esquerdo da equação reduzida:</p>
+          <div class="tabela-rolagem">
+            <table class="tabela">
+              <thead>
+                <tr><th>Distância</th><th>(x − a)² + (y − b)² comparado com r²</th><th>P está…</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>d &lt; r</td><td>menor</td><td>dentro (no círculo)</td></tr>
+                <tr><td>d = r</td><td>igual</td><td>sobre a circunferência</td></tr>
+                <tr><td>d &gt; r</td><td>maior</td><td>fora</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              Circunferência (x − 1)² + (y − 2)² = 25. P(4, 6): 9 + 16 = 25, <strong>sobre</strong>.
+              Q(2, 3): 1 + 1 = 2 &lt; 25, <strong>dentro</strong>. R(7, 0): 36 + 4 = 40 &gt; 25, <strong>fora</strong>.
+            </p>
+          </div>
+
+          <h3>Reta e circunferência</h3>
+          <p>
+            Calcule a distância d do <strong>centro</strong> até a reta, com a fórmula da lição 1:
+            d = |a·x<sub>C</sub> + b·y<sub>C</sub> + c| / √(a² + b²).
+          </p>
+          <div class="tabela-rolagem">
+            <table class="tabela">
+              <thead>
+                <tr><th>Distância</th><th>A reta é…</th><th>Pontos em comum</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>d &lt; r</td><td>secante</td><td>2</td></tr>
+                <tr><td>d = r</td><td>tangente</td><td>1</td></tr>
+                <tr><td>d &gt; r</td><td>externa</td><td>0</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <ul>
+            <li>A <strong>tangente</strong> é perpendicular ao raio no ponto de contato.</li>
+            <li>Numa secante, o pé da perpendicular H (vindo do centro) é o meio da corda, e o teorema de Pitágoras dá o comprimento da corda: <strong>2·√(r² − d²)</strong>.</li>
+            <li>Outro caminho é substituir a reta na equação da circunferência. Sai uma equação do 2º grau: Δ &gt; 0 (secante), Δ = 0 (tangente) ou Δ &lt; 0 (externa).</li>
+          </ul>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              x² + y² = 25 e r: 3x + 4y − 25 = 0. d = |0 + 0 − 25| / 5 = 5 = r: <strong>tangente</strong>, no ponto (3, 4).
+            </p>
+            <p>
+              Já a reta y = x + 1: x² + (x + 1)² = 25 ⇒ x² + x − 12 = 0 ⇒ x = 3 ou x = −4. Dois pontos, (3, 4) e (−4, −3):
+              <strong>secante</strong>.
+            </p>
+          </div>
+
+          <h3>Duas circunferências</h3>
+          <p>Agora compare a distância d entre os <strong>centros</strong> com a soma e a diferença dos raios:</p>
+          <div class="tabela-rolagem">
+            <table class="tabela">
+              <thead>
+                <tr><th>Condição</th><th>Posição</th><th>Pontos em comum</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>d &gt; r₁ + r₂</td><td>externas (uma fora da outra)</td><td>0</td></tr>
+                <tr><td>d = r₁ + r₂</td><td>tangentes externas</td><td>1</td></tr>
+                <tr><td>|r₁ − r₂| &lt; d &lt; r₁ + r₂</td><td>secantes</td><td>2</td></tr>
+                <tr><td>d = |r₁ − r₂| (e d &gt; 0)</td><td>tangentes internas</td><td>1</td></tr>
+                <tr><td>d &lt; |r₁ − r₂|</td><td>uma dentro da outra</td><td>0</td></tr>
+                <tr><td>d = 0</td><td>concêntricas (mesmo centro)</td><td>0 (ou todos, se r₁ = r₂)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              x² + y² = 25 e (x − 6)² + y² = 25: d = 6, r₁ + r₂ = 10 e |r₁ − r₂| = 0. Como 0 &lt; 6 &lt; 10, são
+              <strong>secantes</strong>. Subtraindo as equações: 12x − 36 = 0 ⇒ x = 3 e y = ±4. Os pontos são (3, 4) e (3, −4).
+            </p>
+          </div>
+        </div>
+
+        <!-- ---------- LABORATÓRIO ---------- -->
+        <div class="laboratorio">
+          <h3>Distância contra raio</h3>
+          <p>
+            Escolha o que comparar com a circunferência. Em todos os casos o laboratório mede uma distância,
+            compara com o raio e mostra os pontos de encontro. <strong>Clique no plano</strong> para mover o
+            ponto P, o centro da circunferência (modo reta) ou o centro da segunda circunferência.
+          </p>
+
+          <fieldset class="escolha lab-operacao">
+            <legend>Comparar com</legend>
+            <label class="opcao"><input type="radio" name="g4-modo" value="ponto" checked> Um ponto</label>
+            <label class="opcao"><input type="radio" name="g4-modo" value="reta"> Uma reta</label>
+            <label class="opcao"><input type="radio" name="g4-modo" value="duas"> Outra circunferência</label>
+          </fieldset>
+
+          <div class="lab-area controles-largos">
+            <svg id="g4-plano" class="plano-cartesiano" viewBox="-10 -10 20 20"
+                 role="img" aria-label="Plano com a circunferência e o ponto, a reta ou a segunda circunferência"></svg>
+
+            <div class="lab-controles">
+              <fieldset class="lab-ponto lab-ponto-m lab-tres-campos">
+                <legend>Circunferência</legend>
+                <label>x<sub>C</sub> <input type="number" id="g4-xc" value="0" min="-8" max="8" step="1" aria-label="x do centro"></label>
+                <label>y<sub>C</sub> <input type="number" id="g4-yc" value="0" min="-8" max="8" step="1" aria-label="y do centro"></label>
+                <label>r <input type="number" id="g4-r" value="5" min="0.5" max="8" step="0.5" aria-label="raio"></label>
+              </fieldset>
+              <fieldset id="g4-campo-ponto" class="lab-ponto lab-ponto-a">
+                <legend>Ponto P</legend>
+                <label>x <input type="number" id="g4-px" value="3" min="-9" max="9" step="1"></label>
+                <label>y <input type="number" id="g4-py" value="4" min="-9" max="9" step="1"></label>
+              </fieldset>
+              <fieldset id="g4-campo-reta" class="lab-ponto lab-equacao lab-equacao-2" hidden>
+                <legend>Reta</legend>
+                <input type="number" id="g4-a" value="3" step="1" aria-label="coeficiente a da reta"> x +
+                <input type="number" id="g4-b" value="4" step="1" aria-label="coeficiente b da reta"> y +
+                <input type="number" id="g4-c" value="-25" step="1" aria-label="termo c da reta"> = 0
+              </fieldset>
+              <fieldset id="g4-campo-c2" class="lab-ponto lab-ponto-b lab-tres-campos" hidden>
+                <legend>Segunda circunferência</legend>
+                <label>x <input type="number" id="g4-x2" value="6" min="-8" max="8" step="1" aria-label="x do centro da segunda"></label>
+                <label>y <input type="number" id="g4-y2" value="0" min="-8" max="8" step="1" aria-label="y do centro da segunda"></label>
+                <label>r <input type="number" id="g4-r2" value="5" min="0.5" max="8" step="0.5" aria-label="raio da segunda"></label>
+              </fieldset>
+              <p id="g4-dica" class="lab-dica" aria-live="polite"></p>
+              <button type="button" id="g4-sortear" class="btn-secundario">🎲 Sortear</button>
+            </div>
+          </div>
+
+          <div id="g4-resultados" class="lab-resultados" aria-live="polite"></div>
+        </div>
+
+        <!-- ---------- EXERCÍCIOS ---------- -->
+        <div class="exercicios" data-licao="4">
+          <h3>Pratique</h3>
+          <p>Escolha uma alternativa em cada exercício. Acerte todos para liberar a lição 5.</p>
+
+          <ol class="lista-exercicios">
+            <!-- ===== BÁSICO ===== -->
+            <li class="exercicio" data-nivel="basico">
+              <p>Onde está o ponto <strong>P(4, 6)</strong> em relação à circunferência <strong>(x − 1)² + (y − 2)² = 25</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g4-b1" value="a"
+                  data-explicacao="Dentro, a distância ao centro seria menor que o raio. Calcule (4 − 1)² + (6 − 2)² e compare com 25."> Dentro</label>
+                <label class="alternativa"><input type="radio" name="g4-b1" value="b"
+                  data-explicacao="(4 − 1)² + (6 − 2)² = 9 + 16 = 25 = r². A distância de P ao centro (1, 2) é exatamente o raio 5."> Sobre a circunferência</label>
+                <label class="alternativa"><input type="radio" name="g4-b1" value="c"
+                  data-explicacao="Fora, a soma dos quadrados passaria de 25. Refaça a substituição."> Fora</label>
+                <label class="alternativa"><input type="radio" name="g4-b1" value="d"
+                  data-explicacao="O centro é (1, 2), e P é outro ponto."> No centro</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Onde está o ponto <strong>P(2, 3)</strong> em relação à circunferência <strong>x² + y² = 9</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g4-b2" value="a"
+                  data-explicacao="Dentro exigiria x² + y² &lt; 9. Calcule 2² + 3²."> Dentro</label>
+                <label class="alternativa"><input type="radio" name="g4-b2" value="b"
+                  data-explicacao="Sobre exigiria x² + y² = 9 exatamente."> Sobre a circunferência</label>
+                <label class="alternativa"><input type="radio" name="g4-b2" value="c"
+                  data-explicacao="2² + 3² = 13 &gt; 9: a distância de P à origem é √13 ≈ 3,6, maior que o raio 3."> Fora</label>
+                <label class="alternativa"><input type="radio" name="g4-b2" value="d"
+                  data-explicacao="O centro é a origem (0, 0)."> No centro</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Uma reta está a distância <strong>3</strong> do centro de uma circunferência de raio <strong>5</strong>. Como ela é?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g4-b3" value="a"
+                  data-explicacao="d = 3 &lt; r = 5: a reta passa por dentro da circunferência e a corta em dois pontos."> Secante (corta em 2 pontos)</label>
+                <label class="alternativa"><input type="radio" name="g4-b3" value="b"
+                  data-explicacao="Tangente exige d = r. Aqui d é menor que r."> Tangente</label>
+                <label class="alternativa"><input type="radio" name="g4-b3" value="c"
+                  data-explicacao="Externa exige d &gt; r: a reta passaria longe, sem tocar."> Externa</label>
+                <label class="alternativa"><input type="radio" name="g4-b3" value="d"
+                  data-explicacao="Passar pelo centro seria d = 0."> Passa pelo centro</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Quantos pontos uma reta <strong>tangente</strong> tem em comum com a circunferência?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g4-b4" value="a"
+                  data-explicacao="Nenhum ponto em comum é o caso da reta externa."> Nenhum</label>
+                <label class="alternativa"><input type="radio" name="g4-b4" value="b"
+                  data-explicacao="Dois pontos em comum é o caso da reta secante."> Dois</label>
+                <label class="alternativa"><input type="radio" name="g4-b4" value="c"
+                  data-explicacao="Uma reta e uma circunferência nunca têm infinitos pontos em comum."> Infinitos</label>
+                <label class="alternativa"><input type="radio" name="g4-b4" value="d"
+                  data-explicacao="A tangente só encosta: d = r, e há exatamente um ponto de contato."> Um</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Duas circunferências têm raios <strong>3</strong> e <strong>2</strong>, e a distância entre os centros é <strong>5</strong>. Qual é a posição entre elas?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g4-b5" value="a"
+                  data-explicacao="Secantes exigem d &lt; r₁ + r₂. Aqui d é exatamente igual à soma."> Secantes</label>
+                <label class="alternativa"><input type="radio" name="g4-b5" value="b"
+                  data-explicacao="d = 5 = 3 + 2 = r₁ + r₂: elas se encostam em um único ponto, cada uma do lado de fora da outra."> Tangentes externas</label>
+                <label class="alternativa"><input type="radio" name="g4-b5" value="c"
+                  data-explicacao="Sem se tocar exigiria d &gt; r₁ + r₂."> Externas (sem se tocar)</label>
+                <label class="alternativa"><input type="radio" name="g4-b5" value="d"
+                  data-explicacao="Uma dentro da outra exigiria d &lt; |r₁ − r₂| = 1."> Uma dentro da outra</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Duas circunferências têm raios <strong>4</strong> e <strong>1</strong>, e os centros estão a distância <strong>10</strong>. Qual é a posição entre elas?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g4-b6" value="a"
+                  data-explicacao="Tangentes externas exigiriam d = r₁ + r₂ = 5."> Tangentes externas</label>
+                <label class="alternativa"><input type="radio" name="g4-b6" value="b"
+                  data-explicacao="Secantes exigiriam d &lt; r₁ + r₂ = 5."> Secantes</label>
+                <label class="alternativa"><input type="radio" name="g4-b6" value="c"
+                  data-explicacao="d = 10 &gt; r₁ + r₂ = 5: estão longe uma da outra, sem nenhum ponto em comum."> Externas (sem se tocar)</label>
+                <label class="alternativa"><input type="radio" name="g4-b6" value="d"
+                  data-explicacao="Uma dentro da outra exigiria d &lt; |r₁ − r₂| = 3."> Uma dentro da outra</label>
+              </div>
+            </li>
+
+            <!-- ===== INTERMEDIÁRIO ===== -->
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é a posição da reta <strong>3x + 4y − 25 = 0</strong> em relação a <strong>x² + y² = 25</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g4-i1" value="a"
+                  data-explicacao="Distância do centro (0, 0) à reta: |0 + 0 − 25| / √(9 + 16) = 25/5 = 5 = r. Toca em um só ponto, o (3, 4)."> Tangente</label>
+                <label class="alternativa"><input type="radio" name="g4-i1" value="b"
+                  data-explicacao="Secante exige d &lt; r. Calcule a distância do centro à reta e compare com o raio 5."> Secante</label>
+                <label class="alternativa"><input type="radio" name="g4-i1" value="c"
+                  data-explicacao="Externa exige d &gt; r. Calcule |3·0 + 4·0 − 25| / √(3² + 4²)."> Externa</label>
+                <label class="alternativa"><input type="radio" name="g4-i1" value="d"
+                  data-explicacao="Substituindo (0, 0): 0 + 0 − 25 ≠ 0. A reta não passa pela origem."> Passa pelo centro</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Em que pontos a reta <strong>y = x + 1</strong> corta a circunferência <strong>x² + y² = 25</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g4-i2" value="a"
+                  data-explicacao="Esses pontos estão na circunferência, mas não na reta: em (4, 3), y = 3 ≠ 4 + 1."> (4, 3) e (−3, −4)</label>
+                <label class="alternativa"><input type="radio" name="g4-i2" value="b"
+                  data-explicacao="(3, 4) é um deles, mas a equação do 2º grau tem duas raízes."> Apenas (3, 4)</label>
+                <label class="alternativa"><input type="radio" name="g4-i2" value="c"
+                  data-explicacao="(4, 3) não está na reta: 3 ≠ 4 + 1."> (3, 4) e (4, 3)</label>
+                <label class="alternativa"><input type="radio" name="g4-i2" value="d"
+                  data-explicacao="Substituindo y: x² + (x + 1)² = 25 ⇒ 2x² + 2x − 24 = 0 ⇒ x² + x − 12 = 0 ⇒ x = 3 ou x = −4. Com y = x + 1: (3, 4) e (−4, −3)."> (3, 4) e (−4, −3)</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é o comprimento da corda que a reta <strong>y = 3</strong> determina na circunferência <strong>x² + y² = 25</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g4-i3" value="a"
+                  data-explicacao="4 é só a metade da corda (de x = 0 até um dos pontos)."> 4</label>
+                <label class="alternativa"><input type="radio" name="g4-i3" value="b"
+                  data-explicacao="Com y = 3: x² = 25 − 9 = 16 ⇒ x = ±4. Os pontos são (−4, 3) e (4, 3), a distância 8. (Pela distância: 2√(r² − d²) = 2√(25 − 9) = 8.)"> 8</label>
+                <label class="alternativa"><input type="radio" name="g4-i3" value="c"
+                  data-explicacao="10 é o diâmetro, a maior corda possível. Ela só aparece quando a reta passa pelo centro."> 10</label>
+                <label class="alternativa"><input type="radio" name="g4-i3" value="d"
+                  data-explicacao="16 é x², não o comprimento. Tire a raiz e lembre que há um ponto de cada lado."> 16</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Para quais valores de k a reta <strong>y = k</strong> é tangente a <strong>x² + y² = 16</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g4-i4" value="a"
+                  data-explicacao="k = 4 serve (encosta no topo), mas há outra reta horizontal que encosta embaixo."> Apenas k = 4</label>
+                <label class="alternativa"><input type="radio" name="g4-i4" value="b"
+                  data-explicacao="16 é r². A distância da reta y = k ao centro é |k|, e deve ser igual ao raio."> k = 16 ou k = −16</label>
+                <label class="alternativa"><input type="radio" name="g4-i4" value="c"
+                  data-explicacao="A distância do centro (0, 0) à reta y = k é |k|. Tangente ⇔ |k| = r = 4 ⇒ k = ±4 (no topo e no pé da circunferência)."> k = 4 ou k = −4</label>
+                <label class="alternativa"><input type="radio" name="g4-i4" value="d"
+                  data-explicacao="Com |k| = 2 a reta passa por dentro: é secante."> k = 2 ou k = −2</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é a distância do ponto <strong>P(7, 1)</strong> até o ponto <strong>mais próximo</strong> da circunferência <strong>(x − 2)² + (y − 1)² = 9</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g4-i5" value="a"
+                  data-explicacao="P está a distância 5 do centro (2, 1), e o raio é 3. O ponto mais próximo fica na reta que liga P ao centro: 5 − 3 = 2."> 2</label>
+                <label class="alternativa"><input type="radio" name="g4-i5" value="b"
+                  data-explicacao="5 é a distância de P até o centro, não até a circunferência."> 5</label>
+                <label class="alternativa"><input type="radio" name="g4-i5" value="c"
+                  data-explicacao="8 = 5 + 3 é a distância até o ponto MAIS DISTANTE da circunferência."> 8</label>
+                <label class="alternativa"><input type="radio" name="g4-i5" value="d"
+                  data-explicacao="3 é o raio. A distância até a curva depende de onde P está."> 3</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é a posição entre <strong>x² + y² = 4</strong> e <strong>(x − 3)² + y² = 4</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g4-i6" value="a"
+                  data-explicacao="Externas exigem d &gt; r₁ + r₂. Aqui d = 3 e r₁ + r₂ = 4."> Externas (sem se tocar)</label>
+                <label class="alternativa"><input type="radio" name="g4-i6" value="b"
+                  data-explicacao="Tangentes externas exigem d = r₁ + r₂ = 4, mas d = 3."> Tangentes externas</label>
+                <label class="alternativa"><input type="radio" name="g4-i6" value="c"
+                  data-explicacao="Concêntricas têm o mesmo centro. Aqui os centros são (0, 0) e (3, 0)."> Concêntricas</label>
+                <label class="alternativa"><input type="radio" name="g4-i6" value="d"
+                  data-explicacao="Centros (0, 0) e (3, 0), d = 3, raios 2 e 2. |r₁ − r₂| = 0 &lt; 3 &lt; 4 = r₁ + r₂: elas se cortam em dois pontos."> Secantes</label>
+              </div>
+            </li>
+
+            <!-- ===== AVANÇADO ===== -->
+            <li class="exercicio" data-nivel="avancado">
+              <p>Para quais valores de k a reta <strong>y = x + k</strong> é <strong>secante</strong> à circunferência <strong>x² + y² = 8</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g4-a1" value="a"
+                  data-explicacao="Nesses valores d = r: a reta é tangente, não secante."> k = 4 ou k = −4</label>
+                <label class="alternativa"><input type="radio" name="g4-a1" value="b"
+                  data-explicacao="Para esses valores d &gt; r: a reta fica de fora."> |k| &gt; 4</label>
+                <label class="alternativa"><input type="radio" name="g4-a1" value="c"
+                  data-explicacao="Reta x − y + k = 0: d = |k| / √2. Secante ⇔ d &lt; r = √8 ⇔ |k| &lt; √8·√2 = 4."> −4 &lt; k &lt; 4</label>
+                <label class="alternativa"><input type="radio" name="g4-a1" value="d"
+                  data-explicacao="Comparou |k| direto com o raio, esquecendo de dividir pela norma do vetor normal, √(1² + 1²) = √2."> −2√2 &lt; k &lt; 2√2</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Qual é a reta <strong>tangente</strong> à circunferência <strong>x² + y² = 25</strong> no ponto <strong>(3, 4)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g4-a2" value="a"
+                  data-explicacao="A tangente é perpendicular ao raio, que vai de (0, 0) a (3, 4). Então (3, 4) é o vetor normal: 3x + 4y + c = 0, e passando por (3, 4): 9 + 16 + c = 0 ⇒ c = −25."> 3x + 4y − 25 = 0</label>
+                <label class="alternativa"><input type="radio" name="g4-a2" value="b"
+                  data-explicacao="Essa reta passa pela origem e por (3, 4): é a reta do próprio raio, não a tangente."> 4x − 3y = 0</label>
+                <label class="alternativa"><input type="radio" name="g4-a2" value="c"
+                  data-explicacao="Tem o vetor normal certo, mas não passa por (3, 4): 9 + 16 − 5 ≠ 0."> 3x + 4y − 5 = 0</label>
+                <label class="alternativa"><input type="radio" name="g4-a2" value="d"
+                  data-explicacao="Passa por (3, 4), mas não é perpendicular ao raio: (4, 3) não é múltiplo de (3, 4)."> 4x + 3y − 24 = 0</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Qual é a circunferência de centro <strong>(2, 1)</strong> que é <strong>tangente</strong> à reta <strong>3x − 4y + 8 = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g4-a3" value="a"
+                  data-explicacao="Usou o raio como se fosse r². Do lado direito vai o raio ao quadrado."> (x − 2)² + (y − 1)² = 2</label>
+                <label class="alternativa"><input type="radio" name="g4-a3" value="b"
+                  data-explicacao="Tangente ⇒ raio = distância do centro à reta = |3·2 − 4·1 + 8| / √(9 + 16) = 10/5 = 2. Então r² = 4."> (x − 2)² + (y − 1)² = 4</label>
+                <label class="alternativa"><input type="radio" name="g4-a3" value="c"
+                  data-explicacao="Esqueceu de dividir por √(a² + b²) = 5 na distância."> (x − 2)² + (y − 1)² = 100</label>
+                <label class="alternativa"><input type="radio" name="g4-a3" value="d"
+                  data-explicacao="Os sinais do centro estão trocados."> (x + 2)² + (y + 1)² = 4</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Qual raio <strong>r &lt; 5</strong> faz a circunferência de centro <strong>(2, 0)</strong> ser <strong>tangente interna</strong> a <strong>x² + y² = 25</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g4-a4" value="a"
+                  data-explicacao="Com r = 7 a de centro (2, 0) é que ficaria por fora. Além disso, a pergunta pede r &lt; 5."> r = 7</label>
+                <label class="alternativa"><input type="radio" name="g4-a4" value="b"
+                  data-explicacao="Com r = 2, d = 2 e |5 − 2| = 3: d &lt; |r₁ − r₂|, a pequena fica solta dentro, sem encostar."> r = 2</label>
+                <label class="alternativa"><input type="radio" name="g4-a4" value="c"
+                  data-explicacao="Com r = 5 as duas teriam o mesmo raio e centros diferentes: seriam secantes."> r = 5</label>
+                <label class="alternativa"><input type="radio" name="g4-a4" value="d"
+                  data-explicacao="Tangente interna ⇔ d = |r₁ − r₂|. Aqui d = 2, então |5 − r| = 2 e, com r &lt; 5, r = 3. Elas se tocam em (5, 0)."> r = 3</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Em que pontos se cortam <strong>x² + y² = 25</strong> e <strong>(x − 6)² + y² = 25</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g4-a5" value="a"
+                  data-explicacao="(4, 3) está na primeira, mas na segunda: (4 − 6)² + 9 = 13 ≠ 25."> (4, 3) e (4, −3)</label>
+                <label class="alternativa"><input type="radio" name="g4-a5" value="b"
+                  data-explicacao="(3, 0) é o ponto médio entre os centros, mas não está em nenhuma das duas: 9 ≠ 25."> Só em (3, 0)</label>
+                <label class="alternativa"><input type="radio" name="g4-a5" value="c"
+                  data-explicacao="Subtraindo as equações: x² − (x − 6)² = 0 ⇒ 12x − 36 = 0 ⇒ x = 3. Então 9 + y² = 25 ⇒ y = ±4."> (3, 4) e (3, −4)</label>
+                <label class="alternativa"><input type="radio" name="g4-a5" value="d"
+                  data-explicacao="Estão na primeira, mas na segunda: 36 + 25 ≠ 25."> (0, 5) e (0, −5)</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Qual é o comprimento do segmento tangente que vai de <strong>P(7, 1)</strong> até a circunferência <strong>(x − 3)² + (y − 1)² = 4</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g4-a6" value="a"
+                  data-explicacao="4 é a distância de P até o centro, não o segmento tangente."> 4</label>
+                <label class="alternativa"><input type="radio" name="g4-a6" value="b"
+                  data-explicacao="O raio no ponto de contato é perpendicular à tangente. Triângulo retângulo com hipotenusa d = 4 e cateto r = 2: tangente = √(16 − 4) = √12 = 2√3."> 2√3 ≈ 3,46</label>
+                <label class="alternativa"><input type="radio" name="g4-a6" value="c"
+                  data-explicacao="2 = d − r é a distância até o ponto mais próximo da circunferência, que não é o ponto de tangência."> 2</label>
+                <label class="alternativa"><input type="radio" name="g4-a6" value="d"
+                  data-explicacao="Somou os quadrados. No triângulo retângulo, a hipotenusa é a distância ao centro: tangente² = d² − r²."> √20 ≈ 4,47</label>
+              </div>
+            </li>
+
+          </ol>
         </div>
       </section>
       <section id="ga-5" class="licao" data-trilha="ga" data-licao="5">
@@ -6176,5 +6578,6 @@
   <script src="js/licoes/ga-01.js"></script>
   <script src="js/licoes/ga-02.js"></script>
   <script src="js/licoes/ga-03.js"></script>
+  <script src="js/licoes/ga-04.js"></script>
 </body>
 </html>

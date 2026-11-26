@@ -786,12 +786,14 @@
    GEOMETRIA ANALÍTICA — LIÇÃO 3: CIRCUNFERÊNCIA
    ========================================================================= */
 /* Três campos (a, b, r) no mesmo grupo: mais estreitos e podendo quebrar a linha */
-#g3-campo-centro {
+#g3-campo-centro,
+.lab-tres-campos {
   flex-wrap: wrap;
   gap: var(--esp-2);
 }
 
-#g3-campo-centro input[type="number"] {
+#g3-campo-centro input[type="number"],
+.lab-tres-campos input[type="number"] {
   width: 3.6rem;
 }
 
@@ -801,6 +803,13 @@
   stroke: var(--cor-laboratorio);
   stroke-width: calc(0.1 * var(--escala-plano, 1));
   stroke-linejoin: round;
+}
+
+/* Lição 4: a segunda circunferência em âmbar */
+.circunferencia.segunda {
+  fill: transparent;
+  fill: color-mix(in srgb, var(--cor-exercicios) 8%, transparent);
+  stroke: var(--cor-exercicios);
 }
 
 
