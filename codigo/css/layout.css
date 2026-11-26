@@ -130,6 +130,29 @@
   outline-offset: 2px;
 }
 
+/* Níveis com cor própria: básico verde, intermediário laranja, avançado vermelho */
+.opcao-nivel:has(input[value="basico"]) {
+  --cor-nivel: var(--cor-nivel-basico);
+  --cor-nivel-suave: var(--cor-nivel-basico-suave);
+}
+.opcao-nivel:has(input[value="intermediario"]) {
+  --cor-nivel: var(--cor-nivel-intermediario);
+  --cor-nivel-suave: var(--cor-nivel-intermediario-suave);
+}
+.opcao-nivel:has(input[value="avancado"]) {
+  --cor-nivel: var(--cor-nivel-avancado);
+  --cor-nivel-suave: var(--cor-nivel-avancado-suave);
+}
+
+.opcao-nivel input[type="radio"] { accent-color: var(--cor-nivel); }
+.opcao-nivel:hover { border-color: var(--cor-nivel); }
+.opcao-nivel:has(input:checked) {
+  border-color: var(--cor-nivel);
+  background: var(--cor-nivel-suave);
+  color: var(--cor-nivel);
+}
+.opcao-nivel:has(input:focus-visible) { outline-color: var(--cor-nivel); }
+
 
 /* =========================================================================
    7. LAYOUT GERAL (NAV À ESQUERDA + CONTEÚDO À DIREITA)

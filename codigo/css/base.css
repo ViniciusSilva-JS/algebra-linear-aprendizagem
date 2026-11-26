@@ -50,6 +50,14 @@
   --cor-erro-fundo: #fdecec;
   --cor-erro-borda: #f2b4b6;
 
+  /* Níveis de dificuldade: verde, laranja e vermelho */
+  --cor-nivel-basico: #1a7f45;
+  --cor-nivel-basico-suave: #e6f6ec;
+  --cor-nivel-intermediario: #c2410c;
+  --cor-nivel-intermediario-suave: #fff0e6;
+  --cor-nivel-avancado: #c0262d;
+  --cor-nivel-avancado-suave: #fdecec;
+
   /* --- Estados da trilha --- */
   --cor-concluida: #1a7f45;
   --cor-bloqueada: #9aa3b2;
@@ -133,6 +141,13 @@
     --cor-erro-fundo: #321619;
     --cor-erro-borda: #6b2a2e;
 
+    --cor-nivel-basico: #5fd38d;
+    --cor-nivel-basico-suave: #12291c;
+    --cor-nivel-intermediario: #ff9f43;
+    --cor-nivel-intermediario-suave: #33220f;
+    --cor-nivel-avancado: #ff6b70;
+    --cor-nivel-avancado-suave: #351719;
+
     --cor-concluida: #5fd38d;
     --cor-bloqueada: #5f6879;
 
@@ -172,6 +187,13 @@
   --cor-erro: #ff7b80;
   --cor-erro-fundo: #321619;
   --cor-erro-borda: #6b2a2e;
+
+  --cor-nivel-basico: #5fd38d;
+  --cor-nivel-basico-suave: #12291c;
+  --cor-nivel-intermediario: #ff9f43;
+  --cor-nivel-intermediario-suave: #33220f;
+  --cor-nivel-avancado: #ff6b70;
+  --cor-nivel-avancado-suave: #351719;
 
   --cor-concluida: #5fd38d;
   --cor-bloqueada: #5f6879;
