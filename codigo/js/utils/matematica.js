@@ -269,10 +269,13 @@ function retaPorDoisPontos(A, B) {
 
 /** Equação geral "ax + by + c = 0", escrita do jeito "bonito". */
 function formatarEquacaoGeral(a, b, c) {
+  // Termos que arredondam para "0" na tela (ex.: −0,000001) são omitidos,
+  // senão apareceria "−0x".
+  const aparece = (v) => !quaseIgual(v, 0) && formatarFracao(Math.abs(v)) !== '0';
   const termos = [];
-  if (!quaseIgual(a, 0)) termos.push({ valor: a, texto: 'x' });
-  if (!quaseIgual(b, 0)) termos.push({ valor: b, texto: 'y' });
-  if (!quaseIgual(c, 0)) termos.push({ valor: c, texto: '' });
+  if (aparece(a)) termos.push({ valor: a, texto: 'x' });
+  if (aparece(b)) termos.push({ valor: b, texto: 'y' });
+  if (aparece(c)) termos.push({ valor: c, texto: '' });
   let saida = '';
   termos.forEach((t, i) => {
     const abs = Math.abs(t.valor);

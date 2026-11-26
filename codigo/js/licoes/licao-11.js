@@ -225,7 +225,11 @@
           (A só multiplica tudo por ${fr(lambda)}).</span></li>`;
       }
       // equação da primeira linha não nula de A − λI
-      const linha = (Math.abs(M[0][0]) > 1e-9 || Math.abs(M[0][1]) > 1e-9) ? M[0] : M[1];
+      let linha = (Math.abs(M[0][0]) > 1e-9 || Math.abs(M[0][1]) > 1e-9) ? M[0] : M[1];
+      // Números minúsculos (ex.: 0,001) apareceriam como "0x + 0y = 0":
+      // dividimos a equação pelo maior coeficiente (a reta continua a mesma).
+      const maior = Math.max(Math.abs(linha[0]), Math.abs(linha[1]));
+      if (maior < 0.01) linha = [linha[0] / maior, linha[1] / maior];
       const av = aplicarMatriz(A, v);
       return `<li class="passo-gauss"><span class="passo-gauss-descricao">${nome} = ${fr(lambda)}</span>
         <span>A − ${p(lambda)}I = ${htmlMatriz(M)} → ${formatarEquacaoGeral(linha[0], linha[1], 0)}

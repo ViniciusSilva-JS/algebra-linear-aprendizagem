@@ -65,7 +65,15 @@
 /* Resultados do laboratório */
 .lab-resultados {
   display: grid;
+  grid-template-columns: minmax(0, 1fr); /* nunca fica mais largo que a tela */
   gap: var(--esp-3);
+}
+
+/* Matrizes e contas compridas (ex.: números enormes) rolam dentro do cartão
+   em vez de alargar a página inteira. */
+.lab-resultado {
+  min-width: 0;
+  overflow-x: auto;
 }
 
 .lab-resultado .formula {
