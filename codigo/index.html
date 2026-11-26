@@ -2029,7 +2029,7 @@
               <p>Para qual valor de x a matriz <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">1</span><span class="matriz-el">x</span><span class="matriz-el">5</span><span class="matriz-el">2</span></span></span> é <strong>simétrica</strong>?</p>
               <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="a">
                 <label class="alternativa"><input type="radio" name="l5-i5" value="a"
-                  data-explicacao="Simétrica: A = Aᵀ, ou seja, a<sub>12</sub> = a<sub>21</sub>. Então x = 5."> x = 5</label>
+                  data-explicacao="Simétrica: A = Aᵀ, ou seja, a₁₂ = a₂₁. Então x = 5."> x = 5</label>
                 <label class="alternativa"><input type="radio" name="l5-i5" value="b"
                   data-explicacao="Com x = −5 os elementos fora da diagonal são opostos, não iguais."> x = −5</label>
                 <label class="alternativa"><input type="radio" name="l5-i5" value="c"
@@ -2074,7 +2074,7 @@
                 <label class="alternativa"><input type="radio" name="l5-a2" value="a"
                   data-explicacao="Sinais invertidos: (−1)² = +1, então a₁₁ = +2."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">−2</span><span class="matriz-el">3</span><span class="matriz-el">3</span><span class="matriz-el">−4</span></span></span></label>
                 <label class="alternativa"><input type="radio" name="l5-a2" value="b"
-                  data-explicacao="Ignorou o fator (−1)<sup>i+j</sup>: quando i + j é ímpar ele vale −1."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">3</span><span class="matriz-el">3</span><span class="matriz-el">4</span></span></span></label>
+                  data-explicacao="Ignorou o fator (−1) elevado a (i + j): quando i + j é ímpar ele vale −1."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">3</span><span class="matriz-el">3</span><span class="matriz-el">4</span></span></span></label>
                 <label class="alternativa"><input type="radio" name="l5-a2" value="c"
                   data-explicacao="a₁₁ = (+1)·2 = 2, a₁₂ = (−1)·3 = −3, a₂₁ = (−1)·3 = −3, a₂₂ = (+1)·4 = 4."> <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 2"><span class="matriz-el">2</span><span class="matriz-el">−3</span><span class="matriz-el">−3</span><span class="matriz-el">4</span></span></span></label>
                 <label class="alternativa"><input type="radio" name="l5-a2" value="d"
@@ -3096,11 +3096,11 @@
               <p>No sistema <strong>2x + y = 7</strong> e <strong>x − 3y = −7</strong>, pela regra de Cramer, quanto vale <strong>D<sub>y</sub></strong>?</p>
               <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="c">
                 <label class="alternativa"><input type="radio" name="l8-i2" value="a"
-                  data-explicacao="−14 é D<sub>x</sub> (troca a coluna de x pelos termos independentes). Em D<sub>y</sub> troca-se a coluna de y."> −14</label>
+                  data-explicacao="−14 é Dx (troca a coluna de x pelos termos independentes). Em Dy troca-se a coluna de y."> −14</label>
                 <label class="alternativa"><input type="radio" name="l8-i2" value="b"
                   data-explicacao="Errou o sinal: em 2·(−7) − 7·1, os dois termos são negativos."> 21</label>
                 <label class="alternativa"><input type="radio" name="l8-i2" value="c"
-                  data-explicacao="D<sub>y</sub> = det [2 7; 1 −7] = 2·(−7) − 7·1 = −21. Com D = −7: y = −21/−7 = 3 (e x = −14/−7 = 2)."> −21</label>
+                  data-explicacao="Dy = det [2 7; 1 −7] = 2·(−7) − 7·1 = −21. Com D = −7: y = −21/−7 = 3 (e x = −14/−7 = 2)."> −21</label>
                 <label class="alternativa"><input type="radio" name="l8-i2" value="d"
                   data-explicacao="−7 é o D, o determinante dos coeficientes, sem trocar coluna."> −7</label>
               </div>
@@ -5298,8 +5298,394 @@
       <!-- Geometria Analítica — Lições 2 a 12 (em construção) -->
       <section id="ga-2" class="licao" data-trilha="ga" data-licao="2">
         <h2 class="licao-titulo">2. Área de triângulo e alinhamento</h2>
+
+        <!-- ---------- TEORIA ---------- -->
         <div class="teoria">
-          <p class="em-construcao">🚧 Lição em construção. Vai tratar de: área de um triângulo pelas coordenadas dos vértices (com determinante), condição para três pontos estarem alinhados e área de polígonos.</p>
+          <h3>Área pelas coordenadas</h3>
+          <p>
+            Com as coordenadas dos três vértices, dá para calcular a área do triângulo sem medir base nem altura.
+            Monte a matriz com uma linha por vértice e uma coluna de 1s:
+          </p>
+          <div class="formula">
+            D = det <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 3"><span class="matriz-el">x<sub>A</sub></span><span class="matriz-el">y<sub>A</sub></span><span class="matriz-el">1</span><span class="matriz-el">x<sub>B</sub></span><span class="matriz-el">y<sub>B</sub></span><span class="matriz-el">1</span><span class="matriz-el">x<sub>C</sub></span><span class="matriz-el">y<sub>C</sub></span><span class="matriz-el">1</span></span></span>
+            &nbsp;&nbsp;e&nbsp;&nbsp; <strong>Área = |D| / 2</strong>
+          </div>
+          <p>
+            <strong>De onde vem:</strong> o mesmo D sai do determinante 2×2 dos vetores-lado
+            <span class="vet">AB</span> e <span class="vet">AC</span>, que dá a área do paralelogramo formado por eles
+            (lição 7 de Álgebra Linear). O triângulo é metade desse paralelogramo.
+          </p>
+          <div class="formula">D = det(<span class="vet">AB</span>, <span class="vet">AC</span>) = (x<sub>B</sub> − x<sub>A</sub>)·(y<sub>C</sub> − y<sub>A</sub>) − (y<sub>B</sub> − y<sub>A</sub>)·(x<sub>C</sub> − x<sub>A</sub>)</div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>A(1, 1), B(5, 2) e C(3, 6). Por Sarrus, na matriz 3×3:</p>
+            <p>descem: 1·2·1 + 1·1·3 + 1·5·6 = 2 + 3 + 30 = 35 &nbsp;|&nbsp; sobem: 1·2·3 + 1·1·6 + 1·5·1 = 6 + 6 + 5 = 17</p>
+            <p>D = 35 − 17 = 18 e <strong>Área = 18 / 2 = 9</strong>.</p>
+            <p>Pelos vetores: <span class="vet">AB</span> = (4, 1), <span class="vet">AC</span> = (2, 5) e D = 4·5 − 1·2 = 18. O mesmo resultado.</p>
+          </div>
+
+          <h3>O sinal de D</h3>
+          <p>A área usa o módulo, mas o sinal de D também informa algo: a <strong>orientação</strong> dos vértices.</p>
+          <ul>
+            <li><strong>D &gt; 0:</strong> indo de A para B e depois para C, o giro é no sentido <strong>anti-horário</strong>.</li>
+            <li><strong>D &lt; 0:</strong> o giro é no sentido <strong>horário</strong>.</li>
+          </ul>
+          <p>Trocar dois vértices de lugar troca o sinal de D (trocar duas linhas de uma matriz troca o sinal do determinante).</p>
+
+          <h3>Três pontos alinhados</h3>
+          <p>Se A, B e C estão na mesma reta, o "triângulo" fica achatado e tem área zero:</p>
+          <div class="formula">A, B e C alinhados &nbsp;⇔&nbsp; D = 0</div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              Para qual k os pontos A(1, 2), B(3, 4) e C(k, 7) estão alinhados? <span class="vet">AB</span> = (2, 2) e
+              <span class="vet">AC</span> = (k − 1, 5). D = 2·5 − 2·(k − 1) = 12 − 2k = 0 ⇒ <strong>k = 6</strong>.
+            </p>
+          </div>
+
+          <h3>A equação da reta por determinante</h3>
+          <p>
+            Um ponto P(x, y) está na reta que passa por A e B exatamente quando P, A e B estão alinhados. Isso dá a equação da reta direto:
+          </p>
+          <div class="formula">
+            det <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 3"><span class="matriz-el">x</span><span class="matriz-el">y</span><span class="matriz-el">1</span><span class="matriz-el">x<sub>A</sub></span><span class="matriz-el">y<sub>A</sub></span><span class="matriz-el">1</span><span class="matriz-el">x<sub>B</sub></span><span class="matriz-el">y<sub>B</sub></span><span class="matriz-el">1</span></span></span> = 0
+          </div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              A(1, 3) e B(4, 9). Por Sarrus: 3x + 4y + 9 − 12 − 9x − y = 0 ⇒ −6x + 3y − 3 = 0 ⇒
+              <strong>2x − y + 1 = 0</strong>.
+            </p>
+          </div>
+
+          <h3>Área de qualquer polígono: a fórmula do cadarço</h3>
+          <p>
+            Para um polígono de vértices P₁, P₂, …, Pₙ <strong>em ordem</strong> ao redor da figura (sem lados se cruzando),
+            some os "determinantes" de cada par de vértices vizinhos, voltando do último para o primeiro:
+          </p>
+          <div class="formula">Área = |(x₁y₂ − x₂y₁) + (x₂y₃ − x₃y₂) + … + (xₙy₁ − x₁yₙ)| / 2</div>
+          <p>O nome vem do desenho das multiplicações cruzadas, que lembra um cadarço amarrado.</p>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>Quadrilátero (0, 0), (4, 0), (5, 3), (1, 4):</p>
+            <p>0·0 − 4·0 = 0 &nbsp;|&nbsp; 4·3 − 5·0 = 12 &nbsp;|&nbsp; 5·4 − 1·3 = 17 &nbsp;|&nbsp; 1·0 − 0·4 = 0</p>
+            <p>Soma 29, <strong>Área = 29 / 2 = 14,5</strong>.</p>
+          </div>
+        </div>
+
+        <!-- ---------- LABORATÓRIO ---------- -->
+        <div class="laboratorio">
+          <h3>Medindo áreas pelas coordenadas</h3>
+          <p>
+            No modo <strong>Triângulo</strong>, mova A, B e C (ou clique no plano) e veja o determinante, a área e a
+            orientação. Tente deixar os três pontos alinhados! No modo <strong>Polígono</strong>, cada clique
+            acrescenta um vértice, e a área sai pela fórmula do cadarço.
+          </p>
+
+          <fieldset class="escolha lab-operacao">
+            <legend>Figura</legend>
+            <label class="opcao"><input type="radio" name="g2-modo" value="triangulo" checked> Triângulo</label>
+            <label class="opcao"><input type="radio" name="g2-modo" value="poligono"> Polígono (cadarço)</label>
+          </fieldset>
+
+          <div class="lab-area">
+            <svg id="g2-plano" class="plano-cartesiano" viewBox="-9 -9 18 18"
+                 role="img" aria-label="Plano com o triângulo ou polígono, seus vértices e a área destacada"></svg>
+
+            <div class="lab-controles">
+              <div id="g2-controles-triangulo">
+                <fieldset class="lab-ponto lab-ponto-a">
+                  <legend>Ponto A</legend>
+                  <label>x <input type="number" id="g2-ax" value="1" min="-8" max="8" step="1"></label>
+                  <label>y <input type="number" id="g2-ay" value="1" min="-8" max="8" step="1"></label>
+                </fieldset>
+                <fieldset class="lab-ponto lab-ponto-b">
+                  <legend>Ponto B</legend>
+                  <label>x <input type="number" id="g2-bx" value="5" min="-8" max="8" step="1"></label>
+                  <label>y <input type="number" id="g2-by" value="2" min="-8" max="8" step="1"></label>
+                </fieldset>
+                <fieldset class="lab-ponto lab-ponto-m">
+                  <legend>Ponto C</legend>
+                  <label>x <input type="number" id="g2-cx" value="3" min="-8" max="8" step="1"></label>
+                  <label>y <input type="number" id="g2-cy" value="6" min="-8" max="8" step="1"></label>
+                </fieldset>
+                <button type="button" id="g2-alinhar" class="btn-secundario">📏 Alinhar C com A e B</button>
+              </div>
+              <div id="g2-controles-poligono" hidden>
+                <p class="lab-dica">Clique no plano para acrescentar vértices, dando a volta na figura (até 10).</p>
+                <button type="button" id="g2-desfazer" class="btn-secundario">↩ Desfazer último vértice</button>
+                <button type="button" id="g2-limpar" class="btn-secundario">🗑 Limpar polígono</button>
+              </div>
+              <p id="g2-dica" class="lab-dica" aria-live="polite"></p>
+              <button type="button" id="g2-sortear" class="btn-secundario">🎲 Sortear</button>
+            </div>
+          </div>
+
+          <div id="g2-resultados" class="lab-resultados" aria-live="polite"></div>
+        </div>
+
+        <!-- ---------- EXERCÍCIOS ---------- -->
+        <div class="exercicios" data-licao="2">
+          <h3>Pratique</h3>
+          <p>Escolha uma alternativa em cada exercício. Acerte todos para liberar a lição 3.</p>
+
+          <ol class="lista-exercicios">
+            <!-- ===== BÁSICO ===== -->
+            <li class="exercicio" data-nivel="basico">
+              <p>Qual é a área do triângulo de vértices <strong>A(0, 0)</strong>, <strong>B(4, 0)</strong> e <strong>C(0, 3)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g2-b1" value="a"
+                  data-explicacao="12 é |D|, a área do paralelogramo. O triângulo é a metade dele."> 12</label>
+                <label class="alternativa"><input type="radio" name="g2-b1" value="b"
+                  data-explicacao="D = det(AB, AC) = 4·3 − 0·0 = 12, e a área é |D|/2 = 6. (É um triângulo retângulo de catetos 4 e 3.)"> 6</label>
+                <label class="alternativa"><input type="radio" name="g2-b1" value="c"
+                  data-explicacao="7 = 4 + 3 soma os catetos. Área é produto, dividido por 2."> 7</label>
+                <label class="alternativa"><input type="radio" name="g2-b1" value="d"
+                  data-explicacao="5 é a hipotenusa BC, um comprimento, não uma área."> 5</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Qual é a área do triângulo <strong>A(1, 2)</strong>, <strong>B(5, 2)</strong>, <strong>C(3, 6)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g2-b2" value="a"
+                  data-explicacao="16 é |D|. Falta dividir por 2: o triângulo é metade do paralelogramo."> 16</label>
+                <label class="alternativa"><input type="radio" name="g2-b2" value="b"
+                  data-explicacao="4 é só a base AB. A área envolve também a altura."> 4</label>
+                <label class="alternativa"><input type="radio" name="g2-b2" value="c"
+                  data-explicacao="AB = (4, 0) e AC = (2, 4). D = 4·4 − 0·2 = 16, área = 16/2 = 8. (Base 4, altura 4.)"> 8</label>
+                <label class="alternativa"><input type="radio" name="g2-b2" value="d"
+                  data-explicacao="Somou os produtos das diagonais em vez de subtrair. O determinante é a·d − b·c."> 24</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Os pontos <strong>A(0, 1)</strong>, <strong>B(2, 5)</strong> e <strong>C(4, 9)</strong> estão alinhados?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g2-b3" value="a"
+                  data-explicacao="AB = (2, 4) e AC = (4, 8) = 2·AB. D = 2·8 − 4·4 = 0: o &quot;triângulo&quot; tem área zero, os pontos estão na mesma reta."> Sim, porque D = 0</label>
+                <label class="alternativa"><input type="radio" name="g2-b3" value="b"
+                  data-explicacao="Refaça o determinante com AB = (2, 4) e AC = (4, 8): a·d − b·c."> Não, porque D = 4</label>
+                <label class="alternativa"><input type="radio" name="g2-b3" value="c"
+                  data-explicacao="Se formassem um triângulo, D seria diferente de zero. Confira a conta."> Não, formam um triângulo de área 2</label>
+                <label class="alternativa"><input type="radio" name="g2-b3" value="d"
+                  data-explicacao="Dá: basta calcular D. Se for zero, estão alinhados."> Não dá para saber sem desenhar</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Qual é a condição para três pontos A, B e C estarem <strong>alinhados</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g2-b4" value="a"
+                  data-explicacao="D &gt; 0 indica um triângulo de verdade, com vértices no sentido anti-horário."> D &gt; 0</label>
+                <label class="alternativa"><input type="radio" name="g2-b4" value="b"
+                  data-explicacao="D = 1 dá um triângulo de área 1/2, não pontos alinhados."> D = 1</label>
+                <label class="alternativa"><input type="radio" name="g2-b4" value="c"
+                  data-explicacao="D &lt; 0 indica um triângulo com vértices no sentido horário."> D &lt; 0</label>
+                <label class="alternativa"><input type="radio" name="g2-b4" value="d"
+                  data-explicacao="Área = |D|/2. Os pontos estão alinhados exatamente quando o &quot;triângulo&quot; tem área zero, ou seja, D = 0."> D = 0</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>O determinante dos vértices de um triângulo deu <strong>D = −10</strong>. Qual é a área?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g2-b5" value="a"
+                  data-explicacao="Área não é negativa. O sinal de D só diz a orientação: por isso a fórmula usa o módulo."> −5</label>
+                <label class="alternativa"><input type="radio" name="g2-b5" value="b"
+                  data-explicacao="Área = |D|/2 = |−10|/2 = 5. O sinal negativo só indica que A → B → C gira no sentido horário."> 5</label>
+                <label class="alternativa"><input type="radio" name="g2-b5" value="c"
+                  data-explicacao="10 é |D|. O triângulo é metade do paralelogramo."> 10</label>
+                <label class="alternativa"><input type="radio" name="g2-b5" value="d"
+                  data-explicacao="Área não é negativa, e ainda falta dividir por 2."> −10</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Se o determinante D de A, B, C deu <strong>positivo</strong>, o que isso indica?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g2-b6" value="a"
+                  data-explicacao="O sinal não diz nada sobre os ângulos. Ele indica a orientação."> Que o triângulo é retângulo</label>
+                <label class="alternativa"><input type="radio" name="g2-b6" value="b"
+                  data-explicacao="Pontos alinhados dão D = 0, nem positivo nem negativo."> Que os pontos estão alinhados</label>
+                <label class="alternativa"><input type="radio" name="g2-b6" value="c"
+                  data-explicacao="O sinal de D indica a orientação: positivo é anti-horário, negativo é horário. A área usa |D|."> Que A → B → C gira no sentido anti-horário</label>
+                <label class="alternativa"><input type="radio" name="g2-b6" value="d"
+                  data-explicacao="O tamanho da área vem de |D|, não do sinal."> Que a área é maior que 1</label>
+              </div>
+            </li>
+
+            <!-- ===== INTERMEDIÁRIO ===== -->
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Para qual valor de k os pontos <strong>A(1, 2)</strong>, <strong>B(3, 4)</strong> e <strong>C(k, 7)</strong> estão alinhados?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g2-i1" value="a"
+                  data-explicacao="D = det(AB, AC) com AB = (2, 2) e AC = (k − 1, 5): 2·5 − 2·(k − 1) = 12 − 2k = 0 ⇒ k = 6. (A inclinação de A a C é 5/5 = 1, igual à de AB.)"> k = 6</label>
+                <label class="alternativa"><input type="radio" name="g2-i1" value="b"
+                  data-explicacao="Com k = 5, AC = (4, 5), e a inclinação 5/4 é diferente da de AB."> k = 5</label>
+                <label class="alternativa"><input type="radio" name="g2-i1" value="c"
+                  data-explicacao="Igualou k ao y de C. Os pontos alinhados exigem a mesma inclinação de A a B e de A a C."> k = 7</label>
+                <label class="alternativa"><input type="radio" name="g2-i1" value="d"
+                  data-explicacao="Com k = 8, AC = (7, 5) e D = 10 − 14 ≠ 0."> k = 8</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Pela fórmula do cadarço, qual é a área do quadrilátero de vértices <strong>(0, 0)</strong>, <strong>(6, 0)</strong>, <strong>(6, 4)</strong> e <strong>(2, 5)</strong>, nessa ordem?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g2-i2" value="a"
+                  data-explicacao="46 é a soma dos termos xᵢ·yᵢ₊₁ − xᵢ₊₁·yᵢ. Falta dividir por 2."> 46</label>
+                <label class="alternativa"><input type="radio" name="g2-i2" value="b"
+                  data-explicacao="Termos: 0·0 − 6·0 = 0; 6·4 − 6·0 = 24; 6·5 − 2·4 = 22; 2·0 − 0·5 = 0. Soma 46, área = 46/2 = 23."> 23</label>
+                <label class="alternativa"><input type="radio" name="g2-i2" value="c"
+                  data-explicacao="24 é a área do retângulo 6×4, mas a figura tem um &quot;telhado&quot; inclinado que muda a conta."> 24</label>
+                <label class="alternativa"><input type="radio" name="g2-i2" value="d"
+                  data-explicacao="30 é o retângulo 6×5 que envolve a figura. A figura não ocupa todo esse retângulo."> 30</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é a área do triângulo <strong>A(−1, 2)</strong>, <strong>B(3, −1)</strong>, <strong>C(2, 4)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g2-i3" value="a"
+                  data-explicacao="17 é |D|. O triângulo é metade do paralelogramo."> 17</label>
+                <label class="alternativa"><input type="radio" name="g2-i3" value="b"
+                  data-explicacao="Errou o sinal de b·c: com AB = (4, −3) e AC = (3, 2), o produto (−3)·3 é negativo, e subtraí-lo vira soma."> 0,5</label>
+                <label class="alternativa"><input type="radio" name="g2-i3" value="c"
+                  data-explicacao="AB = (4, −3) e AC = (3, 2). D = 4·2 − (−3)·3 = 8 + 9 = 17, área = 17/2 = 8,5."> 8,5</label>
+                <label class="alternativa"><input type="radio" name="g2-i3" value="d"
+                  data-explicacao="Área não é negativa, e o sinal de b·c foi perdido na conta."> −0,5</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Usando det <span class="matriz matriz-inline"><span class="matriz-grade" style="--colunas: 3"><span class="matriz-el">x</span><span class="matriz-el">y</span><span class="matriz-el">1</span><span class="matriz-el">1</span><span class="matriz-el">3</span><span class="matriz-el">1</span><span class="matriz-el">4</span><span class="matriz-el">9</span><span class="matriz-el">1</span></span></span> = 0, qual é a equação da reta que passa por <strong>(1, 3)</strong> e <strong>(4, 9)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g2-i4" value="a"
+                  data-explicacao="Passa por (1, 3), mas não por (4, 9): 4 − 18 + 5 ≠ 0. Os coeficientes de x e y foram trocados."> x − 2y + 5 = 0</label>
+                <label class="alternativa"><input type="radio" name="g2-i4" value="b"
+                  data-explicacao="O termo independente está com o sinal trocado: (1, 3) dá 2 − 3 − 1 ≠ 0."> 2x − y − 1 = 0</label>
+                <label class="alternativa"><input type="radio" name="g2-i4" value="c"
+                  data-explicacao="Passa por (1, 3), mas tem inclinação negativa; a reta sobe de (1, 3) para (4, 9)."> 2x + y − 5 = 0</label>
+                <label class="alternativa"><input type="radio" name="g2-i4" value="d"
+                  data-explicacao="Por Sarrus: (3 − 9)·x + (4 − 1)·y + (1·9 − 4·3) = −6x + 3y − 3 = 0. Dividindo por −3: 2x − y + 1 = 0. Confira: 2 − 3 + 1 = 0 e 8 − 9 + 1 = 0."> 2x − y + 1 = 0</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Com <strong>A(0, 0)</strong>, <strong>B(4, 0)</strong> e <strong>C(k, 3)</strong>, o que acontece com a área quando k muda?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g2-i5" value="a"
+                  data-explicacao="D = det((4, 0), (k, 3)) = 12 − 0 = 12, para todo k. A base AB = 4 e a altura 3 não mudam: C só desliza numa reta paralela à base."> É sempre 6</label>
+                <label class="alternativa"><input type="radio" name="g2-i5" value="b"
+                  data-explicacao="k move C para os lados, mas a altura em relação à base AB continua 3."> Cresce quando k cresce</label>
+                <label class="alternativa"><input type="radio" name="g2-i5" value="c"
+                  data-explicacao="Calcule D com k qualquer: o k some da conta."> Só vale 6 quando k = 0</label>
+                <label class="alternativa"><input type="radio" name="g2-i5" value="d"
+                  data-explicacao="Isso aconteceria se a altura dependesse de k. A altura é o y de C, que é sempre 3."> Vale 3k/2</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Com <strong>A(2, 1)</strong> e <strong>B(6, 1)</strong>, onde ficam os pontos C para os quais o triângulo ABC tem <strong>área 10</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g2-i6" value="a"
+                  data-explicacao="Falta o outro lado: C pode ficar abaixo de AB à mesma distância."> Só na reta y = 6</label>
+                <label class="alternativa"><input type="radio" name="g2-i6" value="b"
+                  data-explicacao="Usou altura 10, esquecendo o 1/2 da área: base·altura/2 = 10."> Nas retas y = 11 e y = −9</label>
+                <label class="alternativa"><input type="radio" name="g2-i6" value="c"
+                  data-explicacao="Mediu a altura a partir do eixo x, mas a base AB está em y = 1."> Nas retas y = 5 e y = −5</label>
+                <label class="alternativa"><input type="radio" name="g2-i6" value="d"
+                  data-explicacao="Base AB = 4. Área 10 ⇒ 4·h/2 = 10 ⇒ h = 5. C fica 5 acima ou 5 abaixo da reta y = 1: y = 6 ou y = −4."> Nas retas y = 6 e y = −4</label>
+              </div>
+            </li>
+
+            <!-- ===== AVANÇADO ===== -->
+            <li class="exercicio" data-nivel="avancado">
+              <p>Qual é a área do triângulo formado pelas retas <strong>y = x</strong>, <strong>y = −x + 4</strong> e o <strong>eixo x</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g2-a1" value="a"
+                  data-explicacao="8 é |D| (ou base × altura sem dividir por 2). O triângulo é a metade."> 8</label>
+                <label class="alternativa"><input type="radio" name="g2-a1" value="b"
+                  data-explicacao="Vértices: y = x com o eixo x dá (0, 0); y = −x + 4 com o eixo x dá (4, 0); as duas retas se cruzam em (2, 2). Base 4, altura 2: área 4."> 4</label>
+                <label class="alternativa"><input type="radio" name="g2-a1" value="c"
+                  data-explicacao="2 é a altura do vértice (2, 2). Falta multiplicar pela base e dividir por 2."> 2</label>
+                <label class="alternativa"><input type="radio" name="g2-a1" value="d"
+                  data-explicacao="Usou 4 como altura. A altura é o y do ponto onde as duas retas se cruzam."> 16</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Para qual k o ponto <strong>C(0, k)</strong> do eixo y está alinhado com <strong>A(1, 1)</strong> e <strong>B(3, 5)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g2-a2" value="a"
+                  data-explicacao="Com k = 1, C = (0, 1) fica na horizontal de A, mas a reta AB sobe."> k = 1</label>
+                <label class="alternativa"><input type="radio" name="g2-a2" value="b"
+                  data-explicacao="3 é o x de B, não tem relação com o ponto onde a reta corta o eixo y."> k = 3</label>
+                <label class="alternativa"><input type="radio" name="g2-a2" value="c"
+                  data-explicacao="Inclinação de AB: 4/2 = 2. Voltando de A uma unidade em x, y desce 2: C = (0, 1 − 2) = (0, −1). Confira: D = det((2, 4), (−1, k − 1)) = 2(k − 1) + 4 = 0."> k = −1</label>
+                <label class="alternativa"><input type="radio" name="g2-a2" value="d"
+                  data-explicacao="Usou a inclinação, mas esqueceu de partir do y de A."> k = −2</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Um triângulo tem área 5. Se <strong>todas as coordenadas</strong> dos vértices forem multiplicadas por 3, qual é a nova área?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g2-a3" value="a"
+                  data-explicacao="Multiplicou só uma vez. Cada vetor-lado fica 3 vezes maior, e o determinante tem dois fatores."> 15</label>
+                <label class="alternativa"><input type="radio" name="g2-a3" value="b"
+                  data-explicacao="A área muda: a figura fica ampliada. Ela só ficaria igual numa translação ou rotação."> 5</label>
+                <label class="alternativa"><input type="radio" name="g2-a3" value="c"
+                  data-explicacao="Usou 3³. Os vetores-lado são do plano (2 coordenadas), então o fator é 3²."> 135</label>
+                <label class="alternativa"><input type="radio" name="g2-a3" value="d"
+                  data-explicacao="AB e AC ficam multiplicados por 3, e det(3u, 3v) = 3·3·det(u, v) = 9·D. Área nova = 9·5 = 45."> 45</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Para <strong>A(0, 0)</strong>, <strong>B(0, 4)</strong> e <strong>C(3, 0)</strong>, quanto vale D e o que o sinal indica?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g2-a4" value="a"
+                  data-explicacao="AB = (0, 4) e AC = (3, 0). D = 0·0 − 4·3 = −12. Negativo: sobe de A até B e depois vai para a direita, girando no sentido horário. A área é 6."> D = −12: A → B → C gira no sentido horário</label>
+                <label class="alternativa"><input type="radio" name="g2-a4" value="b"
+                  data-explicacao="A ordem importa: D = (x de AB)·(y de AC) − (y de AB)·(x de AC). Refaça com AB = (0, 4)."> D = 12: anti-horário</label>
+                <label class="alternativa"><input type="radio" name="g2-a4" value="c"
+                  data-explicacao="−6 já é D dividido por 2 (com o sinal). D é o determinante inteiro."> D = −6: horário</label>
+                <label class="alternativa"><input type="radio" name="g2-a4" value="d"
+                  data-explicacao="Positivo indicaria anti-horário. Confira o sinal de D."> D = 12: horário</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Por que, na fórmula do cadarço, os vértices precisam estar <strong>em ordem</strong> ao redor do polígono?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g2-a5" value="a"
+                  data-explicacao="O sinal se resolve com o módulo. A ordem importa por outro motivo."> Para o resultado dar positivo</label>
+                <label class="alternativa"><input type="radio" name="g2-a5" value="b"
+                  data-explicacao="A fórmula soma as áreas &quot;com sinal&quot; lado a lado. Fora de ordem, os lados se cruzam, partes se cancelam e o resultado não é a área do polígono."> Se a ordem pular vértices, os lados se cruzam e a conta mede outra figura</label>
+                <label class="alternativa"><input type="radio" name="g2-a5" value="c"
+                  data-explicacao="Importa: trocar dois vértices vizinhos pode fazer os lados se cruzarem e mudar o resultado."> A ordem não importa</label>
+                <label class="alternativa"><input type="radio" name="g2-a5" value="d"
+                  data-explicacao="A fórmula aceita coordenadas negativas sem problema."> Porque a fórmula só aceita coordenadas positivas</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Para quais valores de k o triângulo <strong>A(0, 0)</strong>, <strong>B(4, 0)</strong>, <strong>C(k, k)</strong> tem área 6?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g2-a6" value="a"
+                  data-explicacao="Falta o caso negativo: o módulo |D| = 6·2 tem duas soluções."> Apenas k = 3</label>
+                <label class="alternativa"><input type="radio" name="g2-a6" value="b"
+                  data-explicacao="Esqueceu o 1/2: área = |D|/2."> k = 6 ou k = −6</label>
+                <label class="alternativa"><input type="radio" name="g2-a6" value="c"
+                  data-explicacao="D = det((4, 0), (k, k)) = 4k. Área = |4k|/2 = 2|k| = 6 ⇒ |k| = 3 ⇒ k = ±3 (C acima ou abaixo da base)."> k = 3 ou k = −3</label>
+                <label class="alternativa"><input type="radio" name="g2-a6" value="d"
+                  data-explicacao="Dividiu por 2 duas vezes. Área = |4k|/2 = 2|k|."> k = 1,5 ou k = −1,5</label>
+              </div>
+            </li>
+
+          </ol>
         </div>
       </section>
       <section id="ga-3" class="licao" data-trilha="ga" data-licao="3">
@@ -5788,6 +6174,7 @@
   <script src="js/licoes/licao-12.js"></script>
   <!-- Trilha de Geometria Analítica -->
   <script src="js/licoes/ga-01.js"></script>
+  <script src="js/licoes/ga-02.js"></script>
   <script src="js/licoes/ga-03.js"></script>
 </body>
 </html>

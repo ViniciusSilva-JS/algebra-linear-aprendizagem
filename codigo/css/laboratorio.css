@@ -768,6 +768,21 @@
 
 
 /* =========================================================================
+   GEOMETRIA ANALÍTICA — LIÇÃO 2: ÁREA DE TRIÂNGULO E ALINHAMENTO
+   ========================================================================= */
+/* Setinhas nos lados mostrando o sentido de giro (mesma cor da região) */
+.giro { --cor-vetor: var(--cor-laboratorio); }
+.giro.negativa { --cor-vetor: var(--cor-exercicios); }
+
+#g2-controles-triangulo,
+#g2-controles-poligono {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-3);
+}
+
+
+/* =========================================================================
    GEOMETRIA ANALÍTICA — LIÇÃO 3: CIRCUNFERÊNCIA
    ========================================================================= */
 /* Três campos (a, b, r) no mesmo grupo: mais estreitos e podendo quebrar a linha */

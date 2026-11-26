@@ -42,6 +42,7 @@ codigo/                       Código do site
       licao-11.js             Laboratório da Lição 11
       licao-12.js             Laboratório da Lição 12 (dados reais dos censos do IBGE)
       ga-01.js                Geometria Analítica, Lição 1 (ângulo e distância entre retas)
+      ga-02.js                Geometria Analítica, Lição 2 (área de triângulo e alinhamento)
       ga-03.js                Geometria Analítica, Lição 3 (circunferência)
 README.md
 ```
@@ -154,7 +155,8 @@ celular no bloco **RESPONSIVO** do fim do mesmo arquivo.
 - **Exercícios** de múltipla escolha com 4 alternativas, e **toda alternativa** com
   `data-explicacao`. As erradas mostram o erro comum que leva a elas, **sem revelar a
   resposta certa** (essa explicação aparece quando o aluno erra). A conta completa fica
-  na explicação da alternativa correta.
+  na explicação da alternativa correta. O `data-explicacao` é **texto puro**: nada de
+  `<sub>`, `<strong>` ou outras tags (use caracteres como a₁₂, xᵢ, x²).
 - **Números no padrão brasileiro**: vírgula decimal e `;` separando coordenadas
   decimais, como em `(2,5; 4)`. Use `formatarNumero` e `formatarPonto`.
 - **Cores** sempre por variável (`var(--cor-…)`), para funcionar nos temas claro e escuro.
