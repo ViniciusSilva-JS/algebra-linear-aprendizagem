@@ -40,13 +40,20 @@
 }
 
 
-/* Espaço para o botão de tema (o botão em si está em componentes.css) */
+/* Espaço para os botões do canto (os botões em si estão em componentes.css) */
 .cabecalho {
   position: relative;
 }
 
-.cabecalho-titulo {
+.cabecalho-titulo,
+.cabecalho-descricao {
   padding-right: 10rem;
+}
+
+/* Dentro das lições aparece também "Trocar matéria ou nível": precisa de mais espaço */
+.cabecalho.com-escolha .cabecalho-titulo,
+.cabecalho.com-escolha .cabecalho-descricao {
+  padding-right: 22rem;
 }
 
 
@@ -574,7 +581,10 @@
     padding: var(--esp-5) var(--esp-4);
   }
 
-  .cabecalho-titulo {
+  .cabecalho-titulo,
+  .cabecalho-descricao,
+  .cabecalho.com-escolha .cabecalho-titulo,
+  .cabecalho.com-escolha .cabecalho-descricao {
     padding-right: 0;
   }
 

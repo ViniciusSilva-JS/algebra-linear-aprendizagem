@@ -20,7 +20,11 @@
       Aprenda Álgebra Linear e Geometria Analítica passo a passo, do plano
       cartesiano às aplicações com dados reais.
     </p>
-    <button type="button" id="btn-tema" class="btn-secundario btn-tema">🌙 Modo escuro</button>
+    <div class="cabecalho-acoes">
+      <!-- Só aparece dentro das lições (o js/app.js controla) -->
+      <button type="button" id="btn-escolher" class="btn-secundario btn-cabecalho" hidden>☰ Trocar matéria ou nível</button>
+      <button type="button" id="btn-tema" class="btn-secundario btn-cabecalho btn-tema">🌙 Modo escuro</button>
+    </div>
   </header>
 
   <!-- ===================== ESCOLHA DE MATÉRIA E NÍVEL ===================== -->

@@ -84,6 +84,8 @@ const textoProgresso = document.getElementById('progresso-texto');
 const btnRecomecar = document.getElementById('btn-recomecar');
 
 const tituloMateria = document.getElementById('titulo-materia'); // nome da matéria no cabeçalho
+const cabecalho = document.getElementById('cabecalho');
+const btnEscolher = document.getElementById('btn-escolher');     // "Trocar matéria ou nível"
 const btnTema = document.getElementById('btn-tema');
 const aviso = document.getElementById('aviso');
 
@@ -279,6 +281,10 @@ function mostrarTela(trilha, n) {
   // Tela inicial e escolha de matéria/nível só aparecem no início.
   secaoInicio.hidden = n !== 0;
   secaoConfiguracao.hidden = n !== 0;
+
+  // Dentro das lições, o botão do cabeçalho leva de volta à escolha.
+  btnEscolher.hidden = n === 0;
+  cabecalho.classList.toggle('com-escolha', n !== 0);
 
   // Mostra apenas a lição escolhida.
   const atual = n === 0 ? null : secoes[trilha][n];
@@ -701,6 +707,9 @@ function registrarEventos() {
 
   btnRecomecar.addEventListener('click', recomecarTrilha);
   btnTema.addEventListener('click', alternarTema);
+
+  // "Trocar matéria ou nível": volta para a tela inicial, onde fica a escolha.
+  btnEscolher.addEventListener('click', () => irPara(trilhaAtual, 0));
 }
 
 

@@ -82,11 +82,19 @@
 }
 
 
-/* Botão de tema no cabeçalho */
-.btn-tema {
+/* Botões do cabeçalho ("Trocar matéria ou nível" e tema), no canto superior direito */
+.cabecalho-acoes {
   position: absolute;
   top: var(--esp-4);
   right: var(--esp-4);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--esp-2);
+  margin: 0;
+}
+
+.btn-cabecalho {
   min-height: 2.5rem;
   padding-inline: var(--esp-4);
   font-size: var(--tamanho-pequeno);
@@ -564,8 +572,9 @@ progress.progresso::-moz-progress-bar {
     width: 100%;
   }
 
-  .btn-tema {
+  .cabecalho-acoes {
     position: static;
+    justify-content: flex-start;
     margin-top: var(--esp-4);
   }
 
