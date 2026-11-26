@@ -5304,8 +5304,393 @@
       </section>
       <section id="ga-3" class="licao" data-trilha="ga" data-licao="3">
         <h2 class="licao-titulo">3. Circunferência</h2>
+
+        <!-- ---------- TEORIA ---------- -->
         <div class="teoria">
-          <p class="em-construcao">🚧 Lição em construção. Vai tratar de: equação reduzida (x − a)² + (y − b)² = r², equação geral, como achar centro e raio completando quadrados.</p>
+          <h3>O que é uma circunferência</h3>
+          <p>
+            A circunferência de centro <strong>C(a, b)</strong> e raio <strong>r</strong> é o conjunto de todos os
+            pontos do plano que estão exatamente à distância r de C. É a "linha" do círculo
+            (o círculo é a região de dentro).
+          </p>
+
+          <h3>Equação reduzida</h3>
+          <p>
+            Um ponto P(x, y) está na circunferência quando d(P, C) = r. Usando a fórmula da distância
+            (lição 1 de Álgebra Linear) e elevando os dois lados ao quadrado para sumir com a raiz:
+          </p>
+          <div class="formula">(x − a)² + (y − b)² = r²</div>
+          <ul>
+            <li>O centro aparece com o <strong>sinal trocado</strong> dentro dos parênteses: (x − 3) indica a = 3, e (y + 2) = (y − (−2)) indica b = −2.</li>
+            <li>Do lado direito está o raio <strong>ao quadrado</strong>: se ali aparece 25, o raio é 5.</li>
+          </ul>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>Centro (2, −1) e raio 3: <strong>(x − 2)² + (y + 1)² = 9</strong>. O ponto (2, 2) está nela? (2 − 2)² + (2 + 1)² = 0 + 9 = 9 ✓.</p>
+          </div>
+
+          <h3>Equação geral</h3>
+          <p>Desenvolvendo os quadrados da equação reduzida, (x − a)² = x² − 2a·x + a², e passando tudo para um lado:</p>
+          <div class="formula">x² + y² + D·x + E·y + F = 0, &nbsp;&nbsp;com&nbsp;&nbsp; D = −2a, &nbsp;E = −2b, &nbsp;F = a² + b² − r²</div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              (x − 2)² + (y + 1)² = 9 &nbsp;⇒&nbsp; x² − 4x + 4 + y² + 2y + 1 − 9 = 0 &nbsp;⇒&nbsp;
+              <strong>x² + y² − 4x + 2y − 4 = 0</strong>.
+            </p>
+          </div>
+          <p>Fazendo o caminho de volta, dá para ler o centro e o raio direto da equação geral:</p>
+          <div class="formula">a = −D/2, &nbsp;&nbsp; b = −E/2, &nbsp;&nbsp; r² = a² + b² − F</div>
+
+          <h3>Completando quadrados</h3>
+          <p>
+            A ideia é juntar x² + D·x num quadrado perfeito. Como (x + D/2)² = x² + D·x + (D/2)²,
+            vale <strong>x² + D·x = (x + D/2)² − (D/2)²</strong>. O mesmo para y.
+          </p>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>x² + y² − 6x + 4y − 3 = 0</p>
+            <p>
+              x² − 6x = (x − 3)² − 9 &nbsp;e&nbsp; y² + 4y = (y + 2)² − 4. Substituindo:
+              (x − 3)² − 9 + (y + 2)² − 4 − 3 = 0 &nbsp;⇒&nbsp; <strong>(x − 3)² + (y + 2)² = 16</strong>.
+            </p>
+            <p>Centro (3, −2) e raio 4.</p>
+          </div>
+
+          <h3>Nem toda equação assim é uma circunferência</h3>
+          <p>Depois de completar os quadrados, olhe o número k que sobra do lado direito, em (x − a)² + (y − b)² = k:</p>
+          <div class="tabela-rolagem">
+            <table class="tabela">
+              <thead>
+                <tr><th>Lado direito</th><th>A equação representa…</th><th>Exemplo</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>k &gt; 0</td><td>uma circunferência de raio √k</td><td>(x − 1)² + y² = 4</td></tr>
+                <tr><td>k = 0</td><td>um único ponto, o próprio centro</td><td>(x − 1)² + y² = 0</td></tr>
+                <tr><td>k &lt; 0</td><td>nenhum ponto (soma de quadrados nunca é negativa)</td><td>(x − 1)² + y² = −5</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Além disso, x² e y² precisam ter o <strong>mesmo coeficiente</strong> (se for 2x² + 2y², divida tudo por 2)
+            e não pode haver termo com <strong>x·y</strong>.
+          </p>
+
+          <h3>Circunferência dado o diâmetro</h3>
+          <p>Se A e B são as pontas de um diâmetro, o centro é o <strong>ponto médio</strong> de AB e o raio é a <strong>metade</strong> de AB.</p>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              A(−1, 2) e B(5, 10): centro (2, 6), AB = √(36 + 64) = 10, raio 5.
+              Equação: <strong>(x − 2)² + (y − 6)² = 25</strong>.
+            </p>
+          </div>
+        </div>
+
+        <!-- ---------- LABORATÓRIO ---------- -->
+        <div class="laboratorio">
+          <h3>Da equação ao desenho</h3>
+          <p>
+            Escolha como quer descrever a circunferência: pelo <strong>centro e raio</strong> (o laboratório
+            desenvolve a equação geral) ou pela <strong>equação geral</strong> (ele completa os quadrados e
+            acha o centro e o raio). <strong>Clique no plano</strong> para mover o centro.
+          </p>
+
+          <fieldset class="escolha lab-operacao">
+            <legend>Começar por</legend>
+            <label class="opcao"><input type="radio" name="g3-modo" value="centro" checked> Centro e raio</label>
+            <label class="opcao"><input type="radio" name="g3-modo" value="geral"> Equação geral</label>
+          </fieldset>
+
+          <div class="lab-area controles-largos">
+            <svg id="g3-plano" class="plano-cartesiano" viewBox="-11 -11 22 22"
+                 role="img" aria-label="Plano cartesiano com a circunferência, o centro e o raio"></svg>
+
+            <div class="lab-controles">
+              <fieldset id="g3-campo-centro" class="lab-ponto lab-ponto-a">
+                <legend>Centro e raio</legend>
+                <label>a <input type="number" id="g3-a" value="2" min="-10" max="10" step="1" aria-label="coordenada x do centro"></label>
+                <label>b <input type="number" id="g3-b" value="-1" min="-10" max="10" step="1" aria-label="coordenada y do centro"></label>
+                <label>r <input type="number" id="g3-r" value="3" min="0.5" max="10" step="0.5" aria-label="raio"></label>
+              </fieldset>
+              <fieldset id="g3-campo-geral" class="lab-ponto lab-equacao lab-equacao-1 inativo" disabled>
+                <legend>Equação geral</legend>
+                x² + y² +
+                <input type="number" id="g3-d" value="-4" step="1" aria-label="coeficiente D de x"> x +
+                <input type="number" id="g3-e" value="2" step="1" aria-label="coeficiente E de y"> y +
+                <input type="number" id="g3-f" value="-4" step="1" aria-label="termo independente F"> = 0
+              </fieldset>
+              <label class="lab-check"><input type="checkbox" id="g3-extremos" checked> Mostrar os pontos mais à esquerda, à direita, acima e abaixo</label>
+              <p id="g3-dica" class="lab-dica">Centro: a e b de −10 a 10; raio de 0,5 a 10. Na equação geral, D e E de −40 a 40 e F de −250 a 250.</p>
+              <button type="button" id="g3-sortear" class="btn-secundario">🎲 Sortear</button>
+            </div>
+          </div>
+
+          <div id="g3-resultados" class="lab-resultados" aria-live="polite"></div>
+        </div>
+
+        <!-- ---------- EXERCÍCIOS ---------- -->
+        <div class="exercicios" data-licao="3">
+          <h3>Pratique</h3>
+          <p>Escolha uma alternativa em cada exercício. Acerte todos para liberar a lição 4.</p>
+
+          <ol class="lista-exercicios">
+            <!-- ===== BÁSICO ===== -->
+            <li class="exercicio" data-nivel="basico">
+              <p>Quais são o centro e o raio de <strong>(x − 3)² + (y + 2)² = 25</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g3-b1" value="a"
+                  data-explicacao="Na forma (x − a)² + (y − b)² = r²: a = 3 e, como y + 2 = y − (−2), b = −2. r² = 25 ⇒ r = 5."> C(3, −2) e r = 5</label>
+                <label class="alternativa"><input type="radio" name="g3-b1" value="b"
+                  data-explicacao="Os sinais do centro estão trocados. O centro tem o sinal oposto ao que aparece dentro dos parênteses: (x − 3) indica x = 3."> C(−3, 2) e r = 5</label>
+                <label class="alternativa"><input type="radio" name="g3-b1" value="c"
+                  data-explicacao="25 é r², não r. Falta tirar a raiz."> C(3, −2) e r = 25</label>
+                <label class="alternativa"><input type="radio" name="g3-b1" value="d"
+                  data-explicacao="Dois enganos: os sinais do centro estão trocados e 25 é r² (falta a raiz)."> C(−3, 2) e r = 25</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Qual é a equação da circunferência de centro <strong>(1, 4)</strong> e raio <strong>3</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g3-b2" value="a"
+                  data-explicacao="Sinais trocados: com centro (1, 4), os parênteses ficam (x − 1) e (y − 4)."> (x + 1)² + (y + 4)² = 9</label>
+                <label class="alternativa"><input type="radio" name="g3-b2" value="b"
+                  data-explicacao="Do lado direito vai r², e não r."> (x − 1)² + (y − 4)² = 3</label>
+                <label class="alternativa"><input type="radio" name="g3-b2" value="c"
+                  data-explicacao="(x − a)² + (y − b)² = r² com a = 1, b = 4 e r² = 3² = 9."> (x − 1)² + (y − 4)² = 9</label>
+                <label class="alternativa"><input type="radio" name="g3-b2" value="d"
+                  data-explicacao="Fez 2·3 em vez de 3². O lado direito é o raio ao quadrado."> (x − 1)² + (y − 4)² = 6</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Qual é a equação da circunferência de centro na <strong>origem</strong> e raio <strong>2</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g3-b3" value="a"
+                  data-explicacao="Do lado direito vai r², e não r."> x² + y² = 2</label>
+                <label class="alternativa"><input type="radio" name="g3-b3" value="b"
+                  data-explicacao="Com a = b = 0, a equação vira x² + y² = r² = 4. Todos os pontos a distância 2 da origem."> x² + y² = 4</label>
+                <label class="alternativa"><input type="radio" name="g3-b3" value="c"
+                  data-explicacao="x + y = 2 é uma reta, não uma circunferência: faltam os quadrados."> x + y = 2</label>
+                <label class="alternativa"><input type="radio" name="g3-b3" value="d"
+                  data-explicacao="Elevou o raio à quarta potência (4²). O lado direito é r² = 2²."> x² + y² = 16</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Qual destes pontos pertence à circunferência <strong>(x − 1)² + (y − 1)² = 25</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g3-b4" value="a"
+                  data-explicacao="Substituindo: (5 − 1)² + (5 − 1)² = 16 + 16 = 32 ≠ 25. O ponto fica fora."> (5, 5)</label>
+                <label class="alternativa"><input type="radio" name="g3-b4" value="b"
+                  data-explicacao="Substituindo: (3 − 1)² + (4 − 1)² = 4 + 9 = 13 ≠ 25. O ponto fica dentro."> (3, 4)</label>
+                <label class="alternativa"><input type="radio" name="g3-b4" value="c"
+                  data-explicacao="Substituindo: 25 + 25 = 50 ≠ 25. O ponto fica fora."> (6, 6)</label>
+                <label class="alternativa"><input type="radio" name="g3-b4" value="d"
+                  data-explicacao="Substituindo: (4 − 1)² + (5 − 1)² = 9 + 16 = 25 ✓. O ponto está a distância 5 do centro (1, 1)."> (4, 5)</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Qual é o <strong>diâmetro</strong> da circunferência <strong>x² + (y − 2)² = 49</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g3-b5" value="a"
+                  data-explicacao="7 é o raio. O diâmetro é o dobro do raio."> 7</label>
+                <label class="alternativa"><input type="radio" name="g3-b5" value="b"
+                  data-explicacao="r² = 49 ⇒ r = 7, e o diâmetro é 2r = 14."> 14</label>
+                <label class="alternativa"><input type="radio" name="g3-b5" value="c"
+                  data-explicacao="49 é r². Tire a raiz para achar o raio e depois dobre."> 49</label>
+                <label class="alternativa"><input type="radio" name="g3-b5" value="d"
+                  data-explicacao="Dobrou o 49 sem tirar a raiz antes. 49 é r², não r."> 98</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Qual é o centro da circunferência <strong>x² + y² − 4x + 6y − 3 = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g3-b6" value="a"
+                  data-explicacao="Usou D e E direto. O centro é (−D/2, −E/2): falta dividir por 2 e trocar o sinal."> (−4, 6)</label>
+                <label class="alternativa"><input type="radio" name="g3-b6" value="b"
+                  data-explicacao="Dividiu por 2, mas esqueceu de trocar o sinal: a = −D/2."> (−2, 3)</label>
+                <label class="alternativa"><input type="radio" name="g3-b6" value="c"
+                  data-explicacao="Com D = −4 e E = 6: a = −D/2 = 2 e b = −E/2 = −3. (Completando quadrados: (x − 2)² + (y + 3)² = 16.)"> (2, −3)</label>
+                <label class="alternativa"><input type="radio" name="g3-b6" value="d"
+                  data-explicacao="Trocou o sinal, mas faltou dividir por 2."> (4, −6)</label>
+              </div>
+            </li>
+
+            <!-- ===== INTERMEDIÁRIO ===== -->
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Completando quadrados em <strong>x² + y² + 2x − 8y + 8 = 0</strong>, quais são o centro e o raio?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g3-i1" value="a"
+                  data-explicacao="Os sinais do centro estão trocados: x² + 2x vem de (x + 1)², que indica x = −1."> C(1, −4) e r = 3</label>
+                <label class="alternativa"><input type="radio" name="g3-i1" value="b"
+                  data-explicacao="Usou r² = F = 8. O raio sai de r² = a² + b² − F, depois de completar os quadrados."> C(−1, 4) e r = √8</label>
+                <label class="alternativa"><input type="radio" name="g3-i1" value="c"
+                  data-explicacao="Esse número é r². Falta tirar a raiz."> C(−1, 4) e r = 9</label>
+                <label class="alternativa"><input type="radio" name="g3-i1" value="d"
+                  data-explicacao="x² + 2x = (x + 1)² − 1 e y² − 8y = (y − 4)² − 16. Então (x + 1)² + (y − 4)² = 1 + 16 − 8 = 9, com centro (−1, 4) e raio 3."> C(−1, 4) e r = 3</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é a circunferência que tem como <strong>diâmetro</strong> o segmento de <strong>A(−1, 2)</strong> a <strong>B(5, 10)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g3-i2" value="a"
+                  data-explicacao="O centro está certo, mas usou o diâmetro AB = 10 como se fosse o raio."> (x − 2)² + (y − 6)² = 100</label>
+                <label class="alternativa"><input type="radio" name="g3-i2" value="b"
+                  data-explicacao="Centro = ponto médio de AB = (2, 6). AB = √(36 + 64) = 10, então r = 5 e r² = 25."> (x − 2)² + (y − 6)² = 25</label>
+                <label class="alternativa"><input type="radio" name="g3-i2" value="c"
+                  data-explicacao="Os sinais estão trocados: centro (2, 6) dá parênteses (x − 2) e (y − 6)."> (x + 2)² + (y + 6)² = 25</label>
+                <label class="alternativa"><input type="radio" name="g3-i2" value="d"
+                  data-explicacao="Do lado direito vai r², não r."> (x − 2)² + (y − 6)² = 5</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é a circunferência de centro <strong>(2, −1)</strong> que passa pelo ponto <strong>(5, 3)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g3-i3" value="a"
+                  data-explicacao="5 é o raio. Do lado direito vai r²."> (x − 2)² + (y + 1)² = 5</label>
+                <label class="alternativa"><input type="radio" name="g3-i3" value="b"
+                  data-explicacao="Os sinais do centro estão trocados."> (x + 2)² + (y − 1)² = 25</label>
+                <label class="alternativa"><input type="radio" name="g3-i3" value="c"
+                  data-explicacao="O raio é a distância do centro ao ponto: √((5 − 2)² + (3 + 1)²) = √(9 + 16) = 5. Logo r² = 25."> (x − 2)² + (y + 1)² = 25</label>
+                <label class="alternativa"><input type="radio" name="g3-i3" value="d"
+                  data-explicacao="Usou o ponto (5, 3) como centro. O centro é (2, −1); (5, 3) é só um ponto da curva."> (x − 5)² + (y − 3)² = 25</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Para qual valor de k a equação <strong>x² + y² − 4x + 2y + k = 0</strong> é uma circunferência de raio 3?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g3-i4" value="a"
+                  data-explicacao="Centro (2, −1) e r² = a² + b² − F = 4 + 1 − k. Para r = 3: 5 − k = 9 ⇒ k = −4."> k = −4</label>
+                <label class="alternativa"><input type="radio" name="g3-i4" value="b"
+                  data-explicacao="Errou o sinal ao isolar k. Com k = 4, r² = 5 − 4 = 1."> k = 4</label>
+                <label class="alternativa"><input type="radio" name="g3-i4" value="c"
+                  data-explicacao="Somou em vez de subtrair. A fórmula é r² = a² + b² − F."> k = 14</label>
+                <label class="alternativa"><input type="radio" name="g3-i4" value="d"
+                  data-explicacao="Igualou k a −r², esquecendo do a² + b² = 5 que vem do centro."> k = −9</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>O que representa a equação <strong>x² + y² − 2x + 4y + 10 = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g3-i5" value="a"
+                  data-explicacao="Completando quadrados, o lado direito fica negativo, e um raio ao quadrado não pode ser negativo."> Uma circunferência de raio √5</label>
+                <label class="alternativa"><input type="radio" name="g3-i5" value="b"
+                  data-explicacao="(x − 1)² + (y + 2)² = 1 + 4 − 10 = −5. Uma soma de quadrados nunca dá negativo: nenhum ponto satisfaz a equação."> Nenhum ponto (conjunto vazio)</label>
+                <label class="alternativa"><input type="radio" name="g3-i5" value="c"
+                  data-explicacao="Um único ponto apareceria se o lado direito desse exatamente 0."> Um único ponto</label>
+                <label class="alternativa"><input type="radio" name="g3-i5" value="d"
+                  data-explicacao="O 10 é o termo F, não o raio. Complete os quadrados para descobrir r²."> Uma circunferência de raio 10</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é a equação <strong>geral</strong> da circunferência de centro <strong>(−3, 1)</strong> e raio <strong>2</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g3-i6" value="a"
+                  data-explicacao="Os sinais de D e E estão trocados: D = −2a e, com a = −3, D = +6."> x² + y² − 6x + 2y + 6 = 0</label>
+                <label class="alternativa"><input type="radio" name="g3-i6" value="b"
+                  data-explicacao="Esqueceu de subtrair r² = 4 no termo independente: F = a² + b² − r²."> x² + y² + 6x − 2y + 10 = 0</label>
+                <label class="alternativa"><input type="radio" name="g3-i6" value="c"
+                  data-explicacao="Esqueceu os quadrados a² = 9 e b² = 1 no termo independente."> x² + y² + 6x − 2y − 4 = 0</label>
+                <label class="alternativa"><input type="radio" name="g3-i6" value="d"
+                  data-explicacao="(x + 3)² + (y − 1)² = 4 ⇒ x² + 6x + 9 + y² − 2y + 1 − 4 = 0 ⇒ x² + y² + 6x − 2y + 6 = 0."> x² + y² + 6x − 2y + 6 = 0</label>
+              </div>
+            </li>
+
+            <!-- ===== AVANÇADO ===== -->
+            <li class="exercicio" data-nivel="avancado">
+              <p>Para quais valores de k a equação <strong>x² + y² + 4x − 6y + k = 0</strong> representa uma circunferência?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g3-a1" value="a"
+                  data-explicacao="Para esses valores r² = 13 − k fica negativo: nenhum ponto."> k &gt; 13</label>
+                <label class="alternativa"><input type="radio" name="g3-a1" value="b"
+                  data-explicacao="Com k = 13, r² = 0: a equação representa um único ponto, o centro."> k = 13</label>
+                <label class="alternativa"><input type="radio" name="g3-a1" value="c"
+                  data-explicacao="Centro (−2, 3) e r² = 4 + 9 − k = 13 − k. É circunferência quando r² &gt; 0, ou seja, k &lt; 13."> k &lt; 13</label>
+                <label class="alternativa"><input type="radio" name="g3-a1" value="d"
+                  data-explicacao="Nem todo k serve: se r² = 13 − k não for positivo, não há circunferência."> Qualquer k</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Qual é a circunferência que passa por <strong>(0, 0)</strong>, <strong>(6, 0)</strong> e <strong>(0, 8)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g3-a2" value="a"
+                  data-explicacao="O centro é equidistante dos três: equidistante de (0, 0) e (6, 0) ⇒ x = 3; de (0, 0) e (0, 8) ⇒ y = 4. O raio é a distância de (3, 4) à origem, 5."> (x − 3)² + (y − 4)² = 25</label>
+                <label class="alternativa"><input type="radio" name="g3-a2" value="b"
+                  data-explicacao="O centro está certo, mas do lado direito vai r²."> (x − 3)² + (y − 4)² = 5</label>
+                <label class="alternativa"><input type="radio" name="g3-a2" value="c"
+                  data-explicacao="(2, 8/3) é o baricentro (média dos vértices), que não fica à mesma distância dos três pontos."> (x − 2)² + (y − 8/3)² = 16</label>
+                <label class="alternativa"><input type="radio" name="g3-a2" value="d"
+                  data-explicacao="Com centro (6, 8), o ponto (6, 0) fica a distância 8, e não 10: não passa pelos três pontos."> (x − 6)² + (y − 8)² = 100</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Qual é a circunferência de centro <strong>(2, 3)</strong> que <strong>tangencia o eixo x</strong> (encosta nele em um só ponto)?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g3-a3" value="a"
+                  data-explicacao="Raio 2 é a distância do centro ao eixo y. A tangência pedida é com o eixo x."> (x − 2)² + (y − 3)² = 4</label>
+                <label class="alternativa"><input type="radio" name="g3-a3" value="b"
+                  data-explicacao="Tangente ao eixo x: o raio é a distância do centro até ele, que é |y do centro| = 3. Então r² = 9 e o ponto de contato é (2, 0)."> (x − 2)² + (y − 3)² = 9</label>
+                <label class="alternativa"><input type="radio" name="g3-a3" value="c"
+                  data-explicacao="r² = 13 faz a circunferência passar pela origem, cortando o eixo x em dois pontos."> (x − 2)² + (y − 3)² = 13</label>
+                <label class="alternativa"><input type="radio" name="g3-a3" value="d"
+                  data-explicacao="Usou 3 como r², mas 3 é o raio."> (x − 2)² + (y − 3)² = 3</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Qual é a <strong>maior</strong> distância entre a origem e um ponto da circunferência <strong>(x − 1)² + (y + 2)² = 25</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g3-a4" value="a"
+                  data-explicacao="5 é o raio, a distância do centro aos pontos. A pergunta é a distância à origem."> 5</label>
+                <label class="alternativa"><input type="radio" name="g3-a4" value="b"
+                  data-explicacao="Essa é a MENOR distância: o ponto do lado da circunferência mais perto da origem."> 5 − √5 ≈ 2,76</label>
+                <label class="alternativa"><input type="radio" name="g3-a4" value="c"
+                  data-explicacao="√5 é a distância da origem ao centro, não a um ponto da circunferência."> √5 ≈ 2,24</label>
+                <label class="alternativa"><input type="radio" name="g3-a4" value="d"
+                  data-explicacao="A origem está dentro (distância √5 do centro, menor que 5). O ponto mais distante fica do lado oposto, na reta que passa pela origem e pelo centro: √5 + 5."> 5 + √5 ≈ 7,24</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Qual circunferência tem o centro sobre a reta <strong>y = x</strong> e passa por <strong>(0, 2)</strong> e <strong>(4, 2)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g3-a5" value="a"
+                  data-explicacao="O centro está certo, mas o lado direito deve ser r², o quadrado da distância do centro a (0, 2)."> (x − 2)² + (y − 2)² = 2</label>
+                <label class="alternativa"><input type="radio" name="g3-a5" value="b"
+                  data-explicacao="Equidistante de (0, 2) e (4, 2) ⇒ x = 2. Sobre y = x ⇒ centro (2, 2). Raio = distância até (0, 2) = 2, então r² = 4."> (x − 2)² + (y − 2)² = 4</label>
+                <label class="alternativa"><input type="radio" name="g3-a5" value="c"
+                  data-explicacao="O centro (1, 1) está na reta y = x e a curva passa por (0, 2), mas não por (4, 2): 9 + 1 ≠ 2."> (x − 1)² + (y − 1)² = 2</label>
+                <label class="alternativa"><input type="radio" name="g3-a5" value="d"
+                  data-explicacao="O centro (2, 0) não está na reta y = x."> (x − 2)² + y² = 8</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Qual é a circunferência de mesmo centro que <strong>x² + y² − 4x + 2y − 4 = 0</strong> e o <strong>dobro do raio</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g3-a6" value="a"
+                  data-explicacao="Completando: (x − 2)² + (y + 1)² = 4 + 1 + 4 = 9, então r = 3. O dobro é 6, e 6² = 36."> (x − 2)² + (y + 1)² = 36</label>
+                <label class="alternativa"><input type="radio" name="g3-a6" value="b"
+                  data-explicacao="Dobrou r² em vez de r. Dobrar o raio multiplica r² por 4."> (x − 2)² + (y + 1)² = 18</label>
+                <label class="alternativa"><input type="radio" name="g3-a6" value="c"
+                  data-explicacao="Os sinais do centro estão trocados: x² − 4x vem de (x − 2)²."> (x + 2)² + (y − 1)² = 36</label>
+                <label class="alternativa"><input type="radio" name="g3-a6" value="d"
+                  data-explicacao="Do lado direito vai o raio ao quadrado."> (x − 2)² + (y + 1)² = 6</label>
+              </div>
+            </li>
+
+          </ol>
         </div>
       </section>
       <section id="ga-4" class="licao" data-trilha="ga" data-licao="4">
@@ -5403,5 +5788,6 @@
   <script src="js/licoes/licao-12.js"></script>
   <!-- Trilha de Geometria Analítica -->
   <script src="js/licoes/ga-01.js"></script>
+  <script src="js/licoes/ga-03.js"></script>
 </body>
 </html>

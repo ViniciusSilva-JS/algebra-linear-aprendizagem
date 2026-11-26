@@ -42,6 +42,7 @@ codigo/                       Código do site
       licao-11.js             Laboratório da Lição 11
       licao-12.js             Laboratório da Lição 12 (dados reais dos censos do IBGE)
       ga-01.js                Geometria Analítica, Lição 1 (ângulo e distância entre retas)
+      ga-03.js                Geometria Analítica, Lição 3 (circunferência)
 README.md
 ```
 

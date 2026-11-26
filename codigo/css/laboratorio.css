@@ -768,6 +768,28 @@
 
 
 /* =========================================================================
+   GEOMETRIA ANALÍTICA — LIÇÃO 3: CIRCUNFERÊNCIA
+   ========================================================================= */
+/* Três campos (a, b, r) no mesmo grupo: mais estreitos e podendo quebrar a linha */
+#g3-campo-centro {
+  flex-wrap: wrap;
+  gap: var(--esp-2);
+}
+
+#g3-campo-centro input[type="number"] {
+  width: 3.6rem;
+}
+
+.circunferencia {
+  fill: transparent;   /* navegadores sem color-mix ficam só com o contorno */
+  fill: color-mix(in srgb, var(--cor-laboratorio) 10%, transparent);
+  stroke: var(--cor-laboratorio);
+  stroke-width: calc(0.1 * var(--escala-plano, 1));
+  stroke-linejoin: round;
+}
+
+
+/* =========================================================================
    RESPONSIVO
    ========================================================================= */
 @media (max-width: 900px) {
