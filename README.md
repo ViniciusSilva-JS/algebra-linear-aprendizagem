@@ -151,7 +151,9 @@ celular no bloco **RESPONSIVO** do fim do mesmo arquivo.
 - **Funções de matemática** reaproveitáveis vão em `codigo/js/utils/matematica.js`; o que
   só uma lição usa fica no arquivo da lição.
 - **Exercícios** de múltipla escolha com 4 alternativas, e **toda alternativa** com
-  `data-explicacao`. As erradas mostram o erro comum que leva a elas.
+  `data-explicacao`. As erradas mostram o erro comum que leva a elas, **sem revelar a
+  resposta certa** (essa explicação aparece quando o aluno erra). A conta completa fica
+  na explicação da alternativa correta.
 - **Números no padrão brasileiro**: vírgula decimal e `;` separando coordenadas
   decimais, como em `(2,5; 4)`. Use `formatarNumero` e `formatarPonto`.
 - **Cores** sempre por variável (`var(--cor-…)`), para funcionar nos temas claro e escuro.
