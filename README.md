@@ -189,12 +189,15 @@ Também foram feitos **testes automáticos com mais de 10 000 casos**:
 O projeto usou o **Claude Code (Claude Opus 5.5)** no VS Code. Todo código gerado foi revisado e testado
 antes de ser usado.
 
-O Claude também foi utilizado para **tentar quebrar o código**: ele rodou testes automáticos no navegador
-com entradas inválidas, valores extremos, cliques fora de ordem e telas de celular, e os problemas
-encontrados foram corrigidos.
+> **Principais ajudas da IA**
+>
+> - **Testes:** o Claude me ajudou a testar o código com várias entradas diferentes e a tentar quebrá-lo,
+>   com testes automáticos no navegador usando entradas inválidas, valores extremos, cliques fora de ordem
+>   e telas de celular. Os problemas encontrados foram corrigidos.
+> - **Documentação:** o Claude ficou responsável por otimizar a documentação, melhorando e simplificando
+>   este README para que a professora entenda com facilidade o que o projeto faz e como ele foi pensado.
 
-Na **documentação**, o Claude ajudou a melhorar e simplificar este README, para que a professora entenda
-com facilidade o que o projeto faz e como ele foi pensado.
+A tabela abaixo registra cada pedido feito à IA ao longo do projeto.
 
 | # | Objetivo | Incitar | Resultado | Ajustes | Validação humana |
 |---|---|---|---|---|---|
