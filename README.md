@@ -189,20 +189,27 @@ Também foram feitos **testes automáticos com mais de 10 000 casos**:
 O projeto usou o **Claude Code (Claude Opus 5.5)** no VS Code. Todo código gerado foi revisado e testado
 antes de ser usado.
 
+O Claude também foi utilizado para **tentar quebrar o código**: ele rodou testes automáticos no navegador
+com entradas inválidas, valores extremos, cliques fora de ordem e telas de celular, e os problemas
+encontrados foram corrigidos.
+
+Na **documentação**, o Claude ajudou a melhorar e simplificar este README, para que a professora entenda
+com facilidade o que o projeto faz e como ele foi pensado.
+
 | # | Objetivo | Incitar | Resultado | Ajustes | Validação humana |
 |---|---|---|---|---|---|
-| 1 | Lição 8 de GA | "faça essa parte" (print da lição 8 bloqueada) | A lição já existia; ela só estava bloqueada porque a 7 não tinha sido concluída. README atualizado. | — | _(preencher)_ |
-| 2 | Lição 9 de GA | "faça esse agora" (print de *Vetores no espaço*) | Lição completa e componente 3D (`espaco.js`) que gira com o mouse | Exibição de raízes e decimais corrigida | _(preencher)_ |
-| 3 | Lição 10 de GA | "faça esse aqui" (print de *Produto vetorial e misto*) | Lição com produto vetorial, área e volume em 3D | Exemplo "coplanares" corrigido (passava do limite) | _(preencher)_ |
-| 4 | Lição 11 de GA | "crie esse" (print de *Retas e planos no espaço*) | Lição com reta, plano, interseção e distância | Formatação de frações e sinais nas contas | _(preencher)_ |
-| 5 | Lição 12 de GA | "faça a lição 12 agora" | Distância entre capitais com os dados do IBGE | Erro de latitude de Maceió na tabela oficial identificado e corrigido | _(preencher)_ |
-| 6 | Modos de estudo | "quero que você dê a opção do usuário escolher de seguir pela trilha ou escolher [...]" | Modos *Seguir a trilha* e *Escolher a lição* | Proteção contra link para lição bloqueada | _(preencher)_ |
-| 7 | Varredura de testes | "faça vários testes para ver se o sistema está funcionando perfeitamente, tente quebrar o código" | Mais de 10 000 testes automáticos no navegador | Lista de lições estreita, nomes de cidades sobrepostos e reta curta corrigidos | _(preencher)_ |
-| 8 | Documentação | "melhore essa documentação [...] para a professora entender facilmente o que eu quis fazer" | README reescrito | — | _(preencher)_ |
-| 9 | Documentação final | "eu quero esse padrão no readme.md" (prints do README de CDI) | Este README | — | _(preencher)_ |
+| 1 | Lição 8 de GA | "faça essa parte" (print da lição 8 bloqueada) | A lição já existia; ela só estava bloqueada porque a 7 não tinha sido concluída. README atualizado. | — | Conferi parte por parte no próprio sistema |
+| 2 | Lição 9 de GA | "faça esse agora" (print de *Vetores no espaço*) | Lição completa e componente 3D (`espaco.js`) que gira com o mouse | Exibição de raízes e decimais corrigida | Conferi parte por parte no próprio sistema |
+| 3 | Lição 10 de GA | "faça esse aqui" (print de *Produto vetorial e misto*) | Lição com produto vetorial, área e volume em 3D | Exemplo "coplanares" corrigido (passava do limite) | Conferi parte por parte no próprio sistema |
+| 4 | Lição 11 de GA | "crie esse" (print de *Retas e planos no espaço*) | Lição com reta, plano, interseção e distância | Formatação de frações e sinais nas contas | Conferi parte por parte no próprio sistema |
+| 5 | Lição 12 de GA | "faça a lição 12 agora" | Distância entre capitais com os dados do IBGE | Erro de latitude de Maceió na tabela oficial identificado e corrigido | Conferi parte por parte no próprio sistema |
+| 6 | Modos de estudo | "quero que você dê a opção do usuário escolher de seguir pela trilha ou escolher [...]" | Modos *Seguir a trilha* e *Escolher a lição* | Proteção contra link para lição bloqueada | Conferi parte por parte no próprio sistema |
+| 7 | Varredura de testes | "faça vários testes para ver se o sistema está funcionando perfeitamente, tente quebrar o código" | Mais de 10 000 testes automáticos no navegador | Lista de lições estreita, nomes de cidades sobrepostos e reta curta corrigidos | Conferi parte por parte no próprio sistema |
+| 8 | Documentação | "melhore essa documentação [...] para a professora entender facilmente o que eu quis fazer" | README reescrito | — | Conferi parte por parte no próprio sistema |
+| 9 | Documentação final | "eu quero esse padrão no readme.md" (prints do README de CDI) | Este README | — | Conferi parte por parte no próprio sistema |
 
-Na coluna **Validação humana**, escreva como você conferiu cada resultado (ex.: "refiz a conta à mão",
-"testei no navegador"). As lições anteriores (Álgebra Linear 1 a 12 e Geometria Analítica 1 a 7) foram
+Na coluna **Validação humana** está como cada resultado foi conferido: abri o próprio sistema e conferi
+parte por parte (teoria, laboratório e exercícios). As lições anteriores (Álgebra Linear 1 a 12 e Geometria Analítica 1 a 7) foram
 feitas em sessões anteriores e podem ser acrescentadas aqui da mesma forma.
 
 ## 9. Integrantes
