@@ -6874,8 +6874,392 @@
       </section>
       <section id="ga-6" class="licao" data-trilha="ga" data-licao="6">
         <h2 class="licao-titulo">6. Elipse</h2>
+
+        <!-- ---------- TEORIA ---------- -->
         <div class="teoria">
-          <p class="em-construcao">🚧 Lição em construção. Vai tratar de: focos, eixos maior e menor, excentricidade e equação reduzida.</p>
+          <h3>O que é uma elipse</h3>
+          <p>
+            Fixe dois pontos <strong>F₁</strong> e <strong>F₂</strong> (os <strong>focos</strong>). A elipse é o conjunto dos
+            pontos P cuja <strong>soma das distâncias</strong> aos dois focos é sempre a mesma:
+          </p>
+          <div class="formula">d(P, F₁) + d(P, F₂) = 2a</div>
+          <p>
+            É o "método do jardineiro": crave duas estacas, amarre nelas as pontas de um fio mais comprido que a distância
+            entre elas e gire um lápis mantendo o fio esticado. O fio tem comprimento 2a, e o lápis desenha a elipse.
+          </p>
+
+          <h3>Elementos</h3>
+          <ul>
+            <li><strong>Centro O:</strong> o ponto médio entre os focos.</li>
+            <li><strong>Eixo maior:</strong> passa pelos focos e mede <strong>2a</strong>. Suas pontas são os vértices A₁ e A₂.</li>
+            <li><strong>Eixo menor:</strong> perpendicular ao maior, pelo centro, mede <strong>2b</strong>. Pontas B₁ e B₂.</li>
+            <li><strong>Distância focal:</strong> 2c, a distância entre os focos (cada foco fica a c do centro).</li>
+          </ul>
+          <p>
+            O ponto B₁ está à mesma distância dos dois focos, e essas distâncias somam 2a: cada uma vale a. Isso forma um
+            triângulo retângulo com catetos b e c e hipotenusa a:
+          </p>
+          <div class="formula">a² = b² + c² &nbsp;&nbsp;(a é o maior dos três)</div>
+
+          <h3>Equação reduzida</h3>
+          <p>Com centro O(h, k):</p>
+          <div class="tabela-rolagem">
+            <table class="tabela">
+              <thead>
+                <tr><th>Eixo maior</th><th>Equação</th><th>Focos</th><th>Vértices do eixo maior</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>horizontal</td><td>(x − h)²/a² + (y − k)²/b² = 1</td><td>(h ± c, k)</td><td>(h ± a, k)</td></tr>
+                <tr><td>vertical</td><td>(x − h)²/b² + (y − k)²/a² = 1</td><td>(h, k ± c)</td><td>(h, k ± a)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            <strong>Para não confundir:</strong> a² é sempre o <strong>maior denominador</strong>. O eixo maior fica na
+            direção da variável que está sobre ele.
+          </p>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              x²/25 + y²/9 = 1: o maior denominador (25) está sob o x, então o eixo maior é horizontal, com a = 5 e b = 3.
+              c² = 25 − 9 = 16, c = 4. <strong>Focos (±4, 0)</strong>, vértices (±5, 0) e (0, ±3).
+            </p>
+            <p>
+              Conferindo a definição com B(0, 3): d(B, F₁) = √(16 + 9) = 5 e d(B, F₂) = 5. Soma 10 = 2a ✓.
+            </p>
+          </div>
+
+          <h3>Excentricidade</h3>
+          <p>Mede o quanto a elipse é achatada:</p>
+          <div class="formula">e = c / a, &nbsp;&nbsp;com 0 ≤ e &lt; 1</div>
+          <ul>
+            <li>e perto de 0: os focos quase se juntam no centro e a elipse parece uma circunferência (e = 0 é a própria circunferência, com a = b).</li>
+            <li>e perto de 1: os focos se afastam para as pontas e a elipse fica bem achatada.</li>
+          </ul>
+          <p>
+            A órbita da Terra em torno do Sol, que fica num dos focos, tem e ≈ 0,017 (quase um círculo). A do cometa Halley
+            tem e ≈ 0,967 (muito alongada).
+          </p>
+
+          <h3>Da equação geral para a reduzida</h3>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              9x² + 4y² − 36x + 8y + 4 = 0 &nbsp;⇒&nbsp; 9(x² − 4x) + 4(y² + 2y) = −4 &nbsp;⇒&nbsp;
+              9(x − 2)² − 36 + 4(y + 1)² − 4 = −4 &nbsp;⇒&nbsp; 9(x − 2)² + 4(y + 1)² = 36.
+            </p>
+            <p>
+              Dividindo por 36: <strong>(x − 2)²/4 + (y + 1)²/9 = 1</strong>. Centro (2, −1), eixo maior vertical,
+              a = 3, b = 2 e c = √5. Focos (2, −1 ± √5).
+            </p>
+          </div>
+
+          <h3>A propriedade refletora</h3>
+          <p>
+            Um raio que sai de um foco e bate na elipse é refletido <strong>para o outro foco</strong>. É assim que funcionam as
+            "salas dos sussurros", em que alguém num foco ouve um sussurro dado no outro, e a litotripsia, que concentra ondas
+            de choque num cálculo renal colocado no foco.
+          </p>
+        </div>
+
+        <!-- ---------- LABORATÓRIO ---------- -->
+        <div class="laboratorio">
+          <h3>O fio e os dois focos</h3>
+          <p>
+            Escolha o centro e os dois semieixos. Mova o ponto P pela elipse (pelo controle ou
+            <strong>clicando no plano</strong>) e confira que a soma das distâncias até os focos não muda.
+          </p>
+
+          <div class="lab-area controles-largos">
+            <svg id="g6-plano" class="plano-cartesiano" viewBox="-10 -10 20 20"
+                 role="img" aria-label="Plano com a elipse, os dois focos e um ponto P ligado a cada foco"></svg>
+
+            <div class="lab-controles">
+              <fieldset class="lab-ponto lab-ponto-m">
+                <legend>Centro</legend>
+                <label>h <input type="number" id="g6-h" value="0" min="-5" max="5" step="1" aria-label="x do centro"></label>
+                <label>k <input type="number" id="g6-k" value="0" min="-5" max="5" step="1" aria-label="y do centro"></label>
+              </fieldset>
+              <fieldset class="lab-ponto lab-ponto-a">
+                <legend>Semieixos</legend>
+                <label>em x <input type="number" id="g6-sx" value="5" min="1" max="8" step="1" aria-label="semieixo na direção x"></label>
+                <label>em y <input type="number" id="g6-sy" value="3" min="1" max="8" step="1" aria-label="semieixo na direção y"></label>
+              </fieldset>
+              <div class="lab-campo">
+                <label for="g6-t">Posição de P na elipse: <output id="g6-t-valor">60°</output></label>
+                <input type="range" id="g6-t" min="0" max="360" step="5" value="60">
+              </div>
+              <label class="lab-check"><input type="checkbox" id="g6-triangulo"> Mostrar o triângulo de lados a, b e c</label>
+              <p class="lab-dica">h e k de −5 a 5; semieixos de 1 a 8. O maior semieixo é o a; o menor é o b.</p>
+              <button type="button" id="g6-sortear" class="btn-secundario">🎲 Sortear</button>
+            </div>
+          </div>
+
+          <div id="g6-resultados" class="lab-resultados" aria-live="polite"></div>
+        </div>
+
+        <!-- ---------- EXERCÍCIOS ---------- -->
+        <div class="exercicios" data-licao="6">
+          <h3>Pratique</h3>
+          <p>Escolha uma alternativa em cada exercício. Acerte todos para liberar a lição 7.</p>
+
+          <ol class="lista-exercicios">
+            <!-- ===== BÁSICO ===== -->
+            <li class="exercicio" data-nivel="basico">
+              <p>Quais são os focos da elipse <strong>x²/25 + y²/9 = 1</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g6-b1" value="a"
+                  data-explicacao="Esses são os vértices do eixo maior. Os focos ficam mais perto do centro, a uma distância c com c² = a² − b²."> (±5, 0)</label>
+                <label class="alternativa"><input type="radio" name="g6-b1" value="b"
+                  data-explicacao="O maior denominador (25) está sob o x, então o eixo maior é horizontal e os focos ficam sobre o eixo x."> (0, ±4)</label>
+                <label class="alternativa"><input type="radio" name="g6-b1" value="c"
+                  data-explicacao="a² = 25 e b² = 9, então c² = 25 − 9 = 16 e c = 4. O eixo maior é horizontal: focos (±4, 0)."> (±4, 0)</label>
+                <label class="alternativa"><input type="radio" name="g6-b1" value="d"
+                  data-explicacao="3 é o b, o semieixo menor. A distância do centro ao foco sai de c² = a² − b²."> (±3, 0)</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Quanto mede o eixo maior da elipse <strong>x²/16 + y²/49 = 1</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g6-b2" value="a"
+                  data-explicacao="7 é o semieixo, a metade. O eixo vai de um vértice até o outro."> 7</label>
+                <label class="alternativa"><input type="radio" name="g6-b2" value="b"
+                  data-explicacao="O maior denominador é 49 = a², então a = 7. O eixo maior mede 2a = 14 (vertical, pois o 49 está sob o y)."> 14</label>
+                <label class="alternativa"><input type="radio" name="g6-b2" value="c"
+                  data-explicacao="8 = 2·4 é o eixo menor. O eixo maior acompanha o maior denominador."> 8</label>
+                <label class="alternativa"><input type="radio" name="g6-b2" value="d"
+                  data-explicacao="49 é o a². É preciso tirar a raiz e depois dobrar."> 49</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Qual é a definição de elipse?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g6-b3" value="a"
+                  data-explicacao="d(P, F₁) + d(P, F₂) = 2a para todo ponto P da elipse."> Pontos cuja soma das distâncias a dois focos é constante</label>
+                <label class="alternativa"><input type="radio" name="g6-b3" value="b"
+                  data-explicacao="Essa é a definição da parábola."> Pontos à mesma distância de um ponto e de uma reta</label>
+                <label class="alternativa"><input type="radio" name="g6-b3" value="c"
+                  data-explicacao="Com a diferença no lugar da soma, a curva é a hipérbole (próxima lição)."> Pontos cuja diferença das distâncias a dois focos é constante</label>
+                <label class="alternativa"><input type="radio" name="g6-b3" value="d"
+                  data-explicacao="Essa é a circunferência."> Pontos a uma distância fixa de um ponto</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Qual é o centro da elipse <strong>(x − 3)²/4 + (y + 2)²/9 = 1</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g6-b4" value="a"
+                  data-explicacao="Os dois sinais estão trocados: (x − 3) indica h = 3."> (−3, 2)</label>
+                <label class="alternativa"><input type="radio" name="g6-b4" value="b"
+                  data-explicacao="O sinal de k está trocado: (y + 2) = (y − (−2))."> (3, 2)</label>
+                <label class="alternativa"><input type="radio" name="g6-b4" value="c"
+                  data-explicacao="2 e 3 são as raízes dos denominadores (os semieixos), não as coordenadas do centro."> (2, 3)</label>
+                <label class="alternativa"><input type="radio" name="g6-b4" value="d"
+                  data-explicacao="Na forma (x − h)²/… + (y − k)²/… = 1 o centro é (h, k). Como y + 2 = y − (−2), k = −2."> (3, −2)</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Qual é a excentricidade da elipse <strong>x²/25 + y²/16 = 1</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g6-b5" value="a"
+                  data-explicacao="4 é o b. A excentricidade usa c, a distância do centro ao foco."> 4/5</label>
+                <label class="alternativa"><input type="radio" name="g6-b5" value="b"
+                  data-explicacao="Está invertida: na elipse e = c/a é sempre menor que 1."> 5/3</label>
+                <label class="alternativa"><input type="radio" name="g6-b5" value="c"
+                  data-explicacao="a = 5, b = 4, c² = 25 − 16 = 9, c = 3. e = c/a = 3/5 = 0,6."> 3/5</label>
+                <label class="alternativa"><input type="radio" name="g6-b5" value="d"
+                  data-explicacao="Dividiu c por b. O divisor é o semieixo maior."> 3/4</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Em qual direção fica o eixo maior da elipse <strong>x²/4 + y²/9 = 1</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g6-b6" value="a"
+                  data-explicacao="O maior denominador, 9, está sob o y, não sob o x."> Na direção do eixo x</label>
+                <label class="alternativa"><input type="radio" name="g6-b6" value="b"
+                  data-explicacao="a² é o maior denominador, 9, e ele está sob o y: o eixo maior é vertical, de (0, −3) a (0, 3)."> Na direção do eixo y</label>
+                <label class="alternativa"><input type="radio" name="g6-b6" value="c"
+                  data-explicacao="Seria uma circunferência se os dois denominadores fossem iguais."> Não tem eixo maior: é uma circunferência</label>
+                <label class="alternativa"><input type="radio" name="g6-b6" value="d"
+                  data-explicacao="Sem termo xy na equação, os eixos da elipse são paralelos aos eixos coordenados."> Na reta y = x</label>
+              </div>
+            </li>
+
+            <!-- ===== INTERMEDIÁRIO ===== -->
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é a elipse de focos <strong>(±3, 0)</strong> e eixo maior medindo <strong>10</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g6-i1" value="a"
+                  data-explicacao="2a = 10 ⇒ a = 5; c = 3; b² = a² − c² = 25 − 9 = 16. Focos no eixo x: o 25 vai sob o x."> x²/25 + y²/16 = 1</label>
+                <label class="alternativa"><input type="radio" name="g6-i1" value="b"
+                  data-explicacao="Usou c² = 9 no lugar de b². O b² sai de a² − c²."> x²/25 + y²/9 = 1</label>
+                <label class="alternativa"><input type="radio" name="g6-i1" value="c"
+                  data-explicacao="Usou o eixo inteiro (10) como a. O a é a metade do eixo maior."> x²/100 + y²/64 = 1</label>
+                <label class="alternativa"><input type="radio" name="g6-i1" value="d"
+                  data-explicacao="Os focos estão no eixo x, então o maior denominador deve ficar sob o x."> x²/16 + y²/25 = 1</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é a forma reduzida de <strong>4x² + 9y² = 36</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g6-i2" value="a"
+                  data-explicacao="Trocou os denominadores: 4x²/36 simplifica para x²/9, não x²/4."> x²/4 + y²/9 = 1</label>
+                <label class="alternativa"><input type="radio" name="g6-i2" value="b"
+                  data-explicacao="3 e 2 são os semieixos. Na equação reduzida aparecem os seus quadrados."> x²/3 + y²/2 = 1</label>
+                <label class="alternativa"><input type="radio" name="g6-i2" value="c"
+                  data-explicacao="Dividindo tudo por 36: 4x²/36 = x²/9 e 9y²/36 = y²/4. Eixo maior horizontal, a = 3 e b = 2."> x²/9 + y²/4 = 1</label>
+                <label class="alternativa"><input type="radio" name="g6-i2" value="d"
+                  data-explicacao="Dividiu só o lado esquerdo. O lado direito também precisa ser dividido por 36."> x²/9 + y²/4 = 36</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Um ponto P da elipse <strong>x²/25 + y²/9 = 1</strong> está a 2 de distância do foco F₁. A que distância ele está de F₂?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g6-i3" value="a"
+                  data-explicacao="3 é o b, o semieixo menor. Use a definição: a soma das distâncias aos focos é fixa."> 3</label>
+                <label class="alternativa"><input type="radio" name="g6-i3" value="b"
+                  data-explicacao="10 é a soma das duas distâncias, não a distância até F₂."> 10</label>
+                <label class="alternativa"><input type="radio" name="g6-i3" value="c"
+                  data-explicacao="Usou a distância entre os focos (2c = 8) como se fosse a soma. A soma é o eixo maior."> 6</label>
+                <label class="alternativa"><input type="radio" name="g6-i3" value="d"
+                  data-explicacao="Pela definição, d(P, F₁) + d(P, F₂) = 2a = 10. Então d(P, F₂) = 10 − 2 = 8."> 8</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é o centro da elipse <strong>x² + 4y² − 6x + 16y + 9 = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g6-i4" value="a"
+                  data-explicacao="Os sinais estão trocados. Ao completar o quadrado, x² − 6x vira (x − 3)² − 9."> (−3, 2)</label>
+                <label class="alternativa"><input type="radio" name="g6-i4" value="b"
+                  data-explicacao="x² − 6x = (x − 3)² − 9 e 4(y² + 4y) = 4(y + 2)² − 16. Fica (x − 3)² + 4(y + 2)² = 16, ou seja, (x − 3)²/16 + (y + 2)²/4 = 1."> (3, −2)</label>
+                <label class="alternativa"><input type="radio" name="g6-i4" value="c"
+                  data-explicacao="y² + 4y = (y + 2)² − 4: o número dentro do parêntese é a metade do coeficiente de y."> (3, −4)</label>
+                <label class="alternativa"><input type="radio" name="g6-i4" value="d"
+                  data-explicacao="−6 e 16 são coeficientes da equação geral. O centro sai completando os quadrados."> (6, −16)</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é a excentricidade da elipse de vértices <strong>(±10, 0)</strong> e focos <strong>(±6, 0)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g6-i5" value="a"
+                  data-explicacao="0,8 = 8/10, mas 8 é o b. A excentricidade usa a distância do centro ao foco."> 0,8</label>
+                <label class="alternativa"><input type="radio" name="g6-i5" value="b"
+                  data-explicacao="Está invertida (a/c). Na elipse a excentricidade é sempre menor que 1."> 1,67</label>
+                <label class="alternativa"><input type="radio" name="g6-i5" value="c"
+                  data-explicacao="a = 10 (centro ao vértice) e c = 6 (centro ao foco). e = c/a = 6/10 = 0,6."> 0,6</label>
+                <label class="alternativa"><input type="radio" name="g6-i5" value="d"
+                  data-explicacao="Dividiu c pelo eixo maior inteiro (20). A excentricidade usa o semieixo."> 0,3</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é a elipse de centro <strong>(1, 2)</strong>, eixo maior <strong>vertical</strong>, a = 5 e b = 3?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g6-i6" value="a"
+                  data-explicacao="Assim o maior denominador fica sob o x, e o eixo maior seria horizontal."> (x − 1)²/25 + (y − 2)²/9 = 1</label>
+                <label class="alternativa"><input type="radio" name="g6-i6" value="b"
+                  data-explicacao="Os sinais do centro estão trocados."> (x + 1)²/9 + (y + 2)²/25 = 1</label>
+                <label class="alternativa"><input type="radio" name="g6-i6" value="c"
+                  data-explicacao="Os denominadores são os quadrados dos semieixos."> (x − 1)²/3 + (y − 2)²/5 = 1</label>
+                <label class="alternativa"><input type="radio" name="g6-i6" value="d"
+                  data-explicacao="Eixo maior vertical: a² = 25 vai sob o (y − k)² e b² = 9 sob o (x − h)². Centro (1, 2)."> (x − 1)²/9 + (y − 2)²/25 = 1</label>
+              </div>
+            </li>
+
+            <!-- ===== AVANÇADO ===== -->
+            <li class="exercicio" data-nivel="avancado">
+              <p>Qual é a elipse de focos <strong>(2, 1)</strong> e <strong>(8, 1)</strong> com eixo maior medindo <strong>10</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g6-a1" value="a"
+                  data-explicacao="Os denominadores estão certos, mas o centro não é a origem: ele fica no meio dos focos."> x²/25 + y²/16 = 1</label>
+                <label class="alternativa"><input type="radio" name="g6-a1" value="b"
+                  data-explicacao="Usou c² no lugar de b²."> (x − 5)²/25 + (y − 1)²/9 = 1</label>
+                <label class="alternativa"><input type="radio" name="g6-a1" value="c"
+                  data-explicacao="Centro no meio dos focos: (5, 1). c = 3, a = 5, b² = 25 − 9 = 16. Os focos estão na horizontal, então o 25 vai sob o x."> (x − 5)²/25 + (y − 1)²/16 = 1</label>
+                <label class="alternativa"><input type="radio" name="g6-a1" value="d"
+                  data-explicacao="Os focos estão na mesma horizontal (y = 1), então o eixo maior é horizontal e o maior denominador fica sob o x."> (x − 5)²/16 + (y − 1)²/25 = 1</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>A órbita de um planeta é uma elipse com o Sol num dos focos, com a = 5 e c = 3 (em unidades astronômicas). Quais são a menor e a maior distância do planeta ao Sol?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g6-a2" value="a"
+                  data-explicacao="O ponto mais perto é o vértice do lado do Sol: a − c = 2. O mais longe é o vértice oposto: a + c = 8."> 2 e 8</label>
+                <label class="alternativa"><input type="radio" name="g6-a2" value="b"
+                  data-explicacao="c e a são distâncias medidas a partir do centro. O Sol está no foco, não no centro."> 3 e 5</label>
+                <label class="alternativa"><input type="radio" name="g6-a2" value="c"
+                  data-explicacao="4 é o b e 5 é o a, ambos medidos a partir do centro. As distâncias pedidas são medidas a partir do foco."> 4 e 5</label>
+                <label class="alternativa"><input type="radio" name="g6-a2" value="d"
+                  data-explicacao="10 é o eixo maior inteiro, de vértice a vértice. A maior distância vai do foco até o vértice mais longe."> 2 e 10</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Qual destas elipses é a <strong>mais achatada</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g6-a3" value="a"
+                  data-explicacao="c² = 1, então e = 1/5: esta é quase uma circunferência."> x²/25 + y²/24 = 1</label>
+                <label class="alternativa"><input type="radio" name="g6-a3" value="b"
+                  data-explicacao="c = 3 e e = 3/5. Há outra com excentricidade maior."> x²/25 + y²/16 = 1</label>
+                <label class="alternativa"><input type="radio" name="g6-a3" value="c"
+                  data-explicacao="c² = 25 − 9 = 16, c = 4, e = 4/5 = 0,8: a maior excentricidade entre as quatro."> x²/25 + y²/9 = 1</label>
+                <label class="alternativa"><input type="radio" name="g6-a3" value="d"
+                  data-explicacao="É maior, mas não mais achatada: c = 6 e e = 6/10. O achatamento depende da razão c/a, não do tamanho."> x²/100 + y²/64 = 1</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Em que pontos a reta <strong>y = 2</strong> corta a elipse <strong>x²/16 + y²/8 = 1</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g6-a4" value="a"
+                  data-explicacao="(4, 2) não está na elipse: 16/16 + 4/8 = 1,5, não 1."> (±4, 2)</label>
+                <label class="alternativa"><input type="radio" name="g6-a4" value="b"
+                  data-explicacao="Com y = 2: x²/16 + 4/8 = 1 ⇒ x²/16 = 1/2 ⇒ x² = 8 ⇒ x = ±2√2 ≈ ±2,83."> (±2√2, 2)</label>
+                <label class="alternativa"><input type="radio" name="g6-a4" value="c"
+                  data-explicacao="(2, 2) não está na elipse: 4/16 + 4/8 = 0,75, não 1."> (±2, 2)</label>
+                <label class="alternativa"><input type="radio" name="g6-a4" value="d"
+                  data-explicacao="O semieixo vertical é √8 ≈ 2,83, maior que 2. Então a reta y = 2 passa por dentro da elipse e a corta."> A reta não corta a elipse</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Quais são os focos da elipse <strong>4x² + y² + 8x − 6y + 9 = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g6-a5" value="a"
+                  data-explicacao="Depois de completar os quadrados, o maior denominador fica sob o y: o eixo maior é vertical."> (−1 ± √3, 3)</label>
+                <label class="alternativa"><input type="radio" name="g6-a5" value="b"
+                  data-explicacao="Os sinais do centro estão trocados."> (1, −3 ± √3)</label>
+                <label class="alternativa"><input type="radio" name="g6-a5" value="c"
+                  data-explicacao="Somou a² + b². Na elipse, c² = a² − b²."> (−1, 3 ± √5)</label>
+                <label class="alternativa"><input type="radio" name="g6-a5" value="d"
+                  data-explicacao="4(x + 1)² − 4 + (y − 3)² − 9 + 9 = 0 ⇒ (x + 1)²/1 + (y − 3)²/4 = 1. Centro (−1, 3), eixo maior vertical, c² = 4 − 1 = 3."> (−1, 3 ± √3)</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Um jardineiro crava duas estacas a <strong>6 m</strong> uma da outra e amarra nelas as pontas de uma corda de <strong>10 m</strong>. Quanto mede o semieixo menor do canteiro em forma de elipse?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g6-a6" value="a"
+                  data-explicacao="5 m é a metade da corda: o semieixo maior."> 5 m</label>
+                <label class="alternativa"><input type="radio" name="g6-a6" value="b"
+                  data-explicacao="3 m é a metade da distância entre as estacas: o c."> 3 m</label>
+                <label class="alternativa"><input type="radio" name="g6-a6" value="c"
+                  data-explicacao="A corda é 2a = 10, então a = 5; as estacas são os focos, 2c = 6, c = 3. b² = a² − c² = 25 − 9 = 16, b = 4."> 4 m</label>
+                <label class="alternativa"><input type="radio" name="g6-a6" value="d"
+                  data-explicacao="8 m é o eixo menor inteiro. A pergunta é o semieixo."> 8 m</label>
+              </div>
+            </li>
+
+          </ol>
         </div>
       </section>
       <section id="ga-7" class="licao" data-trilha="ga" data-licao="7">
@@ -6959,5 +7343,6 @@
   <script src="js/licoes/ga-03.js"></script>
   <script src="js/licoes/ga-04.js"></script>
   <script src="js/licoes/ga-05.js"></script>
+  <script src="js/licoes/ga-06.js"></script>
 </body>
 </html>

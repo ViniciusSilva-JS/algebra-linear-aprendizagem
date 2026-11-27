@@ -839,6 +839,25 @@
 
 
 /* =========================================================================
+   GEOMETRIA ANALÍTICA — LIÇÃO 6: ELIPSE
+   (as distâncias de P aos focos reaproveitam .reta-perpendicular e
+   .distancia-diretriz da lição 5)
+   ========================================================================= */
+.elipse {
+  fill: none;
+  stroke: var(--cor-laboratorio);
+  stroke-width: calc(0.1 * var(--escala-plano, 1));
+  stroke-linejoin: round;
+}
+
+/* Hipotenusa a do triângulo b, c, a */
+.lado-a {
+  stroke: var(--cor-teoria);
+  stroke-width: calc(0.07 * var(--escala-plano, 1));
+}
+
+
+/* =========================================================================
    RESPONSIVO
    ========================================================================= */
 @media (max-width: 900px) {
