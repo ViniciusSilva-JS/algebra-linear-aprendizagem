@@ -48,6 +48,7 @@ codigo/                       Código do site
       ga-05.js                Geometria Analítica, Lição 5 (parábola)
       ga-06.js                Geometria Analítica, Lição 6 (elipse)
       ga-07.js                Geometria Analítica, Lição 7 (hipérbole)
+      ga-08.js                Geometria Analítica, Lição 8 (reconhecendo cônicas)
 README.md
 ```
 
