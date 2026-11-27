@@ -930,6 +930,22 @@
 /* v − u: vetor que liga as pontas (a distância entre elas) */
 .vetor-d { --cor-vetor: var(--cor-acerto); }
 
+/* Lição 10: o terceiro vetor w e o paralelepípedo de u, v e w */
+.vetor-w { --cor-vetor: var(--cor-acerto); }
+.lab-ponto-w legend { color: var(--cor-acerto); }
+
+.aresta-solido {
+  stroke: var(--cor-acerto);
+  stroke-width: calc(0.05 * var(--escala-plano, 1));
+  opacity: 0.8;
+}
+
+.regiao-solido {
+  fill: var(--cor-acerto);
+  fill-opacity: 0.08;
+  stroke: none;
+}
+
 
 /* =========================================================================
    RESPONSIVO

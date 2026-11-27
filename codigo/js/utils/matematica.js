@@ -705,3 +705,20 @@ function anguloEntre3(u, v) {
   const cosseno = Math.max(-1, Math.min(1, produtoEscalar3(u, v) / produtoModulos));
   return Math.acos(cosseno);
 }
+
+/**
+ * Produto vetorial u × v = (y₁z₂ − z₁y₂, z₁x₂ − x₁z₂, x₁y₂ − y₁x₂).
+ * O resultado é perpendicular a u e a v, e o módulo é a área do paralelogramo.
+ */
+function produtoVetorial3(u, v) {
+  return {
+    x: u.y * v.z - u.z * v.y,
+    y: u.z * v.x - u.x * v.z,
+    z: u.x * v.y - u.y * v.x,
+  };
+}
+
+/** Produto misto [u, v, w] = (u × v) · w (o determinante com u, v e w nas linhas). */
+function produtoMisto3(u, v, w) {
+  return produtoEscalar3(produtoVetorial3(u, v), w);
+}
