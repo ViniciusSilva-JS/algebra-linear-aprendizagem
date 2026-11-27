@@ -160,6 +160,36 @@
 }
 .opcao-nivel:has(input:focus-visible) { outline-color: var(--cor-nivel); }
 
+/* "Qual lição?" — só no modo "Escolher a lição" */
+.escolha-licao {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-2);
+  min-width: 0;
+}
+
+.escolha-licao[hidden] {
+  display: none;
+}
+
+.escolha-licao-rotulo {
+  font-size: var(--tamanho-pequeno);
+  font-weight: 600;
+  color: var(--cor-texto-suave);
+}
+
+.escolha-licao select {
+  min-width: min(16rem, 100%);   /* em telas estreitas não passa da largura */
+  max-width: 100%;
+}
+
+/* Frase que explica o modo escolhido */
+.dica-modo {
+  margin: var(--esp-3) 0 0;
+  font-size: var(--tamanho-pequeno);
+  color: var(--cor-texto-suave);
+}
+
 
 /* =========================================================================
    7. LAYOUT GERAL (NAV À ESQUERDA + CONTEÚDO À DIREITA)

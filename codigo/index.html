@@ -22,7 +22,7 @@
     </p>
     <div class="cabecalho-acoes">
       <!-- Só aparece dentro das lições (o js/app.js controla) -->
-      <button type="button" id="btn-escolher" class="btn-secundario btn-cabecalho" hidden>☰ Trocar matéria ou nível</button>
+      <button type="button" id="btn-escolher" class="btn-secundario btn-cabecalho" hidden>☰ Trocar matéria, modo ou nível</button>
       <button type="button" id="btn-tema" class="btn-secundario btn-cabecalho btn-tema">🌙 Modo escuro</button>
     </div>
   </header>
@@ -45,6 +45,18 @@
         </label>
       </fieldset>
 
+      <fieldset id="escolha-modo" class="escolha escolha-modo">
+        <legend>Como você quer estudar?</legend>
+        <label class="opcao opcao-modo">
+          <input type="radio" name="modo" value="trilha" checked>
+          Seguir a trilha
+        </label>
+        <label class="opcao opcao-modo">
+          <input type="radio" name="modo" value="livre">
+          Escolher a lição
+        </label>
+      </fieldset>
+
       <fieldset id="escolha-nivel" class="escolha escolha-nivel">
         <legend>Qual é o seu nível?</legend>
         <label class="opcao opcao-nivel">
@@ -61,8 +73,17 @@
         </label>
       </fieldset>
 
+      <!-- Só aparece no modo "Escolher a lição" (o js/app.js preenche as opções) -->
+      <label id="campo-licao" class="escolha-licao" hidden>
+        <span class="escolha-licao-rotulo">Qual lição?</span>
+        <select id="escolha-licao"></select>
+      </label>
+
       <button type="submit" id="btn-comecar" class="btn btn-comecar">Começar trilha</button>
     </form>
+    <p id="dica-modo" class="dica-modo" aria-live="polite">
+      As lições são liberadas em ordem: acerte os exercícios de uma para abrir a próxima.
+    </p>
   </section>
 
   <div class="layout">
@@ -120,7 +141,10 @@
           <li class="passo"><strong>Laboratório:</strong> teste as ideias de forma interativa.</li>
           <li class="passo"><strong>Exercícios:</strong> resolva os exercícios para liberar a próxima lição.</li>
         </ol>
-        <p>Comece pela lição 1 e avance no seu ritmo.</p>
+        <p>
+          Comece pela lição 1 e avance no seu ritmo, ou escolha <strong>"Escolher a lição"</strong> acima para
+          abrir direto o assunto que quiser revisar. Nos dois modos, as lições que você concluir ficam marcadas com ✓.
+        </p>
 
         <!-- Progresso (preenchido pelo js/app.js) -->
         <div class="painel-progresso">

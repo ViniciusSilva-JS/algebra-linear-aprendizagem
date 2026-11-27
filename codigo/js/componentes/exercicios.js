@@ -323,8 +323,10 @@ function corrigirBloco(bloco, exercicios, resumo, numeroLicao, trilha) {
 
   if (acertos === total) {
     const ultima = typeof ehUltimaLicao === 'function' && ehUltimaLicao(trilha, numeroLicao);
+    // No modo livre (js/app.js) todas as lições já estão abertas.
+    const livre = typeof estaNoModoLivre === 'function' && estaNoModoLivre();
     resumo.textContent = 'Você acertou todos os ' + total + ' exercícios!' +
-      (ultima ? '' : ' A próxima lição está liberada.');
+      (ultima || livre ? '' : ' A próxima lição está liberada.');
     resumo.classList.add('acerto');
     if (typeof concluirLicao === 'function') {
       concluirLicao(numeroLicao, trilha);

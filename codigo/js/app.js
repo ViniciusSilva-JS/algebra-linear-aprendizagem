@@ -7,7 +7,10 @@
    - Geometria Analítica → seções  id="ga-N" data-trilha="ga"  (hash #ga-N)
    A matéria escolhida na tela inicial decide qual trilha aparece na
    navegação. O nível escolhido decide quais exercícios aparecem
-   (ver js/componentes/exercicios.js).
+   (ver js/componentes/exercicios.js). O modo decide como as lições abrem:
+   - "trilha": em ordem, cada lição libera a próxima;
+   - "livre":  todas abertas, o aluno escolhe qual ver (o progresso
+               continua sendo marcado).
 
    Índice
    1.  Configurações
@@ -21,7 +24,7 @@
    9.  Rodapé de cada lição (botões criados pelo JS)
    10. Menu no celular
    11. Aviso flutuante
-   12. Matéria e nível
+   12. Matéria, modo e nível
    13. Tema claro / escuro
    14. Eventos
    15. Inicialização
@@ -48,8 +51,10 @@ const TRILHAS = {
   },
 };
 const NIVEIS = ['basico', 'intermediario', 'avancado'];
+const MODOS = ['trilha', 'livre'];
 
 const CHAVE_MATERIA = 'trilha-alga:materia';
+const CHAVE_MODO = 'trilha-alga:modo';
 const CHAVE_NIVEL = 'trilha-alga:nivel';
 const CHAVE_TEMA = 'trilha-alga:tema';
 const TEMPO_AVISO = 3500; // quanto tempo (ms) o aviso fica na tela
@@ -66,6 +71,10 @@ const formConfiguracao = document.getElementById('form-configuracao');
 const btnComecar = document.getElementById('btn-comecar');
 const radiosMateria = Array.from(document.querySelectorAll('input[name="materia"]'));
 const radiosNivel = Array.from(document.querySelectorAll('input[name="nivel"]'));
+const radiosModo = Array.from(document.querySelectorAll('input[name="modo"]'));
+const campoLicao = document.getElementById('campo-licao');       // "Qual lição?" (modo livre)
+const selectLicao = document.getElementById('escolha-licao');
+const dicaModo = document.getElementById('dica-modo');
 
 const nav = document.getElementById('trilha');
 const tituloNav = nav.querySelector('.trilha-titulo');
@@ -114,6 +123,7 @@ const concluidas = { al: new Set(), ga: new Set() }; // ex.: concluidas.al = {1,
 let trilhaAtual = 'al';                       // trilha mostrada na navegação
 let telaAtual = { trilha: 'al', n: 0 };       // n = 0 → tela inicial
 let nivelAtual = 'basico';
+let modoAtual = 'trilha';                     // 'trilha' (em ordem) ou 'livre'
 let primeiraTela = true;   // na 1ª exibição não movemos o foco do teclado
 let timerAviso = null;     // controla o sumiço automático do aviso
 
@@ -177,9 +187,17 @@ function ehNumeroDeLicao(trilha, n) {
   return Number.isInteger(n) && n >= 1 && n <= totalDeLicoes(trilha);
 }
 
-/** A lição 1 está sempre liberada; as outras, só se a anterior foi concluída. */
+/**
+ * No modo livre, todas as lições estão liberadas.
+ * No modo trilha, a lição 1 está sempre liberada; as outras, só se a anterior foi concluída.
+ */
 function estaLiberada(trilha, n) {
+  if (modoAtual === 'livre') return true;
   return n === 1 || concluidas[trilha].has(n - 1);
+}
+
+function estaNoModoLivre() {
+  return modoAtual === 'livre';
 }
 
 function estaConcluida(trilha, n) {
@@ -262,9 +280,14 @@ function aoMudarHash() {
   if (n !== 0 && !estaLiberada(trilha, n)) {
     // Ex.: link direto para #licao-5 sem ter feito a 4.
     mostrarAviso('Conclua a lição anterior primeiro');
+    // Volta para a tela de antes, a não ser que ela também tenha ficado
+    // bloqueada (ex.: trocou do modo livre para o modo trilha): aí, o início.
+    const volta = telaAtual.n !== 0 && !estaLiberada(telaAtual.trilha, telaAtual.n)
+      ? { trilha: telaAtual.trilha, n: 0 }
+      : telaAtual;
     // Troca a URL de volta SEM criar uma nova entrada no histórico.
-    history.replaceState(null, '', hashDaTela(telaAtual.trilha, telaAtual.n));
-    mostrarTela(telaAtual.trilha, telaAtual.n);
+    history.replaceState(null, '', hashDaTela(volta.trilha, volta.n));
+    mostrarTela(volta.trilha, volta.n);
     return;
   }
 
@@ -389,8 +412,36 @@ function atualizarProgresso() {
   // Sem progresso, não há o que apagar.
   btnRecomecar.disabled = feitas === 0;
 
-  // O botão do formulário muda de texto se o aluno já começou.
-  btnComecar.textContent = feitas === 0 ? 'Começar trilha' : 'Continuar trilha';
+  // O botão do formulário muda de texto conforme o modo e se o aluno já começou.
+  if (modoAtual === 'livre') {
+    btnComecar.textContent = 'Abrir lição';
+  } else {
+    btnComecar.textContent = feitas === 0 ? 'Começar trilha' : 'Continuar trilha';
+  }
+  atualizarEscolhaDeLicao();
+}
+
+/**
+ * Lista "Qual lição?" do modo livre: as lições da matéria escolhida, com ✓ nas
+ * concluídas. Mantém a lição que o aluno já tinha escolhido; se não houver,
+ * sugere a primeira ainda não concluída.
+ */
+function atualizarEscolhaDeLicao() {
+  const anterior = Number(selectLicao.value);
+  const total = totalDeLicoes(trilhaAtual);
+  const escolhida = selectLicao.dataset.trilha === trilhaAtual && ehNumeroDeLicao(trilhaAtual, anterior)
+    ? anterior
+    : proximaLicaoParaEstudar(trilhaAtual);
+
+  selectLicao.textContent = '';
+  for (let n = 1; n <= total; n++) {
+    const opcao = document.createElement('option');
+    opcao.value = String(n);
+    opcao.textContent = tituloDaLicao(trilhaAtual, n) + (estaConcluida(trilhaAtual, n) ? ' ✓' : '');
+    opcao.selected = n === escolhida;
+    selectLicao.append(opcao);
+  }
+  selectLicao.dataset.trilha = trilhaAtual;
 }
 
 
@@ -419,9 +470,15 @@ function concluirLicao(numero, trilha) {
   atualizarTudo();
 
   if (eraNova) {
-    const mensagem = !ehUltimaLicao(t, n)
-      ? 'Lição ' + n + ' concluída! A lição ' + (n + 1) + ' foi liberada.'
-      : 'Parabéns! Você concluiu toda a trilha de ' + TRILHAS[t].nome + '.';
+    let mensagem;
+    if (concluidas[t].size === totalDeLicoes(t)) {
+      mensagem = 'Parabéns! Você concluiu todas as lições de ' + TRILHAS[t].nome + '.';
+    } else if (modoAtual === 'livre' || ehUltimaLicao(t, n)) {
+      // No modo livre não existe "liberar a próxima": todas já estão abertas.
+      mensagem = 'Lição ' + n + ' concluída!';
+    } else {
+      mensagem = 'Lição ' + n + ' concluída! A lição ' + (n + 1) + ' foi liberada.';
+    }
     mostrarAviso(mensagem, 'acerto');
   }
   return true;
@@ -446,6 +503,7 @@ function recomecarTrilha() {
 // Deixa as funções acessíveis para os outros arquivos (exercícios).
 window.concluirLicao = concluirLicao;
 window.ehUltimaLicao = ehUltimaLicao;
+window.estaNoModoLivre = estaNoModoLivre;
 
 
 /* =========================================================================
@@ -575,11 +633,28 @@ function mostrarAviso(texto, tipo) {
 
 
 /* =========================================================================
-   12. MATÉRIA E NÍVEL
+   12. MATÉRIA, MODO E NÍVEL
    - Matéria: troca a trilha da navegação e do progresso.
+   - Modo: "trilha" (lições em ordem) ou "livre" (todas abertas).
    - Nível: troca os exercícios que aparecem (exercicios.js).
-   As duas escolhas ficam salvas para a próxima visita.
+   As três escolhas ficam salvas para a próxima visita.
    ========================================================================= */
+const DICAS_MODO = {
+  trilha: 'As lições são liberadas em ordem: acerte os exercícios de uma para abrir a próxima.',
+  livre: 'Todas as lições ficam abertas: escolha qual quer ver. As que você concluir continuam marcadas com ✓.',
+};
+
+function escolherModo(modo) {
+  if (!MODOS.includes(modo)) modo = 'trilha';
+  modoAtual = modo;
+  raiz.dataset.modo = modo;
+  radiosModo.forEach((r) => { r.checked = r.value === modo; });
+  campoLicao.hidden = modo !== 'livre';
+  dicaModo.textContent = DICAS_MODO[modo];
+  gravarStorage(CHAVE_MODO, modo);
+  atualizarTudo();
+}
+
 function escolherMateria(trilha) {
   if (!TRILHAS[trilha]) return;
   trilhaAtual = trilha;
@@ -602,6 +677,7 @@ function iniciarEscolhas() {
   trilhaAtual = TRILHAS[materiaSalva] ? materiaSalva : 'al';
   radiosMateria.forEach((r) => { r.checked = r.value === TRILHAS[trilhaAtual].materia; });
   escolherNivel(lerStorage(CHAVE_NIVEL));
+  escolherModo(lerStorage(CHAVE_MODO));
 }
 
 
@@ -698,17 +774,20 @@ function registrarEventos() {
     escolherMateria(trilha);
   }));
   radiosNivel.forEach((r) => r.addEventListener('change', () => escolherNivel(r.value)));
+  radiosModo.forEach((r) => r.addEventListener('change', () => escolherModo(r.value)));
 
-  // "Começar/Continuar trilha": abre a próxima lição sem recarregar a página.
+  // "Começar/Continuar trilha" abre a próxima lição; no modo livre, "Abrir lição"
+  // abre a lição escolhida na lista. Tudo sem recarregar a página.
   formConfiguracao.addEventListener('submit', (evento) => {
     evento.preventDefault();
-    irPara(trilhaAtual, proximaLicaoParaEstudar(trilhaAtual));
+    const n = modoAtual === 'livre' ? Number(selectLicao.value) : proximaLicaoParaEstudar(trilhaAtual);
+    irPara(trilhaAtual, ehNumeroDeLicao(trilhaAtual, n) ? n : 1);
   });
 
   btnRecomecar.addEventListener('click', recomecarTrilha);
   btnTema.addEventListener('click', alternarTema);
 
-  // "Trocar matéria ou nível": volta para a tela inicial, onde fica a escolha.
+  // "Trocar matéria, modo ou nível": volta para a tela inicial, onde fica a escolha.
   btnEscolher.addEventListener('click', () => irPara(trilhaAtual, 0));
 }
 

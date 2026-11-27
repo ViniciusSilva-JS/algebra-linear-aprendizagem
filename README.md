@@ -3,8 +3,13 @@
 Site de estudo com **duas trilhas** de 12 lições sequenciais cada: **Álgebra Linear**
 e **Geometria Analítica** (a matéria é escolhida na tela inicial, e cada trilha guarda o seu progresso).
 Cada lição tem **Teoria**, **Laboratório** (interativo) e **Exercícios** (múltipla
-escolha). Acertar todos os exercícios libera a próxima lição. O **nível** escolhido
-(Básico, Intermediário ou Avançado) decide quais exercícios aparecem.
+escolha). O **modo** escolhido decide como as lições abrem:
+
+- **Seguir a trilha:** em ordem; acertar todos os exercícios libera a próxima lição.
+- **Escolher a lição:** todas as lições ficam abertas e o aluno escolhe qual ver
+  (numa lista na tela inicial ou na navegação). As concluídas continuam marcadas com ✓.
+
+O **nível** escolhido (Básico, Intermediário ou Avançado) decide quais exercícios aparecem.
 
 HTML, CSS e JavaScript puros, sem bibliotecas e sem servidor: basta abrir o
 `codigo/index.html` no navegador.
@@ -28,7 +33,7 @@ codigo/                       Código do site
       espaco.js               Eixos x, y, z em SVG que giram com o mouse (criarEspaco3D)
       matriz.js               Editor e exibição de matrizes (criarEditorMatriz, htmlMatriz)
       exercicios.js           Correção automática dos exercícios e filtro por nível (lê o HTML)
-    app.js                    Trilhas (matéria), nível, navegação por hash, desbloqueio, progresso e tema
+    app.js                    Trilhas (matéria), modo (trilha ou livre), nível, navegação por hash, desbloqueio, progresso e tema
     licoes/
       licao-01.js             Laboratório da Lição 1 (só o que é específico da lição)
       licao-02.js             Laboratório da Lição 2
