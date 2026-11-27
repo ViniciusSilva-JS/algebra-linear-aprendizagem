@@ -6489,8 +6489,387 @@
       </section>
       <section id="ga-5" class="licao" data-trilha="ga" data-licao="5">
         <h2 class="licao-titulo">5. Parábola</h2>
+
+        <!-- ---------- TEORIA ---------- -->
         <div class="teoria">
-          <p class="em-construcao">🚧 Lição em construção. Vai tratar de: foco e diretriz, equação reduzida, vértice, eixo e a propriedade refletora (antenas parabólicas).</p>
+          <h3>O que é uma parábola</h3>
+          <p>
+            Fixe um ponto <strong>F</strong> (o <strong>foco</strong>) e uma reta <strong>d</strong> (a <strong>diretriz</strong>)
+            que não passa por ele. A parábola é o conjunto dos pontos P que estão à <strong>mesma distância</strong> do foco
+            e da diretriz:
+          </p>
+          <div class="formula">d(P, F) = d(P, diretriz)</div>
+          <ul>
+            <li><strong>Eixo:</strong> a reta que passa pelo foco e é perpendicular à diretriz. A parábola é simétrica em relação a ele.</li>
+            <li><strong>Vértice V:</strong> o ponto da parábola sobre o eixo, exatamente no meio entre o foco e a diretriz.</li>
+            <li><strong>c:</strong> a distância do vértice ao foco (que é também a distância do vértice à diretriz).</li>
+          </ul>
+
+          <h3>Equação reduzida</h3>
+          <p>Com vértice V(h, k):</p>
+          <div class="tabela-rolagem">
+            <table class="tabela">
+              <thead>
+                <tr><th>Eixo</th><th>Equação</th><th>Foco</th><th>Diretriz</th><th>Abre para…</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>vertical</td><td>(x − h)² = 4c·(y − k)</td><td>(h, k + c)</td><td>y = k − c</td><td>cima se c &gt; 0, baixo se c &lt; 0</td></tr>
+                <tr><td>horizontal</td><td>(y − k)² = 4c·(x − h)</td><td>(h + c, k)</td><td>x = h − c</td><td>direita se c &gt; 0, esquerda se c &lt; 0</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            <strong>Para não confundir:</strong> a variável que aparece <strong>ao quadrado</strong> é a que "se espalha" para os
+            lados. Em x², a parábola abre para cima ou para baixo; em y², para os lados.
+          </p>
+          <p class="lab-dica">
+            Alguns livros usam p = distância do foco à diretriz (p = 2c) e escrevem x² = 2p·y. É a mesma parábola: 4c = 2p.
+          </p>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              x² = 8y: 4c = 8, então c = 2. Vértice (0, 0), <strong>foco (0, 2)</strong>, <strong>diretriz y = −2</strong>, abre para cima.
+            </p>
+            <p>
+              Conferindo a definição com o ponto P(4, 2) da parábola (4² = 8·2 ✓): d(P, F) = √(16 + 0) = 4 e
+              d(P, diretriz) = 2 − (−2) = 4. Iguais ✓.
+            </p>
+          </div>
+
+          <h3>De onde vem a equação</h3>
+          <p>
+            Com foco F(0, c) e diretriz y = −c: d(P, F) = √(x² + (y − c)²) e d(P, d) = |y + c|. Igualando e elevando ao quadrado:
+            x² + y² − 2cy + c² = y² + 2cy + c² &nbsp;⇒&nbsp; <strong>x² = 4cy</strong>.
+          </p>
+
+          <h3>A parábola da função quadrática</h3>
+          <p>
+            O gráfico de y = a·x² + b·x + c₀ é uma parábola de eixo vertical. Escrevendo y = a(x − h)² + k
+            (completando o quadrado), sai (x − h)² = (1/a)·(y − k), ou seja:
+          </p>
+          <div class="formula">4c = 1/a &nbsp;&nbsp;⇒&nbsp;&nbsp; c = 1 / (4a)</div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>y = x²/4: a = 1/4, então c = 1. O foco de y = x²/4 é (0, 1) e a diretriz é y = −1.</p>
+          </div>
+
+          <h3>Completando o quadrado</h3>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              y² − 4y − 8x + 20 = 0 &nbsp;⇒&nbsp; (y − 2)² − 4 − 8x + 20 = 0 &nbsp;⇒&nbsp; (y − 2)² = 8x − 16 = <strong>8(x − 2)</strong>.
+            </p>
+            <p>Vértice (2, 2), eixo horizontal, 4c = 8 ⇒ c = 2: foco (4, 2) e diretriz x = 0.</p>
+          </div>
+
+          <h3>A propriedade refletora</h3>
+          <p>
+            Todo raio que chega <strong>paralelo ao eixo</strong> e bate na parábola é refletido <strong>para o foco</strong>.
+            Por isso antenas parabólicas põem o receptor no foco, e faróis de carro põem a lâmpada no foco: aí os raios saem
+            todos paralelos, num feixe.
+          </p>
+        </div>
+
+        <!-- ---------- LABORATÓRIO ---------- -->
+        <div class="laboratorio">
+          <h3>Foco, diretriz e o ponto que anda</h3>
+          <p>
+            Escolha o eixo, o vértice e o valor de c. Mova o ponto P pela parábola (pelo controle ou
+            <strong>clicando no plano</strong>) e confira que ele está sempre à mesma distância do foco e da diretriz.
+          </p>
+
+          <fieldset class="escolha lab-operacao">
+            <legend>Eixo</legend>
+            <label class="opcao"><input type="radio" name="g5-eixo" value="vertical" checked> Vertical (x²)</label>
+            <label class="opcao"><input type="radio" name="g5-eixo" value="horizontal"> Horizontal (y²)</label>
+          </fieldset>
+
+          <div class="lab-area controles-largos">
+            <svg id="g5-plano" class="plano-cartesiano" viewBox="-10 -10 20 20"
+                 role="img" aria-label="Plano com a parábola, o foco, a diretriz e um ponto P com as duas distâncias"></svg>
+
+            <div class="lab-controles">
+              <fieldset class="lab-ponto lab-ponto-m lab-tres-campos">
+                <legend>Vértice e c</legend>
+                <label>h <input type="number" id="g5-h" value="0" min="-6" max="6" step="1" aria-label="x do vértice"></label>
+                <label>k <input type="number" id="g5-k" value="0" min="-6" max="6" step="1" aria-label="y do vértice"></label>
+                <label>c <input type="number" id="g5-c" value="2" min="-5" max="5" step="0.5" aria-label="distância do vértice ao foco, com sinal"></label>
+              </fieldset>
+              <div class="lab-campo">
+                <label for="g5-s">Posição de P ao longo da parábola: <output id="g5-s-valor">4</output></label>
+                <input type="range" id="g5-s" min="-8" max="8" step="0.5" value="4">
+              </div>
+              <label class="lab-check"><input type="checkbox" id="g5-raios"> Mostrar a propriedade refletora (raios paralelos ao eixo)</label>
+              <p class="lab-dica">h e k de −6 a 6; c de −5 a 5, diferente de zero (o sinal diz para que lado abre).</p>
+              <button type="button" id="g5-sortear" class="btn-secundario">🎲 Sortear</button>
+            </div>
+          </div>
+
+          <div id="g5-resultados" class="lab-resultados" aria-live="polite"></div>
+        </div>
+
+        <!-- ---------- EXERCÍCIOS ---------- -->
+        <div class="exercicios" data-licao="5">
+          <h3>Pratique</h3>
+          <p>Escolha uma alternativa em cada exercício. Acerte todos para liberar a lição 6.</p>
+
+          <ol class="lista-exercicios">
+            <!-- ===== BÁSICO ===== -->
+            <li class="exercicio" data-nivel="basico">
+              <p>Qual é o foco da parábola <strong>x² = 8y</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g5-b1" value="a"
+                  data-explicacao="8 é o 4c da equação. O foco fica a c do vértice, e c é um quarto desse número."> (0, 8)</label>
+                <label class="alternativa"><input type="radio" name="g5-b1" value="b"
+                  data-explicacao="A distância está certa, mas o eixo não: em x² = 4cy o eixo é o eixo y, e o foco fica sobre ele."> (2, 0)</label>
+                <label class="alternativa"><input type="radio" name="g5-b1" value="c"
+                  data-explicacao="x² = 4cy com 4c = 8 ⇒ c = 2. O vértice é a origem e a parábola abre para cima, então o foco é (0, c) = (0, 2)."> (0, 2)</label>
+                <label class="alternativa"><input type="radio" name="g5-b1" value="d"
+                  data-explicacao="4 é a metade de 8. O foco fica a c = 8/4 do vértice."> (0, 4)</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Qual é a diretriz da parábola <strong>x² = 12y</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g5-b2" value="a"
+                  data-explicacao="y = 3 passa pelo foco. A diretriz fica do lado oposto do vértice, à mesma distância."> y = 3</label>
+                <label class="alternativa"><input type="radio" name="g5-b2" value="b"
+                  data-explicacao="4c = 12 ⇒ c = 3. Foco (0, 3) e diretriz do outro lado do vértice: y = −c = −3."> y = −3</label>
+                <label class="alternativa"><input type="radio" name="g5-b2" value="c"
+                  data-explicacao="12 é o 4c. A diretriz fica à distância c do vértice."> y = −12</label>
+                <label class="alternativa"><input type="radio" name="g5-b2" value="d"
+                  data-explicacao="A parábola tem eixo vertical, então a diretriz é horizontal (y = constante)."> x = −3</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Qual é o vértice da parábola <strong>(x − 2)² = 4(y + 1)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g5-b3" value="a"
+                  data-explicacao="Na forma (x − h)² = 4c(y − k), o vértice é (h, k). Como y + 1 = y − (−1), k = −1."> (2, −1)</label>
+                <label class="alternativa"><input type="radio" name="g5-b3" value="b"
+                  data-explicacao="Os dois sinais estão trocados: (x − 2) indica h = 2."> (−2, 1)</label>
+                <label class="alternativa"><input type="radio" name="g5-b3" value="c"
+                  data-explicacao="O sinal de k está trocado: (y + 1) indica k = −1."> (2, 1)</label>
+                <label class="alternativa"><input type="radio" name="g5-b3" value="d"
+                  data-explicacao="O 4 multiplica (y + 1): é o 4c, não faz parte do vértice."> (4, −1)</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Para que lado abre a parábola <strong>y² = −8x</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g5-b4" value="a"
+                  data-explicacao="Quem está ao quadrado é o y, então o eixo é horizontal: ela abre para um dos lados."> Para cima</label>
+                <label class="alternativa"><input type="radio" name="g5-b4" value="b"
+                  data-explicacao="Abrir para cima ou para baixo exige x². Aqui o quadrado é de y."> Para baixo</label>
+                <label class="alternativa"><input type="radio" name="g5-b4" value="c"
+                  data-explicacao="Abriria para a direita se o coeficiente de x fosse positivo."> Para a direita</label>
+                <label class="alternativa"><input type="radio" name="g5-b4" value="d"
+                  data-explicacao="y² = 4cx com 4c = −8 ⇒ c = −2 &lt; 0. O eixo é horizontal e c negativo: abre para a esquerda (só existem pontos com x ≤ 0)."> Para a esquerda</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Qual é a definição de parábola?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g5-b5" value="a"
+                  data-explicacao="Isso é a mediatriz do segmento entre os dois pontos, que é uma reta."> Pontos à mesma distância de dois pontos fixos</label>
+                <label class="alternativa"><input type="radio" name="g5-b5" value="b"
+                  data-explicacao="Cada ponto P da parábola tem d(P, F) = d(P, diretriz)."> Pontos à mesma distância de um ponto (foco) e de uma reta (diretriz)</label>
+                <label class="alternativa"><input type="radio" name="g5-b5" value="c"
+                  data-explicacao="Essa é a definição da elipse."> Pontos cuja soma das distâncias a dois focos é constante</label>
+                <label class="alternativa"><input type="radio" name="g5-b5" value="d"
+                  data-explicacao="Essa é a circunferência."> Pontos a uma distância fixa de um ponto</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Na parábola <strong>x² = 20y</strong>, qual é a distância do vértice ao foco?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g5-b6" value="a"
+                  data-explicacao="20 é o 4c, não o c."> 20</label>
+                <label class="alternativa"><input type="radio" name="g5-b6" value="b"
+                  data-explicacao="Dividiu por 2. Em x² = 4cy, o número que multiplica y vale 4 vezes c."> 10</label>
+                <label class="alternativa"><input type="radio" name="g5-b6" value="c"
+                  data-explicacao="4c = 20 ⇒ c = 5: o foco está 5 acima do vértice."> 5</label>
+                <label class="alternativa"><input type="radio" name="g5-b6" value="d"
+                  data-explicacao="4 é o fator fixo da forma x² = 4cy. O c sai de 4c = 20."> 4</label>
+              </div>
+            </li>
+
+            <!-- ===== INTERMEDIÁRIO ===== -->
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é a parábola de foco <strong>(0, 3)</strong> e diretriz <strong>y = −3</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g5-i1" value="a"
+                  data-explicacao="O vértice fica no meio, (0, 0), e c = 3 (abre para cima). x² = 4cy = 12y. Confira (6, 3): distância ao foco 6, à diretriz 3 + 3 = 6."> x² = 12y</label>
+                <label class="alternativa"><input type="radio" name="g5-i1" value="b"
+                  data-explicacao="Usou c no lugar de 4c."> x² = 3y</label>
+                <label class="alternativa"><input type="radio" name="g5-i1" value="c"
+                  data-explicacao="6 é a distância do foco à diretriz (que alguns livros chamam de p). Na forma x² = 4cy o número é 4c = 12, o mesmo que 2p."> x² = 6y</label>
+                <label class="alternativa"><input type="radio" name="g5-i1" value="d"
+                  data-explicacao="Foco e diretriz indicam eixo vertical (abre para cima), então o quadrado é de x."> y² = 12x</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é o foco da parábola <strong>y = x²/8</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g5-i2" value="a"
+                  data-explicacao="1/8 é o coeficiente de x², não a distância do vértice ao foco."> (0, 1/8)</label>
+                <label class="alternativa"><input type="radio" name="g5-i2" value="b"
+                  data-explicacao="Passando para a forma x² = 4cy: x² = 8y. O 8 é o 4c, não o c."> (0, 8)</label>
+                <label class="alternativa"><input type="radio" name="g5-i2" value="c"
+                  data-explicacao="Multiplicou 4 por 1/8. A relação é c = 1/(4a)."> (0, 1/2)</label>
+                <label class="alternativa"><input type="radio" name="g5-i2" value="d"
+                  data-explicacao="y = x²/8 ⇒ x² = 8y ⇒ 4c = 8 ⇒ c = 2. Vértice na origem, abre para cima: foco (0, 2). (Pela fórmula, c = 1/(4a) = 1/(4·1/8) = 2.)"> (0, 2)</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é o vértice da parábola <strong>x² + 6x − 4y + 1 = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g5-i3" value="a"
+                  data-explicacao="Os dois sinais estão trocados. Complete o quadrado com cuidado."> (3, 2)</label>
+                <label class="alternativa"><input type="radio" name="g5-i3" value="b"
+                  data-explicacao="x² + 6x = (x + 3)² − 9. Então (x + 3)² − 9 − 4y + 1 = 0 ⇒ (x + 3)² = 4y + 8 = 4(y + 2). Vértice (−3, −2) e c = 1."> (−3, −2)</label>
+                <label class="alternativa"><input type="radio" name="g5-i3" value="c"
+                  data-explicacao="O sinal de k está trocado: de 4(y + 2) sai k = −2."> (−3, 2)</label>
+                <label class="alternativa"><input type="radio" name="g5-i3" value="d"
+                  data-explicacao="Esqueceu de pôr o 4 em evidência: 4y + 8 = 4(y + 2), não 4(y + 8)."> (−3, −8)</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é a distância do ponto <strong>P(6, 3)</strong> da parábola <strong>x² = 12y</strong> até o seu foco?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g5-i4" value="a"
+                  data-explicacao="3 é a altura de P (o y). Falta somar a distância do vértice até a diretriz."> 3</label>
+                <label class="alternativa"><input type="radio" name="g5-i4" value="b"
+                  data-explicacao="Essa é a distância de P até o vértice (0, 0), não até o foco."> 3√5 ≈ 6,7</label>
+                <label class="alternativa"><input type="radio" name="g5-i4" value="c"
+                  data-explicacao="Pela definição, d(P, F) = d(P, diretriz). A diretriz é y = −3, então a distância é 3 − (−3) = 6. Confira com o foco (0, 3): √(36 + 0) = 6."> 6</label>
+                <label class="alternativa"><input type="radio" name="g5-i4" value="d"
+                  data-explicacao="Somou 3 + 6 (y e x). A distância até a diretriz horizontal só depende do y."> 9</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é o comprimento da corda que passa pelo foco, perpendicular ao eixo, na parábola <strong>y² = 16x</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g5-i5" value="a"
+                  data-explicacao="8 é só metade da corda (de um lado do eixo)."> 8</label>
+                <label class="alternativa"><input type="radio" name="g5-i5" value="b"
+                  data-explicacao="4 é o c (distância do vértice ao foco)."> 4</label>
+                <label class="alternativa"><input type="radio" name="g5-i5" value="c"
+                  data-explicacao="Dobrou o 4c. A corda inteira já mede |4c|."> 32</label>
+                <label class="alternativa"><input type="radio" name="g5-i5" value="d"
+                  data-explicacao="4c = 16, c = 4. No foco x = 4: y² = 64 ⇒ y = ±8. Os pontos (4, 8) e (4, −8) distam 16 = |4c|."> 16</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é a parábola de vértice <strong>(1, 2)</strong> e foco <strong>(1, 5)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g5-i6" value="a"
+                  data-explicacao="O foco está 3 acima do vértice: eixo vertical e c = 3. (x − h)² = 4c(y − k) = 12(y − 2)."> (x − 1)² = 12(y − 2)</label>
+                <label class="alternativa"><input type="radio" name="g5-i6" value="b"
+                  data-explicacao="Usou c no lugar de 4c."> (x − 1)² = 3(y − 2)</label>
+                <label class="alternativa"><input type="radio" name="g5-i6" value="c"
+                  data-explicacao="Vértice e foco estão na mesma vertical (x = 1), então o eixo é vertical e o quadrado é de x."> (y − 2)² = 12(x − 1)</label>
+                <label class="alternativa"><input type="radio" name="g5-i6" value="d"
+                  data-explicacao="Os sinais do vértice estão trocados."> (x + 1)² = 12(y + 2)</label>
+              </div>
+            </li>
+
+            <!-- ===== AVANÇADO ===== -->
+            <li class="exercicio" data-nivel="avancado">
+              <p>Qual é a parábola de foco <strong>(4, 0)</strong> e diretriz <strong>x = −2</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g5-a1" value="a"
+                  data-explicacao="O 12 está certo, mas o vértice não está na origem: ele fica no meio entre o foco e a diretriz."> y² = 12x</label>
+                <label class="alternativa"><input type="radio" name="g5-a1" value="b"
+                  data-explicacao="6 é a distância do foco à diretriz. Na forma (y − k)² = 4c(x − h) o número é 4c."> y² = 6(x − 1)</label>
+                <label class="alternativa"><input type="radio" name="g5-a1" value="c"
+                  data-explicacao="O vértice fica no meio entre x = −2 e x = 4: (1, 0). c = 4 − 1 = 3 e o eixo é horizontal: y² = 12(x − 1)."> y² = 12(x − 1)</label>
+                <label class="alternativa"><input type="radio" name="g5-a1" value="d"
+                  data-explicacao="Trocou as coordenadas do vértice: ele é (1, 0), sobre o eixo x."> (y − 1)² = 12x</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Uma antena parabólica tem perfil <strong>y = x²/16</strong> (em decímetros). A que altura acima do vértice deve ficar o receptor?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g5-a2" value="a"
+                  data-explicacao="O receptor vai no foco, onde os sinais refletidos se concentram. x² = 16y ⇒ 4c = 16 ⇒ c = 4."> 4 dm</label>
+                <label class="alternativa"><input type="radio" name="g5-a2" value="b"
+                  data-explicacao="16 é o 4c. O foco fica a c = 16/4."> 16 dm</label>
+                <label class="alternativa"><input type="radio" name="g5-a2" value="c"
+                  data-explicacao="Usou c = a/4 com a = 1/16. A relação é c = 1/(4a)."> 1/64 dm</label>
+                <label class="alternativa"><input type="radio" name="g5-a2" value="d"
+                  data-explicacao="8 é a metade de 16; o foco fica a um quarto."> 8 dm</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Qual é o foco da parábola <strong>y = 2x² − 8x + 5</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g5-a3" value="a"
+                  data-explicacao="(2, −3) é o vértice. O foco fica um pouco acima dele."> (2, −3)</label>
+                <label class="alternativa"><input type="radio" name="g5-a3" value="b"
+                  data-explicacao="Usou c = 2, o coeficiente de x². A relação é c = 1/(4a)."> (2, −1)</label>
+                <label class="alternativa"><input type="radio" name="g5-a3" value="c"
+                  data-explicacao="O sinal está trocado: com a &gt; 0 a parábola abre para cima, e o foco fica ACIMA do vértice."> (2, −25/8)</label>
+                <label class="alternativa"><input type="radio" name="g5-a3" value="d"
+                  data-explicacao="y = 2(x − 2)² − 3 ⇒ (x − 2)² = (1/2)(y + 3). Então 4c = 1/2 e c = 1/8. Vértice (2, −3), foco (2, −3 + 1/8) = (2, −23/8)."> (2, −23/8)</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Em que pontos a reta <strong>y = x</strong> corta a parábola <strong>x² = 4y</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g5-a4" value="a"
+                  data-explicacao="x² = 4x tem duas soluções. Não divida por x sem antes pensar no caso x = 0."> Apenas em (4, 4)</label>
+                <label class="alternativa"><input type="radio" name="g5-a4" value="b"
+                  data-explicacao="Substituindo y = x: x² = 4x ⇒ x(x − 4) = 0 ⇒ x = 0 ou x = 4."> Em (0, 0) e (4, 4)</label>
+                <label class="alternativa"><input type="radio" name="g5-a4" value="c"
+                  data-explicacao="(2, 2) está na reta, mas na parábola: 2² = 4 ≠ 4·2 = 8."> Em (0, 0) e (2, 2)</label>
+                <label class="alternativa"><input type="radio" name="g5-a4" value="d"
+                  data-explicacao="(−4, 4) está na parábola, mas não na reta y = x."> Em (4, 4) e (−4, 4)</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Para quais valores de k a reta horizontal <strong>y = k</strong> corta a parábola <strong>x² = −8y</strong> em dois pontos?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g5-a5" value="a"
+                  data-explicacao="A parábola abre para baixo e só tem pontos com y ≤ 0. Acima disso não há nada para cortar."> k &gt; 0</label>
+                <label class="alternativa"><input type="radio" name="g5-a5" value="b"
+                  data-explicacao="Para k &gt; 0, x² = −8k seria negativo: sem solução."> Qualquer k</label>
+                <label class="alternativa"><input type="radio" name="g5-a5" value="c"
+                  data-explicacao="x² = −8k tem duas soluções quando −8k &gt; 0, ou seja, k &lt; 0. (Em k = 0 só toca o vértice.)"> k &lt; 0</label>
+                <label class="alternativa"><input type="radio" name="g5-a5" value="d"
+                  data-explicacao="Com k = 0, x² = 0 tem uma só solução: a reta só encosta no vértice."> k = 0</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Qual é o conjunto dos pontos que ficam à mesma distância do ponto <strong>(0, 1)</strong> e da reta <strong>y = −1</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g5-a6" value="a"
+                  data-explicacao="√(x² + (y − 1)²) = |y + 1| ⇒ x² + y² − 2y + 1 = y² + 2y + 1 ⇒ x² = 4y. É a parábola de foco (0, 1) e diretriz y = −1."> x² = 4y</label>
+                <label class="alternativa"><input type="radio" name="g5-a6" value="b"
+                  data-explicacao="Essa é a circunferência de raio 1: distância fixa até a origem, não equidistância."> x² + y² = 1</label>
+                <label class="alternativa"><input type="radio" name="g5-a6" value="c"
+                  data-explicacao="y = 0 é só onde fica o vértice (o meio entre foco e diretriz). Os outros pontos também contam."> y = 0</label>
+                <label class="alternativa"><input type="radio" name="g5-a6" value="d"
+                  data-explicacao="Usou a distância entre foco e diretriz (2) como se fosse o 4c."> x² = 2y</label>
+              </div>
+            </li>
+
+          </ol>
         </div>
       </section>
       <section id="ga-6" class="licao" data-trilha="ga" data-licao="6">
@@ -6579,5 +6958,6 @@
   <script src="js/licoes/ga-02.js"></script>
   <script src="js/licoes/ga-03.js"></script>
   <script src="js/licoes/ga-04.js"></script>
+  <script src="js/licoes/ga-05.js"></script>
 </body>
 </html>
