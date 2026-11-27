@@ -15,6 +15,7 @@
    10. Transformações lineares no plano
    11. Autovalores e autovetores
    12. Mínimos quadrados (ajuste de curvas)
+   13. Vetores no espaço (3D)
    ========================================================================= */
 
 'use strict';
@@ -652,4 +653,55 @@ function minimosQuadrados(ts, ys, grau) {
     residuos: residuos, sqRes: sqRes, sqTot: sqTot,
     r2: sqTot === 0 ? 1 : 1 - sqRes / sqTot,
   };
+}
+
+
+/* =========================================================================
+   13. VETORES NO ESPAÇO (3D)
+   Um vetor (ou ponto) no espaço é representado como { x, y, z }.
+   ========================================================================= */
+
+/**
+ * Formata uma terna ordenada. Com decimais, usa ";" como separador,
+ * como em formatarPonto: (1, 2, 3) e (1,5; 2; 3).
+ */
+function formatarTerna(x, y, z) {
+  const temDecimal = [x, y, z].some((v) => !Number.isInteger(Math.round(v * 100) / 100));
+  const separador = temDecimal ? '; ' : ', ';
+  return '(' + [x, y, z].map((v) => formatarNumero(v)).join(separador) + ')';
+}
+
+/** Módulo do vetor no espaço: √(x² + y² + z²). */
+function modulo3(v) {
+  return Math.hypot(v.x, v.y, v.z);
+}
+
+function somarVetores3(u, v) {
+  return { x: u.x + v.x, y: u.y + v.y, z: u.z + v.z };
+}
+
+function subtrairVetores3(u, v) {
+  return { x: u.x - v.x, y: u.y - v.y, z: u.z - v.z };
+}
+
+function multiplicarPorEscalar3(k, v) {
+  return { x: k * v.x, y: k * v.y, z: k * v.z };
+}
+
+/** Distância entre os pontos A e B do espaço: |B − A|. */
+function distancia3(A, B) {
+  return modulo3(subtrairVetores3(B, A));
+}
+
+/** Produto escalar no espaço: x₁·x₂ + y₁·y₂ + z₁·z₂. */
+function produtoEscalar3(u, v) {
+  return u.x * v.x + u.y * v.y + u.z * v.z;
+}
+
+/** Ângulo entre u e v no espaço, em radianos (0 a π). Null se algum for nulo. */
+function anguloEntre3(u, v) {
+  const produtoModulos = modulo3(u) * modulo3(v);
+  if (produtoModulos === 0) return null;
+  const cosseno = Math.max(-1, Math.min(1, produtoEscalar3(u, v) / produtoModulos));
+  return Math.acos(cosseno);
 }

@@ -25,6 +25,7 @@ codigo/                       Código do site
       matematica.js           Funções de cálculo e formatação (lerNumero, formatarNumero, modulo...)
     componentes/
       plano.js                Plano cartesiano em SVG reaproveitável (criarPlanoCartesiano)
+      espaco.js               Eixos x, y, z em SVG que giram com o mouse (criarEspaco3D)
       matriz.js               Editor e exibição de matrizes (criarEditorMatriz, htmlMatriz)
       exercicios.js           Correção automática dos exercícios e filtro por nível (lê o HTML)
     app.js                    Trilhas (matéria), nível, navegação por hash, desbloqueio, progresso e tema
@@ -49,6 +50,7 @@ codigo/                       Código do site
       ga-06.js                Geometria Analítica, Lição 6 (elipse)
       ga-07.js                Geometria Analítica, Lição 7 (hipérbole)
       ga-08.js                Geometria Analítica, Lição 8 (reconhecendo cônicas)
+      ga-09.js                Geometria Analítica, Lição 9 (vetores no espaço)
 README.md
 ```
 

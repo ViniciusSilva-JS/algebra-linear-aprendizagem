@@ -7,6 +7,7 @@
    - Área do laboratório
    - Plano cartesiano em SVG
    - Setas e vetores
+   - Espaço 3D (lição 9 de Geometria Analítica em diante)
    - Responsivo
    ========================================================================= */
 
@@ -881,6 +882,53 @@
   stroke: var(--cor-texto-suave);
   stroke-width: calc(0.04 * var(--escala-plano, 1));
 }
+
+
+/* =========================================================================
+   GEOMETRIA ANALÍTICA — LIÇÃO 9 EM DIANTE: ESPAÇO 3D
+   (js/componentes/espaco.js; usa também .plano-cartesiano, .plano-eixo,
+   .plano-grade e as setas .vetor-u / .vetor-v / .vetor-r)
+   ========================================================================= */
+.espaco-3d {
+  cursor: grab;
+  touch-action: pan-y;   /* no celular, arrastar para o lado gira; para cima/baixo rola a página */
+}
+
+.espaco-3d.arrastando {
+  cursor: grabbing;
+}
+
+.espaco-3d:focus-visible {
+  outline: 2px solid var(--cor-laboratorio);
+  outline-offset: 2px;
+}
+
+/* Metade negativa dos eixos */
+.espaco-eixo-negativo {
+  stroke: var(--cor-texto-suave);
+  stroke-width: calc(0.05 * var(--escala-plano, 1));
+  stroke-dasharray: 0.25 0.2;
+  opacity: 0.7;
+}
+
+.espaco-marca {
+  fill: var(--cor-texto-suave);
+}
+
+.espaco-numero {
+  font-size: calc(0.45px * var(--escala-plano, 1));
+}
+
+/* Linhas tracejadas da ponta do vetor até o chão e até os eixos */
+.linha-chamada {
+  stroke: var(--cor-vetor, var(--cor-texto-suave));
+  stroke-width: calc(0.05 * var(--escala-plano, 1));
+  stroke-dasharray: 0.22 0.16;
+  opacity: 0.75;
+}
+
+/* v − u: vetor que liga as pontas (a distância entre elas) */
+.vetor-d { --cor-vetor: var(--cor-acerto); }
 
 
 /* =========================================================================

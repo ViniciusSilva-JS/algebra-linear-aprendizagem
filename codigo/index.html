@@ -8081,8 +8081,437 @@
       </section>
       <section id="ga-9" class="licao" data-trilha="ga" data-licao="9">
         <h2 class="licao-titulo">9. Vetores no espaço</h2>
+
+        <!-- ---------- TEORIA ---------- -->
         <div class="teoria">
-          <p class="em-construcao">🚧 Lição em construção. Vai tratar de: coordenadas (x, y, z), distância no espaço, vetores em 3D, módulo e produto escalar.</p>
+          <h3>Um terceiro eixo</h3>
+          <p>
+            Até aqui tudo aconteceu no plano, com dois eixos. Para descrever o espaço (a sala, um prédio, a trajetória de um
+            drone) acrescentamos um terceiro eixo, o <strong>z</strong>, perpendicular aos eixos x e y e passando pela origem O.
+            Cada ponto passa a ter três coordenadas:
+          </p>
+          <div class="formula">P = (x, y, z)</div>
+          <p>
+            Para chegar a P(2, 3, 4), ande 2 na direção de x, 3 na direção de y e suba 4 na direção de z. O ponto (2, 3, 0),
+            logo "abaixo" de P, é a <strong>projeção</strong> de P no chão (o plano xy).
+          </p>
+          <p>
+            Os eixos seguem a <strong>regra da mão direita</strong>: com os dedos da mão direita indo do eixo x para o eixo y,
+            o polegar aponta para o lado positivo do eixo z. É a convenção usada em toda a Matemática e a Física.
+          </p>
+
+          <h3>Planos coordenados e octantes</h3>
+          <p>Dois eixos de cada vez formam os três <strong>planos coordenados</strong>:</p>
+          <div class="tabela-rolagem">
+            <table class="tabela">
+              <thead>
+                <tr><th>Plano</th><th>Equação</th><th>Exemplo de ponto</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>plano xy (o "chão")</td><td>z = 0</td><td>(3, −1, 0)</td></tr>
+                <tr><td>plano xz</td><td>y = 0</td><td>(2, 0, 5)</td></tr>
+                <tr><td>plano yz</td><td>x = 0</td><td>(0, 4, −2)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Um ponto com <strong>duas</strong> coordenadas nulas está sobre um eixo, como (0, 0, 7) no eixo z. Os três planos
+            dividem o espaço em <strong>8 octantes</strong> (no plano eram 4 quadrantes). O 1º octante é o dos pontos com x, y e z
+            todos positivos.
+          </p>
+
+          <h3>Distância entre dois pontos</h3>
+          <p>
+            A fórmula do plano ganha só mais uma parcela. A distância entre A(x<sub>A</sub>, y<sub>A</sub>, z<sub>A</sub>) e
+            B(x<sub>B</sub>, y<sub>B</sub>, z<sub>B</sub>) é
+          </p>
+          <div class="formula">d(A, B) = √[(x<sub>B</sub> − x<sub>A</sub>)² + (y<sub>B</sub> − y<sub>A</sub>)² + (z<sub>B</sub> − z<sub>A</sub>)²]</div>
+          <p>
+            <strong>De onde vem:</strong> é o Teorema de Pitágoras usado duas vezes. No chão, a diagonal entre as projeções de A e B
+            mede √(Δx² + Δy²). Essa diagonal e a diferença de altura Δz formam outro triângulo retângulo, e a hipotenusa dele é a
+            distância: √(Δx² + Δy² + Δz²).
+          </p>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              A(1, 2, 3) e B(4, 6, 15): Δx = 3, Δy = 4 e Δz = 12. Então
+              d = √(9 + 16 + 144) = √169 = <strong>13</strong>.
+            </p>
+          </div>
+          <p>
+            O <strong>ponto médio</strong> também funciona como no plano, coordenada por coordenada:
+            M = ((x<sub>A</sub> + x<sub>B</sub>)/2, (y<sub>A</sub> + y<sub>B</sub>)/2, (z<sub>A</sub> + z<sub>B</sub>)/2).
+          </p>
+
+          <h3>Vetores com três componentes</h3>
+          <p>
+            Um vetor no espaço é <span class="vet">v</span> = (x, y, z): a seta que sai da origem e vai até o ponto (x, y, z).
+            O vetor que vai de A até B é, como antes, "ponto final menos ponto inicial":
+          </p>
+          <div class="formula"><span class="vet">AB</span> = B − A = (x<sub>B</sub> − x<sub>A</sub>, y<sub>B</sub> − y<sub>A</sub>, z<sub>B</sub> − z<sub>A</sub>)</div>
+          <p>
+            As operações são feitas componente a componente: (1, 2, 3) + (4, 0, −1) = (5, 2, 2) e 2·(1, −2, 3) = (2, −4, 6).
+            Os vetores <strong>i</strong> = (1, 0, 0), <strong>j</strong> = (0, 1, 0) e <strong>k</strong> = (0, 0, 1) apontam nos
+            sentidos dos eixos, e todo vetor se escreve com eles: (2, −1, 3) = 2<strong>i</strong> − <strong>j</strong> + 3<strong>k</strong>.
+          </p>
+
+          <h3>Módulo e vetor unitário</h3>
+          <p>O <strong>módulo</strong> (tamanho) de um vetor é a distância da origem até a ponta dele:</p>
+          <div class="formula">|<span class="vet">v</span>| = √(x² + y² + z²)</div>
+          <p>
+            Dividindo um vetor pelo seu módulo obtemos o <strong>vetor unitário</strong> (ou versor): mesma direção e sentido,
+            mas tamanho 1. Por exemplo, <span class="vet">v</span> = (0, 3, 4) tem |<span class="vet">v</span>| = √(0 + 9 + 16) = 5,
+            e o unitário é (0, 3/5, 4/5).
+          </p>
+
+          <h3>Produto escalar e ângulo</h3>
+          <p>O produto escalar ganha a parcela de z, e a fórmula do ângulo continua a mesma da trilha de Álgebra Linear:</p>
+          <div class="formula"><span class="vet">u</span> · <span class="vet">v</span> = x₁·x₂ + y₁·y₂ + z₁·z₂</div>
+          <div class="formula">cos θ = (<span class="vet">u</span> · <span class="vet">v</span>) / (|<span class="vet">u</span>| · |<span class="vet">v</span>|)</div>
+          <ul>
+            <li><strong>u · v &gt; 0:</strong> ângulo agudo (0° ≤ θ &lt; 90°);</li>
+            <li><strong>u · v = 0:</strong> vetores <strong>ortogonais</strong> (θ = 90°);</li>
+            <li><strong>u · v &lt; 0:</strong> ângulo obtuso (90° &lt; θ ≤ 180°).</li>
+          </ul>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              <span class="vet">u</span> = (2, 2, 1) e <span class="vet">v</span> = (0, 3, 4):
+              <span class="vet">u</span> · <span class="vet">v</span> = 2·0 + 2·3 + 1·4 = 10,
+              |<span class="vet">u</span>| = √9 = 3 e |<span class="vet">v</span>| = √25 = 5.
+            </p>
+            <p>
+              cos θ = 10 / (3 · 5) = 2/3, então <strong>θ ≈ 48,19°</strong> (agudo, porque o produto escalar é positivo).
+            </p>
+          </div>
+
+          <h3>Ângulos diretores</h3>
+          <p>
+            Os ângulos α, β e γ que um vetor forma com os eixos x, y e z são os <strong>ângulos diretores</strong>. Como o
+            produto escalar com <strong>i</strong>, <strong>j</strong> e <strong>k</strong> só "pega" uma componente:
+          </p>
+          <div class="formula">cos α = x / |<span class="vet">v</span>| &nbsp;&nbsp; cos β = y / |<span class="vet">v</span>| &nbsp;&nbsp; cos γ = z / |<span class="vet">v</span>|</div>
+          <p>
+            Esses três cossenos são exatamente as componentes do vetor unitário, e por isso
+            <strong>cos²α + cos²β + cos²γ = 1</strong>. Para <span class="vet">u</span> = (2, 2, 1): cos α = 2/3, cos β = 2/3 e
+            cos γ = 1/3, e de fato 4/9 + 4/9 + 1/9 = 1.
+          </p>
+        </div>
+
+        <!-- ---------- LABORATÓRIO ---------- -->
+        <div class="laboratorio">
+          <h3>Vetores em 3D</h3>
+          <p>
+            Digite as componentes de <strong>u</strong> e <strong>v</strong> (ou escolha um exemplo). <strong>Arraste o desenho</strong>
+            para girar o espaço e ver os vetores de outros ângulos. O laboratório calcula módulos, distância entre as pontas,
+            produto escalar, ângulo e ângulos diretores.
+          </p>
+
+          <div class="lab-area controles-largos">
+            <svg id="g9-espaco" class="plano-cartesiano espaco-3d" viewBox="-7 -7 14 14" tabindex="0"
+                 role="img" aria-label="Eixos x, y e z com os vetores u e v. Arraste ou use as setas do teclado para girar."></svg>
+
+            <div class="lab-controles">
+              <fieldset class="lab-ponto lab-ponto-a lab-tres-campos">
+                <legend>Vetor u</legend>
+                <label>x <input type="number" id="g9-ux" value="2" min="-6" max="6" step="1" aria-label="componente x de u"></label>
+                <label>y <input type="number" id="g9-uy" value="2" min="-6" max="6" step="1" aria-label="componente y de u"></label>
+                <label>z <input type="number" id="g9-uz" value="1" min="-6" max="6" step="1" aria-label="componente z de u"></label>
+              </fieldset>
+              <fieldset class="lab-ponto lab-ponto-b lab-tres-campos">
+                <legend>Vetor v</legend>
+                <label>x <input type="number" id="g9-vx" value="0" min="-6" max="6" step="1" aria-label="componente x de v"></label>
+                <label>y <input type="number" id="g9-vy" value="3" min="-6" max="6" step="1" aria-label="componente y de v"></label>
+                <label>z <input type="number" id="g9-vz" value="4" min="-6" max="6" step="1" aria-label="componente z de v"></label>
+              </fieldset>
+
+              <label class="lab-campo">
+                <span>Girar a vista: <output id="g9-giro-valor" for="g9-giro">30°</output></span>
+                <input type="range" id="g9-giro" min="-180" max="180" step="5" value="30">
+              </label>
+              <button type="button" id="g9-vista" class="btn-secundario">Vista padrão</button>
+
+              <label class="lab-check"><input type="checkbox" id="g9-chamadas" checked> Linhas até o chão e os eixos</label>
+              <label class="lab-check"><input type="checkbox" id="g9-soma"> Mostrar u + v</label>
+              <label class="lab-check"><input type="checkbox" id="g9-diferenca"> Mostrar v − u (liga as pontas)</label>
+
+              <fieldset class="lab-ponto lab-ponto-m lab-tres-campos">
+                <legend>Exemplos</legend>
+                <button type="button" class="btn-secundario" data-g9-exemplo="2,2,1,0,3,4">Ângulo agudo</button>
+                <button type="button" class="btn-secundario" data-g9-exemplo="1,2,2,2,1,-2">Ortogonais</button>
+                <button type="button" class="btn-secundario" data-g9-exemplo="1,-2,2,-2,4,-4">Sentidos opostos</button>
+                <button type="button" class="btn-secundario" data-g9-exemplo="3,0,0,0,0,4">Sobre os eixos</button>
+              </fieldset>
+              <p class="lab-dica">Componentes de −6 a 6. As linhas tracejadas mostram onde fica cada coordenada da ponta.</p>
+              <button type="button" id="g9-sortear" class="btn-secundario">🎲 Sortear vetores</button>
+            </div>
+          </div>
+
+          <div id="g9-resultados" class="lab-resultados" aria-live="polite"></div>
+        </div>
+
+        <!-- ---------- EXERCÍCIOS ---------- -->
+        <div class="exercicios" data-licao="9">
+          <h3>Pratique</h3>
+          <p>Escolha uma alternativa em cada exercício. Acerte todos para liberar a lição 10.</p>
+
+          <ol class="lista-exercicios">
+            <!-- ===== BÁSICO ===== -->
+            <li class="exercicio" data-nivel="basico">
+              <p>Qual é a distância entre <strong>A(1, 2, 3)</strong> e <strong>B(3, 5, 9)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g9-b1" value="a"
+                  data-explicacao="As diferenças 2, 3 e 6 precisam ser elevadas ao quadrado antes de somar."> √11</label>
+                <label class="alternativa"><input type="radio" name="g9-b1" value="b"
+                  data-explicacao="Somou as diferenças 2 + 3 + 6 sem elevar ao quadrado nem tirar a raiz."> 11</label>
+                <label class="alternativa"><input type="radio" name="g9-b1" value="c"
+                  data-explicacao="Δx = 2, Δy = 3, Δz = 6. d = √(4 + 9 + 36) = √49 = 7."> 7</label>
+                <label class="alternativa"><input type="radio" name="g9-b1" value="d"
+                  data-explicacao="Usou só x e y, como no plano. No espaço a diferença em z também entra."> √13</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Qual é o módulo de <strong><span class="vet">v</span> = (2, −3, 6)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g9-b2" value="a"
+                  data-explicacao="Somou as componentes 2 − 3 + 6. O módulo usa os quadrados delas."> 5</label>
+                <label class="alternativa"><input type="radio" name="g9-b2" value="b"
+                  data-explicacao="|v| = √(2² + (−3)² + 6²) = √(4 + 9 + 36) = √49 = 7."> 7</label>
+                <label class="alternativa"><input type="radio" name="g9-b2" value="c"
+                  data-explicacao="Esse é o quadrado do módulo: faltou tirar a raiz."> 49</label>
+                <label class="alternativa"><input type="radio" name="g9-b2" value="d"
+                  data-explicacao="(−3)² é 9, não −9: o quadrado de um número negativo é positivo."> √31</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Dados <strong>A(2, −1, 4)</strong> e <strong>B(5, 3, 1)</strong>, qual é o vetor <strong><span class="vet">AB</span></strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g9-b3" value="a"
+                  data-explicacao="Isso é A − B, o vetor de B até A. O vetor AB é ponto final menos ponto inicial."> (−3, −4, 3)</label>
+                <label class="alternativa"><input type="radio" name="g9-b3" value="b"
+                  data-explicacao="Somou os pontos em vez de subtrair."> (7, 2, 5)</label>
+                <label class="alternativa"><input type="radio" name="g9-b3" value="c"
+                  data-explicacao="Erro de sinal em y: 3 − (−1) não é 3 − 1."> (3, 2, −3)</label>
+                <label class="alternativa"><input type="radio" name="g9-b3" value="d"
+                  data-explicacao="AB = B − A = (5 − 2, 3 − (−1), 1 − 4) = (3, 4, −3)."> (3, 4, −3)</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Quanto vale <strong><span class="vet">u</span> · <span class="vet">v</span></strong> para <span class="vet">u</span> = (1, 2, 3) e <span class="vet">v</span> = (4, −5, 6)?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g9-b4" value="a"
+                  data-explicacao="u · v = 1·4 + 2·(−5) + 3·6 = 4 − 10 + 18 = 12."> 12</label>
+                <label class="alternativa"><input type="radio" name="g9-b4" value="b"
+                  data-explicacao="O sinal de −5 foi perdido: 2·(−5) é −10, não +10."> 32</label>
+                <label class="alternativa"><input type="radio" name="g9-b4" value="c"
+                  data-explicacao="Multiplicou as componentes, mas parou antes de somar. O produto escalar é um número, não um vetor."> (4, −10, 18)</label>
+                <label class="alternativa"><input type="radio" name="g9-b4" value="d"
+                  data-explicacao="Somou os vetores, (5, −3, 9), e depois as componentes. O produto escalar multiplica componente por componente."> 11</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Onde está o ponto <strong>P(3, 0, −2)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g9-b5" value="a"
+                  data-explicacao="No plano xy a coordenada z é zero. Aqui z = −2."> No plano xy</label>
+                <label class="alternativa"><input type="radio" name="g9-b5" value="b"
+                  data-explicacao="No plano yz a coordenada x é zero. Aqui x = 3."> No plano yz</label>
+                <label class="alternativa"><input type="radio" name="g9-b5" value="c"
+                  data-explicacao="A coordenada nula é y, e o plano y = 0 é o plano xz."> No plano xz</label>
+                <label class="alternativa"><input type="radio" name="g9-b5" value="d"
+                  data-explicacao="Sobre um eixo, duas coordenadas seriam zero. Aqui só uma é."> Sobre o eixo y</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Qual é o ponto médio de <strong>A(2, 4, −6)</strong> e <strong>B(0, 8, 2)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g9-b6" value="a"
+                  data-explicacao="Somou as coordenadas, mas faltou dividir por 2."> (2, 12, −4)</label>
+                <label class="alternativa"><input type="radio" name="g9-b6" value="b"
+                  data-explicacao="M = ((2 + 0)/2, (4 + 8)/2, (−6 + 2)/2) = (1, 6, −2)."> (1, 6, −2)</label>
+                <label class="alternativa"><input type="radio" name="g9-b6" value="c"
+                  data-explicacao="Essa é a metade de B − A. O ponto médio é a média das coordenadas."> (−1, 2, 4)</label>
+                <label class="alternativa"><input type="radio" name="g9-b6" value="d"
+                  data-explicacao="Erro em z: −6 + 2 = −4, e ainda é preciso dividir por 2."> (1, 6, −4)</label>
+              </div>
+            </li>
+
+            <!-- ===== INTERMEDIÁRIO ===== -->
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Para que valor de k os vetores <strong><span class="vet">u</span> = (2, k, 1)</strong> e <strong><span class="vet">v</span> = (3, −1, 4)</strong> são ortogonais?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g9-i1" value="a"
+                  data-explicacao="Com k = 0, u · v = 6 + 0 + 4 = 10, que não é zero."> k = 0</label>
+                <label class="alternativa"><input type="radio" name="g9-i1" value="b"
+                  data-explicacao="Erro de sinal: com k = −10, u · v = 6 + 10 + 4 = 20."> k = −10</label>
+                <label class="alternativa"><input type="radio" name="g9-i1" value="c"
+                  data-explicacao="Ortogonais ⇔ u · v = 0: 2·3 + k·(−1) + 1·4 = 10 − k = 0 ⇒ k = 10."> k = 10</label>
+                <label class="alternativa"><input type="radio" name="g9-i1" value="d"
+                  data-explicacao="Com k = 2, u · v = 6 − 2 + 4 = 8, que não é zero."> k = 2</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é o ângulo entre <strong><span class="vet">u</span> = (1, 0, 1)</strong> e <strong><span class="vet">v</span> = (0, 1, 1)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g9-i2" value="a"
+                  data-explicacao="90° exigiria u · v = 0, mas u · v = 1."> 90°</label>
+                <label class="alternativa"><input type="radio" name="g9-i2" value="b"
+                  data-explicacao="u · v = 0 + 0 + 1 = 1 e |u| = |v| = √2. cos θ = 1/(√2 · √2) = 1/2 ⇒ θ = 60°."> 60°</label>
+                <label class="alternativa"><input type="radio" name="g9-i2" value="c"
+                  data-explicacao="Dividiu por um só dos módulos, √2. O denominador é o produto |u|·|v| = 2."> 45°</label>
+                <label class="alternativa"><input type="radio" name="g9-i2" value="d"
+                  data-explicacao="cos 30° = √3/2 ≈ 0,87, que não corresponde a u · v / (|u|·|v|)."> 30°</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é o vetor unitário na direção e sentido de <strong><span class="vet">v</span> = (2, −1, 2)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g9-i3" value="a"
+                  data-explicacao="Dividiu por |v|² = 9. O unitário divide pelo módulo, não pelo quadrado dele."> (2/9, −1/9, 2/9)</label>
+                <label class="alternativa"><input type="radio" name="g9-i3" value="b"
+                  data-explicacao="Dividiu pela soma 2 + 1 + 2 = 5 dos valores absolutos. O módulo usa a raiz da soma dos quadrados."> (2/5, −1/5, 2/5)</label>
+                <label class="alternativa"><input type="radio" name="g9-i3" value="c"
+                  data-explicacao="Esse vetor tem o sentido oposto ao de v (todas as componentes trocaram de sinal)."> (−2/3, 1/3, −2/3)</label>
+                <label class="alternativa"><input type="radio" name="g9-i3" value="d"
+                  data-explicacao="|v| = √(4 + 1 + 4) = 3. Unitário = v/|v| = (2/3, −1/3, 2/3), que tem módulo √(4/9 + 1/9 + 4/9) = 1."> (2/3, −1/3, 2/3)</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Para que valores de m a distância entre <strong>A(1, m, 2)</strong> e <strong>B(3, 1, 1)</strong> é igual a 3?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g9-i4" value="a"
+                  data-explicacao="Esse valor serve, mas a equação do 2º grau tem mais uma solução."> Só m = 3</label>
+                <label class="alternativa"><input type="radio" name="g9-i4" value="b"
+                  data-explicacao="d² = 2² + (1 − m)² + (−1)² = 9 ⇒ (1 − m)² = 4 ⇒ 1 − m = ±2 ⇒ m = −1 ou m = 3."> m = −1 ou m = 3</label>
+                <label class="alternativa"><input type="radio" name="g9-i4" value="c"
+                  data-explicacao="Erro de sinal ao isolar m em 1 − m = ±2."> m = 1 ou m = −3</label>
+                <label class="alternativa"><input type="radio" name="g9-i4" value="d"
+                  data-explicacao="Igualando o quadrado da distância a 9, a equação em m tem solução."> Nenhum valor</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>O vetor <strong><span class="vet">v</span> = (2, 3, 6)</strong> forma o ângulo γ com o eixo z. Quanto vale cos γ?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g9-i5" value="a"
+                  data-explicacao="6 é a componente z; ainda falta dividir pelo módulo de v. Um cosseno nunca passa de 1."> 6</label>
+                <label class="alternativa"><input type="radio" name="g9-i5" value="b"
+                  data-explicacao="Dividiu por |v|² = 49. O cosseno diretor divide pelo módulo."> 6/49</label>
+                <label class="alternativa"><input type="radio" name="g9-i5" value="c"
+                  data-explicacao="|v| = √(4 + 9 + 36) = 7. cos γ = z/|v| = 6/7."> 6/7</label>
+                <label class="alternativa"><input type="radio" name="g9-i5" value="d"
+                  data-explicacao="Esse é cos α, o ângulo com o eixo x. Para o eixo z use a componente z."> 2/7</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>O triângulo de vértices <strong>A(1, 1, 1)</strong>, <strong>B(2, 3, 3)</strong> e <strong>C(3, 2, −1)</strong> é retângulo em qual vértice?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g9-i6" value="a"
+                  data-explicacao="AB = (1, 2, 2) e AC = (2, 1, −2). AB · AC = 2 + 2 − 4 = 0: o ângulo em A é reto. (E |AB| = |AC| = 3: é também isósceles.)"> Em A</label>
+                <label class="alternativa"><input type="radio" name="g9-i6" value="b"
+                  data-explicacao="BA = (−1, −2, −2) e BC = (1, −1, −4). BA · BC = −1 + 2 + 8 = 9, que não é zero."> Em B</label>
+                <label class="alternativa"><input type="radio" name="g9-i6" value="c"
+                  data-explicacao="CA = (−2, −1, 2) e CB = (−1, 1, 4). CA · CB = 2 − 1 + 8 = 9, que não é zero."> Em C</label>
+                <label class="alternativa"><input type="radio" name="g9-i6" value="d"
+                  data-explicacao="Teste o produto escalar dos dois lados que saem de cada vértice: um deles dá zero."> Não é retângulo</label>
+              </div>
+            </li>
+
+            <!-- ===== AVANÇADO ===== -->
+            <li class="exercicio" data-nivel="avancado">
+              <p>Um vetor forma <strong>60°</strong> com o eixo x, <strong>60°</strong> com o eixo y e um ângulo <strong>agudo</strong> γ com o eixo z. Quanto vale γ?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g9-a1" value="a"
+                  data-explicacao="cos²α + cos²β + cos²γ = 1 ⇒ 1/4 + 1/4 + cos²γ = 1 ⇒ cos²γ = 1/2 ⇒ cos γ = √2/2 (agudo) ⇒ γ = 45°."> 45°</label>
+                <label class="alternativa"><input type="radio" name="g9-a1" value="b"
+                  data-explicacao="Com γ = 60°, a soma dos cossenos ao quadrado seria 3/4, e ela precisa dar 1."> 60°</label>
+                <label class="alternativa"><input type="radio" name="g9-a1" value="c"
+                  data-explicacao="cos γ = −√2/2 também satisfaz a equação, mas dá um ângulo obtuso, e o enunciado pede agudo."> 135°</label>
+                <label class="alternativa"><input type="radio" name="g9-a1" value="d"
+                  data-explicacao="Com γ = 90°, cos γ = 0 e a soma dos cossenos ao quadrado seria só 1/2."> 90°</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Qual é o comprimento da projeção de <strong><span class="vet">u</span> = (4, 1, 3)</strong> sobre a direção de <strong><span class="vet">v</span> = (1, 2, 2)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g9-a2" value="a"
+                  data-explicacao="Esse é o produto escalar. Para virar comprimento ao longo de v, falta dividir pelo módulo de v."> 12</label>
+                <label class="alternativa"><input type="radio" name="g9-a2" value="b"
+                  data-explicacao="Dividiu por |v|² = 9. Esse número é o fator que multiplica v no vetor projeção, não o comprimento."> 4/3</label>
+                <label class="alternativa"><input type="radio" name="g9-a2" value="c"
+                  data-explicacao="Dividiu pelo módulo de u, √26. A projeção sobre v divide pelo módulo de v."> 12/√26</label>
+                <label class="alternativa"><input type="radio" name="g9-a2" value="d"
+                  data-explicacao="Comprimento = |u| · cos θ = (u · v)/|v| = (4 + 2 + 6)/3 = 12/3 = 4."> 4</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Qual ponto do <strong>eixo z</strong> está à mesma distância de <strong>A(1, 2, 3)</strong> e de <strong>B(−1, 0, 1)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g9-a3" value="a"
+                  data-explicacao="Usou só a média das cotas, (3 + 1)/2. As coordenadas x e y de A e B também entram na distância."> (0, 0, 2)</label>
+                <label class="alternativa"><input type="radio" name="g9-a3" value="b"
+                  data-explicacao="Esse é o ponto médio de AB. Ele é equidistante, mas não está no eixo z, porque y = 1."> (0, 1, 2)</label>
+                <label class="alternativa"><input type="radio" name="g9-a3" value="c"
+                  data-explicacao="P = (0, 0, t). 1 + 4 + (3 − t)² = 1 + 0 + (1 − t)² ⇒ 14 − 6t = 2 − 2t ⇒ t = 3. Conferindo: d(P, A) = d(P, B) = √5."> (0, 0, 3)</label>
+                <label class="alternativa"><input type="radio" name="g9-a3" value="d"
+                  data-explicacao="Erro de sinal ao isolar t. Com esse ponto, d(P, A) = √41 e d(P, B) = √17."> (0, 0, −3)</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Qual vetor tem <strong>módulo 6</strong>, a mesma direção de <strong><span class="vet">v</span> = (1, −2, 2)</strong> e <strong>sentido oposto</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g9-a4" value="a"
+                  data-explicacao="Esse vetor tem módulo 6, mas o mesmo sentido de v."> (2, −4, 4)</label>
+                <label class="alternativa"><input type="radio" name="g9-a4" value="b"
+                  data-explicacao="|v| = 3, unitário (1/3, −2/3, 2/3). Multiplicando por −6: (−2, 4, −4), de módulo √(4 + 16 + 16) = 6."> (−2, 4, −4)</label>
+                <label class="alternativa"><input type="radio" name="g9-a4" value="c"
+                  data-explicacao="Multiplicou v por −6 sem dividir pelo módulo antes: o resultado tem módulo 18."> (−6, 12, −12)</label>
+                <label class="alternativa"><input type="radio" name="g9-a4" value="d"
+                  data-explicacao="Esse é o unitário com sentido oposto, de módulo 1. Ainda falta multiplicar pelo tamanho pedido."> (−1/3, 2/3, −2/3)</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Qual vetor <strong><span class="vet">w</span> = (1, a, b)</strong> é ortogonal a <strong>(1, 1, 0)</strong> e a <strong>(0, 1, 1)</strong> ao mesmo tempo?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g9-a5" value="a"
+                  data-explicacao="Com (1, 1, 0): 1 + 1 + 0 = 2, que não é zero."> (1, 1, −1)</label>
+                <label class="alternativa"><input type="radio" name="g9-a5" value="b"
+                  data-explicacao="É ortogonal a (1, 1, 0), mas com (0, 1, 1): −1 − 1 = −2."> (1, −1, −1)</label>
+                <label class="alternativa"><input type="radio" name="g9-a5" value="c"
+                  data-explicacao="Com (1, 1, 0): 1 + 0 + 0 = 1, que não é zero."> (1, 0, 0)</label>
+                <label class="alternativa"><input type="radio" name="g9-a5" value="d"
+                  data-explicacao="w · (1, 1, 0) = 1 + a = 0 ⇒ a = −1. w · (0, 1, 1) = a + b = 0 ⇒ b = 1. Logo w = (1, −1, 1)."> (1, −1, 1)</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Para quais valores de k o ângulo entre <strong><span class="vet">u</span> = (k, 1, 2)</strong> e <strong><span class="vet">v</span> = (1, k, −3)</strong> é <strong>obtuso</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g9-a6" value="a"
+                  data-explicacao="u · v = k + k − 6 = 2k − 6. Obtuso ⇔ u · v &lt; 0 ⇔ k &lt; 3. (u nunca é múltiplo de v, então o caso de 180° não aparece.)"> k &lt; 3</label>
+                <label class="alternativa"><input type="radio" name="g9-a6" value="b"
+                  data-explicacao="Produto escalar positivo dá ângulo agudo, não obtuso."> k &gt; 3</label>
+                <label class="alternativa"><input type="radio" name="g9-a6" value="c"
+                  data-explicacao="Nesse valor o produto escalar é zero: o ângulo é reto."> k = 3</label>
+                <label class="alternativa"><input type="radio" name="g9-a6" value="d"
+                  data-explicacao="Erro de sinal ao resolver a inequação 2k − 6 &lt; 0."> k &lt; −3</label>
+              </div>
+            </li>
+
+          </ol>
         </div>
       </section>
       <section id="ga-10" class="licao" data-trilha="ga" data-licao="10">
@@ -8125,6 +8554,7 @@
   <script src="js/utils/matematica.js"></script>
   <!-- 2. Componentes reaproveitáveis -->
   <script src="js/componentes/plano.js"></script>
+  <script src="js/componentes/espaco.js"></script>
   <script src="js/componentes/matriz.js"></script>
   <script src="js/componentes/exercicios.js"></script>
   <!-- 3. Aplicação: navegação, progresso e tema -->
@@ -8151,5 +8581,6 @@
   <script src="js/licoes/ga-06.js"></script>
   <script src="js/licoes/ga-07.js"></script>
   <script src="js/licoes/ga-08.js"></script>
+  <script src="js/licoes/ga-09.js"></script>
 </body>
 </html>
