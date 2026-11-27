@@ -9418,8 +9418,546 @@
       </section>
       <section id="ga-12" class="licao" data-trilha="ga" data-licao="12">
         <h2 class="licao-titulo">12. Aplicação com dados reais</h2>
+
+        <!-- ---------- TEORIA ---------- -->
         <div class="teoria">
-          <p class="em-construcao">🚧 Lição em construção. Vai tratar de: um problema real resolvido com Geometria Analítica, com dados de fonte oficial.</p>
+          <h3>O problema: qual a distância entre duas capitais?</h3>
+          <p>
+            O IBGE publica, para cada capital, a <strong>latitude</strong> e a <strong>longitude</strong> da sede do município e a
+            distância até Brasília em linha reta e pela estrada. Nesta lição vamos <strong>refazer essa conta</strong> com o que
+            aprendemos nas lições 9, 10 e 11: transformar cada cidade num vetor do espaço, usar o produto escalar para achar o
+            ângulo entre elas e o produto vetorial para achar o plano da rota mais curta.
+          </p>
+
+          <h3>Os dados</h3>
+          <div class="tabela-rolagem">
+            <table class="tabela">
+              <thead>
+                <tr><th>Capital</th><th>Latitude</th><th>Longitude</th><th>Até Brasília em linha reta (km)</th><th>Até Brasília pela estrada (km)</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Porto Velho (RO)</td><td>−08°44'57.75"</td><td>−63°54'38.25"</td><td>1 905,639</td><td>2 589</td></tr>
+                <tr><td>Rio Branco (AC)</td><td>−09°58'20.64"</td><td>−67°48'36.36"</td><td>2 252,224</td><td>3 123</td></tr>
+                <tr><td>Manaus (AM)</td><td>−03°05'31.76"</td><td>−60°03'37.58"</td><td>1 934,925</td><td>3 490</td></tr>
+                <tr><td>Boa Vista (RR)</td><td>+02°49'16.26"</td><td>−60°40'22.74"</td><td>2 491,911</td><td>4 275</td></tr>
+                <tr><td>Belém (PA)</td><td>−01°27'19.38"</td><td>−48°30'18.52"</td><td>1 586,200</td><td>2 120</td></tr>
+                <tr><td>Macapá (AP)</td><td>+00°02'26.67"</td><td>−51°03'26.55"</td><td>1 784,176</td><td>—</td></tr>
+                <tr><td>Palmas (TO)</td><td>−10°11'04.20"</td><td>−48°20'01.32"</td><td>621,229</td><td>973</td></tr>
+                <tr><td>São Luís (MA)</td><td>−02°31'38.62"</td><td>−44°18'21.93"</td><td>1 518,566</td><td>2 157</td></tr>
+                <tr><td>Teresina (PI)</td><td>−05°05'27.99"</td><td>−42°48'41.81"</td><td>1 307,451</td><td>1 789</td></tr>
+                <tr><td>Fortaleza (CE)</td><td>−03°43'31.47"</td><td>−38°31'25.01"</td><td>1 683,753</td><td>2 285</td></tr>
+                <tr><td>Natal (RN)</td><td>−05°49'48.45"</td><td>−35°12'46.14"</td><td>1 770,374</td><td>2 507</td></tr>
+                <tr><td>João Pessoa (PB)</td><td>−07°10'07.50"</td><td>−34°51'49.58"</td><td>1 711,523</td><td>2 230</td></tr>
+                <tr><td>Recife (PE)</td><td>−08°03'47.39"</td><td>−34°52'16.10"</td><td>1 656,072</td><td>2 220</td></tr>
+                <tr><td>Maceió (AL)</td><td>−09°39'35.65"*</td><td>−35°44'26.20"</td><td>1 484,261</td><td>2 013</td></tr>
+                <tr><td>Aracaju (SE)</td><td>−10°56'39.91"</td><td>−37°04'08.50"</td><td>1 290,012</td><td>1 748</td></tr>
+                <tr><td>Salvador (BA)</td><td>−12°58'27.12"</td><td>−38°30'44.64"</td><td>1 059,810</td><td>1 531</td></tr>
+                <tr><td>Belo Horizonte (MG)</td><td>−19°55'25.32"</td><td>−43°56'10.68"</td><td>622,103</td><td>716</td></tr>
+                <tr><td>Vitória (ES)</td><td>−20°19'16.32"</td><td>−40°20'21.48"</td><td>945,390</td><td>1 238</td></tr>
+                <tr><td>Rio de Janeiro (RJ)</td><td>−22°54'39.96"</td><td>−43°12'20.52"</td><td>930,628</td><td>1 148</td></tr>
+                <tr><td>São Paulo (SP)</td><td>−23°32'51.78"</td><td>−46°38'15.52"</td><td>869,665</td><td>1 015</td></tr>
+                <tr><td>Curitiba (PR)</td><td>−25°24'47.87"</td><td>−49°16'04.47"</td><td>1 075,415</td><td>1 366</td></tr>
+                <tr><td>Florianópolis (SC)</td><td>−27°35'51.00"</td><td>−48°32'58.92"</td><td>1 309,739</td><td>1 673</td></tr>
+                <tr><td>Porto Alegre (RS)</td><td>−30°01'41.43"</td><td>−51°13'42.91"</td><td>1 613,540</td><td>2 027</td></tr>
+                <tr><td>Campo Grande (MS)</td><td>−20°27'45.36"</td><td>−54°36'30.96"</td><td>877,810</td><td>1 134</td></tr>
+                <tr><td>Cuiabá (MT)</td><td>−15°34'03.48"</td><td>−56°04'30.01"</td><td>875,808</td><td>1 133</td></tr>
+                <tr><td>Goiânia (GO)</td><td>−16°40'48.82"</td><td>−49°15'23.23"</td><td>174,954</td><td>209</td></tr>
+                <tr><td>Brasília (DF)</td><td>−15°47'03.48"</td><td>−47°54'29.16"</td><td>—</td><td>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="fonte">
+            Fonte: IBGE, Anuário Estatístico do Brasil, Tabela 1.1.1.2 – Localização geográfica, altitude e distância a Brasília,
+            segundo os Municípios das Capitais – 2025 (Diretoria de Geociências). Coordenadas no datum SIRGAS2000; distâncias em linha
+            reta pelo modelo elipsoidal; distâncias rodoviárias do DNIT. Latitude e longitude negativas indicam Sul e Oeste. * Latitude de Maceió corrigida (veja abaixo).
+          </p>
+          <p>
+            <strong>Um erro na fonte:</strong> na tabela original, a latitude de Maceió aparece como −90°39'35.65". Isso é
+            impossível: a latitude vai de −90° (Polo Sul) a +90° (Polo Norte), e −90° já é o próprio Polo Sul. O valor certo é
+            <strong>−09°39'35.65"</strong> (faltou o zero, e os dígitos foram trocados). Com a correção, a distância calculada até
+            Brasília bate com a do próprio IBGE (1 484 km). Conferir os dados é parte do trabalho com dados reais.
+          </p>
+
+          <h3>Passo 1: graus, minutos e segundos para decimal</h3>
+          <p>Um grau tem 60 minutos, e um minuto tem 60 segundos. Então</p>
+          <div class="formula">valor decimal = graus + minutos/60 + segundos/3600</div>
+          <p>
+            mantendo o sinal. Brasília: −(15 + 47/60 + 3,48/3600) = <strong>−15,7843°</strong> de latitude e
+            −(47 + 54/60 + 29,16/3600) = <strong>−47,9081°</strong> de longitude.
+          </p>
+
+          <h3>Passo 2: cada cidade vira um vetor</h3>
+          <p>
+            Tratamos a Terra como uma esfera de raio <strong>R = 6 371 km</strong> (o raio médio) com centro na origem. O eixo z
+            passa pelos polos (z positivo no Norte), o plano xy é o plano do Equador, e o eixo x aponta para a longitude 0°
+            (Greenwich). Uma cidade de latitude φ e longitude λ fica no ponto
+          </p>
+          <div class="formula">P = R·(cos φ · cos λ, &nbsp;cos φ · sen λ, &nbsp;sen φ)</div>
+          <p>
+            <strong>De onde vem:</strong> sen φ é a "altura" em relação ao Equador; cos φ é a distância até o eixo dos polos, e essa
+            distância se reparte entre x e y conforme a longitude, como as coordenadas polares da trilha de Álgebra Linear. O vetor
+            entre parênteses, <span class="vet">û</span>, é <strong>unitário</strong>: cos²φ·cos²λ + cos²φ·sen²λ + sen²φ = 1.
+          </p>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              Brasília: <span class="vet">û</span> ≈ (0,6450; −0,7141; −0,2720), então P ≈ (4 110; −4 549; −1 733) km.
+              São Paulo (−23,5477°; −46,6376°): <span class="vet">v̂</span> ≈ (0,6294; −0,6665; −0,3995).
+            </p>
+          </div>
+
+          <h3>Passo 3: o ângulo central pelo produto escalar</h3>
+          <p>
+            O ângulo θ entre os vetores das duas cidades, visto do centro da Terra, sai do produto escalar (lição 9). Como os vetores
+            são unitários, nem é preciso dividir pelos módulos:
+          </p>
+          <div class="formula">cos θ = <span class="vet">û</span> · <span class="vet">v̂</span></div>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              Brasília–São Paulo: <span class="vet">û</span> · <span class="vet">v̂</span> ≈ 0,6450·0,6294 + (−0,7141)·(−0,6665) + (−0,2720)·(−0,3995)
+              ≈ 0,9906, então θ ≈ 7,855° ≈ 0,13709 rad.
+            </p>
+          </div>
+
+          <h3>Passo 4: arco e corda</h3>
+          <p>Com o ângulo central, há duas distâncias diferentes:</p>
+          <ul>
+            <li>
+              <strong>Pela superfície (arco):</strong> s = R·θ, com θ em <strong>radianos</strong>. É o caminho de um avião, a
+              "linha reta" que o IBGE mede sobre o globo.
+            </li>
+            <li>
+              <strong>Pelo túnel (corda):</strong> c = |P − Q| = 2R·sen(θ/2), o segmento reto que atravessa a Terra.
+            </li>
+          </ul>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              Brasília–São Paulo: s = 6 371 · 0,13709 ≈ <strong>873,4 km</strong> e c ≈ 872,7 km. O IBGE informa 869,665 km:
+              nossa conta difere só <strong>0,43%</strong>. A diferença vem de a Terra não ser uma esfera perfeita (ela é
+              achatada nos polos, e o IBGE usa um elipsoide). Para as 26 capitais, o erro do modelo esférico fica abaixo de 0,6%.
+            </p>
+          </div>
+
+          <h3>Passo 5: o plano da rota</h3>
+          <p>
+            A rota mais curta entre duas cidades sobre a esfera é um arco de <strong>círculo máximo</strong>: a interseção da esfera
+            com o plano que passa pelo <strong>centro da Terra</strong> e pelas duas cidades. A normal desse plano é o produto
+            vetorial (lição 10), e o plano passa pela origem (lição 11):
+          </p>
+          <div class="formula"><span class="vet">n</span> = <span class="vet">û</span> × <span class="vet">v̂</span> &nbsp;&nbsp;&nbsp; plano: n₁x + n₂y + n₃z = 0 &nbsp;&nbsp;&nbsp; |<span class="vet">n</span>| = sen θ</div>
+          <p>
+            Com ele dá para saber se uma terceira cidade C fica "no caminho": a distância de C ao plano é
+            R·|<span class="vet">n</span> · <span class="vet">ĉ</span>| / |<span class="vet">n</span>|. Por exemplo, Goiânia fica a cerca de
+            <strong>157 km</strong> do plano da rota Brasília–São Paulo.
+          </p>
+          <p>
+            <strong>Curiosidade:</strong> andar sempre na mesma latitude (seguindo um paralelo) <em>não</em> é o caminho mais curto,
+            porque um paralelo (fora o Equador) não passa pelo centro da Terra. É por isso que voos longos parecem fazer uma "curva"
+            no mapa plano.
+          </p>
+
+          <h3>Linha reta × estrada</h3>
+          <p>
+            A razão entre a distância rodoviária e a distância em linha reta é o <strong>fator de rodeio</strong>. De Brasília a
+            Goiânia ele é 209/174,954 ≈ 1,19 (a estrada é só 19% mais longa); até Manaus, 3 490/1 934,925 ≈ 1,80, porque as
+            estradas contornam a floresta e os rios. Esse número é usado em planejamento de transporte e logística.
+          </p>
+        </div>
+
+        <!-- ---------- LABORATÓRIO ---------- -->
+        <div class="laboratorio">
+          <h3>Distâncias no globo</h3>
+          <p>
+            Escolha duas capitais (e, se quiser, uma terceira para ver se ela fica no caminho). O laboratório faz todos os passos com
+            os dados do IBGE e desenha os vetores, o arco da rota e a corda. <strong>Arraste o globo</strong> para girar.
+            Os eixos estão em <strong>milhares de km</strong>.
+          </p>
+
+          <div class="lab-area controles-largos">
+            <svg id="g12-espaco" class="plano-cartesiano espaco-3d" viewBox="-8 -8 16 16" tabindex="0"
+                 role="img" aria-label="Globo terrestre com as capitais brasileiras, os vetores das duas cidades escolhidas, o arco da rota e a corda. Arraste ou use as setas do teclado para girar."></svg>
+
+            <div class="lab-controles">
+              <label class="lab-campo lab-campo-a">
+                Cidade A
+                <select id="g12-cidade-a">
+                  <option value="14">Aracaju (SE)</option>
+                  <option value="4">Belém (PA)</option>
+                  <option value="16">Belo Horizonte (MG)</option>
+                  <option value="3">Boa Vista (RR)</option>
+                  <option value="26" selected>Brasília (DF)</option>
+                  <option value="23">Campo Grande (MS)</option>
+                  <option value="24">Cuiabá (MT)</option>
+                  <option value="20">Curitiba (PR)</option>
+                  <option value="21">Florianópolis (SC)</option>
+                  <option value="9">Fortaleza (CE)</option>
+                  <option value="25">Goiânia (GO)</option>
+                  <option value="11">João Pessoa (PB)</option>
+                  <option value="5">Macapá (AP)</option>
+                  <option value="13">Maceió (AL)</option>
+                  <option value="2">Manaus (AM)</option>
+                  <option value="10">Natal (RN)</option>
+                  <option value="6">Palmas (TO)</option>
+                  <option value="22">Porto Alegre (RS)</option>
+                  <option value="0">Porto Velho (RO)</option>
+                  <option value="12">Recife (PE)</option>
+                  <option value="1">Rio Branco (AC)</option>
+                  <option value="18">Rio de Janeiro (RJ)</option>
+                  <option value="15">Salvador (BA)</option>
+                  <option value="7">São Luís (MA)</option>
+                  <option value="19">São Paulo (SP)</option>
+                  <option value="8">Teresina (PI)</option>
+                  <option value="17">Vitória (ES)</option>
+                </select>
+              </label>
+              <label class="lab-campo lab-campo-b">
+                Cidade B
+                <select id="g12-cidade-b">
+                  <option value="14">Aracaju (SE)</option>
+                  <option value="4">Belém (PA)</option>
+                  <option value="16">Belo Horizonte (MG)</option>
+                  <option value="3">Boa Vista (RR)</option>
+                  <option value="26">Brasília (DF)</option>
+                  <option value="23">Campo Grande (MS)</option>
+                  <option value="24">Cuiabá (MT)</option>
+                  <option value="20">Curitiba (PR)</option>
+                  <option value="21">Florianópolis (SC)</option>
+                  <option value="9">Fortaleza (CE)</option>
+                  <option value="25">Goiânia (GO)</option>
+                  <option value="11">João Pessoa (PB)</option>
+                  <option value="5">Macapá (AP)</option>
+                  <option value="13">Maceió (AL)</option>
+                  <option value="2">Manaus (AM)</option>
+                  <option value="10">Natal (RN)</option>
+                  <option value="6">Palmas (TO)</option>
+                  <option value="22">Porto Alegre (RS)</option>
+                  <option value="0">Porto Velho (RO)</option>
+                  <option value="12">Recife (PE)</option>
+                  <option value="1">Rio Branco (AC)</option>
+                  <option value="18">Rio de Janeiro (RJ)</option>
+                  <option value="15">Salvador (BA)</option>
+                  <option value="7">São Luís (MA)</option>
+                  <option value="19" selected>São Paulo (SP)</option>
+                  <option value="8">Teresina (PI)</option>
+                  <option value="17">Vitória (ES)</option>
+                </select>
+              </label>
+              <label class="lab-campo">
+                Cidade C (está no caminho?)
+                <select id="g12-cidade-c">
+                  <option value="">Nenhuma</option>
+                  <option value="14">Aracaju (SE)</option>
+                  <option value="4">Belém (PA)</option>
+                  <option value="16">Belo Horizonte (MG)</option>
+                  <option value="3">Boa Vista (RR)</option>
+                  <option value="26">Brasília (DF)</option>
+                  <option value="23">Campo Grande (MS)</option>
+                  <option value="24">Cuiabá (MT)</option>
+                  <option value="20">Curitiba (PR)</option>
+                  <option value="21">Florianópolis (SC)</option>
+                  <option value="9">Fortaleza (CE)</option>
+                  <option value="25" selected>Goiânia (GO)</option>
+                  <option value="11">João Pessoa (PB)</option>
+                  <option value="5">Macapá (AP)</option>
+                  <option value="13">Maceió (AL)</option>
+                  <option value="2">Manaus (AM)</option>
+                  <option value="10">Natal (RN)</option>
+                  <option value="6">Palmas (TO)</option>
+                  <option value="22">Porto Alegre (RS)</option>
+                  <option value="0">Porto Velho (RO)</option>
+                  <option value="12">Recife (PE)</option>
+                  <option value="1">Rio Branco (AC)</option>
+                  <option value="18">Rio de Janeiro (RJ)</option>
+                  <option value="15">Salvador (BA)</option>
+                  <option value="7">São Luís (MA)</option>
+                  <option value="19">São Paulo (SP)</option>
+                  <option value="8">Teresina (PI)</option>
+                  <option value="17">Vitória (ES)</option>
+                </select>
+              </label>
+
+              <label class="lab-campo">
+                <span>Girar o globo: <output id="g12-giro-valor" for="g12-giro">0°</output></span>
+                <input type="range" id="g12-giro" min="-180" max="180" step="5" value="0">
+              </label>
+              <button type="button" id="g12-vista" class="btn-secundario">Voltar para o Brasil</button>
+
+              <label class="lab-check"><input type="checkbox" id="g12-corda" checked> Mostrar a corda (o "túnel")</label>
+              <label class="lab-check"><input type="checkbox" id="g12-circulo"> Mostrar o círculo máximo inteiro</label>
+              <label class="lab-check"><input type="checkbox" id="g12-todas" checked> Mostrar todas as capitais</label>
+
+              <button type="button" id="g12-trocar" class="btn-secundario">⇄ Trocar A e B</button>
+              <p class="lab-dica">Esfera de raio 6 371 km. Quando uma das cidades é Brasília, o resultado é comparado com a distância oficial do IBGE.</p>
+            </div>
+          </div>
+
+          <div id="g12-resultados" class="lab-resultados" aria-live="polite"></div>
+        </div>
+
+        <!-- ---------- EXERCÍCIOS ---------- -->
+        <div class="exercicios" data-licao="12">
+          <h3>Pratique</h3>
+          <p>Escolha uma alternativa em cada exercício. Acerte todos para concluir a trilha. Use R = 6 371 km.</p>
+
+          <ol class="lista-exercicios">
+            <!-- ===== BÁSICO ===== -->
+            <li class="exercicio" data-nivel="basico">
+              <p>Quanto vale <strong>30°30'00"</strong> em graus decimais?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g12-b1" value="a"
+                  data-explicacao="Leu os minutos como se fossem casas decimais. Um grau tem 60 minutos, não 100."> 30,30°</label>
+                <label class="alternativa"><input type="radio" name="g12-b1" value="b"
+                  data-explicacao="Dividiu os minutos por 600. Cada minuto é 1/60 de grau."> 30,05°</label>
+                <label class="alternativa"><input type="radio" name="g12-b1" value="c"
+                  data-explicacao="30 + 30/60 + 0/3600 = 30 + 0,5 = 30,5°."> 30,5°</label>
+                <label class="alternativa"><input type="radio" name="g12-b1" value="d"
+                  data-explicacao="Dividiu os minutos por 36 (confusão com 3600). Os minutos se dividem por 60."> 30,83°</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Na esfera de raio R com centro na origem, qual é o ponto de latitude <strong>0°</strong> e longitude <strong>0°</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g12-b2" value="a"
+                  data-explicacao="R·(cos 0·cos 0, cos 0·sen 0, sen 0) = R·(1, 0, 0) = (R, 0, 0): no Equador, em Greenwich."> (R, 0, 0)</label>
+                <label class="alternativa"><input type="radio" name="g12-b2" value="b"
+                  data-explicacao="(0, 0, R) é o Polo Norte, com latitude +90°."> (0, 0, R)</label>
+                <label class="alternativa"><input type="radio" name="g12-b2" value="c"
+                  data-explicacao="(0, R, 0) está no Equador, mas na longitude 90° Leste."> (0, R, 0)</label>
+                <label class="alternativa"><input type="radio" name="g12-b2" value="d"
+                  data-explicacao="A origem é o centro da Terra, não um ponto da superfície."> (0, 0, 0)</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Duas cidades estão no Equador, nas longitudes 0° e 60°. Qual é a distância entre elas <strong>pela superfície</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g12-b3" value="a"
+                  data-explicacao="Multiplicou o raio pelo ângulo em graus. A fórmula s = R·θ exige θ em radianos."> 382 260 km</label>
+                <label class="alternativa"><input type="radio" name="g12-b3" value="b"
+                  data-explicacao="Essa é a corda (o túnel): com θ = 60° o triângulo centro–cidade–cidade é equilátero, e a corda mede R."> 6 371 km</label>
+                <label class="alternativa"><input type="radio" name="g12-b3" value="c"
+                  data-explicacao="Usou π/6 (30°) em vez de π/3 (60°)."> 3 336 km</label>
+                <label class="alternativa"><input type="radio" name="g12-b3" value="d"
+                  data-explicacao="θ = 60° = π/3 rad. s = R·θ = 6 371 · π/3 ≈ 6 672 km."> ≈ 6 672 km</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Se os vetores unitários de duas cidades são <strong>perpendiculares</strong>, qual é a distância pela superfície entre elas?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g12-b4" value="a"
+                  data-explicacao="Produto escalar zero quer dizer ângulo de 90°, não distância zero."> 0 km</label>
+                <label class="alternativa"><input type="radio" name="g12-b4" value="b"
+                  data-explicacao="û · v̂ = 0 ⇒ θ = 90° = π/2 rad. s = 6 371 · π/2 ≈ 10 008 km (um quarto da volta na Terra)."> ≈ 10 008 km</label>
+                <label class="alternativa"><input type="radio" name="g12-b4" value="c"
+                  data-explicacao="Essa é a corda R·√2 ≈ 9 010 km, o túnel. Pela superfície o caminho é um pouco mais longo."> ≈ 9 010 km</label>
+                <label class="alternativa"><input type="radio" name="g12-b4" value="d"
+                  data-explicacao="Essa é meia volta (θ = 180°), o caso de cidades opostas no globo."> ≈ 20 015 km</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>De Brasília a Goiânia são 174,954 km em linha reta e 209 km pela estrada. Qual é o fator de rodeio?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g12-b5" value="a"
+                  data-explicacao="Dividiu ao contrário. O fator é estrada ÷ linha reta, e por isso nunca é menor que 1."> ≈ 0,84</label>
+                <label class="alternativa"><input type="radio" name="g12-b5" value="b"
+                  data-explicacao="Essa é a diferença em km. O fator é uma razão (sem unidade)."> 34 km</label>
+                <label class="alternativa"><input type="radio" name="g12-b5" value="c"
+                  data-explicacao="209 / 174,954 ≈ 1,19: a estrada é cerca de 19% mais longa que a linha reta."> ≈ 1,19</label>
+                <label class="alternativa"><input type="radio" name="g12-b5" value="d"
+                  data-explicacao="Somou as duas distâncias e dividiu por 200. O fator é estrada ÷ linha reta."> ≈ 1,92</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Qual é a coordenada <strong>z</strong> de uma cidade no Hemisfério Sul?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g12-b6" value="a"
+                  data-explicacao="z = R·sen φ, e no Sul a latitude φ é negativa: sen φ &lt; 0, então z &lt; 0."> Negativa</label>
+                <label class="alternativa"><input type="radio" name="g12-b6" value="b"
+                  data-explicacao="z positivo corresponde ao Hemisfério Norte (latitude positiva)."> Positiva</label>
+                <label class="alternativa"><input type="radio" name="g12-b6" value="c"
+                  data-explicacao="z = 0 só no Equador (latitude 0°)."> Zero</label>
+                <label class="alternativa"><input type="radio" name="g12-b6" value="d"
+                  data-explicacao="z depende só da latitude: z = R·sen φ. A longitude muda x e y."> Depende da longitude</label>
+              </div>
+            </li>
+
+            <!-- ===== INTERMEDIÁRIO ===== -->
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Duas cidades estão no mesmo meridiano, nas latitudes <strong>−15°</strong> e <strong>−30°</strong>. Qual é a distância pela superfície?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g12-i1" value="a"
+                  data-explicacao="Somou as latitudes (45°). No mesmo meridiano, o ângulo central é a DIFERENÇA: 15°."> ≈ 5 004 km</label>
+                <label class="alternativa"><input type="radio" name="g12-i1" value="b"
+                  data-explicacao="θ = 30° − 15° = 15° = π/12 rad. s = 6 371 · π/12 ≈ 1 668 km."> ≈ 1 668 km</label>
+                <label class="alternativa"><input type="radio" name="g12-i1" value="c"
+                  data-explicacao="Essa é a corda 2R·sen(7,5°) ≈ 1 663 km, o túnel. Pela superfície é um pouco mais."> ≈ 1 663 km</label>
+                <label class="alternativa"><input type="radio" name="g12-i1" value="d"
+                  data-explicacao="Usou o ângulo em graus na fórmula s = R·θ."> 95 565 km</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é a <strong>corda</strong> (distância pelo túnel) entre duas cidades com ângulo central de <strong>60°</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g12-i2" value="a"
+                  data-explicacao="Esse é o arco pela superfície, R·π/3. A corda é sempre menor que o arco."> ≈ 6 672 km</label>
+                <label class="alternativa"><input type="radio" name="g12-i2" value="b"
+                  data-explicacao="Calculou R·sen 60°. A fórmula da corda usa o seno da METADE do ângulo, multiplicado por 2R."> ≈ 5 517 km</label>
+                <label class="alternativa"><input type="radio" name="g12-i2" value="c"
+                  data-explicacao="c = 2R·sen(30°) = 2R · 1/2 = R = 6 371 km. O triângulo centro–A–B é equilátero."> 6 371 km</label>
+                <label class="alternativa"><input type="radio" name="g12-i2" value="d"
+                  data-explicacao="Esqueceu o fator 2 da fórmula c = 2R·sen(θ/2)."> ≈ 3 186 km</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Para duas cidades, <strong><span class="vet">û</span> · <span class="vet">v̂</span> = 0,98</strong>. Qual é a distância pela superfície?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g12-i3" value="a"
+                  data-explicacao="θ = arccos 0,98 ≈ 0,2003 rad (≈ 11,48°). s = 6 371 · 0,2003 ≈ 1 276 km."> ≈ 1 276 km</label>
+                <label class="alternativa"><input type="radio" name="g12-i3" value="b"
+                  data-explicacao="Multiplicou R pelo cosseno. O produto escalar dá o cosseno do ângulo; é preciso achar o ângulo antes."> ≈ 6 244 km</label>
+                <label class="alternativa"><input type="radio" name="g12-i3" value="c"
+                  data-explicacao="Usou R·(1 − cos θ). A distância é R vezes o ÂNGULO em radianos."> ≈ 127 km</label>
+                <label class="alternativa"><input type="radio" name="g12-i3" value="d"
+                  data-explicacao="Usou o ângulo em graus (11,48) em vez de radianos."> ≈ 73 140 km</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é o vetor unitário <span class="vet">û</span> de um lugar de latitude <strong>−30°</strong> e longitude <strong>−60°</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g12-i4" value="a"
+                  data-explicacao="O sinal de y ficou errado: sen(−60°) é negativo."> (√3/4, 3/4, −1/2)</label>
+                <label class="alternativa"><input type="radio" name="g12-i4" value="b"
+                  data-explicacao="Trocou latitude e longitude nas fórmulas. A latitude é que dá z = sen φ."> (√3/4, −1/4, −√3/2)</label>
+                <label class="alternativa"><input type="radio" name="g12-i4" value="c"
+                  data-explicacao="Faltou multiplicar x e y por cos φ: esse vetor nem é unitário (módulo √(5/4))."> (1/2, −√3/2, −1/2)</label>
+                <label class="alternativa"><input type="radio" name="g12-i4" value="d"
+                  data-explicacao="(cos(−30°)·cos(−60°), cos(−30°)·sen(−60°), sen(−30°)) = (√3/2 · 1/2, √3/2 · (−√3/2), −1/2) = (√3/4, −3/4, −1/2)."> (√3/4, −3/4, −1/2)</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>De Brasília a Manaus são 1 934,925 km em linha reta e 3 490 km pela estrada. O que o fator de rodeio indica?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g12-i5" value="a"
+                  data-explicacao="Esse é o fator de Brasília a Goiânia. Para Manaus, faça 3 490 ÷ 1 934,925."> ≈ 1,19: a estrada é quase reta</label>
+                <label class="alternativa"><input type="radio" name="g12-i5" value="b"
+                  data-explicacao="3 490 / 1 934,925 ≈ 1,80: a estrada é 80% mais longa que a linha reta, porque contorna a floresta e os rios."> ≈ 1,80: a estrada é 80% mais longa</label>
+                <label class="alternativa"><input type="radio" name="g12-i5" value="c"
+                  data-explicacao="Dividiu ao contrário (linha reta ÷ estrada). O fator nunca é menor que 1."> ≈ 0,55: a estrada é mais curta</label>
+                <label class="alternativa"><input type="radio" name="g12-i5" value="d"
+                  data-explicacao="Essa é a diferença em km (3 490 − 1 934,925), não o fator."> ≈ 1 555: a estrada é 1 555 vezes mais longa</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>A rota mais curta entre duas cidades, sobre a esfera, está no plano que passa por:</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g12-i6" value="a"
+                  data-explicacao="Um paralelo só passa pelo centro da Terra no Equador. Fora dele, seguir a mesma latitude não é o caminho mais curto."> As duas cidades, paralelo ao Equador</label>
+                <label class="alternativa"><input type="radio" name="g12-i6" value="b"
+                  data-explicacao="Um plano tangente toca a esfera num ponto só; não contém as duas cidades."> Uma das cidades, tangente à Terra</label>
+                <label class="alternativa"><input type="radio" name="g12-i6" value="c"
+                  data-explicacao="É o círculo máximo: o plano pelo centro da Terra e pelas duas cidades, com normal û × v̂."> O centro da Terra e as duas cidades</label>
+                <label class="alternativa"><input type="radio" name="g12-i6" value="d"
+                  data-explicacao="O plano do Equador só contém a rota se as duas cidades estiverem no Equador."> Sempre o plano do Equador</label>
+              </div>
+            </li>
+
+            <!-- ===== AVANÇADO ===== -->
+            <li class="exercicio" data-nivel="avancado">
+              <p>Qual é o plano do círculo máximo que passa por P(latitude 0°, longitude 0°) e Q(latitude 0°, longitude 90°)?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g12-a1" value="a"
+                  data-explicacao="Esse plano contém P e Q, mas não passa pelo centro da Terra (0 + 0 ≠ 1)."> x + y = 1</label>
+                <label class="alternativa"><input type="radio" name="g12-a1" value="b"
+                  data-explicacao="û = (1, 0, 0), v̂ = (0, 1, 0), n = û × v̂ = (0, 0, 1). Plano pela origem: z = 0, o plano do Equador."> z = 0</label>
+                <label class="alternativa"><input type="radio" name="g12-a1" value="c"
+                  data-explicacao="O plano x = 0 não contém P = (R, 0, 0)."> x = 0</label>
+                <label class="alternativa"><input type="radio" name="g12-a1" value="d"
+                  data-explicacao="O plano y = 0 não contém Q = (0, R, 0)."> y = 0</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>O vetor <span class="vet">n</span> = <span class="vet">û</span> × <span class="vet">v̂</span> da rota A–B, já <strong>dividido pelo módulo</strong>, tem produto escalar 0,05 com o vetor unitário da cidade C. A que distância C fica do plano da rota?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g12-a2" value="a"
+                  data-explicacao="0,05 é a distância numa esfera de raio 1. Para a Terra, multiplique pelo raio."> 0,05 km</label>
+                <label class="alternativa"><input type="radio" name="g12-a2" value="b"
+                  data-explicacao="Dividiu o raio por 0,05 em vez de multiplicar."> 127 420 km</label>
+                <label class="alternativa"><input type="radio" name="g12-a2" value="c"
+                  data-explicacao="Usou metade do raio. A distância de C (a R do centro) ao plano é R · |n̂ · ĉ|."> ≈ 159 km</label>
+                <label class="alternativa"><input type="radio" name="g12-a2" value="d"
+                  data-explicacao="d = |n̂ · C| = R · |n̂ · ĉ| = 6 371 · 0,05 ≈ 319 km (lição 11, com o plano passando pela origem)."> ≈ 319 km</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Para duas cidades em lados opostos do globo, <span class="vet">û</span> · <span class="vet">v̂</span> = −1. Qual é a distância pela superfície e quantas rotas mais curtas existem?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g12-a3" value="a"
+                  data-explicacao="θ = 180° = π rad, s = π·R ≈ 20 015 km. Como û × v̂ = 0, o plano da rota não fica determinado: qualquer meridiano entre elas serve, então há infinitas rotas."> ≈ 20 015 km, e infinitas rotas</label>
+                <label class="alternativa"><input type="radio" name="g12-a3" value="b"
+                  data-explicacao="A distância está certa, mas com û × v̂ = 0 não existe um único plano: as rotas são infinitas."> ≈ 20 015 km, e uma só rota</label>
+                <label class="alternativa"><input type="radio" name="g12-a3" value="c"
+                  data-explicacao="12 742 km = 2R é a corda (o túnel pelo centro), não o caminho pela superfície."> 12 742 km, e uma só rota</label>
+                <label class="alternativa"><input type="radio" name="g12-a3" value="d"
+                  data-explicacao="12 742 km = 2R é a corda pelo centro. Pela superfície é meia volta."> 12 742 km, e infinitas rotas</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Para Brasília–Boa Vista, o ângulo central é cerca de <strong>0,39 rad</strong>. Quanto um túnel reto seria mais curto que o voo pela superfície?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g12-a4" value="a"
+                  data-explicacao="Arco e corda só coincidem com θ = 0. Para θ &gt; 0 a corda é sempre menor."> 0 km: são iguais</label>
+                <label class="alternativa"><input type="radio" name="g12-a4" value="b"
+                  data-explicacao="Esse é o comprimento do túnel, não a diferença."> ≈ 2 469 km</label>
+                <label class="alternativa"><input type="radio" name="g12-a4" value="c"
+                  data-explicacao="Arco = 6 371 · 0,39 ≈ 2 484,7 km. Corda = 2 · 6 371 · sen(0,195) ≈ 2 469,0 km. Diferença ≈ 16 km."> ≈ 16 km</label>
+                <label class="alternativa"><input type="radio" name="g12-a4" value="d"
+                  data-explicacao="A diferença é bem menor: para ângulos pequenos, arco e corda ficam muito próximos."> ≈ 160 km</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>A distância esférica Brasília–São Paulo deu 873,4 km, e o IBGE informa 869,665 km. Qual é a melhor explicação para a diferença?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g12-a5" value="a"
+                  data-explicacao="As contas com vetores unitários são exatas; a diferença de 0,43% é grande demais para arredondamento de 4 casas."> Erro de arredondamento nas contas</label>
+                <label class="alternativa"><input type="radio" name="g12-a5" value="b"
+                  data-explicacao="A distância do IBGE é em linha reta sobre o globo; a estrada (DNIT) é a outra coluna, de 1 015 km."> O IBGE mediu pela estrada</label>
+                <label class="alternativa"><input type="radio" name="g12-a5" value="c"
+                  data-explicacao="Usar a corda deixaria a distância ainda menor (872,7 km), e o IBGE não usa túnel."> O IBGE usou a corda</label>
+                <label class="alternativa"><input type="radio" name="g12-a5" value="d"
+                  data-explicacao="A Terra é achatada nos polos. O IBGE usa um elipsoide; a esfera de raio médio dá um erro pequeno (abaixo de 0,6% para todas as capitais)."> A Terra não é uma esfera perfeita</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Uma tabela oficial mostra a latitude de uma capital do Nordeste como <strong>−90°39'35.65"</strong>. O que concluir?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g12-a6" value="a"
+                  data-explicacao="A latitude vai de −90° a +90°, e −90° já é o Polo Sul. O valor é um erro de digitação; para Maceió, o certo é −09°39'35.65", o que a distância oficial até Brasília confirma."> É um erro de digitação: a latitude não passa de 90° em módulo</label>
+                <label class="alternativa"><input type="radio" name="g12-a6" value="b"
+                  data-explicacao="−90° é o Polo Sul, e passar disso não corresponde a nenhum lugar. Nenhuma capital brasileira fica perto do polo."> A cidade fica perto do Polo Sul</label>
+                <label class="alternativa"><input type="radio" name="g12-a6" value="c"
+                  data-explicacao="Latitude e longitude têm faixas diferentes: a longitude vai até 180°, a latitude só até 90°."> Está certo, porque coordenadas vão até 180°</label>
+                <label class="alternativa"><input type="radio" name="g12-a6" value="d"
+                  data-explicacao="Dado oficial também pode ter erro. Dá para conferir com outra informação da mesma tabela, como a distância até Brasília."> Deve-se confiar, porque é um dado oficial</label>
+              </div>
+            </li>
+
+          </ol>
         </div>
       </section>
 
@@ -9474,5 +10012,6 @@
   <script src="js/licoes/ga-09.js"></script>
   <script src="js/licoes/ga-10.js"></script>
   <script src="js/licoes/ga-11.js"></script>
+  <script src="js/licoes/ga-12.js"></script>
 </body>
 </html>

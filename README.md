@@ -53,6 +53,7 @@ codigo/                       Código do site
       ga-09.js                Geometria Analítica, Lição 9 (vetores no espaço)
       ga-10.js                Geometria Analítica, Lição 10 (produto vetorial e misto)
       ga-11.js                Geometria Analítica, Lição 11 (retas e planos no espaço)
+      ga-12.js                Geometria Analítica, Lição 12 (distâncias entre capitais no globo, dados do IBGE)
 README.md
 ```
 
