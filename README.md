@@ -52,6 +52,7 @@ codigo/                       Código do site
       ga-08.js                Geometria Analítica, Lição 8 (reconhecendo cônicas)
       ga-09.js                Geometria Analítica, Lição 9 (vetores no espaço)
       ga-10.js                Geometria Analítica, Lição 10 (produto vetorial e misto)
+      ga-11.js                Geometria Analítica, Lição 11 (retas e planos no espaço)
 README.md
 ```
 

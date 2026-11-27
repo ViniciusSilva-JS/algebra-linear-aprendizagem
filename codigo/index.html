@@ -8963,8 +8963,457 @@
       </section>
       <section id="ga-11" class="licao" data-trilha="ga" data-licao="11">
         <h2 class="licao-titulo">11. Retas e planos no espaço</h2>
+
+        <!-- ---------- TEORIA ---------- -->
         <div class="teoria">
-          <p class="em-construcao">🚧 Lição em construção. Vai tratar de: equações da reta e do plano em 3D, posições relativas e distância de ponto a plano.</p>
+          <h3>A reta: um ponto e uma direção</h3>
+          <p>
+            No plano, a reta tinha a equação y = mx + b. No espaço não existe uma única "inclinação", então a reta é descrita por
+            um <strong>ponto</strong> A(x₀, y₀, z₀) e um <strong>vetor diretor</strong> <span class="vet">d</span> = (a, b, c), que
+            dá a direção. Cada ponto P da reta é A mais um múltiplo de <span class="vet">d</span>:
+          </p>
+          <div class="formula">P = A + t·<span class="vet">d</span> &nbsp;&nbsp; (t real)</div>
+          <p>Escrevendo coordenada por coordenada, temos as <strong>equações paramétricas</strong>:</p>
+          <div class="formula">x = x₀ + a·t &nbsp;&nbsp;&nbsp; y = y₀ + b·t &nbsp;&nbsp;&nbsp; z = z₀ + c·t</div>
+          <p>
+            O número t (o <strong>parâmetro</strong>) funciona como o tempo: em t = 0 estamos em A, em t = 1 andamos um
+            <span class="vet">d</span> inteiro, e com t negativo andamos para trás.
+          </p>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              Reta por A(1, 2, 3) e B(3, 3, 1): o diretor é <span class="vet">AB</span> = (2, 1, −2), e as paramétricas são
+              <strong>x = 1 + 2t, y = 2 + t, z = 3 − 2t</strong>. Em t = 1 chegamos a (3, 3, 1) = B ✓.
+            </p>
+          </div>
+
+          <h3>O plano: um ponto e um vetor normal</h3>
+          <p>
+            Um plano fica determinado por um ponto P₀ e um <strong>vetor normal</strong> <span class="vet">n</span> = (a, b, c),
+            perpendicular ao plano. Um ponto P está no plano exatamente quando <span class="vet">P₀P</span> é perpendicular a
+            <span class="vet">n</span>, isto é, <span class="vet">n</span> · (P − P₀) = 0. Desenvolvendo, chegamos à
+            <strong>equação geral do plano</strong>:
+          </p>
+          <div class="formula">ax + by + cz + d = 0</div>
+          <p>
+            Os coeficientes de x, y e z <strong>são as componentes do vetor normal</strong>. Repare na diferença: na reta, os números
+            que multiplicam t dão a direção <em>da própria reta</em>; no plano, os coeficientes dão a direção <em>perpendicular</em> a ele.
+          </p>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              Plano por P₀(1, 0, 2) com normal (2, −1, 3): 2(x − 1) − 1(y − 0) + 3(z − 2) = 0, ou seja,
+              <strong>2x − y + 3z − 8 = 0</strong>.
+            </p>
+          </div>
+          <p>
+            <strong>Plano por três pontos</strong> A, B e C (não alinhados): a normal é <span class="vet">AB</span> × <span class="vet">AC</span>,
+            o produto vetorial da lição 10. Para A(1, 0, 0), B(0, 2, 0) e C(0, 0, 3), a normal é (6, 3, 2), e substituindo A em
+            6x + 3y + 2z + d = 0 obtemos d = −6: <strong>6x + 3y + 2z − 6 = 0</strong>.
+          </p>
+
+          <h3>Posições relativas</h3>
+          <p>Tudo se decide comparando os vetores diretores e normais:</p>
+          <div class="tabela-rolagem">
+            <table class="tabela">
+              <thead>
+                <tr><th>Objetos</th><th>Teste</th><th>Resultado</th></tr>
+              </thead>
+              <tbody>
+                <tr><td rowspan="3">reta e plano</td><td><span class="vet">d</span> · <span class="vet">n</span> ≠ 0</td><td><strong>concorrentes</strong>: a reta fura o plano num ponto</td></tr>
+                <tr><td><span class="vet">d</span> · <span class="vet">n</span> = 0 e A fora do plano</td><td><strong>paralelos</strong>: nunca se encontram</td></tr>
+                <tr><td><span class="vet">d</span> · <span class="vet">n</span> = 0 e A no plano</td><td>a reta está <strong>contida</strong> no plano</td></tr>
+                <tr><td rowspan="2">dois planos</td><td>normais paralelas</td><td><strong>paralelos</strong> (ou coincidentes)</td></tr>
+                <tr><td>normais não paralelas</td><td>se cortam numa <strong>reta</strong> de direção <span class="vet">n₁</span> × <span class="vet">n₂</span></td></tr>
+                <tr><td rowspan="3">duas retas</td><td>diretores paralelos</td><td><strong>paralelas</strong> (ou coincidentes)</td></tr>
+                <tr><td>não paralelas e [<span class="vet">AB</span>, <span class="vet">d₁</span>, <span class="vet">d₂</span>] = 0</td><td><strong>concorrentes</strong>: se cruzam num ponto</td></tr>
+                <tr><td>não paralelas e [<span class="vet">AB</span>, <span class="vet">d₁</span>, <span class="vet">d₂</span>] ≠ 0</td><td><strong>reversas</strong>: não se cruzam e não são paralelas</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            As retas <strong>reversas</strong> são a grande novidade do espaço: pense numa rua e num viaduto que passa por cima dela
+            em outra direção. No plano isso é impossível. O teste usa o produto misto da lição 10: com A numa reta e B na outra, as
+            duas retas estão no mesmo plano só quando [<span class="vet">AB</span>, <span class="vet">d₁</span>, <span class="vet">d₂</span>] = 0.
+          </p>
+
+          <h3>Onde a reta fura o plano</h3>
+          <p>
+            Substitua as paramétricas da reta na equação do plano: sobra uma equação do 1º grau em t. Resolvendo, o valor de t
+            devolvido às paramétricas dá o ponto de interseção.
+          </p>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              Reta x = t, y = 1 + t, z = −1 + t e plano 2x − y + 2z − 3 = 0:
+              2t − (1 + t) + 2(−1 + t) − 3 = 0 ⇒ 3t − 6 = 0 ⇒ t = 2.
+            </p>
+            <p>O ponto é <strong>(2, 3, 1)</strong>. Conferindo: 4 − 3 + 2 − 3 = 0 ✓</p>
+          </div>
+
+          <h3>Distâncias</h3>
+          <p>A distância de um ponto P(x₀, y₀, z₀) ao plano ax + by + cz + d = 0 é</p>
+          <div class="formula">d(P, π) = |a·x₀ + b·y₀ + c·z₀ + d| / √(a² + b² + c²)</div>
+          <p>
+            <strong>Por quê:</strong> substituir P na equação mede o quanto ele "sobra" do plano, na direção da normal; dividir por
+            |<span class="vet">n</span>| transforma isso em comprimento. É a mesma ideia da distância de ponto a reta da lição 1,
+            agora com três coordenadas.
+          </p>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              P(1, 2, 3) e o plano 2x − y + 2z − 3 = 0: d = |2 − 2 + 6 − 3| / √(4 + 1 + 4) = 3/3 = <strong>1</strong>.
+            </p>
+          </div>
+          <ul>
+            <li>
+              <strong>Ponto à reta</strong> (A, <span class="vet">d</span>): d = |<span class="vet">AP</span> × <span class="vet">d</span>| / |<span class="vet">d</span>|,
+              a altura do paralelogramo de <span class="vet">AP</span> e <span class="vet">d</span> (lição 10).
+            </li>
+            <li>
+              <strong>Entre planos paralelos</strong> ax + by + cz + d₁ = 0 e ax + by + cz + d₂ = 0: |d₁ − d₂| / √(a² + b² + c²).
+            </li>
+          </ul>
+
+          <h3>Ângulos</h3>
+          <ul>
+            <li><strong>Entre dois planos:</strong> é o ângulo entre as normais, cos θ = |<span class="vet">n₁</span> · <span class="vet">n₂</span>| / (|<span class="vet">n₁</span>|·|<span class="vet">n₂</span>|).</li>
+            <li>
+              <strong>Entre reta e plano:</strong> é o complemento do ângulo entre <span class="vet">d</span> e a normal, então usa o seno:
+              sen θ = |<span class="vet">d</span> · <span class="vet">n</span>| / (|<span class="vet">d</span>|·|<span class="vet">n</span>|).
+              Reta perpendicular ao plano tem <span class="vet">d</span> paralelo a <span class="vet">n</span> (θ = 90°).
+            </li>
+          </ul>
+        </div>
+
+        <!-- ---------- LABORATÓRIO ---------- -->
+        <div class="laboratorio">
+          <h3>Reta, plano e distância</h3>
+          <p>
+            Defina um plano <strong>ax + by + cz + d = 0</strong>, uma reta (ponto A e diretor <strong>v</strong>) e um ponto
+            <strong>P</strong>. O laboratório mostra onde a reta fura o plano (ou se é paralela ou está contida nele) e a distância
+            de P ao plano. <strong>Arraste o desenho</strong> para girar.
+          </p>
+
+          <div class="lab-area controles-largos">
+            <svg id="g11-espaco" class="plano-cartesiano espaco-3d" viewBox="-7 -7 14 14" tabindex="0"
+                 role="img" aria-label="Eixos x, y e z com um plano, seu vetor normal, uma reta e um ponto P com a distância ao plano. Arraste ou use as setas do teclado para girar."></svg>
+
+            <div class="lab-controles">
+              <fieldset class="lab-ponto lab-ponto-m lab-tres-campos">
+                <legend>Plano ax + by + cz + d = 0</legend>
+                <label>a <input type="number" id="g11-a" value="2" min="-6" max="6" step="1" aria-label="coeficiente a do plano"></label>
+                <label>b <input type="number" id="g11-b" value="-1" min="-6" max="6" step="1" aria-label="coeficiente b do plano"></label>
+                <label>c <input type="number" id="g11-c" value="2" min="-6" max="6" step="1" aria-label="coeficiente c do plano"></label>
+                <label>d <input type="number" id="g11-d" value="-3" min="-20" max="20" step="1" aria-label="termo independente d do plano"></label>
+              </fieldset>
+              <fieldset class="lab-ponto lab-ponto-b lab-tres-campos">
+                <legend>Reta: ponto A</legend>
+                <label>x <input type="number" id="g11-ax" value="0" min="-5" max="5" step="1" aria-label="coordenada x do ponto A da reta"></label>
+                <label>y <input type="number" id="g11-ay" value="1" min="-5" max="5" step="1" aria-label="coordenada y do ponto A da reta"></label>
+                <label>z <input type="number" id="g11-az" value="-1" min="-5" max="5" step="1" aria-label="coordenada z do ponto A da reta"></label>
+              </fieldset>
+              <fieldset class="lab-ponto lab-ponto-b lab-tres-campos">
+                <legend>Reta: diretor v</legend>
+                <label>x <input type="number" id="g11-vx" value="1" min="-5" max="5" step="1" aria-label="componente x do diretor v"></label>
+                <label>y <input type="number" id="g11-vy" value="1" min="-5" max="5" step="1" aria-label="componente y do diretor v"></label>
+                <label>z <input type="number" id="g11-vz" value="1" min="-5" max="5" step="1" aria-label="componente z do diretor v"></label>
+              </fieldset>
+              <fieldset class="lab-ponto lab-ponto-a lab-tres-campos">
+                <legend>Ponto P</legend>
+                <label>x <input type="number" id="g11-px" value="1" min="-5" max="5" step="1" aria-label="coordenada x de P"></label>
+                <label>y <input type="number" id="g11-py" value="2" min="-5" max="5" step="1" aria-label="coordenada y de P"></label>
+                <label>z <input type="number" id="g11-pz" value="3" min="-5" max="5" step="1" aria-label="coordenada z de P"></label>
+              </fieldset>
+
+              <label class="lab-campo">
+                <span>Girar a vista: <output id="g11-giro-valor" for="g11-giro">30°</output></span>
+                <input type="range" id="g11-giro" min="-180" max="180" step="5" value="30">
+              </label>
+              <button type="button" id="g11-vista" class="btn-secundario">Vista padrão</button>
+
+              <label class="lab-check"><input type="checkbox" id="g11-normal" checked> Mostrar o vetor normal n</label>
+              <label class="lab-check"><input type="checkbox" id="g11-reta" checked> Mostrar a reta</label>
+              <label class="lab-check"><input type="checkbox" id="g11-ponto" checked> Mostrar P e a distância</label>
+
+              <fieldset class="lab-ponto lab-ponto-m lab-tres-campos">
+                <legend>Exemplos</legend>
+                <button type="button" class="btn-secundario" data-g11-exemplo="2,-1,2,-3,0,1,-1,1,1,1,1,2,3">Reta fura o plano</button>
+                <button type="button" class="btn-secundario" data-g11-exemplo="1,2,2,-9,0,0,0,1,2,2,0,0,0">Reta perpendicular</button>
+                <button type="button" class="btn-secundario" data-g11-exemplo="0,0,1,-2,0,0,0,1,1,0,1,1,5">Reta paralela</button>
+                <button type="button" class="btn-secundario" data-g11-exemplo="1,1,1,-3,1,1,1,1,-1,0,0,0,0">Reta contida</button>
+                <button type="button" class="btn-secundario" data-g11-exemplo="0,0,1,0,1,1,3,1,0,-1,2,-2,4">Plano xy</button>
+              </fieldset>
+              <p class="lab-dica">Coordenadas de −5 a 5; a, b, c de −6 a 6 e d de −20 a 20. O plano é desenhado como um pedaço quadrado em volta do pé da perpendicular de P.</p>
+              <button type="button" id="g11-sortear" class="btn-secundario">🎲 Sortear</button>
+            </div>
+          </div>
+
+          <div id="g11-resultados" class="lab-resultados" aria-live="polite"></div>
+        </div>
+
+        <!-- ---------- EXERCÍCIOS ---------- -->
+        <div class="exercicios" data-licao="11">
+          <h3>Pratique</h3>
+          <p>Escolha uma alternativa em cada exercício. Acerte todos para liberar a lição 12.</p>
+
+          <ol class="lista-exercicios">
+            <!-- ===== BÁSICO ===== -->
+            <li class="exercicio" data-nivel="basico">
+              <p>Qual é um vetor diretor da reta <strong>x = 1 + 2t, y = −3 + t, z = 4 − 5t</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g11-b1" value="a"
+                  data-explicacao="Esses são os termos sem t: formam o ponto da reta em t = 0, não a direção."> (1, −3, 4)</label>
+                <label class="alternativa"><input type="radio" name="g11-b1" value="b"
+                  data-explicacao="O diretor é formado pelos números que multiplicam t: (2, 1, −5)."> (2, 1, −5)</label>
+                <label class="alternativa"><input type="radio" name="g11-b1" value="c"
+                  data-explicacao="Somou o ponto com o diretor: isso dá o ponto da reta em t = 1, não a direção."> (3, −2, −1)</label>
+                <label class="alternativa"><input type="radio" name="g11-b1" value="d"
+                  data-explicacao="O sinal de z ficou trocado: o termo é −5t."> (2, 1, 5)</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Qual é um vetor normal ao plano <strong>3x − y + 4z − 7 = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g11-b2" value="a"
+                  data-explicacao="O sinal de y ficou trocado: o coeficiente de y é −1."> (3, 1, 4)</label>
+                <label class="alternativa"><input type="radio" name="g11-b2" value="b"
+                  data-explicacao="O termo independente −7 não faz parte da normal; a terceira componente é o coeficiente de z."> (3, −1, −7)</label>
+                <label class="alternativa"><input type="radio" name="g11-b2" value="c"
+                  data-explicacao="Esses números são onde o plano corta os eixos (7/3, −7 e 7/4), não as componentes da normal."> (7/3, −7, 7/4)</label>
+                <label class="alternativa"><input type="radio" name="g11-b2" value="d"
+                  data-explicacao="Na equação ax + by + cz + d = 0, a normal é (a, b, c) = (3, −1, 4)."> (3, −1, 4)</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>O ponto <strong>(1, 2, 1)</strong> pertence a qual plano?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g11-b3" value="a"
+                  data-explicacao="Substituindo: 1 + 2 − 1 − 2 = 0 ✓."> x + y − z − 2 = 0</label>
+                <label class="alternativa"><input type="radio" name="g11-b3" value="b"
+                  data-explicacao="Substituindo: 2 + 2 + 1 − 4 = 1, que não é zero."> 2x + y + z − 4 = 0</label>
+                <label class="alternativa"><input type="radio" name="g11-b3" value="c"
+                  data-explicacao="Substituindo: 1 − 2 + 1 − 1 = −1, que não é zero."> x − y + z − 1 = 0</label>
+                <label class="alternativa"><input type="radio" name="g11-b3" value="d"
+                  data-explicacao="Substituindo: 1 + 2 + 1 − 3 = 1, que não é zero."> x + y + z − 3 = 0</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Qual é a distância de <strong>P(2, 1, −1)</strong> ao plano <strong>x + 2y + 2z + 4 = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g11-b4" value="a"
+                  data-explicacao="Esse é só o numerador |2 + 2 − 2 + 4|. Falta dividir pelo módulo da normal."> 6</label>
+                <label class="alternativa"><input type="radio" name="g11-b4" value="b"
+                  data-explicacao="Dividiu por |n|² = 9. O denominador é |n| = √9."> 2/3</label>
+                <label class="alternativa"><input type="radio" name="g11-b4" value="c"
+                  data-explicacao="d = |2 + 2·1 + 2·(−1) + 4| / √(1 + 4 + 4) = 6/3 = 2."> 2</label>
+                <label class="alternativa"><input type="radio" name="g11-b4" value="d"
+                  data-explicacao="Distância zero significaria P no plano, mas 2 + 2 − 2 + 4 não dá zero."> 0</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Qual é a equação do plano que passa pela <strong>origem</strong> e tem normal <strong>(1, 2, −1)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g11-b5" value="a"
+                  data-explicacao="Esse plano tem a normal certa, mas não passa pela origem: 0 + 0 − 0 − 1 ≠ 0."> x + 2y − z − 1 = 0</label>
+                <label class="alternativa"><input type="radio" name="g11-b5" value="b"
+                  data-explicacao="Normal (1, 2, −1) ⇒ x + 2y − z + d = 0. Pela origem: d = 0. Logo x + 2y − z = 0."> x + 2y − z = 0</label>
+                <label class="alternativa"><input type="radio" name="g11-b5" value="c"
+                  data-explicacao="Essas são as paramétricas da reta pela origem com direção (1, 2, −1), a reta normal ao plano."> x = t, y = 2t, z = −t</label>
+                <label class="alternativa"><input type="radio" name="g11-b5" value="d"
+                  data-explicacao="Os coeficientes de x e y foram trocados: a normal desse plano é (2, 1, −1)."> 2x + y − z = 0</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Duas retas do espaço que <strong>não são paralelas e não se cruzam</strong> são chamadas de:</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g11-b6" value="a"
+                  data-explicacao="Retas concorrentes se cruzam num ponto."> Concorrentes</label>
+                <label class="alternativa"><input type="radio" name="g11-b6" value="b"
+                  data-explicacao="Perpendicular fala do ângulo entre as direções. Retas perpendiculares podem se cruzar ou não."> Perpendiculares</label>
+                <label class="alternativa"><input type="radio" name="g11-b6" value="c"
+                  data-explicacao="Retas coincidentes são a mesma reta: têm todos os pontos em comum."> Coincidentes</label>
+                <label class="alternativa"><input type="radio" name="g11-b6" value="d"
+                  data-explicacao="São as reversas: não estão num mesmo plano, como uma rua e um viaduto que a cruza por cima em outra direção."> Reversas</label>
+              </div>
+            </li>
+
+            <!-- ===== INTERMEDIÁRIO ===== -->
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Quais são as paramétricas da reta que passa por <strong>A(1, 0, 2)</strong> e <strong>B(3, 1, −1)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g11-i1" value="a"
+                  data-explicacao="Diretor AB = (3 − 1, 1 − 0, −1 − 2) = (2, 1, −3). Partindo de A: x = 1 + 2t, y = t, z = 2 − 3t."> x = 1 + 2t, y = t, z = 2 − 3t</label>
+                <label class="alternativa"><input type="radio" name="g11-i1" value="b"
+                  data-explicacao="Usou as coordenadas de B como diretor. O diretor é B − A."> x = 1 + 3t, y = t, z = 2 − t</label>
+                <label class="alternativa"><input type="radio" name="g11-i1" value="c"
+                  data-explicacao="Trocou os papéis: os termos sem t devem ser o ponto, e os que multiplicam t, o diretor."> x = 2 + t, y = 1, z = −3 + 2t</label>
+                <label class="alternativa"><input type="radio" name="g11-i1" value="d"
+                  data-explicacao="Erro de sinal em z: −1 − 2 não é +3."> x = 1 + 2t, y = t, z = 2 + 3t</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é a equação do plano que passa por <strong>A(1, 0, 0)</strong>, <strong>B(0, 1, 0)</strong> e <strong>C(0, 0, 1)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g11-i2" value="a"
+                  data-explicacao="A normal está certa, mas esse plano passa pela origem, e A não satisfaz: 1 ≠ 0."> x + y + z = 0</label>
+                <label class="alternativa"><input type="radio" name="g11-i2" value="b"
+                  data-explicacao="Somou as coordenadas dos três pontos. Para achar d, substitua UM ponto: em A, 1 + 0 + 0 = 1."> x + y + z = 3</label>
+                <label class="alternativa"><input type="radio" name="g11-i2" value="c"
+                  data-explicacao="AB = (−1, 1, 0), AC = (−1, 0, 1), normal AB × AC = (1, 1, 1). Por A: x + y + z = 1. B e C também satisfazem."> x + y + z = 1</label>
+                <label class="alternativa"><input type="radio" name="g11-i2" value="d"
+                  data-explicacao="O ponto B não satisfaz: 0 − 1 + 0 = −1 ≠ 1."> x − y + z = 1</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Em que ponto a reta <strong>x = 1 + t, y = 2t, z = 3 − t</strong> fura o plano <strong>x + y + z − 6 = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g11-i3" value="a"
+                  data-explicacao="Esse é o ponto da reta em t = 0, mas ele não está no plano: 1 + 0 + 3 − 6 = −2."> (1, 0, 3)</label>
+                <label class="alternativa"><input type="radio" name="g11-i3" value="b"
+                  data-explicacao="(1 + t) + 2t + (3 − t) − 6 = 0 ⇒ 2t − 2 = 0 ⇒ t = 1 ⇒ (2, 2, 2). Conferindo: 2 + 2 + 2 − 6 = 0 ✓."> (2, 2, 2)</label>
+                <label class="alternativa"><input type="radio" name="g11-i3" value="c"
+                  data-explicacao="Esse é o ponto em t = 2, e ele não está no plano: 3 + 4 + 1 − 6 = 2."> (3, 4, 1)</label>
+                <label class="alternativa"><input type="radio" name="g11-i3" value="d"
+                  data-explicacao="Diretor (1, 2, −1) e normal (1, 1, 1) dão produto escalar 2 ≠ 0: a reta não é paralela ao plano."> A reta é paralela ao plano</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é a posição da reta <strong>x = t, y = 1 + t, z = 2</strong> em relação ao plano <strong>x − y + 3z − 5 = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g11-i4" value="a"
+                  data-explicacao="d · n = 0 indica paralela OU contida. Faltou testar se um ponto da reta está no plano."> Paralela, sem pontos em comum</label>
+                <label class="alternativa"><input type="radio" name="g11-i4" value="b"
+                  data-explicacao="Para furar o plano num ponto, d · n precisaria ser diferente de zero."> Concorrente, num único ponto</label>
+                <label class="alternativa"><input type="radio" name="g11-i4" value="c"
+                  data-explicacao="d = (1, 1, 0), n = (1, −1, 3): d · n = 1 − 1 + 0 = 0. O ponto (0, 1, 2) da reta satisfaz 0 − 1 + 6 − 5 = 0, então a reta está contida no plano."> Contida no plano</label>
+                <label class="alternativa"><input type="radio" name="g11-i4" value="d"
+                  data-explicacao="Perpendicular exigiria d paralelo a n. (1, 1, 0) não é múltiplo de (1, −1, 3)."> Perpendicular ao plano</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é o ângulo entre os planos <strong>x + y − 3 = 0</strong> e <strong>y + z + 1 = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g11-i5" value="a"
+                  data-explicacao="n₁ = (1, 1, 0), n₂ = (0, 1, 1). cos θ = |0 + 1 + 0| / (√2 · √2) = 1/2 ⇒ θ = 60°."> 60°</label>
+                <label class="alternativa"><input type="radio" name="g11-i5" value="b"
+                  data-explicacao="Planos perpendiculares têm normais com produto escalar zero. Aqui n₁ · n₂ = 1."> 90°</label>
+                <label class="alternativa"><input type="radio" name="g11-i5" value="c"
+                  data-explicacao="Dividiu por um só dos módulos. O denominador é |n₁|·|n₂| = 2."> 45°</label>
+                <label class="alternativa"><input type="radio" name="g11-i5" value="d"
+                  data-explicacao="Usou o seno no lugar do cosseno. O seno é para o ângulo entre reta e plano."> 30°</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é a distância entre os planos paralelos <strong>2x − y + 2z − 1 = 0</strong> e <strong>2x − y + 2z + 8 = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g11-i6" value="a"
+                  data-explicacao="Esse é |d₁ − d₂|, mas falta dividir pelo módulo da normal."> 9</label>
+                <label class="alternativa"><input type="radio" name="g11-i6" value="b"
+                  data-explicacao="Somou os termos independentes em vez de subtrair: |−1 + 8|."> 7/3</label>
+                <label class="alternativa"><input type="radio" name="g11-i6" value="c"
+                  data-explicacao="As normais são iguais e os termos independentes são diferentes: os planos são paralelos e distintos, nunca se encontram."> 0</label>
+                <label class="alternativa"><input type="radio" name="g11-i6" value="d"
+                  data-explicacao="d = |d₁ − d₂| / |n| = |−1 − 8| / √(4 + 1 + 4) = 9/3 = 3."> 3</label>
+              </div>
+            </li>
+
+            <!-- ===== AVANÇADO ===== -->
+            <li class="exercicio" data-nivel="avancado">
+              <p>Qual é a posição relativa das retas <strong>r: (1, 0, 0) + t(1, 1, 0)</strong> e <strong>s: (0, 1, 1) + t(1, −1, 0)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g11-a1" value="a"
+                  data-explicacao="Retas concorrentes estão num mesmo plano, e então o produto misto [AB, d₁, d₂] daria zero. Aqui ele não dá."> Concorrentes</label>
+                <label class="alternativa"><input type="radio" name="g11-a1" value="b"
+                  data-explicacao="Os diretores (1, 1, 0) e (1, −1, 0) não são múltiplos um do outro."> Paralelas</label>
+                <label class="alternativa"><input type="radio" name="g11-a1" value="c"
+                  data-explicacao="Diretores não paralelos. AB = (−1, 1, 1) e [AB, d₁, d₂] = −1·(0 − 0) − 1·(0 − 0) + 1·(−1 − 1) = −2 ≠ 0: não são coplanares, logo reversas."> Reversas</label>
+                <label class="alternativa"><input type="radio" name="g11-a1" value="d"
+                  data-explicacao="Coincidentes teriam diretores paralelos e todos os pontos em comum."> Coincidentes</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Qual é a distância do ponto <strong>P(1, 2, 3)</strong> à reta que passa pela origem com diretor <strong>(1, 1, 1)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g11-a2" value="a"
+                  data-explicacao="Esse é |AP × d|, a área do paralelogramo. Falta dividir pela base |d|."> √6</label>
+                <label class="alternativa"><input type="radio" name="g11-a2" value="b"
+                  data-explicacao="AP = (1, 2, 3), AP × d = (2 − 3, 3 − 1, 1 − 2) = (−1, 2, −1), de módulo √6. d = √6 / √3 = √2."> √2</label>
+                <label class="alternativa"><input type="radio" name="g11-a2" value="c"
+                  data-explicacao="Essa é a distância de P até a origem, que é só um ponto da reta, não o mais próximo."> √14</label>
+                <label class="alternativa"><input type="radio" name="g11-a2" value="d"
+                  data-explicacao="Usou |AP × d|² = 6 no numerador: faltou tirar a raiz."> 2√3</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Qual reta é a interseção dos planos <strong>x + y + z = 3</strong> e <strong>x − y = 1</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g11-a3" value="a"
+                  data-explicacao="(1, 1, 1) é a normal do primeiro plano: essa reta atravessa o plano em vez de ficar dentro dele."> (2, 1, 0) + t(1, 1, 1)</label>
+                <label class="alternativa"><input type="radio" name="g11-a3" value="b"
+                  data-explicacao="A direção está certa, mas a origem não está no primeiro plano: 0 + 0 + 0 ≠ 3."> (0, 0, 0) + t(1, 1, −2)</label>
+                <label class="alternativa"><input type="radio" name="g11-a3" value="c"
+                  data-explicacao="Erro de sinal no produto vetorial: (−1, −1, −2) · (1, 1, 1) = −4 ≠ 0, então essa direção não está no primeiro plano."> (2, 1, 0) + t(−1, −1, −2)</label>
+                <label class="alternativa"><input type="radio" name="g11-a3" value="d"
+                  data-explicacao="Direção n₁ × n₂ = (1, 1, 1) × (1, −1, 0) = (1, 1, −2). Com z = 0: x + y = 3 e x − y = 1 dão x = 2, y = 1. Reta: (2, 1, 0) + t(1, 1, −2)."> (2, 1, 0) + t(1, 1, −2)</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Qual é a projeção ortogonal (o pé da perpendicular) de <strong>P(3, 3, 3)</strong> no plano <strong>x + y + z − 3 = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g11-a4" value="a"
+                  data-explicacao="Reta por P com direção n: (3 + t, 3 + t, 3 + t). No plano: 9 + 3t − 3 = 0 ⇒ t = −2 ⇒ (1, 1, 1)."> (1, 1, 1)</label>
+                <label class="alternativa"><input type="radio" name="g11-a4" value="b"
+                  data-explicacao="Andou só um vetor n a partir de P. Esse ponto ainda não está no plano: 2 + 2 + 2 − 3 ≠ 0."> (2, 2, 2)</label>
+                <label class="alternativa"><input type="radio" name="g11-a4" value="c"
+                  data-explicacao="Andou o dobro e passou para o outro lado: esse é o simétrico (a reflexão) de P em relação ao plano."> (−1, −1, −1)</label>
+                <label class="alternativa"><input type="radio" name="g11-a4" value="d"
+                  data-explicacao="Usou t = −(n·P + d) sem dividir por |n|² = 3."> (−3, −3, −3)</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Para que valor de k a reta <strong>x = 1 + kt, y = 2 + t, z = −t</strong> é paralela ao plano <strong>2x + y + 3z − 1 = 0</strong>, e como ela fica?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g11-a5" value="a"
+                  data-explicacao="O valor de k está certo, mas o ponto (1, 2, 0) da reta não satisfaz a equação do plano: 2 + 2 + 0 − 1 = 3."> k = 1, e a reta fica contida no plano</label>
+                <label class="alternativa"><input type="radio" name="g11-a5" value="b"
+                  data-explicacao="d · n = 2k + 1 − 3 = 0 ⇒ k = 1. O ponto (1, 2, 0) dá 2 + 2 − 1 = 3 ≠ 0, então a reta é paralela e não toca o plano."> k = 1, paralela e sem tocar o plano</label>
+                <label class="alternativa"><input type="radio" name="g11-a5" value="c"
+                  data-explicacao="Erro de sinal: com k = −1, d · n = −2 + 1 − 3 = −4."> k = −1, paralela e sem tocar o plano</label>
+                <label class="alternativa"><input type="radio" name="g11-a5" value="d"
+                  data-explicacao="Com k = 2, d · n = 4 + 1 − 3 = 2 ≠ 0: a reta fura o plano."> k = 2, contida no plano</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Qual é o ângulo entre a reta de diretor <strong>(1, 0, √3)</strong> e o plano <strong>z = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g11-a6" value="a"
+                  data-explicacao="Esse é o ângulo entre a reta e a NORMAL do plano. O ângulo com o plano é o complementar."> 30°</label>
+                <label class="alternativa"><input type="radio" name="g11-a6" value="b"
+                  data-explicacao="90° exigiria a reta paralela à normal (0, 0, 1), mas o diretor tem componente x."> 90°</label>
+                <label class="alternativa"><input type="radio" name="g11-a6" value="c"
+                  data-explicacao="n = (0, 0, 1). sen θ = |d · n| / (|d|·|n|) = √3 / (2 · 1) = √3/2 ⇒ θ = 60°."> 60°</label>
+                <label class="alternativa"><input type="radio" name="g11-a6" value="d"
+                  data-explicacao="0° seria uma reta paralela ao plano (d · n = 0), mas aqui d · n = √3."> 0°</label>
+              </div>
+            </li>
+
+          </ol>
         </div>
       </section>
       <section id="ga-12" class="licao" data-trilha="ga" data-licao="12">
@@ -9024,5 +9473,6 @@
   <script src="js/licoes/ga-08.js"></script>
   <script src="js/licoes/ga-09.js"></script>
   <script src="js/licoes/ga-10.js"></script>
+  <script src="js/licoes/ga-11.js"></script>
 </body>
 </html>
