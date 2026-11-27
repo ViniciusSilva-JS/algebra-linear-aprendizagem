@@ -1,358 +1,212 @@
 # Trilha de Aprendizagem — Álgebra Linear e Geometria Analítica
 
-Um site de estudo que ensina **Álgebra Linear** e **Geometria Analítica** em duas trilhas de
-**12 lições** cada. Toda lição segue o mesmo caminho: o aluno **lê a teoria**, **experimenta** num
-laboratório interativo e **pratica** com exercícios corrigidos na hora. As duas trilhas terminam com
-um problema resolvido com **dados reais do IBGE**.
+Projeto Final de Álgebra Linear e Geometria Analítica (AP2) · Engenharia de Software · UNICATÓLICA RN · 2026.2
 
-**Para abrir:** dê dois cliques em `codigo/index.html`. Não precisa instalar nada, nem de internet,
-nem de servidor.
+Site para **aprender Álgebra Linear e Geometria Analítica** em duas trilhas de 12 lições, cada uma com
+**teoria**, um **laboratório interativo** e **exercícios corrigidos na hora**. As duas trilhas terminam
+com um problema resolvido com **dados reais do IBGE**.
 
 ---
 
-## Sumário
+## 1. Problema e objetivo
 
-1. [A proposta](#1-a-proposta)
-2. [Como o aluno usa o site](#2-como-o-aluno-usa-o-site)
-3. [O conteúdo das duas trilhas](#3-o-conteúdo-das-duas-trilhas)
-4. [As aplicações com dados reais](#4-as-aplicações-com-dados-reais)
-5. [Como o código funciona](#5-como-o-código-funciona)
-6. [Decisões de projeto](#6-decisões-de-projeto)
-7. [Como foi testado](#7-como-foi-testado)
-8. [Estrutura de pastas](#8-estrutura-de-pastas)
-9. [Para quem for continuar o projeto](#9-para-quem-for-continuar-o-projeto)
+Quem começa a estudar estas matérias costuma achar o conteúdo abstrato:
 
----
+- O que um vetor, uma matriz ou um determinante **significam** de verdade? → **laboratório que desenha tudo**
+- De onde vem cada fórmula? → **teoria com a dedução e um exemplo resolvido**
+- Por que errei este exercício? → **toda alternativa errada explica o engano**
+- Para que serve isso fora da sala? → **aplicações com dados oficiais do IBGE**
 
-## 1. A proposta
+O objetivo é **ensinar cada conteúdo de forma simples e visual**: o aluno lê o conceito, muda os números
+no laboratório e vê **a figura e a conta passo a passo** mudarem juntas. Depois, pratica em três níveis de
+dificuldade.
 
-Ler uma fórmula não basta para entendê-la. O projeto tenta resolver três dificuldades comuns de quem
-estuda estas matérias:
+## 2. Como usar
 
-| Dificuldade | O que o site faz |
+1. Na tela inicial, escolha a **matéria** (Álgebra Linear ou Geometria Analítica).
+2. Escolha o **modo**: *Seguir a trilha* (as lições abrem em ordem, uma libera a próxima) ou
+   *Escolher a lição* (todas abertas, para revisar um assunto).
+3. Escolha o **nível** dos exercícios: Básico, Intermediário ou Avançado.
+4. Em cada lição, leia a **teoria**, mexa no **laboratório** (digite valores, clique no plano, arraste o
+   desenho 3D) e use os **exemplos prontos**.
+5. Responda aos **exercícios** e clique em **Verificar**. Acertando todos, a lição fica marcada com ✓.
+
+O progresso fica salvo no navegador. Também há **tema escuro** e versão para **celular**.
+
+## 3. Como rodar
+
+Não é necessário instalar nada, nem ter internet.
+
+1. `git clone https://github.com/ViniciusSilva-JS/algebra-linear-aprendizagem.git`
+2. Abra o arquivo `codigo/index.html` no navegador (dois cliques), ou use o **Live Server** do VS Code.
+
+## 4. As duas trilhas
+
+O conteúdo segue o material da disciplina. Os exemplos abaixo são os **valores que já vêm preenchidos** em
+cada laboratório.
+
+### Álgebra Linear
+
+| Lição | O que o laboratório faz | Exemplo do laboratório | Justificativa matemática |
+|---|---|---|---|
+| 1. Plano cartesiano e pontos | Quadrante, distância e ponto médio; clique no plano para mover os pontos. | A(−3, −1) e B(4, 3) | d = √(7² + 4²) = √65 ≈ **8,06**; M = **(0,5; 1)** |
+| 2. Vetores no plano | Soma, subtração e multiplicação por escalar, com as setas desenhadas. | u = (3, 1), v = (1, 3) | u + v = **(4, 4)**, \|u + v\| = √32 ≈ 5,66 |
+| 3. Produto escalar e ângulo | Produto escalar, ângulo e tipo de ângulo. | u = (4, 1), v = (2, 3) | u·v = 8 + 3 = 11; cos θ = 11/√221 → θ ≈ **42,27°** (agudo) |
+| 4. Retas no plano | Reta por dois pontos: inclinação, equações e cortes nos eixos. | A(−1, −1), B(3, 7) | m = 8/4 = 2 → **y = 2x + 1** |
+| 5. Matrizes | Soma, subtração, escalar e transposta; clique num elemento para ver a conta. | A + B (2×3) | c₁₁ = a₁₁ + b₁₁ = 1 + 2 = **3** |
+| 6. Multiplicação de matrizes | Linha × coluna realçada; mostra que A·B ≠ B·A. | A = [[2, 1], [0, 3]], B = [[1, 4], [2, −1]] | A·B = **[[4, 7], [6, −3]]** |
+| 7. Determinantes | No 2×2, o determinante é a área do paralelogramo das colunas; no 3×3, Sarrus. | A = [[2, −1], [1, 2]] | det A = 2·2 − (−1)·1 = **5** = área |
+| 8. Sistemas lineares | Duas equações viram duas retas; Cramer e classificação (SPD, SPI, SI). | 2x + y = 4 e x − 3y = −5 | D = −7, Dx = −7, Dy = −14 → **x = 1, y = 2** |
+| 9. Matriz inversa | Gauss-Jordan passo a passo e conferência A·A⁻¹ = I. | A = [[2, 1], [1, 3]] | det = 5 → A⁻¹ = **[[3/5, −1/5], [−1/5, 2/5]]** |
+| 10. Transformações lineares | A matriz deforma o plano (rotação, reflexão, cisalhamento…). | Rotação de 45° | T(i) = (0,71; 0,71); det = 1 → **área não muda** |
+| 11. Autovalores e autovetores | Gire v e procure quando A·v fica na mesma reta de v. | A = [[2, 1], [1, 2]] | λ² − 4λ + 3 = 0 → **λ₁ = 3, λ₂ = 1** |
+| 12. Aplicação com dados reais | Ajusta reta ou parábola aos censos do IBGE (mínimos quadrados). | Censos de 1940 a 2022, reta | Aᵀ·A·x = Aᵀ·b → população prevista em 2030 ≈ **228,14 milhões** |
+
+### Geometria Analítica
+
+| Lição | O que o laboratório faz | Exemplo do laboratório | Justificativa matemática |
+|---|---|---|---|
+| 1. Ângulo e distância entre retas | Distância de ponto a reta, pé da perpendicular e ângulo entre retas. | r: 3x + 4y − 5 = 0, P(3, 4) | d = \|9 + 16 − 5\| / 5 = **4** |
+| 2. Área de triângulo e alinhamento | Determinante por Sarrus, área e orientação; testa se 3 pontos estão alinhados. | A(1, 1), B(5, 2), C(3, 6) | D = 35 − 17 = 18 → área = **9** |
+| 3. Circunferência | Da equação reduzida para a geral e vice-versa (completando quadrados). | Centro (2, −1), raio 3 | **x² + y² − 4x + 2y − 4 = 0** |
+| 4. Posições relativas com a circunferência | Compara a distância com o raio (ponto, reta ou outra circunferência). | x² + y² = 25 e P(3, 4) | 9 + 16 = 25 = r² → P **está na circunferência** |
+| 5. Parábola | Foco, diretriz e um ponto P que confirma a definição. | Vértice (0, 0), c = 2 | **x² = 8y**, foco (0, 2), diretriz y = −2 |
+| 6. Elipse | Focos e a soma das distâncias, que não muda. | Semieixos 5 e 3 | c² = 25 − 9 = 16 → focos **(±4, 0)** |
+| 7. Hipérbole | Focos, assíntotas e a diferença das distâncias, que não muda. | a = 4, b = 3 | c² = 16 + 9 = 25 → focos (±5, 0), assíntotas **y = ±(3/4)x** |
+| 8. Reconhecendo cônicas | Dada Ax² + Cy² + Dx + Ey + F = 0, descobre qual cônica é, inclusive os casos degenerados. | 4x² + 9y² − 16x + 54y + 61 = 0 | A·C > 0 e A ≠ C → **elipse** de centro (2, −3) |
+| 9. Vetores no espaço | Desenho 3D que gira com o mouse; módulos, ângulo e ângulos diretores. | u = (2, 2, 1), v = (0, 3, 4) | u·v = 10, \|u\| = 3, \|v\| = 5 → cos θ = 2/3, θ ≈ **48,19°** |
+| 10. Produto vetorial e misto | u × v perpendicular ao paralelogramo e o paralelepípedo de u, v e w. | u = (2, 1, 0), v = (1, 3, 0), w = (1, 1, 3) | u × v = (0, 0, 5) → área **5**; (u × v)·w = **15** = volume |
+| 11. Retas e planos no espaço | Onde a reta fura o plano e a distância de um ponto ao plano. | π: 2x − y + 2z − 3 = 0; reta por (0, 1, −1) com v = (1, 1, 1); P(1, 2, 3) | 3t − 6 = 0 → t = 2 → **I = (2, 3, 1)**; d(P, π) = 3/3 = **1** |
+| 12. Aplicação com dados reais | Distância entre capitais pelo globo, com vetores no espaço. | Brasília e São Paulo | cos θ = û·v̂ ≈ 0,9906 → arco R·θ ≈ **873,4 km** (IBGE: 869,665 km) |
+
+### Os dados reais
+
+- **Álgebra Linear — população do Brasil:** IBGE, Censos Demográficos, sistema SIDRA (tabelas 1286 e 4709).
+- **Geometria Analítica — capitais:** IBGE, Anuário Estatístico do Brasil 2025, Tabela 1.1.1.2
+  (latitude, longitude e distância a Brasília). O modelo da esfera fica **a menos de 0,6%** da distância
+  oficial em todas as 26 capitais.
+- **Erro encontrado na fonte:** a tabela do IBGE mostra a latitude de Maceió como −90°39'35.65", o que é
+  impossível (−90° é o Polo Sul). Usamos −09°39'35.65", e com isso a distância calculada bate com a do
+  próprio IBGE (diferença de 0,01%). A lição usa isso para mostrar que conferir os dados faz parte do trabalho.
+
+## 5. Arquitetura
+
+```
+codigo/index.html            página única: tela inicial, menu e o conteúdo das 24 lições
+codigo/css/
+  base.css                   cores, fontes e espaços (variáveis) e tema claro/escuro
+  layout.css                 tela inicial, menu de lições e grade da página
+  componentes.css            botões, campos, fórmulas, tabelas e matrizes
+  exercicios.css             alternativas e quadro de explicações
+  laboratorio.css            laboratórios, plano cartesiano e espaço 3D
+
+codigo/js/
+  utils/matematica.js        todas as contas: módulo, produto escalar e vetorial, determinante, inversa...
+  componentes/plano.js       desenha o plano cartesiano (SVG)
+  componentes/espaco.js      desenha o espaço 3D que gira com o mouse (SVG, sem biblioteca)
+  componentes/matriz.js      editor e exibição de matrizes
+  componentes/exercicios.js  corrige os exercícios lendo o próprio HTML e filtra por nível
+  app.js                     troca de lição, modos (trilha/livre), desbloqueio, progresso e tema
+  licoes/licao-01.js ... licao-12.js    laboratórios de Álgebra Linear (um arquivo por lição)
+  licoes/ga-01.js    ... ga-12.js       laboratórios de Geometria Analítica
+```
+
+**Fluxo:** o aluno digita ou clica (entrada) → o JavaScript lê, valida e calcula (processamento) → a tela
+mostra o desenho, o resultado e a **conta passo a passo** (saída). Valor inválido gera uma mensagem, sem
+travar a página.
+
+**Como as peças se conectam:**
+
+- As **contas** ficam em `matematica.js` e são reaproveitadas. Por exemplo, `produtoVetorial3` é usado nas
+  lições 10, 11 e 12 de Geometria Analítica.
+- O **3D** é feito com trigonometria: cada ponto (x, y, z) é projetado na tela pelos ângulos de giro da
+  "câmera". Arrastar o desenho muda esses ângulos.
+- Os **exercícios não têm código próprio**: o `exercicios.js` lê no HTML a resposta certa
+  (`data-resposta`), a explicação de cada alternativa (`data-explicacao`) e o nível (`data-nivel`).
+- O **desbloqueio** está numa única função do `app.js` (`estaLiberada`). O progresso é salvo no
+  `localStorage` do navegador.
+
+**Para editar:** o texto das lições e os exercícios ficam no `index.html`, cada lição na sua `<section>`
+(`id="licao-3"` ou `id="ga-3"`). Os ids de cada laboratório começam com `l3-` (Álgebra Linear) ou `g3-`
+(Geometria Analítica). A conta de um laboratório fica no arquivo da lição em `js/licoes/`.
+
+## 6. Tecnologias
+
+| Tecnologia | Uso |
 |---|---|
-| A fórmula parece "mágica", sem significado | Cada lição explica **de onde a fórmula vem** e mostra um exemplo resolvido passo a passo. |
-| É difícil "ver" o que um vetor, uma matriz ou uma cônica fazem | O **laboratório** desenha tudo na hora. O aluno muda um número e vê a figura e as contas mudarem juntas. |
-| Errar um exercício não ensina nada se não se sabe *por que* errou | **Toda alternativa errada tem uma explicação** do engano que leva a ela, sem entregar a resposta certa. |
+| HTML, CSS e JavaScript | Página, visual, cálculos e correção dos exercícios |
+| SVG | Plano cartesiano, desenhos 3D e o globo |
+| localStorage | Guardar o progresso, o modo, o nível e o tema |
 
-Também tomamos três decisões pedagógicas:
+Nenhuma biblioteca externa: o site funciona sem internet.
 
-- **Trilha em ordem, com liberdade quando o aluno quiser.** No modo *Seguir a trilha*, cada lição só
-  abre depois que o aluno acerta os exercícios da anterior, porque o conteúdo de uma lição é usado
-  nas seguintes. No modo *Escolher a lição*, todas ficam abertas, para quem quer revisar um assunto
-  específico.
-- **Três níveis de exercício.** *Básico*, para aplicar a fórmula direto. *Intermediário*, para usar a
-  fórmula em duas etapas ou "ao contrário". *Avançado*, para juntar ideias e cair em armadilhas comuns.
-  São 6 exercícios por nível em cada lição.
-- **Matemática com dados de verdade.** A última lição de cada trilha mostra que o conteúdo serve para
-  resolver um problema real, com dados oficiais.
+## 7. Testes
 
----
+Cada linha foi testada no navegador (Chromium), e todos os resultados bateram com o esperado. O "Esperado"
+foi calculado à mão.
 
-## 2. Como o aluno usa o site
+| Lição | Entrada | Esperado | Obtido |
+|---|---|---|---|
+| AL 1 | A(−3, −1), B(4, 3) | d = √65 ≈ 8,06; M = (0,5; 1) | d = √65 ≈ 8,06; M = (0,5; 1) ✅ |
+| AL 3 | u = (4, 1), v = (2, 3) | u·v = 11, θ ≈ 42,27°, agudo | u·v = 11, θ ≈ 42,27°, agudo ✅ |
+| AL 4 | A(−1, −1), B(3, 7) | y = 2x + 1 | y = 2x + 1; geral 2x − y + 1 = 0 ✅ |
+| AL 6 | [[2, 1], [0, 3]] · [[1, 4], [2, −1]] | [[4, 7], [6, −3]] | [[4, 7], [6, −3]] ✅ |
+| AL 7 | [[2, −1], [1, 2]] | det = 5 | det = 5, área 5 ✅ |
+| AL 8 | 2x + y = 4 e x − 3y = −5 | x = 1, y = 2 (SPD) | x = 1, y = 2, SPD ✅ |
+| AL 8 | x + y = 2 e 2x + 2y = 5 | Sem solução (SI) | D = 0, retas paralelas, SI ✅ |
+| AL 9 | [[2, 1], [1, 3]] | [[3/5, −1/5], [−1/5, 2/5]] | [[3/5, −1/5], [−1/5, 2/5]] ✅ |
+| AL 9 | [[1, 2], [2, 4]] (inválido) | Mensagem: não tem inversa | "det = 0 · A NÃO tem inversa" ✅ |
+| AL 11 | [[2, 1], [1, 2]] | λ = 3 e λ = 1 | λ₁ = 3 e λ₂ = 1 ✅ |
+| AL 12 | Censos 1940–2022, reta, ano 2030 | ≈ 228,14 milhões | P(9) = 228,14 milhões ✅ |
+| GA 1 | 3x + 4y − 5 = 0, P(3, 4) | d = 4 | d = 4 ✅ |
+| GA 2 | A(1, 1), B(5, 2), C(3, 6) | Área = 9 | D = 18, área = 9 ✅ |
+| GA 3 | Centro (2, −1), raio 3 | x² + y² − 4x + 2y − 4 = 0 | x² + y² − 4x + 2y − 4 = 0 ✅ |
+| GA 5 | Vértice (0, 0), c = 2 | x² = 8y, foco (0, 2) | x² = 8y, foco (0, 2), diretriz y = −2 ✅ |
+| GA 7 | a = 4, b = 3 | Focos (±5, 0), assíntotas ±3/4 | Focos (±5, 0), y = ±(3/4)x ✅ |
+| GA 8 | 4x² + 9y² − 16x + 54y + 61 = 0 | Elipse de centro (2, −3) | Elipse de centro (2, −3) ✅ |
+| GA 9 | u = (2, 2, 1), v = (0, 3, 4) | θ ≈ 48,19° | cos θ = 2/3, θ ≈ 48,19° ✅ |
+| GA 9 | Componente x de u = 9 (inválido) | Mensagem de erro | "Use componentes de −6 a 6 em u." ✅ |
+| GA 10 | u = (2, 1, 0), v = (1, 3, 0), w = (1, 1, 3) | u × v = (0, 0, 5), volume 15 | (0, 0, 5), área 5, volume 15 ✅ |
+| GA 10 | u e v paralelos | u × v = 0 | "vetor nulo: u e v são paralelos" ✅ |
+| GA 11 | π: 2x − y + 2z − 3 = 0, reta (t, 1 + t, −1 + t), P(1, 2, 3) | I = (2, 3, 1), d = 1 | I = (2, 3, 1), d = 1 ✅ |
+| GA 11 | a = b = c = 0 (inválido) | Mensagem de erro | "a, b e c não podem ser todos zero" ✅ |
+| GA 12 | Brasília e São Paulo | ≈ 873 km (IBGE 869,665) | 873,4 km, diferença 0,43% ✅ |
+| GA 12 | Maceió (latitude corrigida) | ≈ 1 484 km | 1 484,3 km, diferença 0,01% ✅ |
+| Todas | Modo trilha: abrir a lição 5 sem ter feito a 4 | Bloqueia com aviso | "Conclua a lição anterior primeiro" ✅ |
+| Todas | Exercícios: 5 de 6 certos | Não conclui a lição | Não concluiu; 6 de 6 concluiu ✅ |
 
-```
- Tela inicial                       Lição                                   Progresso
-┌─────────────────────────┐        ┌──────────────────────────────────┐    ┌─────────────────┐
-│ Matéria: AL  ou  GA      │        │ 1. TEORIA      lê e vê exemplos   │    │ ✓ lição marcada │
-│ Modo: trilha ou livre    │  ───▶  │ 2. LABORATÓRIO mexe e observa     │──▶ │ próxima liberada│
-│ Nível: básico/int./avan. │        │ 3. EXERCÍCIOS  acerta todos       │    │ (modo trilha)   │
-└─────────────────────────┘        └──────────────────────────────────┘    └─────────────────┘
-```
+Também foram feitos **testes automáticos com mais de 10 000 casos**:
 
-1. Na tela inicial o aluno escolhe a **matéria**, o **modo** e o **nível**.
-2. Na lição, ele estuda a teoria, usa o laboratório e responde aos exercícios do nível escolhido.
-3. Ao clicar em **Verificar**, cada resposta fica verde ou vermelha. Quem erra lê o motivo do engano.
-   Quem acerta tudo vê a explicação de **todas** as alternativas e conclui a lição.
-4. O progresso fica salvo no navegador. Ao voltar outro dia, o aluno continua de onde parou.
+- as 24 lições abertas sem nenhum erro de JavaScript;
+- os exercícios dos 3 níveis das 24 lições;
+- mais de 4 000 entradas inválidas nos campos (texto, números enormes, divisão por zero, código HTML), sem nenhum resultado "NaN" e sem injeção de código;
+- as 729 combinações de capitais da lição 12;
+- endereços inválidos e dados salvos corrompidos;
+- as telas em 320, 375 e 768 px de largura (celular e tablet), sem rolagem lateral.
 
-Outros recursos: **tema escuro**, layout para **celular**, navegação pelo teclado e leitores de tela,
-e os botões *voltar/avançar* do navegador funcionando entre as lições.
+## 8. Registro de uso de IA
 
----
+O projeto usou o **Claude Code (Claude Opus 5.5)** no VS Code. Todo código gerado foi revisado e testado
+antes de ser usado.
 
-## 3. O conteúdo das duas trilhas
+| # | Objetivo | Incitar | Resultado | Ajustes | Validação humana |
+|---|---|---|---|---|---|
+| 1 | Lição 8 de GA | "faça essa parte" (print da lição 8 bloqueada) | A lição já existia; ela só estava bloqueada porque a 7 não tinha sido concluída. README atualizado. | — | _(preencher)_ |
+| 2 | Lição 9 de GA | "faça esse agora" (print de *Vetores no espaço*) | Lição completa e componente 3D (`espaco.js`) que gira com o mouse | Exibição de raízes e decimais corrigida | _(preencher)_ |
+| 3 | Lição 10 de GA | "faça esse aqui" (print de *Produto vetorial e misto*) | Lição com produto vetorial, área e volume em 3D | Exemplo "coplanares" corrigido (passava do limite) | _(preencher)_ |
+| 4 | Lição 11 de GA | "crie esse" (print de *Retas e planos no espaço*) | Lição com reta, plano, interseção e distância | Formatação de frações e sinais nas contas | _(preencher)_ |
+| 5 | Lição 12 de GA | "faça a lição 12 agora" | Distância entre capitais com os dados do IBGE | Erro de latitude de Maceió na tabela oficial identificado e corrigido | _(preencher)_ |
+| 6 | Modos de estudo | "quero que você dê a opção do usuário escolher de seguir pela trilha ou escolher [...]" | Modos *Seguir a trilha* e *Escolher a lição* | Proteção contra link para lição bloqueada | _(preencher)_ |
+| 7 | Varredura de testes | "faça vários testes para ver se o sistema está funcionando perfeitamente, tente quebrar o código" | Mais de 10 000 testes automáticos no navegador | Lista de lições estreita, nomes de cidades sobrepostos e reta curta corrigidos | _(preencher)_ |
+| 8 | Documentação | "melhore essa documentação [...] para a professora entender facilmente o que eu quis fazer" | README reescrito | — | _(preencher)_ |
+| 9 | Documentação final | "eu quero esse padrão no readme.md" (prints do README de CDI) | Este README | — | _(preencher)_ |
 
-### Trilha de Álgebra Linear
+Na coluna **Validação humana**, escreva como você conferiu cada resultado (ex.: "refiz a conta à mão",
+"testei no navegador"). As lições anteriores (Álgebra Linear 1 a 12 e Geometria Analítica 1 a 7) foram
+feitas em sessões anteriores e podem ser acrescentadas aqui da mesma forma.
 
-| # | Lição | No laboratório, o aluno… |
-|---|---|---|
-| 1 | Plano cartesiano e pontos | posiciona pontos e vê quadrante, distância e ponto médio |
-| 2 | Vetores no plano | soma vetores e multiplica por escalar, arrastando as setas |
-| 3 | Produto escalar e ângulo | gira os vetores e vê o ângulo e o produto escalar mudarem juntos |
-| 4 | Retas no plano | escolhe dois pontos e vê a inclinação e as equações da reta |
-| 5 | Matrizes | opera com matrizes e clica num elemento para ver de onde ele veio |
-| 6 | Multiplicação de matrizes | vê a "linha vezes coluna" realçada e confere que A·B ≠ B·A |
-| 7 | Determinantes | vê o determinante como a **área** do paralelogramo das colunas |
-| 8 | Sistemas lineares | vê as duas equações como duas retas e a solução no cruzamento |
-| 9 | Matriz inversa | acompanha o método de Gauss-Jordan passo a passo |
-| 10 | Transformações lineares | vê uma matriz deformar o plano (rotação, reflexão, cisalhamento…) |
-| 11 | Autovalores e autovetores | "caça" o vetor que a matriz só estica, sem mudar a direção |
-| 12 | **Aplicação com dados reais** | ajusta uma reta ou parábola à população dos censos do IBGE |
+## 9. Integrantes
 
-### Trilha de Geometria Analítica
-
-| # | Lição | No laboratório, o aluno… |
-|---|---|---|
-| 1 | Ângulo e distância entre retas | vê o caminho mais curto de um ponto até uma reta |
-| 2 | Área de triângulo e alinhamento | calcula áreas pelo determinante e testa se três pontos estão alinhados |
-| 3 | Circunferência | vai da equação ao desenho (completando quadrados) e vice-versa |
-| 4 | Posições relativas com a circunferência | compara distância com raio: secante, tangente ou externa |
-| 5 | Parábola | move um ponto e confere que ele fica à mesma distância do foco e da diretriz |
-| 6 | Elipse | confere que a soma das distâncias aos dois focos não muda |
-| 7 | Hipérbole | confere que a diferença das distâncias aos focos não muda |
-| 8 | Reconhecendo cônicas | digita uma equação geral e descobre qual cônica ela é |
-| 9 | Vetores no espaço | gira um desenho 3D com vetores, módulo, ângulo e ângulos diretores |
-| 10 | Produto vetorial e misto | vê u × v perpendicular ao paralelogramo e o volume do paralelepípedo |
-| 11 | Retas e planos no espaço | vê onde uma reta fura um plano e a distância de um ponto ao plano |
-| 12 | **Aplicação com dados reais** | calcula a distância entre capitais pelo globo |
-
-No total são **24 lições**, **431 exercícios** e mais de **1 700 explicações** de alternativas.
-
----
-
-## 4. As aplicações com dados reais
-
-### Álgebra Linear: a população do Brasil (mínimos quadrados)
-
-Com os **censos do IBGE de 1940 a 2022**, o aluno quer uma reta ou parábola que "passe pelos pontos".
-São 9 equações e só 2 ou 3 incógnitas, então o sistema não tem solução exata. O laboratório monta as
-matrizes, resolve as **equações normais** (Aᵀ·A·x = Aᵀ·b) usando a inversa da lição 9 e mostra o erro
-do modelo. Também dá para esconder um censo e ver se o modelo o "prevê".
-
-> Fonte: IBGE, Censos Demográficos, sistema SIDRA (tabelas 1286 e 4709).
-
-### Geometria Analítica: distância entre capitais (vetores no espaço)
-
-Usando a latitude e a longitude das 27 capitais, o laboratório resolve o problema com as lições 9, 10 e 11:
-
-1. converte graus, minutos e segundos para graus decimais;
-2. transforma cada cidade num **vetor** P = R·(cos φ·cos λ, cos φ·sen λ, sen φ), com R = 6 371 km;
-3. acha o **ângulo central** pelo produto escalar;
-4. calcula a distância pela superfície (arco R·θ) e pelo "túnel" (corda |P − Q|);
-5. acha o **plano da rota** mais curta com o produto vetorial e mede se uma terceira cidade fica no caminho.
-
-O resultado é comparado com a distância oficial: o modelo da esfera fica **a menos de 0,6%** do valor do
-IBGE para todas as capitais.
-
-**Um erro encontrado na fonte oficial.** Na tabela do IBGE, a latitude de Maceió aparece como
-−90°39'35.65", o que é impossível (−90° já é o Polo Sul). O valor certo é −09°39'35.65". Com a correção,
-a distância calculada bate com a do próprio IBGE (diferença de 0,01%). A lição usa isso para mostrar que
-**conferir os dados também faz parte do trabalho**.
-
-> Fonte: IBGE, Anuário Estatístico do Brasil 2025, Tabela 1.1.1.2 – Localização geográfica, altitude e
-> distância a Brasília, segundo os Municípios das Capitais.
-
----
-
-## 5. Como o código funciona
-
-O site é feito só com **HTML, CSS e JavaScript**, sem bibliotecas. Ele tem cerca de 22 mil linhas,
-organizadas em camadas. Cada camada usa apenas as que vêm antes dela.
-
-```
-┌───────────────────────────────────────────────────────────────────────┐
-│ index.html   O CONTEÚDO: texto de todas as lições, campos e exercícios   │
-├───────────────────────────────────────────────────────────────────────┤
-│ css/         A APARÊNCIA: cores, layout, tema escuro, versão de celular  │
-├───────────────────────────────────────────────────────────────────────┤
-│ js/utils/matematica.js      AS CONTAS (módulo, determinante, inversa…)   │
-│ js/componentes/             AS PEÇAS reaproveitáveis:                    │
-│     plano.js   plano cartesiano     espaco.js  desenho 3D que gira       │
-│     matriz.js  matrizes             exercicios.js  correção automática   │
-│ js/app.js                   O "MAESTRO": navegação, desbloqueio, progresso│
-│ js/licoes/*.js              UM ARQUIVO POR LABORATÓRIO (24 arquivos)     │
-└───────────────────────────────────────────────────────────────────────┘
-```
-
-### 5.1 Uma página só
-
-Todas as 24 lições estão dentro do `index.html`, cada uma numa `<section>`. O `app.js` mostra uma
-lição e esconde as outras, conforme o endereço da página: `index.html#licao-3` é a lição 3 de Álgebra
-Linear, e `#ga-5` é a lição 5 de Geometria Analítica. Por isso os botões voltar/avançar do navegador
-funcionam e cada lição tem um link próprio.
-
-### 5.2 As contas ficam separadas do desenho
-
-Toda conta matemática fica em `matematica.js`, em funções pequenas e reaproveitáveis, por exemplo:
-
-```js
-produtoEscalar3(u, v)    // x₁·x₂ + y₁·y₂ + z₁·z₂
-produtoVetorial3(u, v)   // (y₁z₂ − z₁y₂, z₁x₂ − x₁z₂, x₁y₂ − y₁x₂)
-inversaComPassos(A)      // Gauss-Jordan, guardando cada passo para mostrar ao aluno
-```
-
-Assim a mesma função serve a várias lições. O produto vetorial, por exemplo, é usado nas lições 10, 11
-e 12 de Geometria Analítica.
-
-### 5.3 O que acontece quando o aluno mexe num laboratório
-
-Cada laboratório (arquivo em `js/licoes/`) segue sempre o mesmo ciclo:
-
-```
- aluno digita ou clica ──▶ ler os campos ──▶ validar ──▶ calcular ──▶ desenhar ──▶ escrever as contas
-                                               │
-                                               └── valor inválido? mostra uma mensagem e não desenha
-```
-
-Exemplo real, da lição 9 de Geometria Analítica (resumido):
-
-```js
-function atualizar() {
-  const u = lerVetor('u');                 // lê os 3 campos de u
-  const v = lerVetor('v');
-  if (u.erro || v.erro) { mostrarErro(); return; }   // ex.: campo vazio ou fora do limite
-  desenhar(u, v);                          // setas no espaço 3D
-  resultados.innerHTML = cartaoModulos(u, v) + cartaoAngulo(u, v) + /* … */;
-}
-campos.forEach((campo) => campo.addEventListener('input', atualizar));   // a cada tecla
-```
-
-Os resultados mostram **a conta inteira**, não só a resposta. Por exemplo:
-`|u| = √(2² + 2² + 1²) = √9 = 3`. Assim o aluno vê o processo, como no caderno.
-
-### 5.4 Os desenhos
-
-- **Plano cartesiano (`plano.js`)**: desenha em SVG (imagem vetorial, nítida em qualquer tamanho) com as
-  coordenadas matemáticas normais (y para cima). O componente converte para as coordenadas da tela.
-- **Espaço 3D (`espaco.js`)**: não usa nenhuma biblioteca 3D. Cada ponto (x, y, z) é **projetado** na
-  tela com trigonometria, a partir dos ângulos de giro da "câmera" (azimute t e elevação f):
-
-  ```
-  horizontal = −x·sen t + y·cos t
-  vertical   =  z·cos f − (x·cos t + y·sen t)·sen f
-  ```
-
-  Arrastar com o mouse muda esses dois ângulos e o desenho é refeito. É a própria Geometria Analítica
-  sendo usada para desenhar a Geometria Analítica.
-
-### 5.5 Exercícios corrigidos automaticamente
-
-Os exercícios **não precisam de código próprio**. Eles são escritos só em HTML, e o `exercicios.js` lê
-as marcações para saber a resposta e as explicações:
-
-```html
-<li class="exercicio" data-nivel="intermediario">
-  <p>Qual é o módulo de v = (2, −3, 6)?</p>
-  <div class="alternativas" data-resposta="b">
-    <label><input type="radio" value="a" data-explicacao="Somou as componentes…"> 5</label>
-    <label><input type="radio" value="b" data-explicacao="√(4 + 9 + 36) = 7."> 7</label>
-    …
-  </div>
-</li>
-```
-
-- `data-resposta` diz qual é a alternativa certa;
-- `data-explicacao` diz, em cada alternativa, o porquê do acerto ou do engano;
-- `data-nivel` diz em qual nível o exercício aparece.
-
-Para criar um exercício novo basta escrever o HTML, sem mexer em nenhuma linha de JavaScript.
-
-### 5.6 Desbloqueio e progresso (`app.js`)
-
-- As lições concluídas ficam salvas no **`localStorage`** do navegador (por exemplo, `[1, 2, 3]`). Por
-  isso o progresso continua lá ao fechar e abrir a página.
-- A regra de desbloqueio fica numa função só:
-
-  ```js
-  function estaLiberada(trilha, n) {
-    if (modoAtual === 'livre') return true;            // modo "Escolher a lição": tudo aberto
-    return n === 1 || concluidas[trilha].has(n - 1);   // modo trilha: a anterior precisa estar feita
-  }
-  ```
-
-- Se o aluno tentar "pular" uma lição digitando o endereço (`#licao-9`), o `app.js` bloqueia e mostra
-  um aviso.
-- Se o `localStorage` estiver bloqueado (modo anônimo) ou com dados estranhos, o site continua
-  funcionando normalmente; só não lembra o progresso.
-
----
-
-## 6. Decisões de projeto
-
-| Decisão | Por quê |
+| Nome | Parte |
 |---|---|
-| **Sem bibliotecas nem frameworks** | Abre em qualquer computador com dois cliques, funciona sem internet, e todo o código pode ser lido e entendido. |
-| **Um arquivo por laboratório** | Cada lição é independente: dá para corrigir uma sem risco de quebrar outra. |
-| **Contas em funções separadas** | A mesma função (ex.: determinante) serve a várias lições e é fácil de testar. |
-| **Exercícios só em HTML** | Criar ou corrigir um exercício não exige programar. |
-| **Tudo em português** | Nomes de funções, variáveis e comentários em português, para facilitar a leitura. |
-| **Padrão brasileiro de números** | Vírgula decimal e ponto e vírgula entre coordenadas decimais: (2,5; 4). |
-| **Acessibilidade** | Funciona pelo teclado e com leitores de tela (rótulos, `aria-live`, foco), com contraste nos dois temas. |
-| **Celular primeiro** | Testado em telas de 320 px de largura, sem rolagem lateral. |
-
----
-
-## 7. Como foi testado
-
-O site foi testado num navegador real (Chromium), automaticamente, com **mais de 10 000 casos**:
-
-| Teste | O que foi verificado |
-|---|---|
-| Carregamento | As 24 lições abrem sem nenhum erro de JavaScript. |
-| Exercícios | Nos 3 níveis das 24 lições: tudo em branco, tudo errado ou 5 de 6 certos **não** conclui a lição; 6 de 6 conclui. |
-| Entradas inválidas | Mais de 4 000 valores "maliciosos" nos campos (texto, números enormes, divisão por zero, código HTML): nenhum resultado "NaN" e nenhuma injeção de código. |
-| Combinações extremas | Todos os campos no mínimo e no máximo e combinações aleatórias, clicando em todos os botões. |
-| Navegação | Endereços inválidos, tentativa de pular lições, dados salvos corrompidos e armazenamento bloqueado. |
-| Celular | Todas as telas em 320, 375 e 768 px de largura. |
-| Dados do IBGE | As 729 combinações de capitais, conferindo a diferença com as distâncias oficiais. |
-
-As contas de todos os exercícios também foram refeitas uma a uma.
-
----
-
-## 8. Estrutura de pastas
-
-```
-codigo/
-  index.html                 a página: conteúdo de todas as lições
-  css/
-    base.css                 cores, fontes e espaçamentos (variáveis), tema claro/escuro
-    layout.css               tela inicial, menu de lições, grade da página
-    componentes.css          botões, campos, fórmulas, tabelas, matrizes
-    exercicios.css           alternativas e quadro de explicações
-    laboratorio.css          laboratórios, plano cartesiano e espaço 3D
-  js/
-    utils/matematica.js      todas as contas e a formatação de números
-    componentes/
-      plano.js               plano cartesiano em SVG
-      espaco.js              espaço 3D em SVG que gira com o mouse
-      matriz.js              editor e exibição de matrizes
-      exercicios.js          correção automática dos exercícios e níveis
-    app.js                   navegação, modos, desbloqueio, progresso e tema
-    licoes/
-      licao-01.js … licao-12.js    laboratórios de Álgebra Linear
-      ga-01.js    … ga-12.js       laboratórios de Geometria Analítica
-README.md                    este documento
-```
-
-A **ordem dos `<script>`** no fim do `index.html` importa: `matematica.js` → componentes → `app.js` →
-lições, porque cada arquivo usa funções dos anteriores.
-
----
-
-## 9. Para quem for continuar o projeto
-
-### Criar uma lição nova
-
-1. **HTML:** copie a `<section>` de uma lição parecida no `index.html` e troque o conteúdo. Cada lição
-   tem três blocos: `<div class="teoria">`, `<div class="laboratorio">` e `<div class="exercicios">`.
-   Em Geometria Analítica, a seção leva `data-trilha="ga"`.
-2. **Menu:** acrescente um item na lista da trilha (`#trilha-lista` ou `#trilha-lista-ga`).
-3. **Laboratório:** crie o arquivo em `js/licoes/` (`licao-NN.js` ou `ga-NN.js`, com dois dígitos)
-   seguindo o ciclo *ler → validar → calcular → desenhar → escrever* da seção 5.3, e inclua o `<script>`
-   no fim do `index.html`.
-4. **Exercícios:** escreva 6 por nível no formato da seção 5.5.
-
-O `app.js` conta as lições pelo próprio HTML, então nenhum número precisa ser mudado no código.
-
-### Combinados do código
-
-- **Ids com prefixo por lição** (`l3-…` em Álgebra Linear, `g3-…` em Geometria Analítica), para não
-  haver nomes repetidos entre as lições.
-- **Contas reaproveitáveis** vão para `matematica.js`; o que só uma lição usa fica no arquivo dela.
-- **Toda alternativa tem `data-explicacao`**, em texto puro (sem tags; use caracteres como x², a₁₂).
-  As erradas explicam o engano **sem revelar a resposta certa**, e a certa mostra a conta completa.
-- **Números** sempre com `formatarNumero` e `formatarPonto` (padrão brasileiro).
-- **Cores** sempre por variável (`var(--cor-…)`), para funcionarem nos dois temas.
-- **Estilos de celular** ficam no bloco *RESPONSIVO* no fim de cada arquivo CSS.
+| Marcos Vinicius da Silva Lima | Todo o projeto: HTML, CSS, JavaScript e documentação |
