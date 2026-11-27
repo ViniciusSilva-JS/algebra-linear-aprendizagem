@@ -7663,8 +7663,420 @@
       </section>
       <section id="ga-8" class="licao" data-trilha="ga" data-licao="8">
         <h2 class="licao-titulo">8. Reconhecendo cônicas</h2>
+
+        <!-- ---------- TEORIA ---------- -->
         <div class="teoria">
-          <p class="em-construcao">🚧 Lição em construção. Vai tratar de: como descobrir, pela equação Ax² + Cy² + Dx + Ey + F = 0, se a curva é circunferência, elipse, parábola ou hipérbole.</p>
+          <h3>Uma equação para as quatro curvas</h3>
+          <p>
+            Nas lições 3, 5, 6 e 7, toda equação reduzida, depois de desenvolvida, virou uma equação do mesmo formato:
+          </p>
+          <div class="formula">Ax² + Cy² + Dx + Ey + F = 0</div>
+          <p>
+            O caminho inverso é a pergunta desta lição: <strong>olhando só para os coeficientes, qual curva é essa?</strong>
+            Circunferência, elipse, parábola e hipérbole são chamadas de <strong>cônicas</strong> porque todas aparecem
+            ao cortar um cone duplo com um plano: um corte reto dá a circunferência, um corte inclinado dá a elipse,
+            um corte paralelo à lateral do cone dá a parábola, e um corte que pega as duas folhas do cone dá a hipérbole.
+          </p>
+
+          <h3>A regra dos quadrados</h3>
+          <p>Quem decide o tipo são os coeficientes de <strong>x²</strong> e de <strong>y²</strong>, ou seja, A e C:</p>
+          <div class="tabela-rolagem">
+            <table class="tabela">
+              <thead>
+                <tr><th>Coeficientes</th><th>Cônica</th><th>Exemplo</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>A = C (e diferentes de 0)</td><td>circunferência</td><td>x² + y² − 4x + 6y − 12 = 0</td></tr>
+                <tr><td>A·C &gt; 0 e A ≠ C (mesmo sinal)</td><td>elipse</td><td>4x² + 9y² − 36 = 0</td></tr>
+                <tr><td>A·C &lt; 0 (sinais opostos)</td><td>hipérbole</td><td>9x² − 4y² − 36 = 0</td></tr>
+                <tr><td>A·C = 0 (só um dos quadrados)</td><td>parábola</td><td>x² − 4x − 8y − 4 = 0</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            <strong>Para lembrar:</strong> quadrados com o <strong>mesmo sinal</strong> fecham a curva (circunferência ou elipse);
+            com <strong>sinais opostos</strong>, ela se abre em dois ramos (hipérbole); se <strong>falta um quadrado</strong>,
+            sobra uma só "boca" (parábola). Os termos Dx, Ey e F só mudam a <strong>posição</strong> e o tamanho, nunca o tipo.
+          </p>
+
+          <h3>Confirmando: completar os quadrados</h3>
+          <p>
+            A regra dá o tipo <strong>provável</strong>. Para ter certeza (e achar centro, vértice e focos), completamos os quadrados
+            e chegamos à equação reduzida, como nas lições anteriores.
+          </p>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              4x² + 9y² − 16x + 54y + 61 = 0. A = 4 e C = 9 têm o mesmo sinal e são diferentes: deve ser uma elipse.
+            </p>
+            <p>
+              4(x² − 4x) + 9(y² + 6y) = −61 &nbsp;⇒&nbsp; 4(x − 2)² − 16 + 9(y + 3)² − 81 = −61 &nbsp;⇒&nbsp;
+              4(x − 2)² + 9(y + 3)² = 36.
+            </p>
+            <p>
+              Dividindo por 36: <strong>(x − 2)²/9 + (y + 3)²/4 = 1</strong>. Elipse de centro (2, −3), a = 3 e b = 2 ✓.
+            </p>
+          </div>
+
+          <h3>Os casos degenerados</h3>
+          <p>
+            Às vezes, depois de completar os quadrados, o lado direito fica <strong>zero</strong> ou com o <strong>sinal errado</strong>.
+            Aí a equação não descreve a curva esperada, e sim um caso "degenerado":
+          </p>
+          <div class="tabela-rolagem">
+            <table class="tabela">
+              <thead>
+                <tr><th>Equação</th><th>Esperado</th><th>O que é de verdade</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>(x − 1)² + (y + 2)² = 0</td><td>circunferência</td><td>só o <strong>ponto</strong> (1, −2)</td></tr>
+                <tr><td>(x − 1)² + 4y² = −4</td><td>elipse</td><td><strong>nenhum ponto</strong> (soma de quadrados não dá negativo)</td></tr>
+                <tr><td>x² − 4y² = 0</td><td>hipérbole</td><td><strong>duas retas</strong> que se cruzam: y = ±x/2</td></tr>
+                <tr><td>(x − 1)² = 9</td><td>parábola</td><td><strong>duas retas paralelas</strong>: x = −2 e x = 4</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Numa hipérbole degenerada, as duas retas são exatamente as assíntotas: é como se os ramos tivessem
+            "encostado" nelas.
+          </p>
+
+          <h3>E se houver o termo xy?</h3>
+          <p>
+            A equação mais geral de uma cônica é <strong>Ax² + Bxy + Cy² + Dx + Ey + F = 0</strong>. O termo Bxy aparece quando a
+            curva está <strong>girada</strong> (os eixos dela não são paralelos aos eixos x e y). Nesse caso, a regra usa o
+            <strong>discriminante</strong>:
+          </p>
+          <div class="formula">Δ = B² − 4AC</div>
+          <ul>
+            <li><strong>Δ &lt; 0:</strong> elipse (ou circunferência);</li>
+            <li><strong>Δ = 0:</strong> parábola;</li>
+            <li><strong>Δ &gt; 0:</strong> hipérbole.</li>
+          </ul>
+          <p>
+            Sem o termo xy, B = 0 e Δ = −4AC: é a mesma regra do sinal de A·C. Por exemplo, <strong>xy = 4</strong> tem
+            A = C = 0 e B = 1, então Δ = 1 &gt; 0: é a hipérbole equilátera girada da lição 7. Para "desgirar" a curva usa-se uma
+            rotação, e os novos coeficientes de x² e y² são os <strong>autovalores</strong> da matriz
+            [[A, B/2], [B/2, C]], ligação direta com a trilha de Álgebra Linear.
+          </p>
+
+          <h3>Resumo pela excentricidade</h3>
+          <div class="tabela-rolagem">
+            <table class="tabela">
+              <thead>
+                <tr><th>Cônica</th><th>Excentricidade e</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>circunferência</td><td>e = 0</td></tr>
+                <tr><td>elipse</td><td>0 &lt; e &lt; 1</td></tr>
+                <tr><td>parábola</td><td>e = 1</td></tr>
+                <tr><td>hipérbole</td><td>e &gt; 1</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ---------- LABORATÓRIO ---------- -->
+        <div class="laboratorio">
+          <h3>Qual é essa cônica?</h3>
+          <p>
+            Digite os coeficientes de <strong>Ax² + Cy² + Dx + Ey + F = 0</strong> (ou escolha um exemplo). O laboratório
+            aplica a regra dos quadrados, completa os quadrados e desenha a curva, inclusive nos casos degenerados.
+          </p>
+
+          <div class="lab-area controles-largos">
+            <svg id="g8-plano" class="plano-cartesiano" viewBox="-10 -10 20 20"
+                 role="img" aria-label="Plano com a cônica descrita pela equação geral"></svg>
+
+            <div class="lab-controles">
+              <fieldset class="lab-ponto lab-ponto-m lab-tres-campos">
+                <legend>Coeficientes</legend>
+                <label>A <input type="number" id="g8-A" value="4" min="-100" max="100" step="1" aria-label="coeficiente de x²"></label>
+                <label>C <input type="number" id="g8-C" value="9" min="-100" max="100" step="1" aria-label="coeficiente de y²"></label>
+                <label>D <input type="number" id="g8-D" value="-16" min="-100" max="100" step="1" aria-label="coeficiente de x"></label>
+                <label>E <input type="number" id="g8-E" value="54" min="-100" max="100" step="1" aria-label="coeficiente de y"></label>
+                <label>F <input type="number" id="g8-F" value="61" min="-200" max="200" step="1" aria-label="termo independente"></label>
+              </fieldset>
+              <p id="g8-equacao" class="lab-dica" aria-live="polite"></p>
+              <fieldset class="lab-ponto lab-ponto-a lab-tres-campos">
+                <legend>Exemplos</legend>
+                <button type="button" class="btn-secundario" data-g8-exemplo="1,1,-4,6,-12">Circunferência</button>
+                <button type="button" class="btn-secundario" data-g8-exemplo="4,9,-16,54,61">Elipse</button>
+                <button type="button" class="btn-secundario" data-g8-exemplo="1,0,-4,-8,-4">Parábola</button>
+                <button type="button" class="btn-secundario" data-g8-exemplo="9,-4,-18,-16,-43">Hipérbole</button>
+                <button type="button" class="btn-secundario" data-g8-exemplo="1,-4,0,0,0">Duas retas</button>
+                <button type="button" class="btn-secundario" data-g8-exemplo="1,1,-2,0,5">Nenhum ponto</button>
+              </fieldset>
+              <p class="lab-dica">Coeficientes de −100 a 100 (F de −200 a 200). Sem o termo xy, os eixos da curva ficam paralelos aos eixos x e y.</p>
+              <button type="button" id="g8-sortear" class="btn-secundario">🎲 Sortear uma cônica</button>
+            </div>
+          </div>
+
+          <div id="g8-resultados" class="lab-resultados" aria-live="polite"></div>
+        </div>
+
+        <!-- ---------- EXERCÍCIOS ---------- -->
+        <div class="exercicios" data-licao="8">
+          <h3>Pratique</h3>
+          <p>Escolha uma alternativa em cada exercício. Acerte todos para liberar a lição 9.</p>
+
+          <ol class="lista-exercicios">
+            <!-- ===== BÁSICO ===== -->
+            <li class="exercicio" data-nivel="basico">
+              <p>Que cônica é <strong>4x² + 9y² − 36 = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g8-b1" value="a"
+                  data-explicacao="Na circunferência os coeficientes de x² e y² são iguais. Aqui são 4 e 9."> Circunferência</label>
+                <label class="alternativa"><input type="radio" name="g8-b1" value="b"
+                  data-explicacao="A = 4 e C = 9: mesmo sinal e diferentes. Dividindo por 36: x²/9 + y²/4 = 1."> Elipse</label>
+                <label class="alternativa"><input type="radio" name="g8-b1" value="c"
+                  data-explicacao="A parábola tem só um dos quadrados. Aqui aparecem x² e y²."> Parábola</label>
+                <label class="alternativa"><input type="radio" name="g8-b1" value="d"
+                  data-explicacao="A hipérbole tem os quadrados com sinais opostos. Aqui os dois são positivos."> Hipérbole</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Que cônica é <strong>x² − y² − 2x + 4y − 12 = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g8-b2" value="a"
+                  data-explicacao="Os coeficientes de x² e y² são 1 e −1: não são iguais, os sinais são opostos."> Circunferência</label>
+                <label class="alternativa"><input type="radio" name="g8-b2" value="b"
+                  data-explicacao="Na elipse os quadrados têm o mesmo sinal."> Elipse</label>
+                <label class="alternativa"><input type="radio" name="g8-b2" value="c"
+                  data-explicacao="Os dois quadrados aparecem, então não é parábola."> Parábola</label>
+                <label class="alternativa"><input type="radio" name="g8-b2" value="d"
+                  data-explicacao="A = 1 e C = −1: A·C &lt; 0. Completando: (x − 1)² − (y − 2)² = 9."> Hipérbole</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Que cônica é <strong>y² − 8x + 2y + 17 = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g8-b3" value="a"
+                  data-explicacao="Não há x², só y²: A·C = 0. Completando: (y + 1)² = 8(x − 2), parábola de vértice (2, −1)."> Parábola</label>
+                <label class="alternativa"><input type="radio" name="g8-b3" value="b"
+                  data-explicacao="O termo −8x é de 1º grau. A circunferência precisa de x² e y² com o mesmo coeficiente."> Circunferência</label>
+                <label class="alternativa"><input type="radio" name="g8-b3" value="c"
+                  data-explicacao="A hipérbole tem x² e y² com sinais opostos. Aqui falta o x²."> Hipérbole</label>
+                <label class="alternativa"><input type="radio" name="g8-b3" value="d"
+                  data-explicacao="A elipse tem x² e y² com o mesmo sinal. Aqui falta o x²."> Elipse</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Que cônica é <strong>3x² + 3y² − 6x + 12y − 12 = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g8-b4" value="a"
+                  data-explicacao="Quando A = C, a elipse vira o caso especial de eixos iguais."> Elipse com eixos diferentes</label>
+                <label class="alternativa"><input type="radio" name="g8-b4" value="b"
+                  data-explicacao="Os dois quadrados têm o mesmo sinal, então não é hipérbole."> Hipérbole</label>
+                <label class="alternativa"><input type="radio" name="g8-b4" value="c"
+                  data-explicacao="A = C = 3. Dividindo por 3 e completando: (x − 1)² + (y + 2)² = 9, centro (1, −2) e raio 3."> Circunferência</label>
+                <label class="alternativa"><input type="radio" name="g8-b4" value="d"
+                  data-explicacao="Os dois quadrados aparecem, então não é parábola."> Parábola</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Na equação Ax² + Cy² + Dx + Ey + F = 0 (não degenerada), o que indica <strong>A·C &lt; 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g8-b5" value="a"
+                  data-explicacao="A elipse tem A·C &gt; 0: os quadrados com o mesmo sinal."> Elipse</label>
+                <label class="alternativa"><input type="radio" name="g8-b5" value="b"
+                  data-explicacao="A·C &lt; 0 quer dizer que x² e y² têm sinais opostos, como em x²/a² − y²/b² = 1."> Hipérbole</label>
+                <label class="alternativa"><input type="radio" name="g8-b5" value="c"
+                  data-explicacao="A parábola tem A·C = 0: falta um dos quadrados."> Parábola</label>
+                <label class="alternativa"><input type="radio" name="g8-b5" value="d"
+                  data-explicacao="A circunferência tem A = C, então A·C = A² &gt; 0."> Circunferência</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Qual cônica tem excentricidade <strong>e = 1</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g8-b6" value="a"
+                  data-explicacao="A circunferência tem e = 0: os focos coincidem com o centro."> Circunferência</label>
+                <label class="alternativa"><input type="radio" name="g8-b6" value="b"
+                  data-explicacao="A elipse tem 0 &lt; e &lt; 1."> Elipse</label>
+                <label class="alternativa"><input type="radio" name="g8-b6" value="c"
+                  data-explicacao="A hipérbole tem e &gt; 1."> Hipérbole</label>
+                <label class="alternativa"><input type="radio" name="g8-b6" value="d"
+                  data-explicacao="Na parábola, a distância ao foco é igual à distância à diretriz: a razão entre elas é 1."> Parábola</label>
+              </div>
+            </li>
+
+            <!-- ===== INTERMEDIÁRIO ===== -->
+            <li class="exercicio" data-nivel="intermediario">
+              <p>O que representa <strong>x² + y² + 4x − 6y + 13 = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g8-i1" value="a"
+                  data-explicacao="13 não é o raio: o raio sai depois de completar os quadrados."> Circunferência de raio 13</label>
+                <label class="alternativa"><input type="radio" name="g8-i1" value="b"
+                  data-explicacao="Somou o 13 em vez de subtrair. (x + 2)² + (y − 3)² = 4 + 9 − 13 = 0."> Circunferência de centro (−2, 3) e raio √13</label>
+                <label class="alternativa"><input type="radio" name="g8-i1" value="c"
+                  data-explicacao="(x + 2)² + (y − 3)² = 4 + 9 − 13 = 0. Uma soma de quadrados só dá zero se os dois forem zero: só o ponto (−2, 3)."> Só o ponto (−2, 3)</label>
+                <label class="alternativa"><input type="radio" name="g8-i1" value="d"
+                  data-explicacao="O lado direito dá exatamente 0, não negativo: existe um ponto que satisfaz a equação."> Nenhum ponto</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>O que representa <strong>x² + y² − 2x + 5 = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g8-i2" value="a"
+                  data-explicacao="O raio ao quadrado daria 1 − 5 = −4, e nenhum raio real tem quadrado negativo."> Circunferência de centro (1, 0) e raio 2</label>
+                <label class="alternativa"><input type="radio" name="g8-i2" value="b"
+                  data-explicacao="Os sinais estão trocados e, de qualquer modo, o raio ao quadrado dá negativo."> Circunferência de centro (−1, 0) e raio √5</label>
+                <label class="alternativa"><input type="radio" name="g8-i2" value="c"
+                  data-explicacao="Seria só o ponto se o lado direito desse 0. Ele dá −4."> Só o ponto (1, 0)</label>
+                <label class="alternativa"><input type="radio" name="g8-i2" value="d"
+                  data-explicacao="(x − 1)² + y² = 1 − 5 = −4. Soma de quadrados nunca é negativa: nenhum ponto satisfaz a equação."> Nenhum ponto</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>O que representa <strong>x² − 4y² = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g8-i3" value="a"
+                  data-explicacao="x² = 4y² ⇒ x = ±2y ⇒ y = ±x/2. É uma hipérbole degenerada: só sobram as assíntotas."> Duas retas concorrentes, y = ±x/2</label>
+                <label class="alternativa"><input type="radio" name="g8-i3" value="b"
+                  data-explicacao="Para ser hipérbole o lado direito teria de ser diferente de zero."> Hipérbole com a = 2</label>
+                <label class="alternativa"><input type="radio" name="g8-i3" value="c"
+                  data-explicacao="A origem satisfaz a equação, mas não é o único ponto: (2, 1) também satisfaz."> Só o ponto (0, 0)</label>
+                <label class="alternativa"><input type="radio" name="g8-i3" value="d"
+                  data-explicacao="A parábola tem só um quadrado. Aqui há x² e y²."> Parábola</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Para que valor de m a equação <strong>mx² + 4y² − 8 = 0</strong> é uma circunferência?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g8-i4" value="a"
+                  data-explicacao="Com m = 0 fica 4y² = 8, ou seja, y = ±√2: duas retas paralelas."> m = 0</label>
+                <label class="alternativa"><input type="radio" name="g8-i4" value="b"
+                  data-explicacao="Com m = −4 os quadrados têm sinais opostos: hipérbole."> m = −4</label>
+                <label class="alternativa"><input type="radio" name="g8-i4" value="c"
+                  data-explicacao="A circunferência exige A = C: m = 4. Fica 4x² + 4y² = 8, ou x² + y² = 2, raio √2."> m = 4</label>
+                <label class="alternativa"><input type="radio" name="g8-i4" value="d"
+                  data-explicacao="8 é o termo independente. O que precisa ser igual são os coeficientes de x² e y²."> m = 8</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Para quais valores de k a equação <strong>x² + ky² + 2x − 3 = 0</strong> é uma hipérbole?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g8-i5" value="a"
+                  data-explicacao="Com k &gt; 0 os quadrados têm o mesmo sinal: elipse (ou circunferência, se k = 1)."> k &gt; 0</label>
+                <label class="alternativa"><input type="radio" name="g8-i5" value="b"
+                  data-explicacao="Precisamos de A·C = 1·k &lt; 0. Completando: (x + 1)² + ky² = 4, que é hipérbole para todo k negativo."> k &lt; 0</label>
+                <label class="alternativa"><input type="radio" name="g8-i5" value="c"
+                  data-explicacao="Com k = 0 fica (x + 1)² = 4: as retas paralelas x = 1 e x = −3."> k = 0</label>
+                <label class="alternativa"><input type="radio" name="g8-i5" value="d"
+                  data-explicacao="Com k = 1 fica (x + 1)² + y² = 4: uma circunferência."> k = 1</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Classifique <strong>9x² + 4y² − 36x + 8y + 4 = 0</strong>.</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g8-i6" value="a"
+                  data-explicacao="Os sinais do centro estão trocados: x² − 4x vira (x − 2)², então h = 2."> Elipse de centro (−2, 1)</label>
+                <label class="alternativa"><input type="radio" name="g8-i6" value="b"
+                  data-explicacao="Os coeficientes de x² e y² são 9 e 4, diferentes: não é circunferência."> Circunferência de centro (2, −1)</label>
+                <label class="alternativa"><input type="radio" name="g8-i6" value="c"
+                  data-explicacao="Na reduzida, o 9 vai para baixo do (y + 1)²: o maior denominador fica com y, e o eixo maior é vertical."> Elipse de centro (2, −1), eixo maior horizontal</label>
+                <label class="alternativa"><input type="radio" name="g8-i6" value="d"
+                  data-explicacao="9(x − 2)² − 36 + 4(y + 1)² − 4 + 4 = 0 ⇒ 9(x − 2)² + 4(y + 1)² = 36 ⇒ (x − 2)²/4 + (y + 1)²/9 = 1. O maior denominador está em y."> Elipse de centro (2, −1), eixo maior vertical</label>
+              </div>
+            </li>
+
+            <!-- ===== AVANÇADO ===== -->
+            <li class="exercicio" data-nivel="avancado">
+              <p>A equação <strong>xy − 4 = 0</strong> tem A = C = 0 e B = 1. Que cônica ela representa?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g8-a1" value="a"
+                  data-explicacao="A regra de A·C só vale sem o termo xy. Com ele, use Δ = B² − 4AC."> Parábola, porque A·C = 0</label>
+                <label class="alternativa"><input type="radio" name="g8-a1" value="b"
+                  data-explicacao="xy = 4 tem infinitos pontos, como (1, 4), (2, 2) e (4, 1)."> Nenhuma: não há x² nem y²</label>
+                <label class="alternativa"><input type="radio" name="g8-a1" value="c"
+                  data-explicacao="Δ = B² − 4AC = 1 − 0 = 1 &gt; 0: hipérbole. É a equilátera y = 4/x, girada 45°."> Hipérbole</label>
+                <label class="alternativa"><input type="radio" name="g8-a1" value="d"
+                  data-explicacao="A elipse tem Δ &lt; 0. Aqui Δ = 1."> Elipse</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Que cônica é <strong>x² + xy + y² − 3 = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g8-a2" value="a"
+                  data-explicacao="A = C não basta quando há termo xy: ele deforma e gira a curva."> Circunferência, porque A = C</label>
+                <label class="alternativa"><input type="radio" name="g8-a2" value="b"
+                  data-explicacao="Δ = 1² − 4·1·1 = −3 &lt; 0: elipse, girada 45° em relação aos eixos."> Elipse</label>
+                <label class="alternativa"><input type="radio" name="g8-a2" value="c"
+                  data-explicacao="Δ = 0 seria parábola. Aqui Δ = −3."> Parábola</label>
+                <label class="alternativa"><input type="radio" name="g8-a2" value="d"
+                  data-explicacao="Δ &gt; 0 seria hipérbole. Aqui Δ = −3."> Hipérbole</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Que cônica é <strong>x² + 2xy + y² + x − y = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g8-a3" value="a"
+                  data-explicacao="Δ = 2² − 4·1·1 = 0: parábola. De fato, x² + 2xy + y² = (x + y)², e a equação vira (x + y)² = y − x: um quadrado igual a algo de 1º grau, como em x² = 4py, só que girado 45°."> Parábola</label>
+                <label class="alternativa"><input type="radio" name="g8-a3" value="b"
+                  data-explicacao="A = C, mas com termo xy é preciso usar Δ = B² − 4AC = 0."> Circunferência</label>
+                <label class="alternativa"><input type="radio" name="g8-a3" value="c"
+                  data-explicacao="Elipse exige Δ &lt; 0. Aqui Δ = 4 − 4 = 0."> Elipse</label>
+                <label class="alternativa"><input type="radio" name="g8-a3" value="d"
+                  data-explicacao="Hipérbole exige Δ &gt; 0. Aqui Δ = 4 − 4 = 0."> Hipérbole</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Para quais valores de k a equação <strong>x² + 4y² − 2x + k = 0</strong> é uma elipse de verdade (com infinitos pontos)?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g8-a4" value="a"
+                  data-explicacao="Com k &gt; 1 o lado direito 1 − k fica negativo: nenhum ponto."> k &gt; 1</label>
+                <label class="alternativa"><input type="radio" name="g8-a4" value="b"
+                  data-explicacao="Com k = 1 fica (x − 1)² + 4y² = 0: só o ponto (1, 0)."> k = 1</label>
+                <label class="alternativa"><input type="radio" name="g8-a4" value="c"
+                  data-explicacao="A regra dos sinais dá o tipo provável, mas o lado direito decide se a curva existe."> Qualquer k</label>
+                <label class="alternativa"><input type="radio" name="g8-a4" value="d"
+                  data-explicacao="(x − 1)² + 4y² = 1 − k. Para ser elipse, o lado direito precisa ser positivo: 1 − k &gt; 0 ⇒ k &lt; 1."> k &lt; 1</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>O que representa <strong>x² − y² + 2x + 2y = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g8-a5" value="a"
+                  data-explicacao="A·C &lt; 0 sugere hipérbole, mas depois de completar os quadrados o lado direito dá 0."> Hipérbole de centro (−1, 1)</label>
+                <label class="alternativa"><input type="radio" name="g8-a5" value="b"
+                  data-explicacao="(x + 1)² − 1 − (y − 1)² + 1 = 0 ⇒ (x + 1)² = (y − 1)² ⇒ y − 1 = ±(x + 1): as retas y = x + 2 e y = −x."> As retas y = x + 2 e y = −x</label>
+                <label class="alternativa"><input type="radio" name="g8-a5" value="c"
+                  data-explicacao="A origem satisfaz a equação, mas (−2, 0) também."> Só o ponto (0, 0)</label>
+                <label class="alternativa"><input type="radio" name="g8-a5" value="d"
+                  data-explicacao="Retas paralelas aparecem quando falta um dos quadrados. Aqui as retas se cruzam em (−1, 1)."> Duas retas paralelas</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Para que valor de C a equação <strong>4x² + Cy² − 16x − 8y + 4 = 0</strong> é uma parábola, e qual é o vértice?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g8-a6" value="a"
+                  data-explicacao="Parábola exige C = 0. 4(x − 2)² − 16 − 8y + 4 = 0 ⇒ 4(x − 2)² = 8y + 12 ⇒ (x − 2)² = 2(y + 3/2)."> C = 0, vértice (2; −1,5)</label>
+                <label class="alternativa"><input type="radio" name="g8-a6" value="b"
+                  data-explicacao="Os sinais estão trocados: x² − 4x vira (x − 2)², e y + 3/2 dá k = −3/2."> C = 0, vértice (−2; 1,5)</label>
+                <label class="alternativa"><input type="radio" name="g8-a6" value="c"
+                  data-explicacao="Com C = 4, A = C: seria uma circunferência."> C = 4, vértice (2, 1)</label>
+                <label class="alternativa"><input type="radio" name="g8-a6" value="d"
+                  data-explicacao="Com C negativo os quadrados têm sinais opostos: hipérbole, que não tem vértice único."> C = −4, vértice (2, −1)</label>
+              </div>
+            </li>
+
+          </ol>
         </div>
       </section>
       <section id="ga-9" class="licao" data-trilha="ga" data-licao="9">
@@ -7738,5 +8150,6 @@
   <script src="js/licoes/ga-05.js"></script>
   <script src="js/licoes/ga-06.js"></script>
   <script src="js/licoes/ga-07.js"></script>
+  <script src="js/licoes/ga-08.js"></script>
 </body>
 </html>
