@@ -226,9 +226,11 @@
       }
 
       if (chkReta.checked) {
-        // trecho da reta dentro da esfera de raio "alcance": |A + t·v|² = R²
+        // trecho da reta dentro de uma esfera bem maior que a vista: |A + t·v|² = R²
+        // (o SVG corta o que passar da borda, então a reta atravessa o desenho todo)
+        const raio = alcance * 3;
         const vv = produtoEscalar3(v, v), Av = produtoEscalar3(A, v), AA = produtoEscalar3(A, A);
-        const delta = Av * Av - vv * (AA - alcance * alcance);
+        const delta = Av * Av - vv * (AA - raio * raio);
         if (delta > 0) {
           const t1 = (-Av - Math.sqrt(delta)) / vv, t2 = (-Av + Math.sqrt(delta)) / vv;
           e.linha(mais(pA, vezes(t1, pv)), mais(pA, vezes(t2, pv)), 'reta-espaco');

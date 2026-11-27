@@ -88,8 +88,8 @@
   const chkTodas = document.getElementById('g12-todas');
   const resultados = document.getElementById('g12-resultados');
 
-  const AZIMUTE_BRASIL = -10;   // vista oblíqua: o Brasil de frente, mas os vetores ainda aparecem
-  const ELEVACAO_BRASIL = 10;
+  const AZIMUTE_BRASIL = -30;   // vista oblíqua (~20° do Brasil): o país de frente, mas os vetores ainda aparecem
+  const ELEVACAO_BRASIL = -5;
 
   const espaco = criarEspaco3D(svg, {
     aoGirar: (azimute) => {
@@ -248,17 +248,25 @@
         if (chkCorda.checked) e.linha(pA, pB, 'segmento-distancia');
       }
 
-      // terceira cidade
-      if (C) {
-        const pC = vezes(RD, lista(C.u));
-        e.ponto(pC, 0.16, 'ponto-solucao');
-        e.texto(C.nome, pC, 'rotulo-ponto', 'start', 0.3, -0.6);
-      }
+      // pontos das cidades escolhidas
+      const escolhidas = [[A, pA, 'ponto-a'], [B, pB, 'ponto-b']];
+      if (C) escolhidas.push([C, vezes(RD, lista(C.u)), 'ponto-solucao']);
+      const unicas = escolhidas.filter(([c], k) => escolhidas.findIndex(([d]) => d.i === c.i) === k);
+      unicas.forEach(([, p, classe]) => e.ponto(p, classe === 'ponto-solucao' ? 0.16 : 0.17, classe));
 
-      e.ponto(pA, 0.17, 'ponto-a');
-      e.ponto(pB, 0.17, 'ponto-b');
-      e.texto(A.nome, pA, 'rotulo-ponto', 'end', -0.3, 0.3);
-      if (A.i !== B.i) e.texto(B.nome, pB, 'rotulo-ponto', 'start', 0.3, 0.3);
+      // Rótulos: cada nome é empurrado para fora, na direção oposta ao centro
+      // das cidades escolhidas (na tela), para os nomes não se sobreporem.
+      const telas = unicas.map(([, p]) => espaco.projetar(p));
+      const cx = telas.reduce((s, t) => s + t[0], 0) / telas.length;
+      const cy = telas.reduce((s, t) => s + t[1], 0) / telas.length;
+      unicas.forEach(([c, p], k) => {
+        let dx = telas[k][0] - cx, dy = telas[k][1] - cy;
+        const tam = Math.hypot(dx, dy);
+        if (tam < 0.05) { dx = -1; dy = 0; } else { dx /= tam; dy /= tam; }
+        const ancora = dx < -0.3 ? 'end' : (dx > 0.3 ? 'start' : 'middle');
+        // dy da tela aponta para baixo; o texto() espera "para cima"
+        e.texto(c.nome, p, 'rotulo-ponto', ancora, dx * 0.45, -dy * 0.75 - 0.15);
+      });
     });
   }
 
