@@ -95,6 +95,40 @@ function formatarRaiz(valorDentro) {
   return '√' + formatarNumero(valorDentro) + (exata ? ' = ' : ' ≈ ') + formatarNumero(raiz);
 }
 
+/**
+ * Raiz quadrada simplificada: √18 → { fora: 3, dentro: 2 }, √25 → { fora: 5, dentro: 1 }.
+ * Valores não inteiros ficam como estão: { fora: 1, dentro: valor }.
+ */
+function raizSimplificada(valor) {
+  const n = Math.round(valor);
+  if (!quaseIgual(valor, n) || n < 0) return { fora: 1, dentro: valor };
+  let fora = 1, dentro = n;
+  for (let f = 2; f * f <= dentro; f++) {
+    while (dentro % (f * f) === 0) { dentro /= f * f; fora *= f; }
+  }
+  return { fora, dentro };
+}
+
+/** Texto de raizSimplificada: "3√2", "√13", "5" ou "0". */
+function textoRaiz(valor) {
+  const { fora, dentro } = raizSimplificada(valor);
+  if (dentro === 0) return '0';
+  if (dentro === 1) return formatarNumero(fora);
+  return (fora === 1 ? '' : formatarNumero(fora)) + '√' + formatarNumero(dentro);
+}
+
+/**
+ * Razão √valor / divisor simplificada: (√18, 3) → "√2", (√13, 2) → "√13/2",
+ * (√32, 6) → "2√2/3". Com raiz exata devolve a fração: (√25, 4) → "5/4".
+ */
+function textoRaizSobre(valor, divisor) {
+  const { fora, dentro } = raizSimplificada(valor);
+  if (dentro === 1) return formatarFracao(fora / divisor);
+  const fracao = formatarFracao(fora / divisor);
+  const [num, den] = fracao.includes('/') ? fracao.split('/') : [fracao, '1'];
+  return (num === '1' ? '' : num) + '√' + formatarNumero(dentro) + (den === '1' ? '' : '/' + den);
+}
+
 /** Compara dois números com uma tolerância (para respostas decimais). */
 function quaseIgual(a, b, tolerancia) {
   if (tolerancia === undefined) tolerancia = 1e-9;

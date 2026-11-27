@@ -7264,8 +7264,401 @@
       </section>
       <section id="ga-7" class="licao" data-trilha="ga" data-licao="7">
         <h2 class="licao-titulo">7. Hipérbole</h2>
+
+        <!-- ---------- TEORIA ---------- -->
         <div class="teoria">
-          <p class="em-construcao">🚧 Lição em construção. Vai tratar de: focos, assíntotas, excentricidade e equação reduzida.</p>
+          <h3>O que é uma hipérbole</h3>
+          <p>
+            Fixe dois pontos <strong>F₁</strong> e <strong>F₂</strong> (os <strong>focos</strong>). A hipérbole é o conjunto dos
+            pontos P cuja <strong>diferença das distâncias</strong> aos dois focos, em módulo, é sempre a mesma:
+          </p>
+          <div class="formula">| d(P, F₁) − d(P, F₂) | = 2a</div>
+          <p>
+            Na elipse é a <strong>soma</strong> que fica fixa; aqui é a <strong>diferença</strong>. Por isso a curva tem
+            <strong>dois ramos</strong>: um com os pontos mais perto de F₁ e outro com os pontos mais perto de F₂.
+          </p>
+
+          <h3>Elementos</h3>
+          <ul>
+            <li><strong>Centro O:</strong> o ponto médio entre os focos.</li>
+            <li><strong>Eixo real:</strong> passa pelos focos e mede <strong>2a</strong>, de um vértice A₁ ao outro A₂.</li>
+            <li><strong>Eixo imaginário:</strong> perpendicular ao real, pelo centro, mede <strong>2b</strong>. Não corta a curva, mas ajuda a desenhá-la.</li>
+            <li><strong>Distância focal:</strong> 2c, a distância entre os focos.</li>
+          </ul>
+          <p>Na hipérbole os focos ficam <strong>além</strong> dos vértices, e c é o maior dos três:</p>
+          <div class="formula">c² = a² + b²</div>
+
+          <h3>Equação reduzida</h3>
+          <p>Com centro O(h, k):</p>
+          <div class="tabela-rolagem">
+            <table class="tabela">
+              <thead>
+                <tr><th>Eixo real</th><th>Equação</th><th>Focos</th><th>Assíntotas</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>horizontal</td><td>(x − h)²/a² − (y − k)²/b² = 1</td><td>(h ± c, k)</td><td>y − k = ±(b/a)·(x − h)</td></tr>
+                <tr><td>vertical</td><td>(y − k)²/a² − (x − h)²/b² = 1</td><td>(h, k ± c)</td><td>y − k = ±(a/b)·(x − h)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            <strong>Para não confundir:</strong> quem decide o eixo real é o termo com <strong>sinal positivo</strong>, e o a² é o
+            denominador dele. Ao contrário da elipse, a² não precisa ser o maior denominador.
+          </p>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              x²/16 − y²/9 = 1: o termo positivo é o de x, então o eixo real é horizontal, com a = 4 e b = 3.
+              c² = 16 + 9 = 25, c = 5. <strong>Focos (±5, 0)</strong>, vértices (±4, 0) e assíntotas y = ±(3/4)x.
+            </p>
+            <p>
+              Conferindo a definição no vértice A₂(4, 0): d(A₂, F₁) = 9 e d(A₂, F₂) = 1. Diferença 8 = 2a ✓.
+            </p>
+          </div>
+
+          <h3>As assíntotas</h3>
+          <p>
+            Desenhe o retângulo de lados 2a e 2b centrado em O. Suas <strong>diagonais</strong>, prolongadas, são as
+            assíntotas: retas das quais os ramos se aproximam cada vez mais, sem nunca tocá-las. Elas vêm do fato de que,
+            para x muito grande, o "1" da equação quase não pesa: x²/a² − y²/b² ≈ 0, ou seja, y ≈ ±(b/a)x.
+          </p>
+
+          <h3>Excentricidade</h3>
+          <div class="formula">e = c / a, &nbsp;&nbsp;com e &gt; 1</div>
+          <ul>
+            <li>e perto de 1: os ramos são estreitos, "fechados" em torno do eixo real.</li>
+            <li>e grande: os ramos se abrem e ficam quase retos.</li>
+            <li><strong>Hipérbole equilátera:</strong> a = b. As assíntotas são perpendiculares (y − k = ±(x − h)) e e = √2.
+              O gráfico de y = 1/x é uma hipérbole equilátera girada 45°, com os eixos x e y como assíntotas.</li>
+          </ul>
+
+          <h3>Da equação geral para a reduzida</h3>
+          <div class="exemplo">
+            <p class="exemplo-titulo">Exemplo</p>
+            <p>
+              9x² − 4y² − 18x − 16y − 43 = 0 &nbsp;⇒&nbsp; 9(x² − 2x) − 4(y² + 4y) = 43 &nbsp;⇒&nbsp;
+              9(x − 1)² − 9 − 4(y + 2)² + 16 = 43 &nbsp;⇒&nbsp; 9(x − 1)² − 4(y + 2)² = 36.
+            </p>
+            <p>
+              Dividindo por 36: <strong>(x − 1)²/4 − (y + 2)²/9 = 1</strong>. Centro (1, −2), eixo real horizontal,
+              a = 2, b = 3 e c = √13.
+            </p>
+          </div>
+
+          <h3>Onde aparece</h3>
+          <p>
+            Se um sinal sai ao mesmo tempo de duas antenas e chega a um navio com uma certa diferença de tempo, a
+            <strong>diferença das distâncias</strong> até as antenas é conhecida: o navio está numa hipérbole com focos nas
+            antenas. Com um terceiro par de antenas, o cruzamento de duas hipérboles dá a posição (é a ideia dos sistemas
+            LORAN, antecessores do GPS). Telescópios do tipo Cassegrain também usam um espelho hiperbólico.
+          </p>
+        </div>
+
+        <!-- ---------- LABORATÓRIO ---------- -->
+        <div class="laboratorio">
+          <h3>A diferença que não muda</h3>
+          <p>
+            Escolha o eixo real, o centro e os semieixos. Mova o ponto P pelo ramo (pelo controle ou
+            <strong>clicando no plano</strong>) e confira que a diferença das distâncias até os focos é sempre 2a.
+          </p>
+
+          <fieldset class="escolha lab-operacao">
+            <legend>Eixo real</legend>
+            <label class="opcao"><input type="radio" name="g7-eixo" value="horizontal" checked> Horizontal (x² positivo)</label>
+            <label class="opcao"><input type="radio" name="g7-eixo" value="vertical"> Vertical (y² positivo)</label>
+          </fieldset>
+
+          <div class="lab-area controles-largos">
+            <svg id="g7-plano" class="plano-cartesiano" viewBox="-10 -10 20 20"
+                 role="img" aria-label="Plano com a hipérbole, as assíntotas, os focos e um ponto P ligado a cada foco"></svg>
+
+            <div class="lab-controles">
+              <fieldset class="lab-ponto lab-ponto-m">
+                <legend>Centro</legend>
+                <label>h <input type="number" id="g7-h" value="0" min="-5" max="5" step="1" aria-label="x do centro"></label>
+                <label>k <input type="number" id="g7-k" value="0" min="-5" max="5" step="1" aria-label="y do centro"></label>
+              </fieldset>
+              <fieldset class="lab-ponto lab-ponto-a">
+                <legend>Semieixos</legend>
+                <label>a <input type="number" id="g7-a" value="4" min="1" max="6" step="1" aria-label="semieixo real"></label>
+                <label>b <input type="number" id="g7-b" value="3" min="1" max="6" step="1" aria-label="semieixo imaginário"></label>
+              </fieldset>
+              <div class="lab-campo">
+                <label for="g7-t">Posição de P no ramo: <output id="g7-t-valor">0,8</output></label>
+                <input type="range" id="g7-t" min="-2" max="2" step="0.1" value="0.8">
+              </div>
+              <label class="lab-check"><input type="checkbox" id="g7-ramo"> Pôr P no outro ramo</label>
+              <label class="lab-check"><input type="checkbox" id="g7-retangulo" checked> Mostrar o retângulo 2a × 2b e as assíntotas</label>
+              <p class="lab-dica">h e k de −5 a 5; a e b de 1 a 6 (a é o semieixo real, sob o termo positivo).</p>
+              <button type="button" id="g7-sortear" class="btn-secundario">🎲 Sortear</button>
+            </div>
+          </div>
+
+          <div id="g7-resultados" class="lab-resultados" aria-live="polite"></div>
+        </div>
+
+        <!-- ---------- EXERCÍCIOS ---------- -->
+        <div class="exercicios" data-licao="7">
+          <h3>Pratique</h3>
+          <p>Escolha uma alternativa em cada exercício. Acerte todos para liberar a lição 8.</p>
+
+          <ol class="lista-exercicios">
+            <!-- ===== BÁSICO ===== -->
+            <li class="exercicio" data-nivel="basico">
+              <p>Quais são os focos da hipérbole <strong>x²/16 − y²/9 = 1</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g7-b1" value="a"
+                  data-explicacao="Esses são os vértices. Na hipérbole os focos ficam além dos vértices."> (±4, 0)</label>
+                <label class="alternativa"><input type="radio" name="g7-b1" value="b"
+                  data-explicacao="a² = 16 e b² = 9, então c² = a² + b² = 25 e c = 5. O termo positivo é o de x: focos (±5, 0)."> (±5, 0)</label>
+                <label class="alternativa"><input type="radio" name="g7-b1" value="c"
+                  data-explicacao="Subtraiu os denominadores, como na elipse. Na hipérbole, c² = a² + b²."> (±√7, 0)</label>
+                <label class="alternativa"><input type="radio" name="g7-b1" value="d"
+                  data-explicacao="O termo positivo é o de x, então o eixo real é horizontal e os focos ficam sobre o eixo x."> (0, ±5)</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Qual é a definição de hipérbole?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g7-b2" value="a"
+                  data-explicacao="Essa é a definição da elipse."> Pontos cuja soma das distâncias a dois focos é constante</label>
+                <label class="alternativa"><input type="radio" name="g7-b2" value="b"
+                  data-explicacao="Essa é a definição da parábola."> Pontos à mesma distância de um ponto e de uma reta</label>
+                <label class="alternativa"><input type="radio" name="g7-b2" value="c"
+                  data-explicacao="|d(P, F₁) − d(P, F₂)| = 2a para todo ponto P da hipérbole."> Pontos cuja diferença das distâncias a dois focos, em módulo, é constante</label>
+                <label class="alternativa"><input type="radio" name="g7-b2" value="d"
+                  data-explicacao="Essa é a circunferência."> Pontos a uma distância fixa de um ponto</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Quais são as assíntotas da hipérbole <strong>x²/4 − y²/9 = 1</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g7-b3" value="a"
+                  data-explicacao="a = 2 e b = 3, eixo real horizontal: as assíntotas são y = ±(b/a)x = ±(3/2)x."> y = ±(3/2)x</label>
+                <label class="alternativa"><input type="radio" name="g7-b3" value="b"
+                  data-explicacao="Inverteu a fração. Com eixo real horizontal, a inclinação é b/a."> y = ±(2/3)x</label>
+                <label class="alternativa"><input type="radio" name="g7-b3" value="c"
+                  data-explicacao="Usou os denominadores. A inclinação usa os semieixos, que são as raízes deles."> y = ±(9/4)x</label>
+                <label class="alternativa"><input type="radio" name="g7-b3" value="d"
+                  data-explicacao="Inclinação ±1 só acontece na hipérbole equilátera, com a = b."> y = ±x</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Em qual direção fica o eixo real da hipérbole <strong>y²/25 − x²/16 = 1</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g7-b4" value="a"
+                  data-explicacao="Quem decide é o termo com sinal positivo, não o tamanho dos denominadores."> Na direção do eixo x</label>
+                <label class="alternativa"><input type="radio" name="g7-b4" value="b"
+                  data-explicacao="A equação já basta: olhe o sinal de cada termo."> Não dá para saber sem os focos</label>
+                <label class="alternativa"><input type="radio" name="g7-b4" value="c"
+                  data-explicacao="Sem termo xy na equação, os eixos da hipérbole são paralelos aos eixos coordenados."> Na reta y = x</label>
+                <label class="alternativa"><input type="radio" name="g7-b4" value="d"
+                  data-explicacao="O termo positivo é o de y, então o eixo real é vertical: vértices (0, ±5) e focos (0, ±√41)."> Na direção do eixo y</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Qual é a excentricidade da hipérbole <strong>x²/9 − y²/16 = 1</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g7-b5" value="a"
+                  data-explicacao="Está invertida: na hipérbole e = c/a é sempre maior que 1."> 3/5</label>
+                <label class="alternativa"><input type="radio" name="g7-b5" value="b"
+                  data-explicacao="4 é o b. A excentricidade usa c, a distância do centro ao foco."> 4/3</label>
+                <label class="alternativa"><input type="radio" name="g7-b5" value="c"
+                  data-explicacao="a = 3, b = 4, c² = 9 + 16 = 25, c = 5. e = c/a = 5/3 ≈ 1,67."> 5/3</label>
+                <label class="alternativa"><input type="radio" name="g7-b5" value="d"
+                  data-explicacao="Dividiu c por b. O divisor é o a, semieixo do termo positivo."> 5/4</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="basico">
+              <p>Quanto mede o eixo real da hipérbole <strong>x²/36 − y²/64 = 1</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g7-b6" value="a"
+                  data-explicacao="6 é o semieixo, a metade. O eixo vai de um vértice ao outro."> 6</label>
+                <label class="alternativa"><input type="radio" name="g7-b6" value="b"
+                  data-explicacao="16 = 2·8 é o eixo imaginário. O eixo real acompanha o termo positivo."> 16</label>
+                <label class="alternativa"><input type="radio" name="g7-b6" value="c"
+                  data-explicacao="20 = 2c é a distância entre os focos."> 20</label>
+                <label class="alternativa"><input type="radio" name="g7-b6" value="d"
+                  data-explicacao="O termo positivo é x²/36, então a² = 36, a = 6 e o eixo real mede 2a = 12."> 12</label>
+              </div>
+            </li>
+
+            <!-- ===== INTERMEDIÁRIO ===== -->
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é a hipérbole de focos <strong>(±5, 0)</strong> e vértices <strong>(±3, 0)</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g7-i1" value="a"
+                  data-explicacao="a = 3 e c = 5, então b² = c² − a² = 25 − 9 = 16. Focos no eixo x: o termo positivo é o de x."> x²/9 − y²/16 = 1</label>
+                <label class="alternativa"><input type="radio" name="g7-i1" value="b"
+                  data-explicacao="Usou c² no lugar de b². O b² sai de c² = a² + b²."> x²/9 − y²/25 = 1</label>
+                <label class="alternativa"><input type="radio" name="g7-i1" value="c"
+                  data-explicacao="Com sinal de soma a equação é de uma elipse."> x²/9 + y²/16 = 1</label>
+                <label class="alternativa"><input type="radio" name="g7-i1" value="d"
+                  data-explicacao="Os focos estão no eixo x, então o termo positivo deve ser o de x."> y²/9 − x²/16 = 1</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Um ponto P da hipérbole <strong>x²/16 − y²/9 = 1</strong> está a 10 de distância do foco F₁. A que distância ele está de F₂?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g7-i2" value="a"
+                  data-explicacao="É um dos casos possíveis, mas |d₁ − d₂| = 8 tem mais uma solução."> 2</label>
+                <label class="alternativa"><input type="radio" name="g7-i2" value="b"
+                  data-explicacao="É um dos casos possíveis, mas |d₁ − d₂| = 8 tem mais uma solução."> 18</label>
+                <label class="alternativa"><input type="radio" name="g7-i2" value="c"
+                  data-explicacao="|10 − d₂| = 2a = 8 ⇒ d₂ = 2 ou d₂ = 18. Os dois são possíveis: depende do ramo em que P está."> 2 ou 18</label>
+                <label class="alternativa"><input type="radio" name="g7-i2" value="d"
+                  data-explicacao="Usou a = 4 como a diferença. A diferença das distâncias é 2a."> 6 ou 14</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é o centro da hipérbole <strong>x² − 4y² + 4x + 24y − 36 = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g7-i3" value="a"
+                  data-explicacao="Os dois sinais estão trocados. Ao completar o quadrado, x² + 4x vira (x + 2)² − 4."> (2, −3)</label>
+                <label class="alternativa"><input type="radio" name="g7-i3" value="b"
+                  data-explicacao="x² + 4x = (x + 2)² − 4 e −4(y² − 6y) = −4(y − 3)² + 36. Fica (x + 2)² − 4(y − 3)² = 4, ou seja, (x + 2)²/4 − (y − 3)² = 1."> (−2, 3)</label>
+                <label class="alternativa"><input type="radio" name="g7-i3" value="c"
+                  data-explicacao="O sinal de k está trocado. Ponha −4 em evidência com cuidado: −4y² + 24y = −4(y² − 6y)."> (−2, −3)</label>
+                <label class="alternativa"><input type="radio" name="g7-i3" value="d"
+                  data-explicacao="4 e 24 são coeficientes da equação geral. O centro sai completando os quadrados."> (4, 24)</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Quais são as assíntotas da hipérbole <strong>(y − 1)²/4 − (x + 2)²/9 = 1</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g7-i4" value="a"
+                  data-explicacao="Inverteu a fração. Com eixo real vertical, a inclinação é a/b."> y − 1 = ±(3/2)(x + 2)</label>
+                <label class="alternativa"><input type="radio" name="g7-i4" value="b"
+                  data-explicacao="Os sinais do centro estão trocados."> y + 1 = ±(2/3)(x − 2)</label>
+                <label class="alternativa"><input type="radio" name="g7-i4" value="c"
+                  data-explicacao="Usou os denominadores. A inclinação usa os semieixos."> y − 1 = ±(4/9)(x + 2)</label>
+                <label class="alternativa"><input type="radio" name="g7-i4" value="d"
+                  data-explicacao="Centro (−2, 1), eixo real vertical, a = 2 e b = 3: inclinação ±a/b = ±2/3."> y − 1 = ±(2/3)(x + 2)</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é a excentricidade da hipérbole equilátera <strong>x² − y² = 9</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g7-i5" value="a"
+                  data-explicacao="Com e = 1 a curva seria uma parábola. Na hipérbole, e é maior que 1."> 1</label>
+                <label class="alternativa"><input type="radio" name="g7-i5" value="b"
+                  data-explicacao="x²/9 − y²/9 = 1: a = b = 3, c² = 9 + 9 = 18, c = 3√2. e = c/a = √2 ≈ 1,41."> √2</label>
+                <label class="alternativa"><input type="radio" name="g7-i5" value="c"
+                  data-explicacao="Errou o c: c² = a² + b², e a raiz da soma não é a soma das raízes."> 2</label>
+                <label class="alternativa"><input type="radio" name="g7-i5" value="d"
+                  data-explicacao="3 é o semieixo a, não a excentricidade."> 3</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="intermediario">
+              <p>Qual é a hipérbole de centro <strong>(2, −1)</strong>, eixo real <strong>vertical</strong>, a = 3 e b = 4?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g7-i6" value="a"
+                  data-explicacao="Assim o termo positivo é o de x, e o eixo real seria horizontal."> (x − 2)²/9 − (y + 1)²/16 = 1</label>
+                <label class="alternativa"><input type="radio" name="g7-i6" value="b"
+                  data-explicacao="Os sinais do centro estão trocados."> (y − 1)²/9 − (x + 2)²/16 = 1</label>
+                <label class="alternativa"><input type="radio" name="g7-i6" value="c"
+                  data-explicacao="Eixo real vertical: o termo positivo é o de y, com a² = 9 embaixo. Centro (2, −1)."> (y + 1)²/9 − (x − 2)²/16 = 1</label>
+                <label class="alternativa"><input type="radio" name="g7-i6" value="d"
+                  data-explicacao="Trocou a e b: o a² vai sob o termo positivo."> (y + 1)²/16 − (x − 2)²/9 = 1</label>
+              </div>
+            </li>
+
+            <!-- ===== AVANÇADO ===== -->
+            <li class="exercicio" data-nivel="avancado">
+              <p>Qual é a hipérbole de focos <strong>(−1, 2)</strong> e <strong>(9, 2)</strong> com eixo real medindo <strong>6</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 1" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g7-a1" value="a"
+                  data-explicacao="Os denominadores estão certos, mas o centro não é a origem: ele fica no meio dos focos."> x²/9 − y²/16 = 1</label>
+                <label class="alternativa"><input type="radio" name="g7-a1" value="b"
+                  data-explicacao="Centro (4, 2), c = 5, a = 3, b² = 25 − 9 = 16. Focos na horizontal: o termo positivo é o de x."> (x − 4)²/9 − (y − 2)²/16 = 1</label>
+                <label class="alternativa"><input type="radio" name="g7-a1" value="c"
+                  data-explicacao="Com sinal de soma a equação é de uma elipse."> (x − 4)²/9 + (y − 2)²/16 = 1</label>
+                <label class="alternativa"><input type="radio" name="g7-a1" value="d"
+                  data-explicacao="Usou c² no lugar de b²."> (x − 4)²/9 − (y − 2)²/25 = 1</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Para quais inclinações m a reta <strong>y = mx</strong> corta a hipérbole <strong>x²/9 − y²/4 = 1</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 2" data-resposta="a">
+                <label class="alternativa"><input type="radio" name="g7-a2" value="a"
+                  data-explicacao="x²(1/9 − m²/4) = 1 só tem solução se 1/9 − m²/4 for positivo: m² menor que 4/9. São as retas menos inclinadas que as assíntotas."> |m| menor que 2/3</label>
+                <label class="alternativa"><input type="radio" name="g7-a2" value="b"
+                  data-explicacao="Retas mais inclinadas que as assíntotas passam entre os dois ramos sem tocá-los."> |m| maior que 2/3</label>
+                <label class="alternativa"><input type="radio" name="g7-a2" value="c"
+                  data-explicacao="Inverteu a inclinação das assíntotas. Com eixo real horizontal ela é b/a."> |m| menor que 3/2</label>
+                <label class="alternativa"><input type="radio" name="g7-a2" value="d"
+                  data-explicacao="As próprias assíntotas, y = ±(2/3)x, são retas desse tipo que não cortam a curva."> Qualquer m</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Um navio está <strong>6 km</strong> mais perto da estação A do que da estação B, e as estações distam <strong>10 km</strong>. Ele está numa hipérbole com focos em A e B. Quanto vale b?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 3" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g7-a3" value="a"
+                  data-explicacao="3 km é o a: a diferença das distâncias é 2a = 6."> 3 km</label>
+                <label class="alternativa"><input type="radio" name="g7-a3" value="b"
+                  data-explicacao="5 km é o c, a metade da distância entre os focos."> 5 km</label>
+                <label class="alternativa"><input type="radio" name="g7-a3" value="c"
+                  data-explicacao="2a = 6 ⇒ a = 3; 2c = 10 ⇒ c = 5. b² = c² − a² = 25 − 9 = 16, b = 4."> 4 km</label>
+                <label class="alternativa"><input type="radio" name="g7-a3" value="d"
+                  data-explicacao="Somou a² + c². Na hipérbole, c² = a² + b²."> √34 km</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>O gráfico de <strong>y = 4/x</strong> (ou xy = 4) é uma hipérbole equilátera girada. Quais são as suas assíntotas?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 4" data-resposta="b">
+                <label class="alternativa"><input type="radio" name="g7-a4" value="a"
+                  data-explicacao="Essas são as retas de simetria dela; y = x passa pelos vértices (2, 2) e (−2, −2)."> As retas y = x e y = −x</label>
+                <label class="alternativa"><input type="radio" name="g7-a4" value="b"
+                  data-explicacao="Quando x cresce, 4/x se aproxima de 0 (eixo x); quando x se aproxima de 0, y cresce sem limite (eixo y)."> Os eixos x e y</label>
+                <label class="alternativa"><input type="radio" name="g7-a4" value="c"
+                  data-explicacao="4 é a constante do produto xy, não uma reta de aproximação. Por exemplo, x = 8 dá y = 0,5."> As retas y = 4 e x = 4</label>
+                <label class="alternativa"><input type="radio" name="g7-a4" value="d"
+                  data-explicacao="Toda hipérbole tem duas assíntotas, inclusive as giradas."> Ela não tem assíntotas</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Quais são os focos da hipérbole <strong>16y² − 9x² − 64y − 18x − 89 = 0</strong>?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 5" data-resposta="d">
+                <label class="alternativa"><input type="radio" name="g7-a5" value="a"
+                  data-explicacao="Depois de completar os quadrados, o termo positivo é o de y: o eixo real é vertical."> (−6, 2) e (4, 2)</label>
+                <label class="alternativa"><input type="radio" name="g7-a5" value="b"
+                  data-explicacao="Os sinais do centro estão trocados."> (1, −7) e (1, 3)</label>
+                <label class="alternativa"><input type="radio" name="g7-a5" value="c"
+                  data-explicacao="Subtraiu, como na elipse. Na hipérbole, c² = a² + b²."> (−1, 2 − √7) e (−1, 2 + √7)</label>
+                <label class="alternativa"><input type="radio" name="g7-a5" value="d"
+                  data-explicacao="16(y − 2)² − 64 − 9(x + 1)² + 9 − 89 = 0 ⇒ (y − 2)²/9 − (x + 1)²/16 = 1. Centro (−1, 2), eixo vertical, c² = 9 + 16 = 25, c = 5."> (−1, −3) e (−1, 7)</label>
+              </div>
+            </li>
+
+            <li class="exercicio" data-nivel="avancado">
+              <p>Uma hipérbole tem centro na origem, eixo real horizontal, a = 3 e excentricidade <strong>e = 2</strong>. Qual é a sua equação?</p>
+              <div class="alternativas" role="radiogroup" aria-label="Exercício 6" data-resposta="c">
+                <label class="alternativa"><input type="radio" name="g7-a6" value="a"
+                  data-explicacao="Usou c² no lugar de b²."> x²/9 − y²/36 = 1</label>
+                <label class="alternativa"><input type="radio" name="g7-a6" value="b"
+                  data-explicacao="Usou a excentricidade como se fosse o b."> x²/9 − y²/4 = 1</label>
+                <label class="alternativa"><input type="radio" name="g7-a6" value="c"
+                  data-explicacao="e = c/a ⇒ c = 2·3 = 6. b² = c² − a² = 36 − 9 = 27."> x²/9 − y²/27 = 1</label>
+                <label class="alternativa"><input type="radio" name="g7-a6" value="d"
+                  data-explicacao="Com sinal de soma é uma elipse, e a elipse tem e menor que 1."> x²/9 + y²/27 = 1</label>
+              </div>
+            </li>
+
+          </ol>
         </div>
       </section>
       <section id="ga-8" class="licao" data-trilha="ga" data-licao="8">
@@ -7344,5 +7737,6 @@
   <script src="js/licoes/ga-04.js"></script>
   <script src="js/licoes/ga-05.js"></script>
   <script src="js/licoes/ga-06.js"></script>
+  <script src="js/licoes/ga-07.js"></script>
 </body>
 </html>

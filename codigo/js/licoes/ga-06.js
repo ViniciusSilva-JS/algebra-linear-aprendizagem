@@ -56,13 +56,6 @@
     return '(' + variavel + (centro > 0 ? ' − ' : ' + ') + fr(Math.abs(centro)) + ')²';
   }
 
-  /** c = √(a² − b²) como texto: "4" (exato) ou "√7". */
-  function raizTexto(quadradoValor) {
-    const r = Math.sqrt(quadradoValor);
-    if (quaseIgual(r, Math.round(r), 1e-9)) return fr(Math.round(r));
-    return '√' + fr(quadradoValor);
-  }
-
   /** "h ± c" como coordenada: "4", "2 − √7", "−√7". */
   function coordenada(centro, sinal, c, cTexto, exato) {
     if (exato) return fr(centro + sinal * c);
@@ -219,7 +212,7 @@
 
     // 2. elementos
     const cExato = quaseIgual(c, Math.round(c), 1e-9);
-    const cTexto = raizTexto(c2);
+    const cTexto = textoRaiz(c2);
     const cAprox = cExato ? '' : ' ≈ ' + formatarNumero(c);
     const fTexto = (s) => horizontal
       ? '(' + coordenada(h, s, c, cTexto, cExato) + ', ' + fr(k) + ')'
@@ -233,7 +226,7 @@
     const e = c / a;
     const eTexto = cExato
       ? formatarFracao(e) + (formatarFracao(e) === formatarNumero(e) ? '' : ' = ' + formatarNumero(e))
-      : cTexto + '/' + fr(a) + ' ≈ ' + formatarNumero(e);
+      : textoRaizSobre(c2, a) + ' ≈ ' + formatarNumero(e);
 
     const elementos = circunferencia ? `
         <ul>

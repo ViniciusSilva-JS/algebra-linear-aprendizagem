@@ -858,6 +858,32 @@
 
 
 /* =========================================================================
+   GEOMETRIA ANALÍTICA — LIÇÃO 7: HIPÉRBOLE
+   (as distâncias de P aos focos também reaproveitam as classes da lição 5)
+   ========================================================================= */
+.hiperbole {
+  fill: none;
+  stroke: var(--cor-laboratorio);
+  stroke-width: calc(0.1 * var(--escala-plano, 1));
+  stroke-linejoin: round;
+}
+
+/* Retas das quais os ramos se aproximam */
+.assintota {
+  stroke: var(--cor-teoria);
+  stroke-width: calc(0.05 * var(--escala-plano, 1));
+  stroke-dasharray: 0.4 0.25;
+}
+
+/* Retângulo 2a × 2b, cujas diagonais são as assíntotas */
+.retangulo-assintotas {
+  fill: none;
+  stroke: var(--cor-texto-suave);
+  stroke-width: calc(0.04 * var(--escala-plano, 1));
+}
+
+
+/* =========================================================================
    RESPONSIVO
    ========================================================================= */
 @media (max-width: 900px) {

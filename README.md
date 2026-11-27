@@ -47,6 +47,7 @@ codigo/                       Código do site
       ga-04.js                Geometria Analítica, Lição 4 (posições relativas com a circunferência)
       ga-05.js                Geometria Analítica, Lição 5 (parábola)
       ga-06.js                Geometria Analítica, Lição 6 (elipse)
+      ga-07.js                Geometria Analítica, Lição 7 (hipérbole)
 README.md
 ```
 
