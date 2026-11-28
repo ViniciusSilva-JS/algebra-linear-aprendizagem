@@ -38,7 +38,7 @@ O progresso fica salvo no navegador. Também há **tema escuro** e versão para 
 Não é necessário instalar nada, nem ter internet.
 
 1. `git clone https://github.com/ViniciusSilva-JS/algebra-linear-aprendizagem.git`
-2. Abra o arquivo `codigo/index.html` no navegador (dois cliques), ou use o **Live Server** do VS Code.
+2. Abra o arquivo `docs/index.html` no navegador (dois cliques), ou use o **Live Server** do VS Code.
 
 ## 4. As duas trilhas
 
@@ -92,15 +92,15 @@ cada laboratório.
 ## 5. Arquitetura
 
 ```
-codigo/index.html            página única: tela inicial, menu e o conteúdo das 24 lições
-codigo/css/
+docs/index.html              página única: tela inicial, menu e o conteúdo das 24 lições
+docs/css/
   base.css                   cores, fontes e espaços (variáveis) e tema claro/escuro
   layout.css                 tela inicial, menu de lições e grade da página
   componentes.css            botões, campos, fórmulas, tabelas e matrizes
   exercicios.css             alternativas e quadro de explicações
   laboratorio.css            laboratórios, plano cartesiano e espaço 3D
 
-codigo/js/
+docs/js/
   utils/matematica.js        todas as contas: módulo, produto escalar e vetorial, determinante, inversa...
   componentes/plano.js       desenha o plano cartesiano (SVG)
   componentes/espaco.js      desenha o espaço 3D que gira com o mouse (SVG, sem biblioteca)
